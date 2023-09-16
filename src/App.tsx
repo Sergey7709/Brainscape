@@ -4,7 +4,7 @@ export function App() {
   return (
     <div>
       <Button as={'button'} variant={'primary'}>
-        button
+        button primary
       </Button>
       Hello
       <Button as={'a'} variant={'primary'} href={'/link'}>
