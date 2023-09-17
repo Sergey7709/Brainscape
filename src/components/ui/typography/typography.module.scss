@@ -1,4 +1,6 @@
 
+// font-weight
+
 .large, .h1, .h2, .h3 , .subtitle1 , .subtitle2 , .overline {
   font-weight: var(--font-weight-bold);
 }
@@ -7,7 +9,7 @@
   font-weight: var(--font-weight-regular);
 }
 
-
+// line-height
 
 .large , .h1 {
   line-height: var(--line-height-l);
@@ -21,7 +23,7 @@
   line-height: var(--line-height-s);
 }
 
-
+// font-size
 
 .large {
   font-size: var(--font-size-xxl);
@@ -40,17 +42,15 @@
   font-size: var(--font-size-m);
 }
 
-
 .body2  , .subtitle2, .link1{
   font-size: var(--font-size-s);
-
 }
-
 
 .caption , .overline , .link2{
   font-size: var(--font-size-xs);
 }
 
+// link decorations
 
 .link1 , .link2 {
   color: var(--primary-500, #397df6);
@@ -60,5 +60,3 @@
     cursor: pointer;
   }
 }
-
-
