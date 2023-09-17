@@ -1,7 +1,5 @@
 const CheckBox = () => {
- chek-box-3
   return <div>??????????</div>
 }
-
 
 export default CheckBox
