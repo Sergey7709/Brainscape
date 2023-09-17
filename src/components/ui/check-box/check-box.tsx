@@ -1,10 +1,5 @@
-
 const CheckBox = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+  return <div>??????????</div>
+}
 
-export default CheckBox;
+export default CheckBox
