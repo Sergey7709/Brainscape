@@ -7,6 +7,7 @@ const meta = {
   component: Button,
   tags: ['autodocs'],
   argTypes: {
+    onClick: { action: 'clicked' },
     variant: {
       options: ['primary', 'secondary', 'tertiary', 'link'],
       control: { type: 'radio' },
