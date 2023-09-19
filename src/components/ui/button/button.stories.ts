@@ -10,7 +10,10 @@ const meta = {
     onClick: { action: 'clicked' },
     variant: {
       options: ['primary', 'secondary', 'tertiary', 'link'],
-      control: { type: 'radio' },
+      control: { type: 'select' },
+    },
+    as: {
+      control: { type: 'select' },
     },
   },
 } satisfies Meta<typeof Button>
