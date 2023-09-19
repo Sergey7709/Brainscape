@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
+import { clsx } from 'clsx'
+
 import s from './button.module.scss'
 
 export type ButtonProps<T extends ElementType = 'button'> = {
@@ -16,6 +18,6 @@ export const Button = <T extends ElementType = 'button'>(
   const { variant = 'primary', fullWidth, className, as: Component = 'button', ...rest } = props
 
   return (
-    <Component className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`} {...rest} />
+    <Component className={clsx(s[variant], { [s.fullWidth]: fullWidth }, className)} {...rest} />
   )
 }
