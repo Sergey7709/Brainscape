@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from './button.tsx'
@@ -24,7 +26,7 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    children: 'Button Primary ',
+    children: 'Button Primary',
     disabled: false,
     as: 'button',
   },
@@ -50,9 +52,41 @@ export const Link: Story = {
   args: {
     variant: 'link',
     children: 'Link-button',
-    disabled: false,
     as: 'a',
     href: 'https://webref.ru/',
+  },
+  render: args => {
+    const [isDisabled, setIsDisabled] = useState(false)
+
+    return (
+      <>
+        <div style={{ marginBottom: '2rem' }}>
+          <input
+            type="radio"
+            id="enabled"
+            name="disableStatus"
+            checked={!isDisabled}
+            onChange={() => setIsDisabled(false)}
+          />
+          <label htmlFor="enabled" style={{ color: 'lightseagreen', marginRight: '1rem' }}>
+            Enabled link
+          </label>
+          <input
+            type="radio"
+            id="disabled"
+            name="disableStatus"
+            checked={isDisabled}
+            onChange={() => setIsDisabled(true)}
+          />
+          <label style={{ color: 'crimson' }} htmlFor="disabled">
+            Disabled link
+          </label>
+        </div>
+        <div style={{ marginLeft: '3rem', cursor: 'not-allowed' }}>
+          <Button className={isDisabled ? 'disabled-link' : ''} {...args} />
+        </div>
+      </>
+    )
   },
 }
 
@@ -83,7 +117,6 @@ export const AsLink: Story = {
   args: {
     variant: 'primary',
     children: 'Link that looks like a button',
-    disabled: false,
     as: 'a',
     href: 'https://sass-lang.com',
   },

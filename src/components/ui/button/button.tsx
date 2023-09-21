@@ -13,9 +13,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
 export const Button = <T extends ElementType = 'button'>(
   props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
 ) => {
-  const { variant = 'primary', fullWidth, className, as: Component = 'button', ...rest } = props
+  const { variant = 'primary', fullWidth, className, as: Tag = 'button', ...rest } = props
 
-  return (
-    <Component className={clsx(s[variant], { [s.fullWidth]: fullWidth }, className)} {...rest} />
-  )
+  return <Tag className={clsx(s[variant], { [s.fullWidth]: fullWidth }, s[className])} {...rest} />
 }

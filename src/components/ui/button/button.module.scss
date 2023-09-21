@@ -136,6 +136,13 @@
   }
 }
 
+.disabled-link {
+  pointer-events: none;
+  color: var(--color-accent-900);
+  text-decoration: none;
+  opacity: 0.5;
+}
+
 .fullWidth {
   width: 100%;
 }
