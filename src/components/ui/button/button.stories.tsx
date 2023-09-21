@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    children: 'Button Primary ',
+    children: 'Button Primary',
     disabled: false,
     as: 'button',
   },
@@ -68,7 +68,7 @@ export const Link: Story = {
             checked={!isDisabled}
             onChange={() => setIsDisabled(false)}
           />
-          <label htmlFor="enabled" style={{ marginRight: '1rem' }}>
+          <label htmlFor="enabled" style={{ color: 'lightseagreen', marginRight: '1rem' }}>
             Enabled link
           </label>
           <input
@@ -78,7 +78,9 @@ export const Link: Story = {
             checked={isDisabled}
             onChange={() => setIsDisabled(true)}
           />
-          <label htmlFor="disabled">Disabled link</label>
+          <label style={{ color: 'crimson' }} htmlFor="disabled">
+            Disabled link
+          </label>
         </div>
         <div style={{ marginLeft: '3rem', cursor: 'not-allowed' }}>
           <Button className={isDisabled ? 'disabled-link' : ''} {...args} />
