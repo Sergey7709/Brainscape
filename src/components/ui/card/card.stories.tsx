@@ -14,4 +14,5 @@ type Story = StoryObj<typeof meta>
 
 export const Cards: Story = {
   args: { children: 'child elements in a card' },
+  render: args => <Card className={'colorTextChildren'} {...args} />,
 }
