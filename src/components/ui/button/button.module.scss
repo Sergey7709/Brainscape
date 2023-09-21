@@ -119,10 +119,6 @@
     color: var(--color-accent-500);
   }
 
-  &:disabled {
-    color: var(--color-accent-900);
-  }
-
   &:focus-visible {
     border-radius: 3.125rem;
   }
@@ -135,6 +131,13 @@
     color: var(--color-accent-700);
   }
 }
+
+  .disabled-link {
+    pointer-events: none;
+    color: var(--color-accent-900);
+    text-decoration: none;
+    opacity: 0.5;
+  }
 
 .fullWidth {
   width: 100%;
