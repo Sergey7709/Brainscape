@@ -26,6 +26,12 @@
   border: none;
   border-radius: 0.25rem;
 
+  &.disabled{
+    pointer-events: none;
+    text-decoration: none;
+    opacity: 0.5;
+  }
+
   &:focus-visible {
     outline: 0.125rem solid var(--color-info-700);
     outline-offset: 0.1875rem;
@@ -43,13 +49,14 @@
   }
 }
 
+
 .primary {
   @include button-base;
 
   background: var(--color-accent-500);
   box-shadow: 0 0.25rem 1.125rem 0 rgb(140 97 255 / 35%);
 
-  &:disabled {
+  &:disabled,&.disabled  {
     cursor: not-allowed;
     color: var(--color-light-900);
     opacity:0.7;
@@ -75,7 +82,7 @@
     box-shadow: 0 0.25rem 0.25rem 0 rgb(77 86 96 / 13%);
   }
 
-  &:disabled {
+  &:disabled,&.disabled {
     cursor: not-allowed;
     color: var(--color-light-900);
     opacity:0.7;
@@ -103,7 +110,7 @@
     color: var(--color-accent-500);
   }
 
-  &:disabled {
+  &:disabled,&.disabled {
     cursor: not-allowed;
     color: var(--color-accent-900);
     opacity:0.7;
@@ -127,6 +134,11 @@
   font-size: 1rem;
   color: var(--color-accent-500);
 
+  &:disabled,&.disabled {
+    cursor: not-allowed;
+    opacity:0.7;
+  }
+
   &:visited {
     color: var(--color-accent-500);
   }
@@ -142,39 +154,6 @@
   &:active:not(:disabled) {
     color: var(--color-accent-700);
   }
-}
-
-.disabledLink {
-  pointer-events: none;
-  color: var(--color-accent-700)!important;
-  text-decoration: none;
-  opacity: 0.5;
-}
-
-.disabledLinkPrimary {
-  pointer-events: none;
-  color: var(--color-light-900)!important;
-  opacity:0.7;
-  background: var(--color-accent-900)!important;
-}
-
-.disabledLinkSecondary {
-  pointer-events: none;
-  color: var(--color-light-900)!important;
-  opacity:0.7;
-  background: var(--color-dark-300)!important;
-}
-
-.disabledLinkTertiary {
-  pointer-events: none;;
-  color: var(--color-accent-900)!important;
-  opacity:0.7;
-  background: var(--color-dark-900)!important;
-}
-
-.disabledNoLink {
- cursor: not-allowed;
- opacity: 0.5;
 }
 
 .fullWidth {
@@ -203,7 +182,7 @@
   position: relative;
 
   & .children {
-    opacity: 0.3;
+    opacity: 0.5;
   }
 
 
