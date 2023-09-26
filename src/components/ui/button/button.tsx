@@ -40,21 +40,18 @@ const ButtonPolymorph = <T extends ElementType = 'button'>(
     ...rest
   } = props
 
+  const tagClassName = clsx(
+    s[variant],
+    fullWidth && s.fullWidth,
+    s[className],
+    disabled && 'href' in rest && s.disabled,
+    loading && s.loading
+  )
+
   return (
     // @ts-expect-error todo: not sure how to type it
 
-    <Tag
-      ref={ref}
-      className={clsx(
-        s[variant],
-        fullWidth && s.fullWidth,
-        s[className],
-        disabled && 'href' in rest && s.disabled,
-        loading && s.loading
-      )}
-      disabled={disabled}
-      {...rest}
-    >
+    <Tag ref={ref} className={tagClassName} disabled={disabled} {...rest}>
       {loading && (
         <div className={clsx(s.loadingWrapper)}>
           <Loading />
