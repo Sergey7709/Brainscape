@@ -1,3 +1,8 @@
 export { default as Check } from './check'
+
 export { Logout } from './logout'
 export { Loading } from './loading'
+
+export { default as VisibilityOff } from './visibilityOff'
+export { default as Eye } from './eye'
+

@@ -19,6 +19,7 @@ type TypographyProps<T extends ElementType = 'span'> = {
     | 'overline'
     | 'link1'
     | 'link2'
+    | 'error'
   children?: ReactNode
   className?: string
 } & ComponentPropsWithoutRef<T>
