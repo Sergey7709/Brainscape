@@ -23,6 +23,9 @@ const meta = {
     disabled: { control: 'boolean' },
     ref: { control: { type: 'select' } },
     as: { options: ['button', 'a'], control: { type: 'radio' } },
+    className: { control: 'text' },
+    width: { control: 'text' },
+    height: { control: 'text' },
     href: {
       control: 'text',
       if: { arg: 'as', eq: 'a' },
