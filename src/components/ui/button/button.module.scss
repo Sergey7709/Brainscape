@@ -144,11 +144,37 @@
   }
 }
 
-.disabled {
+.disabledLink {
   pointer-events: none;
   color: var(--color-accent-700)!important;
   text-decoration: none;
   opacity: 0.5;
+}
+
+.disabledLinkPrimary {
+  pointer-events: none;
+  color: var(--color-light-900)!important;
+  opacity:0.7;
+  background: var(--color-accent-900)!important;
+}
+
+.disabledLinkSecondary {
+  pointer-events: none;
+  color: var(--color-light-900)!important;
+  opacity:0.7;
+  background: var(--color-dark-300)!important;
+}
+
+.disabledLinkTertiary {
+  pointer-events: none;;
+  color: var(--color-accent-900)!important;
+  opacity:0.7;
+  background: var(--color-dark-900)!important;
+}
+
+.disabledNoLink {
+ cursor: not-allowed;
+ opacity: 0.5;
 }
 
 .fullWidth {
