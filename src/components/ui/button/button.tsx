@@ -44,11 +44,18 @@ const ButtonPolymorph = <T extends ElementType = 'button'>(
     ...rest
   } = props
 
+  const isDisabledWithHref = disabled && 'href' in rest
+  const isDisabledWithoutHref = disabled && !('href' in rest)
+
   const tagClassName = clsx(
     s[variant],
     fullWidth && s.fullWidth,
     s[className],
-    disabled && 'href' in rest && s.disabled,
+    isDisabledWithHref && variant === 'link' && s.disabledLink,
+    isDisabledWithHref && variant === 'primary' && s.disabledLinkPrimary,
+    isDisabledWithHref && variant === 'secondary' && s.disabledLinkSecondary,
+    isDisabledWithHref && variant === 'tertiary' && s.disabledLinkTertiary,
+    isDisabledWithoutHref && variant === 'link' && s.disabledNoLink,
     loading && s.loading
   )
 
