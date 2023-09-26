@@ -49,9 +49,10 @@ const ButtonPolymorph = <T extends ElementType = 'button'>(
         s[variant],
         fullWidth && s.fullWidth,
         s[className],
-        disabled && s.disabled,
+        disabled && 'href' in rest && s.disabled,
         loading && s.loading
       )}
+      disabled={disabled}
       {...rest}
     >
       {loading && (
