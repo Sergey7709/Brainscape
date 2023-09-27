@@ -1,53 +1,96 @@
-import { CSSProperties, useState } from 'react'
+import { ComponentPropsWithRef, useState } from 'react'
 
-import * as Select from '@radix-ui/react-select'
+import * as RadixLabel from '@radix-ui/react-label'
+import * as RadixSelect from '@radix-ui/react-select'
+import { clsx } from 'clsx'
+
+export default () => <RadixLabel.Root />
 
 import s from './select.module.scss'
 
 import { ArrowDown, ArrowUp } from '@/assets/icons'
+import { Typography } from '@/components/ui/typography'
 
-type Option = {
-  label: string | number
+type SelectOption = {
+  title: string | number
   value: string
 }
+
 type SelectType = {
+  options: SelectOption[]
+  onValueChange: (value: string) => void
   disabled?: boolean
-  options: Option[]
   label?: string
-  style?: CSSProperties
   className?: string
   placeholder?: string
-}
-export const CustomSelect = ({
+} & ComponentPropsWithRef<typeof RadixSelect.Root>
+
+export const Select = ({
   disabled = false,
   options,
   label,
-  style,
-  className,
   placeholder,
+  onValueChange,
 }: SelectType) => {
   const [open, setOpen] = useState(false)
   const onOpenChangeHandler = () => {
-    setOpen(!open)
+    disabled || setOpen(!open)
+  }
+
+  const classNames = {
+    label: clsx(s.label, disabled && s.disabled),
+    trigger: clsx(s.trigger, disabled && s.disabled),
+    content: clsx(s.content),
+    item: clsx(s.item),
+    value: clsx(s.value),
+    icon: clsx(s.icon, disabled && s.disabled),
   }
 
   return (
-    <Select.Root onOpenChange={onOpenChangeHandler} open={open} disabled={disabled}>
-      <Select.Trigger className={s.trigger}>
-        <Select.Value className={s.value} placeholder={placeholder || options[0].label} />
-        <Select.Icon>{open ? <ArrowUp /> : <ArrowDown />}</Select.Icon>
-      </Select.Trigger>
-      <Select.Portal>
-        <Select.Content position="popper">
-          <Select.Viewport className={s.viewport}>
-            {options.map(option => (
-              <Select.Item key={option.value} value={option.value} className={s.item}>
-                <Select.ItemText>{option.label}</Select.ItemText>
-              </Select.Item>
-            ))}
-          </Select.Viewport>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+    <RadixLabel.Root>
+      {label && (
+        <Typography
+          onClick={onOpenChangeHandler}
+          variant={'body2'}
+          as={'label'}
+          className={s.label}
+        >
+          {label}
+        </Typography>
+      )}
+      <RadixSelect.Root
+        onValueChange={onValueChange}
+        onOpenChange={onOpenChangeHandler}
+        open={open}
+        disabled={disabled}
+      >
+        <RadixSelect.Trigger className={classNames.trigger}>
+          <Typography variant={'body1'}>
+            <RadixSelect.Value
+              className={classNames.value}
+              placeholder={placeholder || options[0].title}
+            />
+          </Typography>
+          <RadixSelect.Icon className={classNames.icon}>
+            {open ? <ArrowUp size={16} /> : <ArrowDown size={16} disabled={disabled} />}
+          </RadixSelect.Icon>
+        </RadixSelect.Trigger>
+        <RadixSelect.Portal>
+          <RadixSelect.Content className={classNames.content} position="popper">
+            <RadixSelect.Viewport>
+              {options.map(option => (
+                <RadixSelect.Item
+                  key={option.value}
+                  value={option.value}
+                  className={classNames.item}
+                >
+                  <RadixSelect.ItemText>{option.title}</RadixSelect.ItemText>
+                </RadixSelect.Item>
+              ))}
+            </RadixSelect.Viewport>
+          </RadixSelect.Content>
+        </RadixSelect.Portal>
+      </RadixSelect.Root>
+    </RadixLabel.Root>
   )
 }

@@ -1,4 +1,5 @@
-.viewport {
+.content {
+  min-width: 209px;
   border: 1px var(--color-dark-300) solid;
   border-top: none;
 
@@ -16,7 +17,7 @@
   min-height: 36px;
   padding: 6px 12px;
 
-  background: inherit;
+  background: var(--color-dark-900);
   border: 1px var(--color-dark-300) solid;
 
   &:hover {
@@ -36,7 +37,6 @@
 }
 
 .item {
-  width: 208px;
   padding: 6px 12px;
   background: var(--color-dark-900);
 
@@ -45,5 +45,23 @@
     color: var(--primary-300, #a280ff);
     background: var(--primary-900, #382766);
     outline: none;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  color: var(--color-dark-100);
+}
+
+.disabled {
+  color: var(--color-dark-300);
+
+  &:hover {
+    background: var(--color-dark-900);
   }
 }

@@ -1,45 +1,37 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CustomSelect } from '@/components/ui/select/select.tsx'
+import { Select } from '@/components/ui/select/select.tsx'
 
 const meta = {
   title: 'Components/Select',
-  component: CustomSelect,
+  component: Select,
   tags: ['autodocs'],
-  parameters: {
-    backgrounds: {
-      default: 'night',
-      values: [
-        {
-          name: 'night',
-          value: '#000',
-        },
-      ],
-    },
-    viewport: {
-      viewports: {
-        mobile: {
-          name: 'Mobile',
-          styles: {
-            height: '1000px',
-          },
-        },
-      }, // newViewports would be an ViewportMap. (see below for examples)
-      defaultViewport: 'Mobile',
-    },
-  },
-} satisfies Meta<typeof CustomSelect>
+} satisfies Meta<typeof Select>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {
+export const Common: Story = {
   args: {
     options: [
-      { label: 'Option 1', value: '1' },
-      { label: 'Option 2', value: '2' },
-      { label: 'Option 3', value: '3' },
+      { title: 'Option 1', value: '1' },
+      { title: 'Option 2', value: '2' },
+      { title: 'Option 3', value: '3' },
     ],
+    label: 'This is a select',
     placeholder: 'Select an option',
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    options: [
+      { title: 'Option 1', value: '1' },
+      { title: 'Option 2', value: '2' },
+      { title: 'Option 3', value: '3' },
+    ],
+    label: 'This is a disabled select',
+    placeholder: 'Select an option',
+    disabled: true,
   },
 }
