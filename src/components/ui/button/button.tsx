@@ -24,8 +24,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T
   variant?: (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS]
   loading?: boolean
-  width?: string | number
-  height?: string | number
+  fullWidth?: boolean
 } & ComponentPropsWithoutRef<T>
 const ButtonPolymorph = <T extends ElementType = 'button'>(
   props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>,
@@ -39,8 +38,6 @@ const ButtonPolymorph = <T extends ElementType = 'button'>(
     disabled,
     loading,
     children,
-    width,
-    height,
     ...rest
   } = props
 
@@ -55,7 +52,7 @@ const ButtonPolymorph = <T extends ElementType = 'button'>(
   return (
     // @ts-expect-error todo: not sure how to type it
 
-    <Tag ref={ref} className={tagClassName} disabled={disabled} style={{ width, height }} {...rest}>
+    <Tag ref={ref} className={tagClassName} disabled={disabled} {...rest}>
       {loading && (
         <div className={clsx(s.loadingWrapper)}>
           <Loading />
