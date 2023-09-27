@@ -11,8 +11,9 @@
   align-items: center;
   justify-content: center;
 
-  width: auto ;
-  height: auto ;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
   padding: 0.375rem 1.75rem;
 
   font-family: Roboto, monospace;
@@ -26,7 +27,7 @@
   border: none;
   border-radius: 0.25rem;
 
-  &.disabled{
+  &.disabled {
     pointer-events: none;
     text-decoration: none;
     opacity: 0.5;
@@ -49,17 +50,17 @@
   }
 }
 
-
 .primary {
   @include button-base;
 
   background: var(--color-accent-500);
   box-shadow: 0 0.25rem 1.125rem 0 rgb(140 97 255 / 35%);
 
-  &:disabled,&.disabled  {
+  &:disabled,
+  &.disabled {
     cursor: not-allowed;
     color: var(--color-light-900);
-    opacity:0.7;
+    opacity: 0.7;
     background: var(--color-accent-900);
   }
 
@@ -82,10 +83,11 @@
     box-shadow: 0 0.25rem 0.25rem 0 rgb(77 86 96 / 13%);
   }
 
-  &:disabled,&.disabled {
+  &:disabled,
+  &.disabled {
     cursor: not-allowed;
     color: var(--color-light-900);
-    opacity:0.7;
+    opacity: 0.7;
     background: var(--color-dark-300);
   }
 
@@ -110,13 +112,13 @@
     color: var(--color-accent-500);
   }
 
-  &:disabled,&.disabled {
+  &:disabled,
+  &.disabled {
     cursor: not-allowed;
     color: var(--color-accent-900);
-    opacity:0.7;
+    opacity: 0.7;
     background: var(--color-dark-900);
   }
-
 
   &:hover:not(:disabled) {
     background: var(--color-dark-500);
@@ -130,13 +132,13 @@
 .link {
   @include button-base;
 
-
   font-size: 1rem;
   color: var(--color-accent-500);
 
-  &:disabled,&.disabled {
+  &:disabled,
+  &.disabled {
     cursor: not-allowed;
-    opacity:0.7;
+    opacity: 0.7;
   }
 
   &:visited {
@@ -184,15 +186,12 @@
   & .children {
     opacity: 0.5;
   }
-
-
 }
 
 @keyframes loader {
   from {
     transform: rotate(0deg);
     color: #4c4c4c;
-
   }
 
   to {
