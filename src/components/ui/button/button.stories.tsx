@@ -10,6 +10,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     href: 'https://sass-lang.com/',
+    fullWidth: false,
   },
   argTypes: {
     onClick: {
@@ -23,6 +24,7 @@ const meta = {
     disabled: { control: 'boolean' },
     ref: { control: { type: 'select' } },
     as: { options: ['button', 'a'], control: { type: 'radio' } },
+    className: { control: 'text' },
     href: {
       control: 'text',
       if: { arg: 'as', eq: 'a' },
