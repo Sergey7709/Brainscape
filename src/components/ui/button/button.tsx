@@ -24,6 +24,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T
   variant?: (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS]
   loading?: boolean
+  fullWidth?: boolean
 } & ComponentPropsWithoutRef<T>
 const ButtonPolymorph = <T extends ElementType = 'button'>(
   props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>,
