@@ -6,6 +6,32 @@ const meta = {
   title: 'Components/Select',
   component: Select,
   tags: ['autodocs'],
+  argTypes: {
+    label: {
+      control: 'text',
+      description: 'The label of the select',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Whether the select is disabled',
+    },
+    variant: {
+      control: ['common', 'pagination'],
+      description: 'The variant of the select',
+    },
+    placeholder: {
+      control: 'text',
+      description: 'The placeholder of the select',
+    },
+    onValueChange: {
+      control: 'function',
+      description: 'Option selected handler',
+    },
+    className: {
+      control: 'text',
+      description: 'Common styles of the select',
+    },
+  },
 } satisfies Meta<typeof Select>
 
 export default meta
@@ -33,5 +59,17 @@ export const Disabled: Story = {
     label: 'This is a disabled select',
     placeholder: 'Select an option',
     disabled: true,
+  },
+}
+
+export const Pagination: Story = {
+  args: {
+    options: [
+      { title: '10', value: '10' },
+      { title: '20', value: '20' },
+      { title: '30', value: '30' },
+      { title: '100', value: '100' },
+    ],
+    variant: 'pagination',
   },
 }

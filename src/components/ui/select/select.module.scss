@@ -1,19 +1,9 @@
-.content {
-  min-width: 209px;
-  border: 1px var(--color-dark-300) solid;
-  border-top: none;
-
-  &:focus {
-    outline: none;
-  }
-}
-
 .trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  min-width: 210px;
+  width: 210px;
   min-height: 36px;
   padding: 6px 12px;
 
@@ -36,8 +26,20 @@
   }
 }
 
+.content {
+  width: 210px;
+  border: 1px var(--color-dark-300) solid;
+  border-top: none;
+  border-radius: 2px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .item {
   padding: 6px 12px;
+  font-size: 16px;
   background: var(--color-dark-900);
 
   &:hover,
@@ -64,4 +66,15 @@
   &:hover {
     background: var(--color-dark-900);
   }
+}
+
+.triggerPagination,
+.contentPagination {
+  width: 60px;
+  font-size: 13px;
+}
+
+.triggerPagination,
+.itemPagination {
+  padding: 5px;
 }

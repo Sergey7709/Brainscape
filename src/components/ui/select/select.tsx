@@ -1,15 +1,15 @@
-import { ComponentPropsWithRef, useState } from 'react'
+import { useState } from 'react'
 
 import * as RadixLabel from '@radix-ui/react-label'
 import * as RadixSelect from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
-export default () => <RadixLabel.Root />
-
 import s from './select.module.scss'
 
 import { ArrowDown, ArrowUp } from '@/assets/icons'
 import { Typography } from '@/components/ui/typography'
+
+export default () => <RadixLabel.Root />
 
 type SelectOption = {
   title: string | number
@@ -23,7 +23,8 @@ type SelectType = {
   label?: string
   className?: string
   placeholder?: string
-} & ComponentPropsWithRef<typeof RadixSelect.Root>
+  variant?: 'common' | 'pagination'
+}
 
 export const Select = ({
   disabled = false,
@@ -31,6 +32,8 @@ export const Select = ({
   label,
   placeholder,
   onValueChange,
+  variant = 'common',
+  className,
 }: SelectType) => {
   const [open, setOpen] = useState(false)
   const onOpenChangeHandler = () => {
@@ -39,10 +42,15 @@ export const Select = ({
 
   const classNames = {
     label: clsx(s.label, disabled && s.disabled),
-    trigger: clsx(s.trigger, disabled && s.disabled),
-    content: clsx(s.content),
-    item: clsx(s.item),
-    value: clsx(s.value),
+    trigger: clsx(
+      s.trigger,
+      variant === 'pagination' && s.triggerPagination,
+      disabled && s.disabled,
+      className
+    ),
+    content: clsx(s.content, variant === 'pagination' && s.contentPagination, className),
+    item: clsx(s.item, variant === 'pagination' && s.itemPagination, className),
+    value: s.value,
     icon: clsx(s.icon, disabled && s.disabled),
   }
 
