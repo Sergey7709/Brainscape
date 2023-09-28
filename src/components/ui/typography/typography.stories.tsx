@@ -21,6 +21,7 @@ const meta = {
         'overline',
         'link1',
         'link2',
+        'error',
       ],
       control: { type: 'radio' },
     },
@@ -122,5 +123,13 @@ export const Link2: Story = {
     variant: 'link2',
     href: 'https://google.com',
     children: 'This is a link 2 text',
+  },
+}
+
+export const Error: Story = {
+  args: {
+    variant: 'error',
+    href: 'https://google.com',
+    children: 'This is a Error text',
   },
 }
