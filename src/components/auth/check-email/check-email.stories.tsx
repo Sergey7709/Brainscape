@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { checkEmail } from '@/components/auth/check-email.tsx'
+import { checkEmail } from '@/components/auth/check-email/check-email.tsx'
 
 const meta = {
   title: 'Auth/checkEmail',

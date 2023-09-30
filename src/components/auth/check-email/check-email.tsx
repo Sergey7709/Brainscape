@@ -1,4 +1,4 @@
-import s from './check-email.module.scss'
+import s from 'src/components/auth/check-email/check-email.module.scss'
 
 import { Email } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
