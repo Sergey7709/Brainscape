@@ -1,0 +1,141 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.childrenContainer{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+
+  //padding-top: 1rem;
+  //padding-bottom: 1rem;
+
+
+  //max-width: 24rem;
+  //margin-top: 0.5rem;
+  //margin-right: auto;
+  //margin-left: auto;
+  background-color: var(--color-dark-700);
+
+  &.sm {
+    width: 367px;
+  }
+
+  &.md {
+    width: 532px;
+  }
+
+  &.lg {
+    width: 764px;
+  }
+
+  @media screen and (width <= 768px) {
+    &,
+    &.sm,
+    &.md,
+    &.lg {
+      width: calc(100% - 32px);
+    }
+  }
+}
+
+.childrenContent {
+  //overflow: hidden;
+
+  //background-color: var(--color-dark-700);
+  border-radius: 0.25rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+
+  //z-index: 101;
+  //top: 50%;
+  //left: 50%;
+  //transform: translate(-50%, -50%);
+  //
+  //background-color: var(--color-dark-700);
+}
+
+.childrenBody {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  padding: 1rem;
+}
+
+//.childrenFlex {
+//  display: flex;
+//  flex-direction: column;
+//  margin-top: 0.5rem;
+//
+//}
+
+.childrenHead {
+  //display: block;
+  //padding: 0.5rem 1rem;
+  //background-color: #111827;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 24px;
+
+  border-bottom: 1px solid var(--color-dark-500);
+}
+
+.textHead {
+  font-size: 1.125rem;
+}
+
+.closeButton {
+  cursor: pointer;
+
+  position: absolute;
+  top: -0.1rem;
+  right: -0.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+
+  transition: 0.2s background-color;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-dark-300);
+    outline: none;
+  }
+
+  &.spanClose {
+    user-select: none;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    color: var(--color-light-900);
+  }
+}
+
+
