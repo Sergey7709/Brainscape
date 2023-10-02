@@ -1,21 +1,21 @@
 import { FC, ReactNode, createContext, useState, Dispatch, SetStateAction } from 'react'
 
-type ModalContextType = {
+type ModalContextValue = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const ModalContext = createContext<ModalContextType>({
+export const ModalContext = createContext<ModalContextValue>({
   open: false,
   setOpen: () => {},
 })
 
-type ModalType = {
+type ModalProps = {
   children: ReactNode
   className?: string
   active?: boolean
 }
-export const Modal: FC<ModalType> = ({ children, className, active = false }) => {
+export const Modal: FC<ModalProps> = ({ children, className, active = false }) => {
   const [open, setOpen] = useState(active)
 
   return (
