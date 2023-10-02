@@ -19,6 +19,11 @@ const meta: Meta<typeof DropdownMenu> = {
       control: { type: 'radio' },
       options: ['start', 'center', 'end'],
     },
+    sideOffset: {
+      control: { type: 'number' },
+      defaultValue: 8,
+      description: 'Margin top for dropdown content',
+    },
   },
 }
 
