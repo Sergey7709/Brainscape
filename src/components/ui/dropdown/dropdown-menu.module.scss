@@ -63,7 +63,11 @@
 
   &:hover,
   &:focus {
-    opacity: 0.5;
+    opacity: 0.6;
+  }
+
+  &:disabled {
+    opacity: 0.3;
   }
 
   &[data-disabled] {
@@ -80,4 +84,8 @@
 
   width: 24px;
   height: 24px;
+}
+
+.disabled {
+  opacity: 0.3;
 }

@@ -9,18 +9,26 @@ import { Typography } from '@/components/ui/typography'
 
 type DropdownMenuProps = {
   align?: 'start' | 'center' | 'end'
+  /*
+  Custom components as trigger doesn`t work correctly without forwardRef, use wrapper for these elements
+   **/
   trigger?: ReactNode
   className?: string
   style?: CSSProperties
   children: ReactNode
+  /*
+  Margin top for dropdown content
+   **/
+  sideOffset?: number
 }
 
 export const DropdownMenu = ({
-  align = 'center',
+  align,
   trigger,
   className,
   style,
   children,
+  sideOffset = 8,
 }: DropdownMenuProps) => {
   const classNames = {
     content: clsx(s.content, className),
@@ -35,7 +43,12 @@ export const DropdownMenu = ({
     <Dropdown.Root>
       <Dropdown.Trigger asChild>{trigger}</Dropdown.Trigger>
       <Dropdown.Portal>
-        <Dropdown.Content className={classNames.content} style={style} align={align} sideOffset={8}>
+        <Dropdown.Content
+          className={classNames.content}
+          style={style}
+          align={align}
+          sideOffset={sideOffset}
+        >
           <Dropdown.Arrow className={classNames.arrowBox} asChild>
             <div className={classNames.arrow} />
           </Dropdown.Arrow>
@@ -62,7 +75,7 @@ export const DropDownItem = ({
   style,
 }: DropDownItemProps) => {
   const classNames = {
-    item: clsx(s.item, className),
+    item: clsx(s.item, disabled && s.disabled, className),
   }
 
   return (
@@ -91,7 +104,7 @@ export const DropDownItemWithIcon = ({
   style,
 }: DropDownItemWithIconProps) => {
   const classNames = {
-    item: clsx(s.item, className),
+    item: clsx(s.item, disabled && s.disabled, className),
     icon: s.itemIcon,
   }
 
