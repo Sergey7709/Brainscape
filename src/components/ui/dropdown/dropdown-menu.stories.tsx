@@ -1,7 +1,7 @@
 import type { Meta, Story } from '@storybook/react'
 
 import { Eye } from '@/assets/icons'
-import test from '@/assets/test.png'
+import test from '@/assets/images/test.png'
 import {
   DropDownItem,
   DropDownItemWithIcon,
