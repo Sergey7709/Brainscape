@@ -12,8 +12,6 @@
   justify-content: center;
 
   box-sizing: border-box;
-  width: auto;
-  height: auto;
   padding: 0.375rem 1.75rem;
 
   font-family: Roboto, monospace;
@@ -156,6 +154,10 @@
   &:active:not(:disabled) {
     color: var(--color-accent-700);
   }
+
+  &.colorWhite {
+    color: var(--color-light-100);
+  }
 }
 
 .fullWidth {
@@ -199,3 +201,5 @@
     color: #4c4c4c;
   }
 }
+
+
