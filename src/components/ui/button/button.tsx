@@ -33,7 +33,7 @@ const ButtonPolymorph = <T extends ElementType = 'button'>(
   const {
     variant = 'primary',
     fullWidth,
-    className,
+    className = '',
     as: Tag = 'button',
     disabled,
     loading,
@@ -44,7 +44,7 @@ const ButtonPolymorph = <T extends ElementType = 'button'>(
   const tagClassName = clsx(
     s[variant],
     fullWidth && s.fullWidth,
-    s[className],
+    className,
     disabled && 'href' in rest && s.disabled,
     loading && s.loading
   )
