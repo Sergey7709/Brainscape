@@ -1,7 +1,6 @@
 import {
   FC,
   ReactElement,
-  ReactNode,
   SyntheticEvent,
   cloneElement,
   useEffect,
@@ -16,16 +15,15 @@ import s from './modal.module.scss'
 
 import { CloserButton } from '@/assets/icons/closer-button.tsx'
 import { ModalContext } from '@/components/ui/modal/modal.tsx'
+import { headModal, PortalOverlay, PropsChildren } from '@/components/ui/modal/typeForModal.ts'
 import {
   getElementsToFocus,
   nextFocusToElement,
   useCreatePortal,
 } from '@/components/ui/modal/utilsForModal.ts'
 
-const PortalAndOverlay: FC<{
-  children?: ReactNode
-}> = ({ children }) => {
-  const { open, setOpen } = useContext(ModalContext)
+const PortalAndOverlay: FC<PortalOverlay> = ({ children }) => {
+  const { open, setOpen, size, showCloseButton } = useContext(ModalContext)
 
   const portal = useCreatePortal()
   const previousFocus = useRef<HTMLElement | null>(null)
@@ -37,6 +35,9 @@ const PortalAndOverlay: FC<{
       setOpen(false)
     }
   }
+
+  const containerStyle = clsx(s.childrenContainer, size && s[size])
+  const overlayStyle = clsx(s.overlay, `${open ? s.visible : s.invisible}`)
 
   // close on esc
   useEffect(() => {
@@ -81,15 +82,17 @@ const PortalAndOverlay: FC<{
   }, [open, portal])
 
   return createPortal(
-    <div className={clsx(s.overlay, `${open ? s.visible : s.invisible}`)} onClick={onOverlayClick}>
+    <div className={overlayStyle} onClick={onOverlayClick}>
       {/* overlay */}
-      <div className={clsx(s.childrenContainer)} ref={container}>
+      <div className={containerStyle} ref={container}>
         {/* container */}
         <div className={s.childrenContent}>{children}</div>
         {/* content */}
-        <button className={s.closeButton} onClick={() => setOpen(false)}>
-          <CloserButton />
-        </button>
+        {showCloseButton && (
+          <button className={s.closeButton} onClick={() => setOpen(false)}>
+            <CloserButton />
+          </button>
+        )}
         {/* close button in the corner */}
       </div>
     </div>,
@@ -97,19 +100,33 @@ const PortalAndOverlay: FC<{
   )
 }
 
-const Head: FC<{ children: ReactNode }> = ({ children }) => (
-  <div className={s.childrenHead}>
-    <h1 className={s.textHead}>{children}</h1>
-  </div>
-)
+const Head: FC<headModal> = ({
+  children,
+  className = '',
+  justifyContent,
+  borderBottom = false,
+}) => {
+  const headStyle = clsx(
+    s.childrenHead,
+    className,
+    justifyContent && s[justifyContent],
+    borderBottom && s.borderBottom
+  )
 
-const Body: FC<{ children: ReactNode }> = ({ children }) => (
-  <div className={s.childrenBody}>{children}</div>
-)
+  return <div className={headStyle}>{children}</div>
+}
 
-const Footer: FC<{ children: ReactNode }> = ({ children }) => (
-  <div className={s.childrenFooter}>{children}</div>
-)
+const Body: FC<PropsChildren> = ({ children, className = '' }) => {
+  const bodyStyle = clsx(s.childrenBody, className)
+
+  return <div className={bodyStyle}>{children}</div>
+}
+
+const Footer: FC<PropsChildren> = ({ children, className = '' }) => {
+  const footerStyle = clsx(s.childrenFooter, className)
+
+  return <div className={footerStyle}>{children}</div>
+}
 
 const Trigger: FC<{ children: ReactElement }> = ({ children }) => {
   const { setOpen } = useContext(ModalContext)
