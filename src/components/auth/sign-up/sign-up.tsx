@@ -1,4 +1,7 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { z } from 'zod'
 
 import s from './sign-up.module.scss'
 
@@ -7,15 +10,28 @@ import { Card } from '@/components/ui/card'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 
-type SignUpForm = {
-  email: string
-  password: string
-  confirmPassword: string
-}
+const signUpSchema = z
+  .object({
+    email: z.string().email(),
+    password: z.string().min(3).max(30),
+    confirmPassword: z.string(),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  })
 
-type Props = { submit: (data: SignUpForm) => void }
-export const SignUp = ({ submit }: Props) => {
-  const { register, handleSubmit } = useForm<SignUpForm>()
+export type SignUpForm = z.infer<typeof signUpSchema>
+
+type Props = { onSubmitHandler: (data: SignUpForm) => void }
+export const SignUp = ({ onSubmitHandler }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpForm>({
+    resolver: zodResolver(signUpSchema),
+  })
 
   const classNames = {
     wrapper: s.wrapper,
@@ -28,10 +44,20 @@ export const SignUp = ({ submit }: Props) => {
   return (
     <Card className={classNames.wrapper}>
       <Typography variant={'large'}>Sign Up</Typography>
-      <form className={classNames.form} onSubmit={handleSubmit(submit)}>
-        <TextField {...register('email')} label={'Email'} />
-        <TextField {...register('password')} label={'Password'} type={'password'} />
-        <TextField {...register('confirmPassword')} type={'password'} label={'Confirm password'} />
+      <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
+        <TextField errorMessage={errors.email?.message} {...register('email')} label={'Email'} />
+        <TextField
+          errorMessage={errors.password?.message}
+          {...register('password')}
+          label={'Password'}
+          type={'password'}
+        />
+        <TextField
+          errorMessage={errors.confirmPassword?.message}
+          {...register('confirmPassword')}
+          type={'password'}
+          label={'Confirm password'}
+        />
         <Button className={classNames.button} fullWidth={true}>
           Sign Up
         </Button>
@@ -39,9 +65,11 @@ export const SignUp = ({ submit }: Props) => {
       <Typography variant={'body2'} className={classNames.question}>
         Already have an account?
       </Typography>
-      <Typography className={classNames.link} as={'a'} variant={'link1'}>
-        Sign In
-      </Typography>
+      <Link to={'/sign-in'}>
+        <Typography className={classNames.link} as={'a'} variant={'link1'}>
+          Sign In
+        </Typography>
+      </Link>
     </Card>
   )
 }

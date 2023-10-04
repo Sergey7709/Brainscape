@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { BrowserRouter } from 'react-router-dom'
 
-import { SignUp } from '@/components/auth/sign-up/sign-up.tsx'
+import { SignUp, SignUpForm } from '@/components/auth/sign-up/sign-up.tsx'
 
 const meta = {
   title: 'Auth/SignUp',
@@ -12,9 +13,15 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
-  args: {
-    submit: (data: any) => {
+  render: () => {
+    const onSubmitHandler = (data: SignUpForm) => {
       console.log(data)
-    },
+    }
+
+    return (
+      <BrowserRouter>
+        <SignUp onSubmitHandler={onSubmitHandler} />
+      </BrowserRouter>
+    )
   },
 }
