@@ -1,0 +1,28 @@
+.wrapper {
+  max-width: 420px;
+  padding: 30px 36px 29px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  margin-top: 27px;
+}
+
+form .button {
+  margin-top: 36px;
+}
+
+.question {
+  margin-top: 20px;
+}
+
+div .link {
+  margin-top: 11px;
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-500);
+}
