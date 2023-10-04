@@ -2,6 +2,8 @@ import { ComponentPropsWithRef, Dispatch, ReactNode, SetStateAction } from 'reac
 
 export type SizeForModal = 'sm' | 'md' | 'lg'
 
+export type JustifyContent = 'left' | 'center' | 'right'
+
 export type ShowCloseBtn = {
   showCloseButton?: boolean
 }
@@ -13,21 +15,28 @@ export type ModalContextValue = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
 } & ShowCloseBtn &
-  SizeModal
+  SizeModal &
+  ComponentPropsWithRef<'div'>
 
 export type ModalProps = {
   active?: boolean
 } & ShowCloseBtn &
   SizeModal &
-  ComponentPropsWithRef<'div'>
+  ComponentPropsWithRef<'div'> &
+  PropsForStorybookWork
 
 export type PropsChildren = { children: ReactNode; className?: string }
 
 export type headModal = {
-  justifyContent?: 'left' | 'center' | 'right'
-  borderBottom?: boolean
+  justifyContentHeader?: JustifyContent
+  borderBottomHeader?: boolean
 } & PropsChildren
 
 export type PortalOverlay = {
   children?: ReactNode
+} & ComponentPropsWithRef<'div'>
+
+export type PropsForStorybookWork = {
+  borderBottomHeader?: boolean
+  justifyContentHeader?: JustifyContent
 }
