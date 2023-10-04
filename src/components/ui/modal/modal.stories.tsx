@@ -42,14 +42,14 @@ const meta = {
     showCloseButton: {
       control: { type: 'boolean' },
     },
-    borderBottom: {
+    borderBottomHeader: {
       control: { type: 'boolean' },
       description:
         'Adds a bottom border for the Header component.\n' +
         '\n' +
         'This property is only specified in the <b> ModalConstructor.Head </b> child component!',
     },
-    justifyContent: {
+    justifyContentHeader: {
       options: ['left', 'center', 'right'],
       control: { type: 'radio' },
       description:
@@ -68,15 +68,15 @@ export const Modals: Story = {
   args: {
     size: 'md',
     showCloseButton: true,
-    borderBottom: false,
-    justifyContent: 'left',
+    borderBottomHeader: false,
+    justifyContentHeader: 'left',
   },
   render: args => (
     <Modal {...args}>
       <ModalConstructor.PortalAndOverlay>
         <ModalConstructor.Head
-          borderBottom={args.borderBottom}
-          justifyContent={args.justifyContent}
+          borderBottomHeader={args.borderBottomHeader}
+          justifyContentHeader={args.justifyContentHeader}
         >
           <Typography as={'span'} variant={'large'}>
             Add New Card
