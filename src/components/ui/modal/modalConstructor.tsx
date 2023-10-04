@@ -6,6 +6,7 @@ import {
   useEffect,
   useRef,
   useContext,
+  ReactNode,
 } from 'react'
 
 import { clsx } from 'clsx'
@@ -22,8 +23,15 @@ import {
   useCreatePortal,
 } from '@/components/ui/modal/utilsForModal.ts'
 
-const PortalAndOverlay: FC<PortalOverlay> = ({ children }) => {
-  const { open, setOpen, size, showCloseButton } = useContext(ModalContext)
+/**
+ * Component that renders a modal overlay and container.
+ *
+ * @component
+ * @param {PortalOverlay} children - The content to be rendered inside the container.
+ * @returns {ReactNode} The rendered modal overlay and container.
+ */
+const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): ReactNode => {
+  const { open, setOpen, size, showCloseButton, ...restProps } = useContext(ModalContext)
 
   const portal = useCreatePortal()
   const previousFocus = useRef<HTMLElement | null>(null)
@@ -49,6 +57,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }) => {
           setOpen(false)
           break
         }
+
         case 'Tab': {
           e.preventDefault()
           nextFocusToElement(getElementsToFocus(container.current), e.shiftKey)
@@ -82,11 +91,13 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }) => {
   }, [open, portal])
 
   return createPortal(
-    <div className={overlayStyle} onClick={onOverlayClick}>
+    <div className={overlayStyle} onClick={onOverlayClick} {...restProps}>
       {/* overlay */}
-      <div className={containerStyle} ref={container}>
+      <div className={containerStyle} ref={container} {...restProps}>
         {/* container */}
-        <div className={s.childrenContent}>{children}</div>
+        <div className={s.childrenContent} {...restProps}>
+          {children}
+        </div>
         {/* content */}
         {showCloseButton && (
           <button className={s.closeButton} onClick={() => setOpen(false)}>
@@ -100,38 +111,78 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }) => {
   )
 }
 
+/**
+ *  Component that displays the modal header (or text).
+ *
+ * @component
+ * @param {headModal} props - The props for the head section.
+ * @returns {ReactNode} The rendered head section.
+ */
 const Head: FC<headModal> = ({
   children,
   className = '',
-  justifyContent,
-  borderBottom = false,
-}) => {
+  justifyContentHeader = 'left',
+  borderBottomHeader = false,
+}: headModal): ReactNode => {
   const headStyle = clsx(
     s.childrenHead,
     className,
-    justifyContent && s[justifyContent],
-    borderBottom && s.borderBottom
+    justifyContentHeader && s[justifyContentHeader],
+    borderBottomHeader && s.borderBottom
   )
 
   return <div className={headStyle}>{children}</div>
 }
 
-const Body: FC<PropsChildren> = ({ children, className = '' }) => {
+/**
+ * Component that renders the body section of a modal.
+ *
+ * @component
+ * @param {PropsChildren} props - The props for the body section.
+ * @returns {ReactNode} The rendered body section.
+ */
+
+const Body: FC<PropsChildren> = ({ children, className = '' }: PropsChildren): ReactNode => {
   const bodyStyle = clsx(s.childrenBody, className)
 
   return <div className={bodyStyle}>{children}</div>
 }
-
-const Footer: FC<PropsChildren> = ({ children, className = '' }) => {
-  const footerStyle = clsx(s.childrenFooter, className)
+/**
+ * Component that renders the footer section of a modal.
+ *
+ * @component
+ * @param {PropsChildren} props - The props for the footer section.
+ * @returns {ReactNode} The rendered footer section.
+ */
+const Footer: FC<PropsChildren> = ({ children, className = '' }: PropsChildren): ReactNode => {
+  const { size } = useContext(ModalContext)
+  const footerStyle = clsx(s.childrenFooter, size && s[size], className)
 
   return <div className={footerStyle}>{children}</div>
 }
 
-const Trigger: FC<{ children: ReactElement }> = ({ children }) => {
+/**
+ * Component that wraps a trigger element and opens the modal on click.
+ *
+ * @component
+ * @param {ReactElement} children - The trigger element.
+ * @returns {ReactNode} The rendered trigger element.
+ */
+
+const Trigger: FC<{ children: ReactElement }> = ({
+  children,
+}: {
+  children: ReactElement
+}): ReactNode => {
+  if (!children) {
+    return null
+  }
   const { setOpen } = useContext(ModalContext)
 
   return cloneElement(children, { onClick: () => setOpen(true) })
 }
 
+/**
+ * Object that exports the modal components.
+ */
 export const ModalConstructor = { PortalAndOverlay, Head, Body, Footer, Trigger }
