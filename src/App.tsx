@@ -23,9 +23,9 @@ export function App() {
       <Button as={'a'} variant={'primary'} href={'/link'}>
         link
       </Button>
-      <Modal showCloseButton={false} active>
+      <Modal active>
         <ModalConstructor.PortalAndOverlay>
-          <ModalConstructor.Head>
+          <ModalConstructor.Head justifyContentHeader={'left'} borderBottomHeader>
             <Typography as={'span'} variant={'large'}>
               Add New Card
             </Typography>
@@ -36,18 +36,18 @@ export function App() {
             <TextField label={'Answer'}></TextField>
           </ModalConstructor.Body>
           <ModalConstructor.Footer>
-            <div style={{ width: '100px' }}>
-              <Button variant={'secondary'}>
+            <Button variant={'secondary'}>
+              <Typography as={'span'} variant={'body2'}>
+                Cancel
+              </Typography>
+            </Button>
+            <div style={{ width: '146px' }}>
+              <Button variant={'primary'} fullWidth>
                 <Typography as={'span'} variant={'body2'}>
-                  Cancel
+                  Add New Card
                 </Typography>
               </Button>
             </div>
-            <Button variant={'primary'} fullWidth>
-              <Typography as={'span'} variant={'body2'}>
-                Add New Card
-              </Typography>
-            </Button>
           </ModalConstructor.Footer>
         </ModalConstructor.PortalAndOverlay>
         <ModalConstructor.Trigger>
