@@ -5,7 +5,8 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  background-color: rgb(0 0 0 / 50%);
+  background-color: rgb(0 0 0 / 70%);
+  backdrop-filter: blur(1px);
 }
 
 .visible {
@@ -96,11 +97,22 @@
 .childrenFooter {
   display: flex;
   flex-shrink: 0;
-  gap: 248px;
   align-items: center;
   justify-content: center;
 
   padding: 12px 24px 36px;
+
+  &.sm {
+    gap: 125px;
+  }
+
+  &.md {
+    gap: 248px;
+  }
+
+  &.lg {
+    gap: 470px;
+  }
 }
 
 
