@@ -50,7 +50,7 @@ type ElementProps = {
   fullWidth?: boolean
 }
 
-type PolymorphProp<T extends ElementType, ElementProps = {}> = AsPolymorphProp<T> &
+type PolymorphProps<T extends ElementType, ElementProps = {}> = AsPolymorphProp<T> &
   ElementProps &
   Omit<ComponentPropsWithoutRef<T>, keyof (ElementProps & AsPolymorphProp<T>)>
 
@@ -58,7 +58,7 @@ type PolymorphRef<T extends ElementType> = ComponentPropsWithRef<T>['ref']
 
 type PolymorphPropRef<T extends ElementType> = { ref?: PolymorphRef<T> }
 
-type PolymorphPropsWithRef<T extends ElementType, ElementProps = {}> = PolymorphProp<
+type PolymorphPropsWithRef<T extends ElementType, ElementProps = {}> = PolymorphProps<
   T,
   ElementProps
 > &
