@@ -4,11 +4,13 @@ import { clsx } from 'clsx'
 
 import s from './textField.module.scss'
 
-import { Eye, VisibilityOff } from '@/assets/icons'
+import { Close, Eye, VisibilityOff } from '@/assets/icons'
+import { Search } from '@/assets/icons/search.tsx'
 import { Typography } from '@/components/ui/typography'
 
 export type TextFieldProps = {
   onValueChange?: (value: string) => void
+  type?: 'password' | 'text' | 'search'
   containerProps?: ComponentProps<'div'>
   labelProps?: ComponentProps<'label'>
   errorMessage?: string
@@ -32,14 +34,22 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     ref
   ) => {
     const [showPassword, setShowPassword] = useState(false)
+    const [inputValue, setInputValue] = useState<string>('')
 
     const isShowPasswordButtonShown = type === 'password'
+    const isSearchInput = type === 'search'
 
     const finalType = getFinalType(type, showPassword)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value)
       onChange?.(e)
       onValueChange?.(e.target.value)
+    }
+
+    const clearHandler = () => {
+      setInputValue('')
+      onValueChange?.('')
     }
 
     const classNames = {
@@ -63,9 +73,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             placeholder={placeholder}
             ref={ref}
             type={finalType}
+            value={inputValue}
             onChange={handleChange}
             {...restProps}
           />
+          {isSearchInput && <Search className={s.search} />}
+          {inputValue && isSearchInput && <Close onClick={clearHandler} className={s.close} />}
+
           {isShowPasswordButtonShown && (
             <button
               className={s.showPassword}
