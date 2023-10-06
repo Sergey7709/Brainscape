@@ -9,7 +9,7 @@
 
 .field {
   width: 100%;
-  padding: 6px 12px 6px 40px;
+  padding: 6px 12px;
 
   font-family: inherit;
   font-size: 16px;
@@ -74,7 +74,7 @@
   }
 }
 
-.search {
+.searchIcon {
   position: absolute;
   top: 50%;
   left: 10px;
@@ -95,7 +95,11 @@ input[type='search']::-webkit-search-cancel-button {
   appearance: none;
 }
 
-.close {
+input[type='search'] {
+  padding-left: 35px;
+}
+
+.closeIcon {
   position: absolute;
   top: 50%;
   right: 10px;

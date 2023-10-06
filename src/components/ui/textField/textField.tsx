@@ -68,6 +68,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           </Typography>
         )}
         <div className={classNames.fieldContainer}>
+          {isSearchInput && <Search className={s.searchIcon} />}
           <input
             className={classNames.field}
             placeholder={placeholder}
@@ -77,8 +78,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             onChange={handleChange}
             {...restProps}
           />
-          {isSearchInput && <Search className={s.search} />}
-          {inputValue && isSearchInput && <Close onClick={clearHandler} className={s.close} />}
+
+          {inputValue && isSearchInput && <Close onClick={clearHandler} className={s.closeIcon} />}
 
           {isShowPasswordButtonShown && (
             <button
