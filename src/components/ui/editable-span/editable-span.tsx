@@ -41,6 +41,7 @@ export const EditableSpan = ({ name, email, handleLogout, onValueChange }: Edita
   return editMode ? (
     <>
       <TextField
+        className={s.nameInput}
         type={'text'}
         value={title}
         onChange={changeTitle}

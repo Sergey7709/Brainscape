@@ -6,6 +6,7 @@ export { Close } from './close.tsx'
 export { ArrowLeft } from './arrow-left.tsx'
 export { ArrowRight } from './arrow-right.tsx'
 export { Redactor } from './redactor.tsx'
+export { ChangePhoto } from './change-photo.tsx'
 
 export { default as VisibilityOff } from './visibilityOff'
 export { default as Eye } from './eye'

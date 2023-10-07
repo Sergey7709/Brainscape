@@ -4,22 +4,23 @@ import { Avatars as Avatar } from '@/components/ui/avatar/avatar.tsx'
 import { Card } from '@/components/ui/card'
 import { EditableSpan } from '@/components/ui/editable-span/editable-span.tsx'
 import { Typography } from '@/components/ui/typography'
+import { UploadPhoto } from '@/components/ui/upload-photo/upload-photo.tsx'
 
 type Props = {
-  name: string | null
   email: string | null
   avatar: string | null
+  name: string | null
   onLogout: () => void
+  onAvatarChange: (newAvatar: File) => void
   onNameChange: (newName: string) => void
-  onAvatarChange: (newFile: File) => void
 }
 
 export const PersonalInformation = ({
   avatar,
+  email,
+  name,
   onAvatarChange,
   onNameChange,
-  name,
-  email,
   onLogout,
 }: Props) => {
   const handleNameChanged = (name: string) => onNameChange(name)
@@ -29,11 +30,14 @@ export const PersonalInformation = ({
   const handleLogout = () => onLogout()
 
   return (
-    <Card className={s.wrapper}>
-      <Typography variant={'large'}> Personal Information</Typography>
-      <div className="photoContainer">
+    <Card className={s.profileContainer}>
+      <Typography variant="large" className={s.title}>
+        Personal Information
+      </Typography>
+      <div className={s.photoContainer}>
         <div>
           <Avatar src={avatar!} />
+          <UploadPhoto onAvatarChange={handleAvatarChange} />
         </div>
       </div>
       <EditableSpan
