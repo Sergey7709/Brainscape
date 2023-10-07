@@ -19,27 +19,6 @@ const BUTTON_VARIANTS = {
   link: 'link',
 } as const
 
-// type ElementProps<T extends ElementType> = {
-//   as?: T
-//   variant?: (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS]
-//   loading?: boolean
-//   fullWidth?: boolean
-// }
-//
-// type PolymorphRef<T extends ElementType> = ComponentPropsWithRef<T>['ref']
-//
-// type PolymorphProp<T extends ElementType> = ElementProps<T> &
-//   Omit<ComponentPropsWithoutRef<T>, keyof ElementProps<T>>
-//
-// type PolymorphPropsRef<T extends ElementType> = { ref?: PolymorphRef<T> }
-//
-// type PolymorphPropWithRef<T extends ElementType> = PolymorphProp<T> & PolymorphPropsRef<T>
-//
-// type TagComponent = <T extends ElementType = 'button'>(props: PolymorphPropWithRef<T>) => ReactNode
-//
-// const ButtonPolymorph: TagComponent = forwardRef(
-//   <T extends ElementType = 'button'>(props: PolymorphPropWithRef<T>, ref?: PolymorphRef<T>) => {
-
 type AsPolymorphProp<T extends ElementType> = {
   as?: T
 }
@@ -103,54 +82,3 @@ const ButtonPolymorph: TagComponent = forwardRef(
 )
 
 export const Button = ButtonPolymorph
-
-// export type ButtonProps<T extends ElementType = 'button'> = {
-//   as?: T
-//   variant?: (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS]
-//   loading?: boolean
-//   fullWidth?: boolean
-// } & ComponentPropsWithoutRef<T>
-//
-// const ButtonPolymorph = <T extends ElementType = 'button'>(
-//   props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>,
-//   ref: ElementRef<T>
-// ): ReactNode => {
-//   const {
-//     variant = 'primary',
-//     fullWidth,
-//     className = '',
-//     as: Tag = 'button',
-//     disabled,
-//     loading,
-//     children,
-//     ...rest
-//   } = props
-//
-//   const tagClassName = clsx(
-//     s[variant],
-//     fullWidth && s.fullWidth,
-//     className,
-//     disabled && 'href' in rest && s.disabled,
-//     loading && s.loading
-//   )
-//
-//   return (
-//     // @ts-expect-error todo: not sure how to type it
-//
-//     <Tag ref={ref} className={tagClassName} disabled={disabled} {...rest}>
-//       {loading && (
-//         <div className={clsx(s.loadingWrapper)}>
-//           <Loading />
-//         </div>
-//       )}
-//       <div className={s.children}>{children}</div>
-//     </Tag>
-//   )
-// }
-//
-// export const Button = forwardRef(ButtonPolymorph) as <T extends ElementType = 'button'>(
-//   props: ButtonProps<T> &
-//     Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>> & {
-//       ref?: ForwardedRef<ElementRef<T>>
-//     }
-// ) => ReturnType<typeof ButtonPolymorph>
