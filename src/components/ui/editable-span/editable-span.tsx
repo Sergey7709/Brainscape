@@ -2,6 +2,7 @@ import { ChangeEvent, KeyboardEvent, useState } from 'react'
 
 import s from './editable-span.module.scss'
 
+import { Logout, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
@@ -58,7 +59,7 @@ export const EditableSpan = ({ name, email, handleLogout, onValueChange }: Edita
           {name}
         </Typography>
         <Button variant={'link'} className={s.editNameButton} onClick={activateEditMode}>
-          {'<Redactor />'}
+          <Redactor onClick={activateEditMode} />
         </Button>
       </div>
       <Typography variant="body2" className={s.email}>
@@ -66,7 +67,7 @@ export const EditableSpan = ({ name, email, handleLogout, onValueChange }: Edita
       </Typography>
       <div className={s.buttonContainer}>
         <Button variant={'secondary'} onClick={handleLogout}>
-          {'<LogoutSvg />'}
+          <Logout />
           Logout
         </Button>
       </div>
