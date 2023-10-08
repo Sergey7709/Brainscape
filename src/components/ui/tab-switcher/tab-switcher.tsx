@@ -6,6 +6,12 @@ import { clsx } from 'clsx'
 
 import s from './tab-switcher.module.scss'
 
+/**
+ * A component for switching between tabs.
+ * @param {CombinedTabsProps} props - The properties for the tab switcher
+ * @returns {ReactNode} The rendered tab switcher.
+ */
+
 export type TabsAsChildProps = { asChild?: boolean }
 
 export type TabDataProps = {
