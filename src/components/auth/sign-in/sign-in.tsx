@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 import s from './sign-in.module.scss'
 
 import { Button } from '@/components/ui/button'
@@ -27,18 +29,22 @@ export const SignIn = () => {
       <div className={s.signInCheckboxWrapper}>
         <Checkbox checked={checked} label={'Remember me'} onChange={handleCheckboxChange} />
       </div>
-      <div className={s.signInForgotPassword}>
-        <Button variant={'link'}>Forgot Password?</Button>
-      </div>
+      <NavLink className={s.signInForgotPassword} to={'/ForgotPassword'}>
+        <Typography as={'a'} variant={'body2'}>
+          Forgot Password?
+        </Typography>
+      </NavLink>
       <div className={s.signInButton}>
         <Button variant={'primary'} fullWidth>
           Sign In
         </Button>
       </div>
       <Typography>{`Don't have an account?`}</Typography>
-      <div className={s.signInLink}>
-        <Button variant={'link'}>Sign Up</Button>
-      </div>
+      <NavLink to={'/signUp'}>
+        <Typography as={'a'} variant={'link1'} className={s.signInLink}>
+          Sign Up
+        </Typography>
+      </NavLink>
     </Card>
   )
 }
