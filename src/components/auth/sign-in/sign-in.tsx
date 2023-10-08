@@ -16,7 +16,7 @@ export const SignIn = () => {
   }
 
   return (
-    <Card className={s.signInDivContainer}>
+    <Card>
       <Typography variant={'large'} className={s.signInTypography}>
         Sign In
       </Typography>
