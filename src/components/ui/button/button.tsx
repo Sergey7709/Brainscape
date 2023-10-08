@@ -12,6 +12,23 @@ import s from './button.module.scss'
 
 import { Loading } from '@/assets/icons'
 
+/**
+ * `ButtonPolymorph` is a polymorphic button component that can render as any HTML element type.
+ * It supports several variants and can display a loading state.
+ *
+ * @component
+ * @param {object} props - The properties that define the button.
+ * @param {('primary'|'secondary'|'tertiary'|'link')} [props.variant='primary'] - The variant of the button.
+ * @param {boolean} [props.fullWidth=false] - If true, the button will take up the full width of its container.
+ * @param {string} [props.className=''] - Additional CSS classes to apply to the button.
+ * @param {ElementType} [props.as='button'] - The HTML element type to render as.
+ * @param {boolean} props.disabled - If true, the button will be disabled.
+ * @param {boolean} props.loading - If true, a loading spinner will be displayed in the button.
+ * @param {ReactNode} props.children - The content to display inside the button.
+ * @param {PolymorphRef<T extends ElementType>} ref - A ref to attach to the rendered element.
+ * @returns {ReactNode} The rendered button component.
+ */
+
 const BUTTON_VARIANTS = {
   primary: 'primary',
   secondary: 'secondary',
