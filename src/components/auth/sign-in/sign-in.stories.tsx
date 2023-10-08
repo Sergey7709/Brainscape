@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { BrowserRouter } from 'react-router-dom'
 
 import { SignIn } from '@/components/auth/sign-in'
 
@@ -15,6 +16,10 @@ export const Cards: Story = {
   render: () => {
     // const handleSubmit = console.log('submit')
 
-    return <SignIn />
+    return (
+      <BrowserRouter>
+        <SignIn />
+      </BrowserRouter>
+    )
   },
 }
