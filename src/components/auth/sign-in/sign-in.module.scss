@@ -1,10 +1,11 @@
 
 .signInTypography {
+  display: flex;
+  justify-content: center;
+
   width: 100%;
   margin-bottom: 27px;
   padding-top: 33px;
-  padding-right: 172px;
-  padding-left: 167px;
 
   text-align: center;
 }
@@ -63,4 +64,7 @@
   justify-content: center;
   margin-top: 11px;
   margin-bottom: 29px;
-}
+
+  & > button {
+    padding: 0;
+}}
