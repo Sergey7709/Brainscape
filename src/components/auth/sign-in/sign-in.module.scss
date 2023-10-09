@@ -38,7 +38,12 @@
   padding-right: 48px;
   padding-left: 259px;
 
-  text-decoration: none;
+  color: var(--color-light-100);
+
+  &:hover {
+    color: var(--color-accent-300);
+    text-decoration: underline;
+  }
 }
 
 .signInButton {
@@ -49,16 +54,21 @@
   padding-left: 36px;
 }
 
-a .signInLink {
+a.signInLink {
   display: flex;
   justify-content: center;
 
   margin-top: 11px;
   margin-bottom: 29px;
 
+
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-bold);
-  color: var(--color-accent-500)
+  color: var(--color-accent-500);
+
+  &:hover {
+    color: var(--color-accent-300);
+  }
 }
 
 
