@@ -1,6 +1,7 @@
-import { useState } from 'react'
-
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useController, useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
+import { z } from 'zod'
 
 import s from './sign-in.module.scss'
 
@@ -10,11 +11,47 @@ import { Checkbox } from '@/components/ui/check-box'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 
-export const SignIn = () => {
-  const [checked, setChecked] = useState(false)
+export const signInSchema = z.object({
+  email: z
+    .string({
+      required_error: 'Email is required',
+    })
+    .email('Please enter a valid email')
+    .nonempty('Please enter a valid email'),
+  password: z
+    .string({
+      required_error: 'Password is required',
+    })
+    .min(3, 'Email is too short')
+    .max(30, 'Email is too long')
+    .nonempty('Please enter a valid password'),
+  rememberMe: z.boolean().optional(),
+})
 
-  const handleCheckboxChange = () => {
-    setChecked(!checked)
+export type SinInForm = z.infer<typeof signInSchema>
+export type SignInProps = {
+  onHandleSubmit: (form: SinInForm) => void
+}
+
+export const SignIn = ({ onHandleSubmit }: SignInProps) => {
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<SinInForm>({
+    resolver: zodResolver(signInSchema),
+  })
+
+  const {
+    field: { value, onChange },
+  } = useController({
+    name: 'rememberMe',
+    control,
+    defaultValue: false,
+  })
+  const onHandleSubmitForm = (form: SinInForm) => {
+    onHandleSubmit(form)
   }
 
   return (
@@ -22,29 +59,41 @@ export const SignIn = () => {
       <Typography variant={'large'} className={s.signInTypography}>
         Sign In
       </Typography>
-      <div className={s.signInTextField}>
-        <TextField label={'Email'}></TextField>
-        <TextField label={'Password'} type={'password'}></TextField>
-      </div>
-      <div className={s.signInCheckboxWrapper}>
-        <Checkbox checked={checked} label={'Remember me'} onChange={handleCheckboxChange} />
-      </div>
-      <NavLink className={s.signInForgotPassword} to={'/ForgotPassword'}>
-        <Typography as={'a'} variant={'body2'}>
+      <form onSubmit={handleSubmit(onHandleSubmitForm)}>
+        <div className={s.signInTextField}>
+          <TextField
+            label={'Email'}
+            {...register('email')}
+            errorMessage={errors.email?.message}
+          ></TextField>
+          <TextField
+            label={'Password'}
+            type={'password'}
+            {...register('password')}
+            errorMessage={errors.password?.message}
+          ></TextField>
+        </div>
+        <div className={s.signInCheckboxWrapper}>
+          <Checkbox label={'Remember me'} checked={value} onChange={onChange} />
+        </div>
+        <Typography
+          as={NavLink}
+          to={'/ForgotPassword'}
+          variant={'body2'}
+          className={s.signInForgotPassword}
+        >
           Forgot Password?
         </Typography>
-      </NavLink>
-      <div className={s.signInButton}>
-        <Button variant={'primary'} fullWidth>
-          Sign In
-        </Button>
-      </div>
+        <div className={s.signInButton}>
+          <Button variant={'primary'} fullWidth>
+            Sign In
+          </Button>
+        </div>
+      </form>
       <Typography>{`Don't have an account?`}</Typography>
-      <NavLink to={'/signUp'}>
-        <Typography as={'a'} variant={'link1'} className={s.signInLink}>
-          Sign Up
-        </Typography>
-      </NavLink>
+      <Typography as={NavLink} to={'/signUp'} variant={'body1'} className={s.signInLink}>
+        Sign Up
+      </Typography>
     </Card>
   )
 }
