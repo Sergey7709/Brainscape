@@ -16,21 +16,23 @@ export const signInSchema = z.object({
     .string({
       required_error: 'Email is required',
     })
+    .trim()
     .email('Please enter a valid email')
     .nonempty('Please enter a valid email'),
   password: z
     .string({
       required_error: 'Password is required',
     })
+    .trim()
     .min(3, 'Email is too short')
     .max(30, 'Email is too long')
     .nonempty('Please enter a valid password'),
   rememberMe: z.boolean().optional(),
 })
 
-export type SinInForm = z.infer<typeof signInSchema>
+export type SignInForm = z.infer<typeof signInSchema>
 export type SignInProps = {
-  onHandleSubmit: (form: SinInForm) => void
+  onHandleSubmit: (form: SignInForm) => void
 }
 
 export const SignIn = ({ onHandleSubmit }: SignInProps) => {
@@ -39,7 +41,7 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<SinInForm>({
+  } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
   })
 
@@ -50,7 +52,7 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
     control,
     defaultValue: false,
   })
-  const onHandleSubmitForm = handleSubmit((form: SinInForm) => {
+  const onHandleSubmitForm = handleSubmit((form: SignInForm) => {
     onHandleSubmit(form)
   })
 
