@@ -16,12 +16,14 @@ export const signInSchema = z.object({
     .string({
       required_error: 'Email is required',
     })
+    .trim()
     .email('Please enter a valid email')
     .nonempty('Please enter a valid email'),
   password: z
     .string({
       required_error: 'Password is required',
     })
+    .trim()
     .min(3, 'Email is too short')
     .max(30, 'Email is too long')
     .nonempty('Please enter a valid password'),
