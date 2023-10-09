@@ -12,9 +12,9 @@ import { Typography } from '@/components/ui/typography'
 
 const signUpSchema = z
   .object({
-    email: z.string().email(),
-    password: z.string().min(3).max(30),
-    confirmPassword: z.string(),
+    email: z.string().trim().email(),
+    password: z.string().trim().min(3).max(30),
+    confirmPassword: z.string().trim(),
   })
   .refine(data => data.password === data.confirmPassword, {
     message: 'Passwords do not match',
