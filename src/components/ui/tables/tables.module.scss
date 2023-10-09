@@ -42,6 +42,10 @@
 
   background-color: var(--color-dark-900);
   border-bottom: 1px solid var(--color-dark-500);
+
+  button {
+    padding: 20px 5px;
+  }
 }
 
 .chevronDown {
@@ -53,4 +57,9 @@
   justify-content: center;
   width: 100%;
   font-size: var(--font-size-xxl);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
 }
