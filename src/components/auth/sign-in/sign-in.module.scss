@@ -1,0 +1,75 @@
+.signInTypography {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  margin-bottom: 27px;
+  padding-top: 33px;
+
+  text-align: center;
+}
+
+.signInTextField {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  margin-bottom: 12px;
+  padding-right: 36px;
+  padding-left: 36px;
+}
+
+.signInCheckboxWrapper {
+  display: flex;
+  justify-content: flex-start;
+
+  width: 100%;
+  margin-bottom: 6px;
+  padding-right: 253px;
+  padding-left: 27px;
+}
+
+.signInForgotPassword {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+  padding-right: 48px;
+  padding-left: 259px;
+
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-accent-300);
+    text-decoration: underline;
+  }
+}
+
+.signInButton {
+  width: 100%;
+  margin-top: 66px;
+  margin-bottom: 20px;
+  padding-right: 36px;
+  padding-left: 36px;
+}
+
+a.signInLink {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 11px;
+  margin-bottom: 29px;
+
+
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-500);
+
+  &:hover {
+    color: var(--color-accent-300);
+  }
+}
+
+
