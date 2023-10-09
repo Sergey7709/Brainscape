@@ -24,8 +24,8 @@ export const signInSchema = z.object({
       required_error: 'Password is required',
     })
     .trim()
-    .min(3, 'Email is too short')
-    .max(30, 'Email is too long')
+    .min(3, 'Password  is too short')
+    .max(30, 'Password  is too long')
     .nonempty('Please enter a valid password'),
   rememberMe: z.boolean().optional(),
 })
