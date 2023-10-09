@@ -15,7 +15,7 @@ const CreatePasswordSchema = z.object({
     .string()
     .trim()
     .nonempty('Enter password')
-    .min(8, 'Password must be at least 8 characters'),
+    .min(3, 'Password must be at least 3 characters'),
 })
 
 type FormType = z.infer<typeof CreatePasswordSchema>
