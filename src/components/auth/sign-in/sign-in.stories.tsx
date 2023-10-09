@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { BrowserRouter } from 'react-router-dom'
 
-import { SignIn } from '@/components/auth/sign-in'
+import { SignIn, SinInForm } from '@/components/auth/sign-in'
 
 const meta = {
   title: 'Auth/SignIn',
@@ -14,11 +14,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 export const Cards: Story = {
   render: () => {
-    // const handleSubmit = console.log('submit')
+    const onSubmitHandler = (form: SinInForm) => console.log(form)
 
     return (
       <BrowserRouter>
-        <SignIn />
+        <SignIn onHandleSubmit={onSubmitHandler} />
       </BrowserRouter>
     )
   },
