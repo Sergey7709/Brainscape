@@ -7,6 +7,13 @@ const meta = {
   title: 'Auth/SignIn',
   component: SignIn,
   tags: ['autodocs'],
+  argTypes: {
+    onHandleSubmit: {
+      control: { type: 'function' },
+      description:
+        'SignIn component props, type\n' + '\n onHandleSubmit: (form: SinInForm) => void',
+    },
+  },
 } satisfies Meta<typeof SignIn>
 
 export default meta
