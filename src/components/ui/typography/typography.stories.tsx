@@ -115,6 +115,7 @@ export const Link1: Story = {
   args: {
     variant: 'link1',
     children: 'This is a link 1 text',
+    as: 'a',
   },
 }
 
