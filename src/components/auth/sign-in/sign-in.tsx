@@ -50,16 +50,16 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
     control,
     defaultValue: false,
   })
-  const onHandleSubmitForm = (form: SinInForm) => {
+  const onHandleSubmitForm = handleSubmit((form: SinInForm) => {
     onHandleSubmit(form)
-  }
+  })
 
   return (
     <Card>
       <Typography variant={'large'} className={s.signInTypography}>
         Sign In
       </Typography>
-      <form onSubmit={handleSubmit(onHandleSubmitForm)}>
+      <form onSubmit={onHandleSubmitForm}>
         <div className={s.signInTextField}>
           <TextField
             label={'Email'}
