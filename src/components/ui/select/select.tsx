@@ -24,6 +24,7 @@ type SelectType = {
   className?: string
   placeholder?: string
   variant?: 'common' | 'pagination'
+  fullWidth?: boolean
 }
 
 export const Select = ({
@@ -34,6 +35,10 @@ export const Select = ({
   onValueChange,
   variant = 'common',
   className,
+  /*
+  Use this temporary prop for cards
+   **/
+  fullWidth,
 }: SelectType) => {
   const [open, setOpen] = useState(false)
   const onOpenChangeHandler = () => {
@@ -46,9 +51,15 @@ export const Select = ({
       s.trigger,
       variant === 'pagination' && s.triggerPagination,
       disabled && s.disabled,
+      fullWidth && s.fullWidth,
       className
     ),
-    content: clsx(s.content, variant === 'pagination' && s.contentPagination, className),
+    content: clsx(
+      s.content,
+      variant === 'pagination' && s.contentPagination,
+      fullWidth && s.fullWidth,
+      className
+    ),
     item: clsx(s.item, variant === 'pagination' && s.itemPagination, className),
     value: s.value,
     icon: clsx(s.icon, disabled && s.disabled),

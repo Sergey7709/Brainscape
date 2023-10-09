@@ -38,6 +38,7 @@
 }
 
 .item {
+  width: 100%;
   padding: 6px 12px;
   font-size: 16px;
   background: var(--color-dark-900);
@@ -77,4 +78,8 @@
 .triggerPagination,
 .itemPagination {
   padding: 5px;
+}
+
+.fullWidth {
+  width: 484px;
 }
