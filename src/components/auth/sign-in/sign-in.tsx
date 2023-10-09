@@ -30,9 +30,9 @@ export const signInSchema = z.object({
   rememberMe: z.boolean().optional(),
 })
 
-export type SinInForm = z.infer<typeof signInSchema>
+export type SignInForm = z.infer<typeof signInSchema>
 export type SignInProps = {
-  onHandleSubmit: (form: SinInForm) => void
+  onHandleSubmit: (form: SignInForm) => void
 }
 
 export const SignIn = ({ onHandleSubmit }: SignInProps) => {
@@ -41,7 +41,7 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<SinInForm>({
+  } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
   })
 
@@ -52,7 +52,7 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
     control,
     defaultValue: false,
   })
-  const onHandleSubmitForm = handleSubmit((form: SinInForm) => {
+  const onHandleSubmitForm = handleSubmit((form: SignInForm) => {
     onHandleSubmit(form)
   })
 
