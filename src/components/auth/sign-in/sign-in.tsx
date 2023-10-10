@@ -12,21 +12,16 @@ import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 
 export const signInSchema = z.object({
-  email: z
-    .string({
-      required_error: 'Email is required',
-    })
-    .trim()
-    .email('Please enter a valid email')
-    .nonempty('Please enter a valid email'),
+  email: z.string().trim().nonempty('Email is required').email('Please enter a valid email'),
   password: z
     .string({
       required_error: 'Password is required',
     })
     .trim()
-    .min(3, 'Password  is too short')
-    .max(30, 'Password  is too long')
-    .nonempty('Please enter a valid password'),
+    .nonempty('Password is required')
+    .min(3, 'Password must be at least 3 characters')
+    .max(30),
+
   rememberMe: z.boolean().optional(),
 })
 
@@ -42,7 +37,14 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
     register,
     formState: { errors },
   } = useForm<SignInForm>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
     resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
   })
 
   const {
@@ -78,14 +80,16 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
         <div className={s.signInCheckboxWrapper}>
           <Checkbox label={'Remember me'} checked={value} onChange={onChange} />
         </div>
-        <Typography
-          as={NavLink}
-          to={'/ForgotPassword'}
-          variant={'body2'}
-          className={s.signInForgotPassword}
-        >
-          Forgot Password?
-        </Typography>
+        <div className={s.signInForgotPasswordContainer}>
+          <Typography
+            as={NavLink}
+            to={'/ForgotPassword'}
+            variant={'body2'}
+            className={s.signInForgotPassword}
+          >
+            Forgot Password?
+          </Typography>
+        </div>
         <div className={s.signInButton}>
           <Button variant={'primary'} fullWidth>
             Sign In
