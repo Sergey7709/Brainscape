@@ -1,3 +1,11 @@
+@mixin add-focus-visible {
+  &:focus-visible {
+    border-radius: 1px;
+    outline: 0.125rem solid var(--color-info-700);
+    outline-offset: 0.1875rem;
+  }
+}
+
 // font-weight
 
 .large,
@@ -7,6 +15,8 @@
 .subtitle1,
 .subtitle2,
 .overline {
+  @include add-focus-visible;
+
   font-weight: var(--font-weight-bold);
 }
 
@@ -16,6 +26,8 @@
 .link1,
 .link2,
 .error {
+  @include add-focus-visible;
+
   font-weight: var(--font-weight-regular);
 }
 
@@ -23,6 +35,8 @@
 
 .large,
 .h1 {
+  @include add-focus-visible;
+
   line-height: var(--line-height-l);
 }
 
@@ -32,6 +46,8 @@
 .body1,
 .link1,
 .error {
+  @include add-focus-visible;
+
   line-height: var(--line-height-m);
 }
 
@@ -40,32 +56,44 @@
 .caption,
 .overline,
 .link2 {
+  @include add-focus-visible;
+
   line-height: var(--line-height-s);
 }
 
 // font-size
 
 .large {
+  @include add-focus-visible;
+
   font-size: var(--font-size-xxl);
 }
 
 .h1 {
+  @include add-focus-visible;
+
   font-size: var(--font-size-xl);
 }
 
 .h2 {
+  @include add-focus-visible;
+
   font-size: var(--font-size-l);
 }
 
 .h3,
 .subtitle1,
 .body1 {
+  @include add-focus-visible;
+
   font-size: var(--font-size-m);
 }
 
 .body2,
 .subtitle2,
 .link1 {
+  @include add-focus-visible;
+
   font-size: var(--font-size-s);
 }
 
@@ -73,6 +101,8 @@
 .overline,
 .link2,
 .error {
+  @include add-focus-visible;
+
   font-size: var(--font-size-xs);
 }
 
@@ -80,6 +110,8 @@
 
 .link1,
 .link2 {
+  @include add-focus-visible;
+
   color: var(--primary-500, #397df6);
   text-decoration-line: underline;
 
@@ -87,12 +119,10 @@
     cursor: pointer;
   }
 
-  &:focus-visible {
-    outline: 0.125rem solid var(--color-info-700);
-    outline-offset: 0.1875rem;
-  }
 }
 
 .error {
+  @include add-focus-visible;
+
   color: var(--color-danger-300);
 }
