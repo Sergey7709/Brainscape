@@ -6,12 +6,12 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import { Layout } from '@/components/layout/Layout.tsx'
+import { Layout } from '@/components/layout/layout.tsx'
 import { Error404 } from '@/pages/Error404/error404.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
-    path: '/sign-in',
+    path: '/login',
     element: <div>sign in</div>,
   },
   {
@@ -38,19 +38,19 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    path: '/personal-information',
-    element: <div>personal-information</div>,
+    path: '/profile',
+    element: <div>profile</div>,
   },
   {
-    path: '/decks',
+    path: '/',
     element: <div>decks</div>,
   },
 ]
 
 function PrivateRoutes() {
-  const isAuthenticated = false
+  const isAuthenticated = true
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/sign-in" />
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
 
 const router = createBrowserRouter([

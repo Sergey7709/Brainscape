@@ -1,6 +1,11 @@
 import { Router } from '@/router.tsx'
+import { useGetDecksQuery } from '@/service/base-api.ts'
 
 export function App() {
+  const result = useGetDecksQuery()
+
+  console.log(result)
+
   return (
     // <div
     //   style={{
@@ -54,8 +59,7 @@ export function App() {
     //   </Modal>
     // </div>
     // eslint-disable-next-line react/jsx-no-undef
-    <div>
-      <Router />
-    </div>
+
+    <Router />
   )
 }
