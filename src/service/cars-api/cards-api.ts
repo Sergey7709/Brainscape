@@ -69,4 +69,12 @@ export const cardsApi = createApi({
   },
 })
 
-export const { useGetCardsQuery, useCreateCardMutation, useGetRandomCardsQuery } = cardsApi
+export const {
+  useGetCardsQuery,
+  useCreateCardMutation,
+  useGetRandomCardsQuery,
+  useDeleteCardMutation,
+  useGradeCardMutation,
+  useGetCardByIdQuery,
+  useUpdateCardMutation,
+} = cardsApi
