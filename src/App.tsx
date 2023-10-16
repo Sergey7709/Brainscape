@@ -1,5 +1,5 @@
 import { Router } from '@/router.tsx'
-import { useGetDecksQuery } from '@/service/base-api.ts'
+import { useGetDecksQuery } from '@/service/deck-api/decks-api.ts'
 
 export function App() {
   const result = useGetDecksQuery()
