@@ -1,19 +1,3 @@
-export type CardType = {
-  id: string
-  deckId: string
-  userId: string
-  question: string
-  answer: string
-  shots: number
-  answerImg: string
-  questionImg: string
-  questionVideo: string
-  answerVideo: string
-  rating: number
-  created: string
-  updated: string
-}
-
 export type DeckType = {
   author: Author
   id: string
@@ -31,19 +15,6 @@ export type DeckType = {
 export type Author = {
   id: string
   name: string
-}
-
-export type Pagination = {
-  currentPage: number
-  itemsPerPage: number
-  totalPages: number
-  totalItems: number
-}
-
-export type GetDecksResponse = {
-  items: DeckType[]
-  pagination: Pagination
-  maxCardsCount: number
 }
 
 export type CreateDeckRequest = {

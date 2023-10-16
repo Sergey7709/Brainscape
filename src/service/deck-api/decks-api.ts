@@ -1,11 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import {
-  CreateDeckRequest,
-  DeckType,
-  GetDecksResponse,
-  UpdateDeckRequest,
-} from '@/service/deck-api/types.ts'
+import { GetEntitiesResponse } from '@/service/common/types.ts'
+import { CreateDeckRequest, DeckType, UpdateDeckRequest } from '@/service/deck-api/types.ts'
 
 export const decksApi = createApi({
   reducerPath: 'decksApi',
@@ -16,10 +12,12 @@ export const decksApi = createApi({
       headers.append('x-auth-skip', 'true')
     },
   }),
+  tagTypes: ['Deck'],
   endpoints: builder => {
     return {
-      getDecks: builder.query<GetDecksResponse, void>({
+      getDecks: builder.query<GetEntitiesResponse<DeckType> & { maxCardsCount: number }, void>({
         query: () => `v1/decks`,
+        providesTags: ['Deck'],
       }),
       createDeck: builder.mutation<DeckType, CreateDeckRequest>({
         query: body => ({
@@ -27,8 +25,9 @@ export const decksApi = createApi({
           method: 'POST',
           body,
         }),
+        invalidatesTags: ['Deck'],
       }),
-      retrieveDeck: builder.query<DeckType, string>({
+      retrieveDeckById: builder.query<DeckType, string>({
         query: id => `v1/decks/${id}`,
       }),
       updateDeck: builder.mutation<DeckType, UpdateDeckRequest>({
@@ -37,12 +36,14 @@ export const decksApi = createApi({
           method: 'PATCH',
           body,
         }),
+        invalidatesTags: ['Deck'],
       }),
       deleteDeck: builder.mutation<Omit<DeckType, 'author'>, string>({
         query: id => ({
           url: `v1/decks/${id}`,
           method: 'DELETE',
         }),
+        invalidatesTags: ['Deck'],
       }),
     }
   },
@@ -51,7 +52,7 @@ export const decksApi = createApi({
 export const {
   useGetDecksQuery,
   useCreateDeckMutation,
-  useRetrieveDeckQuery,
+  useRetrieveDeckByIdQuery,
   useUpdateDeckMutation,
   useDeleteDeckMutation,
 } = decksApi
