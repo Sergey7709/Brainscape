@@ -1,3 +1,4 @@
+import { BaseQueryArg } from '@reduxjs/toolkit/dist/query/baseQueryTypes'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import {
@@ -43,6 +44,25 @@ export const cardsApi = createApi({
           url: `v1/decks/${id}/cards`,
           method: 'POST',
           body,
+        }),
+        invalidatesTags: ['Cards'],
+      }),
+      getCardById: builder.query<CardType, string>({
+        query: id => `v1/cards/${id}`,
+        providesTags: ['Cards'],
+      }),
+      updateCard: builder.mutation<CardType, Partial<CardType>>({
+        query: ({ deckId, ...body }) => ({
+          url: `v1/cards/${deckId}`,
+          method: 'PATCH',
+          body,
+        }),
+        invalidatesTags: ['Cards'],
+      }),
+      deleteCard: builder.mutation<void, string>({
+        query: id => ({
+          url: `v1/cards/${id}`,
+          method: 'DELETE',
         }),
         invalidatesTags: ['Cards'],
       }),
