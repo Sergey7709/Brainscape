@@ -1,18 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+import { baseApi } from '@/service/common/base-api.ts'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
-import { CreateDeckRequest, DeckType, UpdateDeckRequest } from '@/service/deck-api/types.ts'
+import { CreateDeckRequest, DeckType, UpdateDeckRequest } from '@/service/decks/decks.types.ts'
 
-export const decksApi = createApi({
-  reducerPath: 'decksApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.flashcards.andrii.es',
-    credentials: 'include',
-    prepareHeaders: headers => {
-      headers.append('x-auth-skip', 'true')
-    },
-  }),
-  tagTypes: ['Deck'],
+export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       getDecks: builder.query<GetEntitiesResponse<DeckType> & { maxCardsCount: number }, void>({
@@ -55,4 +45,4 @@ export const {
   useRetrieveDeckByIdQuery,
   useUpdateDeckMutation,
   useDeleteDeckMutation,
-} = decksApi
+} = decksService

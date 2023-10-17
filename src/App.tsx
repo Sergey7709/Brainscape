@@ -1,11 +1,6 @@
 import { Router } from '@/router.tsx'
-import { useGetDecksQuery } from '@/service/deck-api/decks-api.ts'
 
 export function App() {
-  const result = useGetDecksQuery()
-
-  console.log(result)
-
   return (
     // <div
     //   style={{
