@@ -1,5 +1,4 @@
 import { Router } from '@/router.tsx'
-import { useGetDecksQuery } from '@/service/decks/decks.service.ts'
 
 export function App() {
   return (
