@@ -94,3 +94,14 @@ export const authService = baseApi.injectEndpoints({
     }
   },
 })
+
+export const {
+  useGetAuthUserMeDataQuery,
+  useSignInUserMutation,
+  useSignUpUserMutation,
+  useLogoutUserMutation,
+  useResetUserPasswordMutation,
+  useVerificationEmailAgainMutation,
+  useVerifyUserEmailMutation,
+  useUpdateAuthUserDataMutation,
+} = authService
