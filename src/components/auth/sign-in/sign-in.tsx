@@ -97,7 +97,7 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
         </div>
       </form>
       <Typography>{`Don't have an account?`}</Typography>
-      <Typography as={NavLink} to={'/signUp'} variant={'body1'} className={s.signInLink}>
+      <Typography as={NavLink} to={'/sign-up'} variant={'body1'} className={s.signInLink}>
         Sign Up
       </Typography>
     </Card>
