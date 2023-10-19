@@ -8,6 +8,7 @@ import {
 
 import { Layout } from '@/components/layout/layout.tsx'
 import { Error404 } from '@/pages/Error404/error404.tsx'
+import { useGetAuthUserMeDataQuery } from '@/service'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -48,7 +49,11 @@ const privateRoutes: RouteObject[] = [
 ]
 
 function PrivateRoutes() {
-  const isAuthenticated = true
+  const { isError, isLoading } = useGetAuthUserMeDataQuery()
+
+  const isAuthenticated = !isError
+
+  if (isLoading) return <div>Loading...</div> ///!!!!!!!!!!!!
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
