@@ -21,44 +21,46 @@ export const authService = baseApi.injectEndpoints({
         extraOptions: { maxRetries: false },
       }),
       updateAuthUserData: builder.mutation<CurrentUserResponses, UpdateCurrentUserRequest>({
-        query: (...data) => ({
+        query: data => ({
           method: 'PATCH',
           url: '/v1/auth/me',
           body: data,
-          invalidateTags: ['Auth'],
         }),
+        invalidatesTags: ['Auth'],
       }),
+
       signInUser: builder.mutation<TokenAccessResponses, LoginUserRequest>({
-        query: (...data) => ({
+        query: data => ({
           method: 'POST',
           url: '/v1/auth/login',
           body: data,
-          invalidateTags: ['Auth'],
         }),
+        invalidatesTags: ['Auth'],
       }),
+
       signUpUser: builder.mutation<SignUpResponses, SignUpRequest>({
-        query: (...data) => ({
+        query: ({ email, password }) => ({
           method: 'POST',
           url: '/v1/auth/sign-up',
-          body: data,
-          invalidateTags: ['Auth'],
+          body: { email, password },
         }),
+        invalidatesTags: ['Auth'],
       }),
       verifyUserEmail: builder.mutation<unknown, VerifyEmailRequest>({
-        query: (...data) => ({
+        query: data => ({
           method: 'POST',
           url: '/v1/auth/verify-email',
           body: data,
-          invalidateTags: ['Auth'],
         }),
+        invalidatesTags: ['Auth'],
       }),
       VerificationEmailAgain: builder.mutation<unknown, VerificationEmailAgainRequest>({
-        query: (...data) => ({
+        query: data => ({
           method: 'POST',
           url: '/v1/auth/resend-verification-email',
           body: data,
-          invalidateTags: ['Auth'],
         }),
+        invalidatesTags: ['Auth'],
       }),
       LogoutUser: builder.mutation<unknown, void>({
         query: () => ({
@@ -76,20 +78,20 @@ export const authService = baseApi.injectEndpoints({
         },
       }),
       NewAccessToken: builder.mutation<unknown, PasswordRecoveryEmailRequest>({
-        query: (...data) => ({
+        query: data => ({
           method: 'POST',
           url: '/v1/auth/recover-password',
           body: data,
-          invalidateTags: ['Auth'],
         }),
+        invalidatesTags: ['Auth'],
       }),
       ResetUserPassword: builder.mutation<unknown, ResetPasswordRequest>({
-        query: (...data) => ({
+        query: data => ({
           method: 'DELETE',
           url: '/v1/auth/reset-password/{token}',
           body: data,
-          invalidateTags: ['Auth'],
         }),
+        invalidatesTags: ['Auth'],
       }),
     }
   },
