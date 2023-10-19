@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { SignIn } from '@/components/auth/sign-in'
 import { useGetAuthUserMeDataQuery, useSignInUserMutation } from '@/service'
@@ -10,11 +10,9 @@ export const Login = () => {
 
   const isAuthenticated = !isError
 
-  const navigate = useNavigate()
-
   if (isLoading) return <div>Loading...</div> ///!!!!!!!!!!!!
 
-  if (isAuthenticated) return navigate('/')
+  if (isAuthenticated) return <Navigate to={'/'} replace={true} />
 
   return (
     <div>
