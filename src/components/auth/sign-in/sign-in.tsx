@@ -28,9 +28,12 @@ export const signInSchema = z.object({
 export type SignInForm = z.infer<typeof signInSchema>
 export type SignInProps = {
   onHandleSubmit: (form: SignInForm) => void
+  loading?: boolean
+  disabled?: boolean
 }
 
-export const SignIn = ({ onHandleSubmit }: SignInProps) => {
+// export const SignIn = ({ onHandleSubmit }: SignInProps) => {
+export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: SignInProps) => {
   const {
     control,
     handleSubmit,
@@ -91,7 +94,7 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
           </Typography>
         </div>
         <div className={s.signInButton}>
-          <Button variant={'primary'} fullWidth>
+          <Button variant={'primary'} loading={loading} disabled={disabled} fullWidth>
             Sign In
           </Button>
         </div>
