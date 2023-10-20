@@ -52,9 +52,7 @@ const privateRoutes: RouteObject[] = [
 ]
 
 function PrivateRoutes() {
-  const { isError, isLoading } = useGetAuthUserMeDataQuery()
-
-  const isAuthenticated = !isError
+  const { isSuccess: isAuthenticated, isLoading } = useGetAuthUserMeDataQuery()
 
   if (isLoading) return <Loader />
 
