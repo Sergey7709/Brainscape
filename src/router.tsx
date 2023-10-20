@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import { Layout } from '@/components/layout/layout.tsx'
+import { Loader } from '@/components/ui/loader/loader.tsx'
 import { Error404 } from '@/pages/Error404/error404.tsx'
 import { Login } from '@/pages/login/login.tsx'
 import { Registration } from '@/pages/registration/Registration.tsx'
@@ -55,7 +56,7 @@ function PrivateRoutes() {
 
   const isAuthenticated = !isError
 
-  if (isLoading) return <div>Loading...</div> ///!!!!!!!!!!!!
+  if (isLoading) return <Loader />
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
