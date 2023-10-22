@@ -1,12 +1,11 @@
 .overlay {
   position: fixed;
   inset: 0;
-
   overflow-x: hidden;
   overflow-y: auto;
 
-  background-color: rgb(0 0 0 / 70%);
-  backdrop-filter: blur(1px);
+  //background-color: rgb(0 0 0 / 70%);
+  //backdrop-filter: blur(1px);
 }
 
 .container {
@@ -15,55 +14,83 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  align-content: center;
+  justify-content: center;
 
-  width: fit-content;
+  width: fit-content;}
 
-  .folder {
-    width: min-content;
-    margin: auto;
-    animation: float 2s infinite linear;
-
-    .top {
-      width: 60px;
-      height: 12px;
-      background-color: #FF8F56;
-      border-top-right-radius: 10px;
-    }
-
-    .bottom {
-      width: 100px;
-      height: 70px;
-
-      background-color: #FFCE63;
-      border-top-right-radius: 8px;
-      box-shadow: 5px 5px 0 0 #283149;
-    }
-  }
+  //.folder {
+  //  width: min-content;
+  //  margin: auto;
+  //  animation: float 2s infinite linear;
+  //
+  //  .top {
+  //    width: 60px;
+  //    height: 12px;
+  //    background-color: #ff8f56;
+  //    border-top-right-radius: 10px;
+  //  }
+  //
+  //  .bottom {
+  //    width: 100px;
+  //    height: 70px;
+  //
+  //    background-color: #ffce63;
+  //    border-top-right-radius: 8px;
+  //    box-shadow: 5px 5px 0 0 #283149;
+  //  }
+  //}
 
   .title {
-    margin-top: 15px;
+    //margin-top: 15px;
+    //margin-bottom: 1rem;
 
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    color: #8C61FF;
+    color: #766DF4;
     text-align: center;
+
+
   }
+
+
+//@keyframes float {
+//  0% {
+//    transform: translateY(0);
+//  }
+//
+//  50% {
+//    transform: translateY(-25px);
+//  }
+//
+//  100% {
+//    transform: translateY(0);
+//  }
+//}
+
+
+.loader {
+  width: calc(10rem / 0.707);
+  height: 1.8rem;
+
+  background: repeating-linear-gradient(-45deg, #766DF4 0 30px,#0000 0 40px) left/200% 100%;
+  border: 1px solid #766DF4;
+  border-radius: 10px;
+
+  animation: i3 2s infinite linear;
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-25px);
-  }
-
+@keyframes i3 {
   100% {
-    transform: translateY(0);
+    background-position: right
   }
 }
+
+
+
 
 
 
