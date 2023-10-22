@@ -5,11 +5,9 @@ import { Loader } from '@/components/ui/loader/loader.tsx'
 import { useGetAuthUserMeDataQuery, useSignInUserMutation } from '@/service'
 
 export const Login = () => {
-  const [getSignIn] = useSignInUserMutation()
+  const [signInUser] = useSignInUserMutation()
 
-  const { isError, isLoading } = useGetAuthUserMeDataQuery()
-
-  const isAuthenticated = !isError
+  const { isSuccess: isAuthenticated, isLoading } = useGetAuthUserMeDataQuery()
 
   if (isLoading) return <Loader />
 
@@ -17,7 +15,7 @@ export const Login = () => {
 
   return (
     <div>
-      <SignIn onHandleSubmit={getSignIn} />
+      <SignIn onHandleSubmit={signInUser} />
     </div>
   )
 }
