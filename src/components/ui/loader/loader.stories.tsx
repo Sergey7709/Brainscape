@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>
 
 export const Cards: Story = {
   args: {
-    text: 'Loading....',
+    text: 'LOADING....',
   },
   render: args => (
     <div style={{ width: '300px', height: '300px' }}>
