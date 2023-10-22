@@ -18,7 +18,6 @@ export const authService = baseApi.injectEndpoints({
       getAuthUserMeData: builder.query<CurrentUserResponses | null, void>({
         query: () => '/v1/auth/me',
         providesTags: ['Auth'],
-        extraOptions: { maxRetries: false },
       }),
       updateAuthUserData: builder.mutation<CurrentUserResponses, UpdateCurrentUserRequest>({
         query: data => ({
@@ -67,6 +66,7 @@ export const authService = baseApi.injectEndpoints({
           method: 'POST',
           url: '/v1/auth/logout',
         }),
+        invalidatesTags: ['Auth'],
         onQueryStarted(_, { dispatch, queryFulfilled }) {
           const patchResult = dispatch(
             authService.util.updateQueryData('getAuthUserMeData', undefined, () => {
