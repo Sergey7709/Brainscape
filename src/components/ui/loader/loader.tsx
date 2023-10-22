@@ -6,15 +6,16 @@ type LoaderProps = {
   text?: string
 }
 
-export const Loader: FC<LoaderProps> = ({ text = 'Loading....' }) => {
+export const Loader: FC<LoaderProps> = ({ text = 'LOADING....' }) => {
   return (
     <div className={s.overlay}>
       <div className={s.container}>
-        <div className={s.folder}>
-          <div className={s.top}></div>
-          <div className={s.bottom}></div>
-        </div>
+        {/*<div className={s.folder}>*/}
+        {/*  <div className={s.top}></div>*/}
+        {/*  <div className={s.bottom}></div>*/}
+        {/*</div>*/}
         <div className={s.title}>{text}</div>
+        <div className={s.loader}></div>
       </div>
     </div>
   )
