@@ -8,13 +8,12 @@ import { useGetAuthUserMeDataQuery, useSignInUserMutation } from '@/service'
 export const Login = () => {
   const [signInUser] = useSignInUserMutation()
 
-  const { isSuccess: isAuthenticated } = useGetAuthUserMeDataQuery()
-
-  if (isAuthenticated) return <Navigate to={'/'} replace={true} />
+  const { isSuccess: isAuthenticated, isError } = useGetAuthUserMeDataQuery()
 
   return (
     <div className={s.login}>
-      <SignIn onHandleSubmit={signInUser} />
+      {isAuthenticated && <Navigate to={'/'} replace={true} />}
+      {isError && <SignIn onHandleSubmit={signInUser} />}
     </div>
   )
 }
