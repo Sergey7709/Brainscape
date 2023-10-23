@@ -1,91 +1,45 @@
-.overlay {
-  position: fixed;
-  inset: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  //background-color: rgb(0 0 0 / 70%);
-  //backdrop-filter: blur(1px);
-}
-
-.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-content: center;
-  justify-content: center;
-
-  width: fit-content;}
-
-  //.folder {
-  //  width: min-content;
-  //  margin: auto;
-  //  animation: float 2s infinite linear;
-  //
-  //  .top {
-  //    width: 60px;
-  //    height: 12px;
-  //    background-color: #ff8f56;
-  //    border-top-right-radius: 10px;
-  //  }
-  //
-  //  .bottom {
-  //    width: 100px;
-  //    height: 70px;
-  //
-  //    background-color: #ffce63;
-  //    border-top-right-radius: 8px;
-  //    box-shadow: 5px 5px 0 0 #283149;
-  //  }
-  //}
-
-  .title {
-    //margin-top: 15px;
-    //margin-bottom: 1rem;
-
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #766DF4;
-    text-align: center;
-
-
-  }
-
-
-//@keyframes float {
-//  0% {
-//    transform: translateY(0);
-//  }
-//
-//  50% {
-//    transform: translateY(-25px);
-//  }
-//
-//  100% {
-//    transform: translateY(0);
-//  }
-//}
-
 
 .loader {
-  width: calc(10rem / 0.707);
-  height: 1.8rem;
+  --height-of-loader: 2px;
+  --loader-color: var(--color-accent-500);
 
-  background: repeating-linear-gradient(-45deg, #766DF4 0 30px,#0000 0 40px) left/200% 100%;
-  border: 1px solid #766DF4;
-  border-radius: 10px;
+  position: fixed;
 
-  animation: i3 2s infinite linear;
+  display: block;
+
+  width: 100%;
+  height: var(--height-of-loader);
+
+  background-color: rgb(0 0 0 / 20%);
+  border-radius: 30px;
 }
 
-@keyframes i3 {
+.loader::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 0%;
+  height: 100%;
+
+  background: var(--loader-color);
+  border-radius: 30px;
+
+  animation: moving 1s ease-in-out infinite;
+;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+
   100% {
-    background-position: right
+    right: 0;
+    left: unset;
+    width: 0;
   }
 }
 
