@@ -8,11 +8,7 @@ import ProfileOutline from '@/assets/icons/profile-outline.tsx'
 import defaultAvatar from '@/assets/images/test.png'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import {
-  DropDownItem,
-  DropDownItemWithIcon,
-  DropdownMenu,
-} from '@/components/ui/dropdown/dropdown-menu.tsx'
+import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
 
 type User = {
