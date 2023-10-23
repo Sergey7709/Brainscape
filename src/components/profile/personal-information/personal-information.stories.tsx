@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { PersonalInformation } from '@/components/profile/personal-information/personal-information.tsx'
+import { PersonalInformation } from '@/components/profile/personal-information'
 
 const defaultAva =
   'https://sun9-2.userapi.com/impg/VeSbeev8_WQ8y4LGDdY1NcnvCNP_N5SatvHTUA/x9MdiRS1oKQ.jpg?size=200x200&quality=96&sign=3ef6f497a6419e576f033d6684b8afee'
