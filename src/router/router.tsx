@@ -6,10 +6,10 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import { Layout } from '@/components/layout/layout.tsx'
-import { Error404 } from '@/pages/Error404/error404.tsx'
-import { Login } from '@/pages/login/login.tsx'
-import { Registration } from '@/pages/registration/registration.tsx'
+import { Layout } from '@/components/layout'
+import { Error404 } from '@/pages/Error404'
+import { Login } from '@/pages/login'
+import { Registration } from '@/pages/registration'
 import { useGetAuthUserMeDataQuery } from '@/service'
 
 const publicRoutes: RouteObject[] = [
