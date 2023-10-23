@@ -1,20 +1,19 @@
 import { Navigate } from 'react-router-dom'
 
+import s from './login.module.scss'
+
 import { SignIn } from '@/components/auth/sign-in'
-import { Loader } from '@/components/ui/loader/loader.tsx'
 import { useGetAuthUserMeDataQuery, useSignInUserMutation } from '@/service'
 
 export const Login = () => {
   const [signInUser] = useSignInUserMutation()
 
-  const { isSuccess: isAuthenticated, isLoading } = useGetAuthUserMeDataQuery()
-
-  if (isLoading) return <Loader />
+  const { isSuccess: isAuthenticated } = useGetAuthUserMeDataQuery()
 
   if (isAuthenticated) return <Navigate to={'/'} replace={true} />
 
   return (
-    <div>
+    <div className={s.login}>
       <SignIn onHandleSubmit={signInUser} />
     </div>
   )
