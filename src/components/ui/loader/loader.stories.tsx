@@ -6,6 +6,14 @@ const meta = {
   title: 'Components/Loader',
   component: Loader,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'This component does not take any properties. The width is set to 100%. The position is fixed, z-index: 9999.\n',
+      },
+    },
+  },
 } satisfies Meta<typeof Loader>
 
 export default meta
@@ -13,12 +21,5 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Cards: Story = {
-  args: {
-    text: 'LOADING....',
-  },
-  render: args => (
-    <div style={{ width: '300px', height: '300px' }}>
-      <Loader {...args} />
-    </div>
-  ),
+  render: () => <Loader />,
 }
