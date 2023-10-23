@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import s from './layout.module.scss'
 
 import { Header } from '@/components/header'
-import { Loader } from '@/components/ui/loader/loader.tsx'
+import { Loader } from '@/components/ui/loader'
 import { useGetAuthUserMeDataQuery, useLogoutUserMutation } from '@/service'
 
 export const Layout = () => {
