@@ -7,10 +7,9 @@ import {
 } from 'react-router-dom'
 
 import { Layout } from '@/components/layout/layout.tsx'
-import { Loader } from '@/components/ui/loader/loader.tsx'
 import { Error404 } from '@/pages/Error404/error404.tsx'
 import { Login } from '@/pages/login/login.tsx'
-import { Registration } from '@/pages/registration/Registration.tsx'
+import { Registration } from '@/pages/registration/registration.tsx'
 import { useGetAuthUserMeDataQuery } from '@/service'
 
 const publicRoutes: RouteObject[] = [
@@ -52,27 +51,7 @@ const privateRoutes: RouteObject[] = [
 ]
 
 function PrivateRoutes() {
-  // const { isSuccess: isAuthenticated, isLoading } = useGetAuthUserMeDataQuery()
-  // const { data, isLoading } = useGetAuthUserMeDataQuery()
-  // const isAuthenticated = !!data
-  // const { isError, isSuccess, isLoading } = useGetAuthUserMeDataQuery()
-  // const isAuthenticated = !isError && isSuccess
-  const { isError, isLoading, isSuccess } = useGetAuthUserMeDataQuery()
-  const isAuthenticated = !isError
-  // const isAuthenticated = isSuccess
-
-  console.log(
-    'isAuthenticated Router',
-    isAuthenticated,
-    'isError',
-    isError,
-    'isSuccess',
-    isSuccess,
-    'isLoading',
-    isLoading
-  )
-
-  if (isLoading) return <Loader />
+  const { isSuccess: isAuthenticated } = useGetAuthUserMeDataQuery()
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
