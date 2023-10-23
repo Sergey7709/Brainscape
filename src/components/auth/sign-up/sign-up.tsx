@@ -65,8 +65,8 @@ export const SignUp = ({ onSubmitHandler }: Props) => {
       <Typography variant={'body2'} className={classNames.question}>
         Already have an account?
       </Typography>
-      <Typography className={classNames.link} as={NavLink} variant={'link1'}>
-        Sign Up
+      <Typography className={classNames.link} as={NavLink} to={'/login'} variant={'link1'}>
+        Sign In
       </Typography>
     </Card>
   )

@@ -1,0 +1,50 @@
+.overlay {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  width: 100%
+}
+
+.loader {
+  $height-of-loader: 2px;
+  $loader-color: var(--color-accent-500);
+
+  height: $height-of-loader;
+  background-color: rgb(0 0 0 / 20%);
+
+  &::before {
+    content: "****";
+
+    position: absolute;
+
+    width: 0;
+    height: 100%;
+
+    background: $loader-color;
+
+
+    animation: moving 1s ease-in-out infinite;
+  }
+}
+
+@keyframes moving {
+  50% {
+    width: 100%
+  }
+
+ 100% {
+    right: 0;
+    left: unset;
+    width: 0;
+  }
+}
+
+
+
+
+
+

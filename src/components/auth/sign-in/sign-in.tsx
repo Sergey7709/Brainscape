@@ -28,9 +28,17 @@ export const signInSchema = z.object({
 export type SignInForm = z.infer<typeof signInSchema>
 export type SignInProps = {
   onHandleSubmit: (form: SignInForm) => void
+  loading?: boolean
+  disabled?: boolean
 }
 
-export const SignIn = ({ onHandleSubmit }: SignInProps) => {
+const initialValues: SignInForm = {
+  email: '',
+  password: '',
+  rememberMe: false,
+}
+
+export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: SignInProps) => {
   const {
     control,
     handleSubmit,
@@ -40,11 +48,7 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     resolver: zodResolver(signInSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-      rememberMe: false,
-    },
+    defaultValues: initialValues,
   })
 
   const {
@@ -91,13 +95,13 @@ export const SignIn = ({ onHandleSubmit }: SignInProps) => {
           </Typography>
         </div>
         <div className={s.signInButton}>
-          <Button variant={'primary'} fullWidth>
+          <Button variant={'primary'} loading={loading} disabled={disabled} fullWidth>
             Sign In
           </Button>
         </div>
       </form>
       <Typography>{`Don't have an account?`}</Typography>
-      <Typography as={NavLink} to={'/signUp'} variant={'body1'} className={s.signInLink}>
+      <Typography as={NavLink} to={'/sign-up'} variant={'body1'} className={s.signInLink}>
         Sign Up
       </Typography>
     </Card>

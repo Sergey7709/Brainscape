@@ -8,15 +8,18 @@ import {
 
 import { Layout } from '@/components/layout/layout.tsx'
 import { Error404 } from '@/pages/Error404/error404.tsx'
+import { Login } from '@/pages/login/login.tsx'
+import { Registration } from '@/pages/registration/registration.tsx'
+import { useGetAuthUserMeDataQuery } from '@/service'
 
 const publicRoutes: RouteObject[] = [
   {
     path: '/login',
-    element: <div>sign in</div>,
+    element: <Login />,
   },
   {
     path: '/sign-up',
-    element: <div>sign up</div>,
+    element: <Registration />,
   },
   {
     path: '/check-email',
@@ -48,7 +51,7 @@ const privateRoutes: RouteObject[] = [
 ]
 
 function PrivateRoutes() {
-  const isAuthenticated = true
+  const { isSuccess: isAuthenticated } = useGetAuthUserMeDataQuery()
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
