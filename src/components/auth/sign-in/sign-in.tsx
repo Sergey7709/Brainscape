@@ -32,7 +32,12 @@ export type SignInProps = {
   disabled?: boolean
 }
 
-// export const SignIn = ({ onHandleSubmit }: SignInProps) => {
+const initialValues: SignInForm = {
+  email: '',
+  password: '',
+  rememberMe: false,
+}
+
 export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: SignInProps) => {
   const {
     control,
@@ -43,11 +48,7 @@ export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: Si
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     resolver: zodResolver(signInSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-      rememberMe: false,
-    },
+    defaultValues: initialValues,
   })
 
   const {
