@@ -1,42 +1,42 @@
-
-.loader {
-  --height-of-loader: 2px;
-  --loader-color: var(--color-accent-500);
-
+.overlay {
   position: fixed;
-
-  display: block;
-
-  width: 100%;
-  height: var(--height-of-loader);
-
-  background-color: rgb(0 0 0 / 20%);
-  border-radius: 30px;
-}
-
-.loader::before {
-  content: "";
-
-  position: absolute;
+  z-index: 9999;
   top: 0;
   left: 0;
 
-  width: 0%;
-  height: 100%;
+  overflow: hidden;
 
-  background: var(--loader-color);
-  border-radius: 30px;
+  width: 100%
+}
 
-  animation: moving 1s ease-in-out infinite;
-;
+.loader {
+  $height-of-loader: 2px;
+  $loader-color: var(--color-accent-500);
+
+  height: $height-of-loader;
+  background-color: rgb(0 0 0 / 20%);
+
+  &::before {
+    content: "****";
+
+    position: absolute;
+
+    width: 0;
+    height: 100%;
+
+    background: $loader-color;
+
+
+    animation: moving 1s ease-in-out infinite;
+  }
 }
 
 @keyframes moving {
   50% {
-    width: 100%;
+    width: 100%
   }
 
-  100% {
+ 100% {
     right: 0;
     left: unset;
     width: 0;
