@@ -61,7 +61,7 @@ export const ForgotPassword = (props: Props) => {
         <Typography variant="body2" className={s.caption}>
           Did you remember your password?
         </Typography>
-        <Typography variant="link1" as={'a'} href="/sign-in" className={s.loginLink}>
+        <Typography variant="link1" as={'a'} href="/login" className={s.loginLink}>
           Try logging in
         </Typography>
       </Card>
