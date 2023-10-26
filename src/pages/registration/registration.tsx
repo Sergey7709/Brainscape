@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import s from './registration.module.scss'
 
@@ -11,14 +12,12 @@ export const Registration = () => {
 
   const navigate = useNavigate()
   const handleSubmitSignUp = async (data: SignUpRequest) => {
-    await getSignUp(data).unwrap()
-
-    try {
-      navigate('/')
-    } catch (error: any) {
-      ///!!!!!!!!!!!!!! уточнить тип
-      console.log(error.data.message)
-    } ///!!!!!!!!!!!!!! заменить лог
+    await getSignUp(data)
+      .unwrap()
+      .then(() => {
+        navigate('/')
+      })
+      .catch(error => toast.error(error.data.message))
   }
 
   return (
