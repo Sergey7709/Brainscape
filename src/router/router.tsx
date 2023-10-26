@@ -29,7 +29,6 @@ const publicRoutes: RouteObject[] = [
     element: <VerifyEmail />,
   },
   {
-    // path: '/create-password',
     path: '/confirm-email/:token',
     element: <CreateNewPassword />,
   },
