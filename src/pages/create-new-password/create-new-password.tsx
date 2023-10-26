@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import s from './create-new-password.module.scss'
 
@@ -28,9 +29,9 @@ export const CreateNewPassword = () => {
       })
       .catch(error => {
         if (error.status === 404) {
-          console.log('Request error! 404 User not found!')
+          toast.error('Request error! 404 User not found!')
         } else if (error.status === 400) {
-          console.log('Request error! 400 Email has already been verified!')
+          toast.error('Request error! 400 Email has already been verified!')
         }
       })
   }
