@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
+import { Decks } from '@/pages/decks/decks.tsx'
 import { Error404 } from '@/pages/Error404'
 import { Login } from '@/pages/login'
 import { Registration } from '@/pages/registration'
@@ -46,7 +47,7 @@ const privateRoutes: RouteObject[] = [
   },
   {
     path: '/',
-    element: <div>decks</div>,
+    element: <Decks />,
   },
 ]
 
