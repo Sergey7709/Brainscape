@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import s from './password-recovery.module.scss'
 
@@ -23,19 +24,11 @@ export const PasswordRecovery = () => {
       })
       .catch(error => {
         if (error.status === 404) {
-          console.log('Request error! 404 User not found!')
+          toast.error('Request error! 404 User not found!')
         } else if (error.status === 400) {
-          console.log('Request error! 400 Email has already been verified!')
+          toast.error('Request error! 400 Email has already been verified!')
         }
       })
-
-    // try {
-    //   console.log(data)
-    //   navigate('/check-email', { state: data.email }) ///!!!!!!! Правильно ли передаю данные?
-    // } catch (error: any) {
-    //   ///!!!!!!!!!!!!!! уточнить тип
-    //   console.log(error.data.message)
-    // } ///!!!!!!!!!!!!!! заменить лог
   }
 
   return (
