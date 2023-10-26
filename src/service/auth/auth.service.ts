@@ -38,10 +38,10 @@ export const authService = baseApi.injectEndpoints({
       }),
 
       signUpUser: builder.mutation<SignUpResponses, SignUpRequest>({
-        query: ({ email, password }) => ({
+        query: ({ email, password, name }) => ({
           method: 'POST',
           url: '/v1/auth/sign-up',
-          body: { email, password },
+          body: { email, password, name },
         }),
         invalidatesTags: ['Auth'],
       }),
