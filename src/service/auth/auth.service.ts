@@ -96,9 +96,9 @@ export const authService = baseApi.injectEndpoints({
 
       resetUserPassword: builder.mutation<unknown, ResetPasswordRequest>({
         query: data => ({
-          method: 'DELETE',
-          url: '/v1/auth/reset-password/{token}',
-          body: data,
+          method: 'POST',
+          url: `/v1/auth/reset-password/${data.token}`,
+          body: data.password,
         }),
         invalidatesTags: ['Auth'],
       }),
