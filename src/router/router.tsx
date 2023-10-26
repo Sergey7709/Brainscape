@@ -7,9 +7,12 @@ import {
 } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
+import { CreateNewPassword } from '@/pages/create-new-password'
 import { Error404 } from '@/pages/Error404'
 import { Login } from '@/pages/login'
+import { PasswordRecovery } from '@/pages/password-recovery'
 import { Registration } from '@/pages/registration'
+import { VerifyEmail } from '@/pages/verify-email'
 import { useGetAuthUserMeDataQuery } from '@/service'
 
 const publicRoutes: RouteObject[] = [
@@ -23,15 +26,16 @@ const publicRoutes: RouteObject[] = [
   },
   {
     path: '/check-email',
-    element: <div>check email</div>,
+    element: <VerifyEmail />,
   },
   {
-    path: '/create-password',
-    element: <div>create password</div>,
+    // path: '/create-password',
+    path: '/confirm-email/:token',
+    element: <CreateNewPassword />,
   },
   {
     path: '/forgot-password',
-    element: <div>forgot password</div>,
+    element: <PasswordRecovery />,
   },
   {
     path: '/*',
