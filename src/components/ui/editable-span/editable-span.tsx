@@ -14,8 +14,6 @@ type EditableSpanProps = {
 
 export const EditableSpan = memo(
   ({ name, email, handleLogout, onNameChange, onEmailChange }: EditableSpanProps) => {
-    console.log('span')
-
     return (
       <>
         <EditableField initialValue={name} label="Nickname" onValueChange={onNameChange} />
