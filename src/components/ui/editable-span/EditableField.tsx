@@ -40,8 +40,6 @@ export const EditableField = memo(({ initialValue, label, onValueChange }: Edita
     onValueChange(value)
   }
 
-  console.log('editField')
-
   return editMode ? (
     <>
       <TextField
