@@ -48,7 +48,7 @@ export const Profile = memo(() => {
     [data]
   )
 
-  const handlerOnEmailChanges = useCallback(
+  const handlerOnEmailChange = useCallback(
     (newEmail: string) => {
       utilityFormData('email', newEmail)
     },
@@ -66,7 +66,7 @@ export const Profile = memo(() => {
           onLogout={logOut}
           onAvatarChange={handlerOnAvatarChange}
           onNameChange={handlerOnNameChange}
-          onEmailChange={handlerOnEmailChanges}
+          onEmailChange={handlerOnEmailChange}
         />
       )}
     </div>
