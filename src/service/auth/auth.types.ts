@@ -8,12 +8,6 @@ export type CurrentUserResponses = {
   updated: string
 }
 
-export type UpdateCurrentUserRequest = {
-  avatar: string
-  name: string
-  email: string
-}
-
 export type LoginUserRequest = {
   password: string
   email: string
