@@ -11,22 +11,18 @@ export const Layout = () => {
     container: s.container,
   }
 
-  console.log('layout')
-
   const { isSuccess: isAuthenticated, isLoading, data } = useGetAuthUserMeDataQuery()
 
   const [getLogOut] = useLogoutUserMutation()
 
-  const userData = !!data && {
-    name: data.name,
-    email: data.email,
-    avatar: data.avatar,
-  }
-
   return (
     <div className={classNames.container}>
       {isLoading && <Loader />}
-      <Header isAuth={isAuthenticated} user={userData || undefined} onSignOut={getLogOut} />
+      <Header
+        isAuth={isAuthenticated}
+        user={data === null ? undefined : data}
+        onSignOut={getLogOut}
+      />
       <Outlet />
     </div>
   )
