@@ -10,6 +10,9 @@ export const Layout = () => {
   const classNames = {
     container: s.container,
   }
+
+  console.log('layout')
+
   const { isSuccess: isAuthenticated, isLoading, data } = useGetAuthUserMeDataQuery()
 
   const [getLogOut] = useLogoutUserMutation()
@@ -17,6 +20,7 @@ export const Layout = () => {
   const userData = !!data && {
     name: data.name,
     email: data.email,
+    avatar: data.avatar,
   }
 
   return (
