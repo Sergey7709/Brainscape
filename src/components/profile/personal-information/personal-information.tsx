@@ -1,3 +1,5 @@
+import { memo, useCallback } from 'react'
+
 import s from './personal-information.module.scss'
 
 import { Avatars as Avatar } from '@/components/ui/avatar/avatar.tsx'
@@ -7,45 +9,67 @@ import { Typography } from '@/components/ui/typography'
 import { UploadPhoto } from '@/components/ui/upload-photo/upload-photo.tsx'
 
 type Props = {
-  email: string | null
+  email?: string | null
   avatar: string | null
   name: string | null
   onLogout: () => void
   onAvatarChange: (newAvatar: File) => void
   onNameChange: (newName: string) => void
+  onEmailChange: (newEmail: string) => void ////!!!!!!!
 }
 
-export const PersonalInformation = ({
-  avatar,
-  email,
-  name,
-  onAvatarChange,
-  onNameChange,
-  onLogout,
-}: Props) => {
-  const handleNameChanged = (name: string) => onNameChange(name)
+export const PersonalInformation = memo(
+  ({
+    avatar,
+    email,
+    name,
+    onAvatarChange,
+    onNameChange,
+    onEmailChange, ////!!!!!
+    onLogout,
+  }: Props) => {
+    // const handleNameChanged = (newName: string) => onNameChange(newName)
+    const handleNameChanged = useCallback(
+      (newName: string) => onNameChange(newName),
+      [onNameChange]
+    )
 
-  const handleAvatarChange = (newAvatar: File) => onAvatarChange(newAvatar)
+    // const handleAvatarChange = (newAvatar: File) => onAvatarChange(newAvatar)
+    const handleAvatarChange = useCallback(
+      (newAvatar: File) => onAvatarChange(newAvatar),
+      [onAvatarChange]
+    )
 
-  const handleLogout = () => onLogout()
+    // const handleEmailChange = (newEmail: string) => onEmailChange(newEmail) ///!!!!!!!!
+    const handleEmailChange = useCallback(
+      (newEmail: string) => {
+        onEmailChange(newEmail)
+      },
+      [onEmailChange] ///!!!!
+    )
+    const handleLogout = () => onLogout()
 
-  return (
-    <Card className={s.profileContainer}>
-      <Typography variant="large" className={s.title}>
-        Personal Information
-      </Typography>
-      <div className={s.photoContainer}>
-        <div>
-          <Avatar src={avatar!} />
-          <UploadPhoto onAvatarChange={handleAvatarChange} />
+    console.log('personal')
+
+    return (
+      <Card className={s.profileContainer}>
+        <Typography variant="large" className={s.title}>
+          Personal Information
+        </Typography>
+        <div className={s.photoContainer}>
+          <div>
+            <Avatar src={avatar!} />
+            <UploadPhoto onAvatarChange={handleAvatarChange} />
+          </div>
         </div>
-      </div>
-      <EditableSpan
-        name={name!}
-        email={email!}
-        handleLogout={handleLogout}
-        onValueChange={handleNameChanged}
-      />
-    </Card>
-  )
-}
+        <EditableSpan
+          name={name!}
+          email={email!}
+          handleLogout={handleLogout}
+          onNameChange={handleNameChanged}
+          onEmailChange={handleEmailChange}
+        />
+      </Card>
+    )
+  }
+)
