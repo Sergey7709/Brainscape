@@ -15,6 +15,7 @@ const signUpSchema = z
     email: z.string().trim().email(),
     password: z.string().trim().min(3).max(30),
     confirmPassword: z.string().trim(),
+    name: z.string().trim().min(3).max(30).optional(),
   })
   .refine(data => data.password === data.confirmPassword, {
     message: 'Passwords do not match',
@@ -45,18 +46,19 @@ export const SignUp = ({ onSubmitHandler }: Props) => {
     <Card className={classNames.wrapper}>
       <Typography variant={'large'}>Sign Up</Typography>
       <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
-        <TextField errorMessage={errors.email?.message} {...register('email')} label={'Email'} />
+        <TextField errorMessage={errors.email?.message} {...register('email')} label={'Email*'} />
+        <TextField errorMessage={errors.name?.message} {...register('name')} label={'Name'} />
         <TextField
           errorMessage={errors.password?.message}
           {...register('password')}
-          label={'Password'}
+          label={'Password*'}
           type={'password'}
         />
         <TextField
           errorMessage={errors.confirmPassword?.message}
           {...register('confirmPassword')}
           type={'password'}
-          label={'Confirm password'}
+          label={'Confirm password*'}
         />
         <Button className={classNames.button} fullWidth={true}>
           Sign Up

@@ -1,16 +1,14 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-} from 'react-router-dom'
+import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
+import { CreateNewPassword } from '@/pages/create-new-password'
 import { Error404 } from '@/pages/Error404'
 import { Login } from '@/pages/login'
+import { PasswordRecovery } from '@/pages/password-recovery'
+import { Profile } from '@/pages/profile'
 import { Registration } from '@/pages/registration'
-import { useGetAuthUserMeDataQuery } from '@/service'
+import { VerifyEmail } from '@/pages/verify-email'
+import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -23,15 +21,15 @@ const publicRoutes: RouteObject[] = [
   },
   {
     path: '/check-email',
-    element: <div>check email</div>,
+    element: <VerifyEmail />,
   },
   {
-    path: '/create-password',
-    element: <div>create password</div>,
+    path: '/confirm-email/:token',
+    element: <CreateNewPassword />,
   },
   {
     path: '/forgot-password',
-    element: <div>forgot password</div>,
+    element: <PasswordRecovery />,
   },
   {
     path: '/*',
@@ -42,19 +40,13 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   {
     path: '/profile',
-    element: <div>profile</div>,
+    element: <Profile />,
   },
   {
     path: '/',
-    element: <div>decks</div>,
+    element: <div>deck</div>,
   },
 ]
-
-function PrivateRoutes() {
-  const { isSuccess: isAuthenticated } = useGetAuthUserMeDataQuery()
-
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
-}
 
 const router = createBrowserRouter([
   {
