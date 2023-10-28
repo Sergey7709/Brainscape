@@ -1,20 +1,14 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-} from 'react-router-dom'
+import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
 import { CreateNewPassword } from '@/pages/create-new-password'
 import { Error404 } from '@/pages/Error404'
 import { Login } from '@/pages/login'
 import { PasswordRecovery } from '@/pages/password-recovery'
-import { Profile } from '@/pages/profile/profile.tsx'
+import { Profile } from '@/pages/profile'
 import { Registration } from '@/pages/registration'
 import { VerifyEmail } from '@/pages/verify-email'
-import { useGetAuthUserMeDataQuery } from '@/service'
+import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -53,12 +47,6 @@ const privateRoutes: RouteObject[] = [
     element: <div>decks</div>,
   },
 ]
-
-function PrivateRoutes() {
-  const { isSuccess: isAuthenticated } = useGetAuthUserMeDataQuery()
-
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
-}
 
 const router = createBrowserRouter([
   {
