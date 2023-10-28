@@ -7,7 +7,6 @@ import {
   SignUpRequest,
   SignUpResponses,
   TokenAccessResponses,
-  UpdateCurrentUserRequest,
   VerificationEmailAgainRequest,
   VerifyEmailRequest,
 } from '@/service/auth/auth.types.ts'
@@ -19,7 +18,7 @@ export const authService = baseApi.injectEndpoints({
         query: () => '/v1/auth/me',
         providesTags: ['Auth'],
       }),
-      updateAuthUserData: builder.mutation<CurrentUserResponses, UpdateCurrentUserRequest>({
+      updateAuthUserData: builder.mutation<CurrentUserResponses, FormData>({
         query: data => ({
           method: 'PATCH',
           url: '/v1/auth/me',
