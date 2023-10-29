@@ -1,6 +1,7 @@
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { NavLink } from 'react-router-dom'
 import { z } from 'zod'
 
 import s from './forgot-password.module.scss'
@@ -61,7 +62,7 @@ export const ForgotPassword = (props: Props) => {
         <Typography variant="body2" className={s.caption}>
           Did you remember your password?
         </Typography>
-        <Typography variant="link1" as={'a'} href="/login" className={s.loginLink}>
+        <Typography variant="link1" as={NavLink} to={'/login'} className={s.loginLink}>
           Try logging in
         </Typography>
       </Card>
