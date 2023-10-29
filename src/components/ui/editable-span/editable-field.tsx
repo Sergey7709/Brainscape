@@ -77,7 +77,6 @@ export const EditableField = memo(({ initialValue, label, onValueChange }: Edita
   return editMode ? (
     <>
       <TextField
-        className={s.nameInput}
         type="text"
         value={value}
         {...textField}
@@ -90,7 +89,12 @@ export const EditableField = memo(({ initialValue, label, onValueChange }: Edita
         onKeyDown={handleKeyPress}
         label={label}
       />
-      <Button variant="primary" fullWidth={true} onClick={handleSubmit(handleSaveChanges)}>
+      <Button
+        variant="primary"
+        fullWidth={true}
+        className={s.buttonSave}
+        onClick={handleSubmit(handleSaveChanges)}
+      >
         Save Changes
       </Button>
     </>
