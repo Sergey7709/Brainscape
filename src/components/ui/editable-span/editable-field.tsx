@@ -1,5 +1,9 @@
 import { ChangeEvent, KeyboardEvent, memo, useState } from 'react'
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import { Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import s from '@/components/ui/editable-span/editable-span.module.scss'
@@ -8,13 +12,43 @@ import { Typography } from '@/components/ui/typography'
 
 type EditableFieldProps = {
   initialValue: string
-  label: string
+  label: 'Nickname' | 'Email'
   onValueChange: (newValue: string) => void
+}
+
+const getValidationSchema = (label: string) => {
+  switch (label) {
+    case 'Email':
+      return z.object({
+        Email: z.string().trim().email(),
+      })
+    case 'Nickname':
+      return z.object({
+        Nickname: z.string().trim().min(3).max(30),
+      })
+    default:
+      return z.object({})
+  }
 }
 
 export const EditableField = memo(({ initialValue, label, onValueChange }: EditableFieldProps) => {
   const [editMode, setEditMode] = useState(false)
   const [value, setValue] = useState(initialValue)
+
+  const validationSchema = getValidationSchema(label)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    defaultValues: { Nickname: initialValue, Email: initialValue },
+    resolver: zodResolver(validationSchema),
+  })
+
+  const textField = register(label)
 
   const activateEditMode = () => {
     setEditMode(true)
@@ -46,12 +80,17 @@ export const EditableField = memo(({ initialValue, label, onValueChange }: Edita
         className={s.nameInput}
         type="text"
         value={value}
-        onChange={handleChange}
-        onBlur={handleSaveChanges}
+        {...textField}
+        onChange={e => {
+          textField.onChange(e)
+          handleChange(e)
+        }}
+        errorMessage={errors.Email?.message || errors.Nickname?.message}
+        onBlur={handleSubmit(handleSaveChanges)}
         onKeyDown={handleKeyPress}
         label={label}
       />
-      <Button variant="primary" fullWidth={true} onClick={handleSaveChanges}>
+      <Button variant="primary" fullWidth={true} onClick={handleSubmit(handleSaveChanges)}>
         Save Changes
       </Button>
     </>
