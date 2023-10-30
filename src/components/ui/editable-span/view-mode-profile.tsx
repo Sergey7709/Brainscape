@@ -1,5 +1,3 @@
-import { FC, ReactNode } from 'react'
-
 import clsx from 'clsx'
 
 import { Redactor } from '@/assets/icons'
