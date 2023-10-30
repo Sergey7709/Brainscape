@@ -1,8 +1,8 @@
 import { memo } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { EditableField } from '@/components/ui/editable-span/editable-field.tsx'
 import s from '@/components/ui/editable-span/editable-span.module.scss'
-import { EditableField } from '@/components/ui/editable-span/EditableField.tsx'
 
 type EditableSpanProps = {
   name: string
