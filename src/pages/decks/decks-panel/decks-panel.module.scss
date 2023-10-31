@@ -1,0 +1,18 @@
+.searchInput {
+  width: 100%;
+  max-width: 300px;
+}
+
+.slider {
+  width: 100%;
+  max-width: 250px;
+}
+
+.decksPanel {
+  display: flex;
+  gap: 25px;
+  align-items: end;
+  justify-content: space-between;
+
+  width: 100%;
+}

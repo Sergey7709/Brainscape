@@ -2,6 +2,7 @@ import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-d
 
 import { Layout } from '@/components/layout'
 import { CreateNewPassword } from '@/pages/create-new-password'
+import { Decks } from '@/pages/decks/decks.tsx'
 import { Error404 } from '@/pages/Error404'
 import { Login } from '@/pages/login'
 import { PasswordRecovery } from '@/pages/password-recovery'
@@ -44,7 +45,7 @@ const privateRoutes: RouteObject[] = [
   },
   {
     path: '/',
-    element: <div>deck</div>,
+    element: <Decks />,
   },
 ]
 
@@ -62,4 +63,4 @@ const router = createBrowserRouter([
   },
 ])
 
-export const Router = () => <RouterProvider router={router} />
+export const Router = () => <RouterProvider router={router}/>

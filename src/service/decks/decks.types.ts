@@ -8,7 +8,7 @@ export type DeckType = {
   cover: string
   rating: number
   created: string
-  updated: string
+  updated: Date
   cardsCount: number
 }
 

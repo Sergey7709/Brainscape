@@ -1,10 +1,13 @@
 import { FC, ReactNode } from 'react'
 
+import * as RadixLabel from '@radix-ui/react-label'
 import * as Tabs from '@radix-ui/react-tabs'
 import { TabsContent, TabsListProps, TabsProps, TabsTrigger } from '@radix-ui/react-tabs'
 import { clsx } from 'clsx'
 
 import s from './tab-switcher.module.scss'
+
+import { Typography } from '@/components/ui/typography'
 
 /**
  * A component for switching between tabs.
@@ -29,7 +32,7 @@ export type CombinedTabsProps = TabsAsChildProps &
   TabsListProps &
   TabsTriggerProps &
   TabsContentProps &
-  TabsProps & { children?: ReactNode }
+  TabsProps & { children?: ReactNode; label?: string }
 
 export const TabSwitcher: FC<CombinedTabsProps> = props => {
   const {
@@ -43,6 +46,7 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
     dir = 'ltr',
     activationMode = 'automatic',
     loop = true,
+    label,
     ...restProps
   } = props
 
@@ -71,20 +75,27 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
     ))
 
   return (
-    <Tabs.Root
-      className={s.TabsRoot}
-      defaultValue={defaultValue}
-      value={value}
-      onValueChange={onValueChange}
-      orientation={orientation}
-      activationMode={activationMode}
-      dir={dir}
-      asChild={restProps.asChild}
-    >
-      <Tabs.List className={s.TabsList} loop={loop}>
-        {renderTabsForTrigger}
-      </Tabs.List>
-      {renderChildrenOrTabContent}
-    </Tabs.Root>
+    <RadixLabel.Root>
+      {label && (
+        <Typography variant={'body1'} as={'label'} className={s.label}>
+          {label}
+        </Typography>
+      )}
+      <Tabs.Root
+        className={s.TabsRoot}
+        defaultValue={defaultValue}
+        value={value}
+        onValueChange={onValueChange}
+        orientation={orientation}
+        activationMode={activationMode}
+        dir={dir}
+        asChild={restProps.asChild}
+      >
+        <Tabs.List className={s.TabsList} loop={loop}>
+          {renderTabsForTrigger}
+        </Tabs.List>
+        {renderChildrenOrTabContent}
+      </Tabs.Root>
+    </RadixLabel.Root>
   )
 }
