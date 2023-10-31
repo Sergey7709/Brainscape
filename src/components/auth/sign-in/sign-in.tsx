@@ -87,7 +87,7 @@ export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: Si
         <div className={s.signInForgotPasswordContainer}>
           <Typography
             as={NavLink}
-            to={'/ForgotPassword'}
+            to={'/forgot-password'}
             variant={'body2'}
             className={s.signInForgotPassword}
           >

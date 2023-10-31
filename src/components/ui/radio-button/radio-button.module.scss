@@ -44,17 +44,19 @@
     opacity: 0.6;
   }
 
-  &:focus::before {
+  &:focus-visible {
     box-shadow: 0 0 0 10px var(--color-dark-700);
   }
 
-  &:hover::before {
+  &:hover {
     box-shadow: 0 0 0 10px var(--color-dark-500);
   }
 
-  &:active::before {
-    box-shadow: 0 0 0 10px var(--color-accent-900);
+
+  &:active {
+    box-shadow: 0 0 0 10px var(--color-dark-500);
   }
+
 
   &:checked::after {
     content: '';

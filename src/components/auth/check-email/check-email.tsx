@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom'
+
 import s from './check-email.module.scss'
 
 import { Email } from '@/assets/icons'
@@ -9,7 +11,7 @@ type Props = {
   email: string
 }
 
-export const checkEmail = ({ email }: Props) => {
+export const CheckEmail = ({ email }: Props) => {
   return (
     <>
       <Card className={s.card}>
@@ -22,7 +24,7 @@ export const checkEmail = ({ email }: Props) => {
         <Typography variant="body2" className={s.instructions}>
           We`ve sent an e-mail with instructions to {email}
         </Typography>
-        <Button fullWidth={true} as={'a'} href={''}>
+        <Button fullWidth={true} as={NavLink} to={'/login'}>
           Back to Sign in
         </Button>
       </Card>
