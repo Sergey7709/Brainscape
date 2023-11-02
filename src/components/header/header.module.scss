@@ -29,7 +29,7 @@ div .wrapper {
     background-image: linear-gradient(to right, white 50%, transparent 50%);
     background-repeat: repeat-x;
     background-position: 0 0;
-    background-size: 7px 1px; /* Измените это значение, чтобы увеличить расстояние между точками */
+    background-size: 7px 1px;
   }
 }
 
@@ -43,4 +43,18 @@ div .wrapper {
 div .profileInfo:hover {
   cursor: auto;
   opacity: 1;
+}
+
+.image {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.info { display: flex;
+flex-direction: column  }
+
+.email {
+color: #808080
 }

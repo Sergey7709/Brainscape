@@ -69,10 +69,10 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
       trigger={<img className={classNames.avatar} src={avatar || defaultAvatar} alt={'avatar'} />}
     >
       <DropDownItem className={classNames.profileInfo}>
-        <img src={avatar || defaultAvatar} alt={'icon'} />
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <img src={avatar || defaultAvatar} alt={'icon'} className={s.image} />
+        <div className={s.info}>
           <Typography>{name}</Typography>
-          <Typography variant={'caption'} style={{ color: '#808080' }}>
+          <Typography variant={'caption'} className={s.email}>
             {email}
           </Typography>
         </div>

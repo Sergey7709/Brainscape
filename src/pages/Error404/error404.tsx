@@ -21,7 +21,7 @@ export const Error404 = () => {
 
   return (
     <div className={classNames.wrapper}>
-      <img src={error404} alt={'error'} />
+      <img src={error404} alt={'error'} className={s.image} />
       <Typography variant={'h3'} className={classNames.text}>
         Sorry! Page not found!
       </Typography>
