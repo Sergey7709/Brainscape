@@ -21,26 +21,28 @@ export const Decks = () => {
 
   return (
     <div className={classNames.container}>
-      <div className={s.head}>
-        <Typography variant={'large'}>Packs list</Typography>
-        <Button>Add new pack</Button>
-      </div>
-      <DecksPanel />
-      <div className={classNames.tableWrapper}>
-        <Table.Root>
-          <Table.Head>
-            <Table.Row>
-              <Table.HeadCell>Name</Table.HeadCell>
-              <Table.HeadCell>Cards</Table.HeadCell>
-              <Table.HeadCell>Last Updated</Table.HeadCell>
-              <Table.HeadCell>Created by</Table.HeadCell>
-              <Table.HeadCell></Table.HeadCell>
-            </Table.Row>
-          </Table.Head>
-          <Table.Body>
-            {isSuccess && data.items.map(deck => <DeckRow key={deck.id} {...deck} />)}
-          </Table.Body>
-        </Table.Root>
+      <div className={s.deck}>
+        <div className={s.head}>
+          <Typography variant={'large'}>Packs list</Typography>
+          <Button>Add new pack</Button>
+        </div>
+        <DecksPanel />
+        <div className={classNames.tableWrapper}>
+          <Table.Root>
+            <Table.Head>
+              <Table.Row>
+                <Table.HeadCell>Name</Table.HeadCell>
+                <Table.HeadCell>Cards</Table.HeadCell>
+                <Table.HeadCell>Last Updated</Table.HeadCell>
+                <Table.HeadCell>Created by</Table.HeadCell>
+                <Table.HeadCell></Table.HeadCell>
+              </Table.Row>
+            </Table.Head>
+            <Table.Body>
+              {isSuccess && data.items.map(deck => <DeckRow key={deck.id} {...deck} />)}
+            </Table.Body>
+          </Table.Root>
+        </div>
       </div>
     </div>
   )
