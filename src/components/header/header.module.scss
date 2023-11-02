@@ -44,3 +44,17 @@ div .profileInfo:hover {
   cursor: auto;
   opacity: 1;
 }
+
+.image {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.info { display: flex;
+flex-direction: column  }
+
+.email {
+color: #808080
+}
