@@ -32,7 +32,13 @@ export const DecksPanel = () => {
           },
         ]}
       />
-      <Slider className={classNames.slider} min={0} max={10} label={'Number of cards'} />
+      <Slider
+        className={classNames.slider}
+        label={'Number of cards'}
+        min={0}
+        max={10}
+        defaultValue={[0, 10]}
+      />
       <Button variant={'secondary'}>
         <Delete /> Clear Filter
       </Button>
