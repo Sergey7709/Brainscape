@@ -6,7 +6,7 @@ import { CheckEmail } from '@/components/auth/check-email'
 
 export const VerifyEmail = () => {
   const location = useLocation()
-  const emailRecoveryPassword = location.state?.toString() ///!!!!!!! Правильно ли передаю данные?
+  const emailRecoveryPassword = location.state?.toString()
 
   return (
     <div className={s.verifyEmail}>
