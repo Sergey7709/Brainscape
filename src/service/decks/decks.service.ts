@@ -5,8 +5,10 @@ import { CreateDeckRequest, DeckType, UpdateDeckRequest } from '@/service/decks/
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      getDecks: builder.query<GetEntitiesResponse<DeckType> & { maxCardsCount: number }, void>({
-        query: () => `v1/decks`,
+      getDecks: builder.query<GetEntitiesResponse<DeckType> & { maxCardsCount: number }, string>({
+        ///!!!! Исправить тип аргументов запроса
+        query: arg => `v1/decks?${arg}`, ///!!!!!!!!!!
+        // query: () => `v1/decks?orderBy=created-asc&itemsPerPage=15&currentPage=3`,
         providesTags: ['Deck'],
       }),
       createDeck: builder.mutation<DeckType, CreateDeckRequest>({
