@@ -4,7 +4,7 @@ import clsx from 'clsx'
 
 import s from './tables.module.scss'
 
-import { ChevronDown, ChevronUp } from '@/assets/icons'
+import { ChevronUp } from '@/assets/icons'
 import { Typography } from '@/components/ui/typography'
 
 export const Root: FC<ComponentProps<'table'>> = ({ className, ...rest }) => {
@@ -58,7 +58,7 @@ export const Header: FC<
     if (sort?.key === key && sort?.direction === 'asc') {
       chevron = <ChevronUp key={sort.key} className={classNames.chevron} />
     } else if (sort?.key === key && sort?.direction === 'desc') {
-      chevron = <ChevronDown key={sort.key} className={classNames.chevron} />
+      chevron = <ChevronUp key={sort.key} className={s.chevronDown} />
     } else {
       chevron = null
     }
@@ -82,7 +82,7 @@ export const Body: FC<ComponentProps<'tbody'>> = props => {
 }
 
 export const Row: FC<ComponentProps<'tr'>> = props => {
-  return <tr {...props} />
+  return <tr {...props} className={s.trStyle} /> //!!!!
 }
 
 export const HeadCell: FC<
