@@ -1,7 +1,10 @@
+import { useState } from 'react'
+
 import s from './decks.module.scss'
 
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
+import { Pagination } from '@/components/ui/pagination'
 import { Table } from '@/components/ui/tables/tables'
 import { Typography } from '@/components/ui/typography'
 import { columns } from '@/pages/decks/constantsDeck.ts'
@@ -10,7 +13,9 @@ import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
 
 export const Decks = () => {
-  const { sort, setSort, sortedData, isSuccess, isLoading } = useGetDataSort()
+  const { sort, setSort, sortedData, isSuccess, isLoading, data } = useGetDataSort()
+
+  const [currentPage, setCurrentPage] = useState<number>(data?.pagination.currentPage || 1)
 
   const classNames = {
     container: s.container,
@@ -19,14 +24,21 @@ export const Decks = () => {
     slider: s.slider,
     tableWrapper: s.tableWrapper,
     head: s.head,
+    deck: s.deck,
+    pagination: s.paginationWrapper,
+  }
+
+  const handlerPagination = (page: number) => {
+    console.log('page', page)
+    setCurrentPage(page)
   }
 
   return (
     <>
       {isLoading && <Loader />}
       <div className={classNames.container}>
-        <div className={s.deck}>
-          <div className={s.head}>
+        <div className={classNames.deck}>
+          <div className={classNames.head}>
             <Typography variant={'large'}>Packs list</Typography>
             <Button>Add new pack</Button>
           </div>
@@ -39,6 +51,16 @@ export const Decks = () => {
               </Table.Body>
             </Table.Root>
           </div>
+        </div>
+        <div className={classNames.pagination}>
+          {data && (
+            <Pagination
+              currentPage={currentPage}
+              pageSize={data.pagination.itemsPerPage}
+              totalCount={data.pagination.totalPages}
+              onPageChange={page => handlerPagination(page)}
+            />
+          )}
         </div>
       </div>
     </>
