@@ -11,8 +11,12 @@ import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
+import { useAppDispatch } from '@/service'
+import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
 
 export const Decks = () => {
+  const dispatch = useAppDispatch()
+
   const { sort, setSort, sortedData, isSuccess, isLoading, data } = useGetDataSort()
 
   const [currentPage, setCurrentPage] = useState<number>(data?.pagination.currentPage || 1)
@@ -30,9 +34,11 @@ export const Decks = () => {
 
   const handlerPagination = (page: number) => {
     console.log('page', page)
+    dispatch(currentPageReducer({ currentPage: page }))
     setCurrentPage(page)
   }
 
+  //!!!!!!!!! Вынести <div className={classNames.container}> в отдельный компонент
   return (
     <>
       {isLoading && <Loader />}
