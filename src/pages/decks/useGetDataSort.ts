@@ -5,35 +5,28 @@ import { useGetDecksQuery } from '@/service'
 
 export const useGetDataSort = () => {
   const { data, isSuccess, isLoading } = useGetDecksQuery()
+
   const [sort, setSort] = useState<Sort>(null)
-  const sortString: string | null = sort ? `${sort?.key}-${sort?.direction}` : null
-  // const [key, direction] = sortString ? sortString.split('-') : []
+
+  const sortString: string = `${sort?.key}-${sort?.direction}`
+
   const sortedData = useMemo(() => {
-    if (isSuccess && !!data.items) {
-      // if (!sortString) {
-      //   return data.items
-      // }
-      // const [key, direction] = sortString.split('-')
-      //
-      // return [...data.items].sort((a, b) => {
-      //   if (direction === 'asc') {
-      //     return a[key as keyof typeof a] > b[key as keyof typeof b] ? 1 : -1
-      //   }
-      //
-      //   return a[key as keyof typeof a] < b[key as keyof typeof b] ? 1 : -1
-      // })
-      if (!sortString) {
+    if (isSuccess && data.items) {
+      if (sort) {
+        return [...data.items].sort((a, b) => {
+          const [key, direction] = sortString.split('-')
+          const isAsc = direction === 'asc'
+
+          const aValue = a[key as keyof typeof a]
+          const bValue = b[key as keyof typeof b]
+
+          const result = aValue > bValue ? 1 : -1
+
+          return isAsc ? result : -result
+        })
+      } else {
         return data.items
       }
-      const [key, direction] = sortString.split('-')
-
-      return [...data.items].sort((a, b) => {
-        if (direction === 'asc') {
-          return a[key as keyof typeof a] > b[key as keyof typeof b] ? 1 : -1
-        }
-
-        return a[key as keyof typeof a] < b[key as keyof typeof b] ? 1 : -1
-      })
     } else {
       return []
     }
