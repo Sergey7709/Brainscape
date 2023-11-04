@@ -1,5 +1,8 @@
 .table {
+  display: flex;//!!!!!!!!!
   border-collapse: collapse;
+  flex-direction: column;//!!!!!!!!!
+  justify-content: space-between;//!!!!!!!!!
 
   width: 100%;
   margin: 0 auto;
@@ -10,6 +13,7 @@
 }
 
 .headCell {
+  width: 100%;//!!!!!!!
   padding: 6px 24px;
 
   font-size: var(--font-size-s);
@@ -34,7 +38,15 @@
   }
 }
 
+.trStyle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}//!!!!!!!
+
+
 .tableCell {
+  width: 100%;//!!!!!!!
   padding: 6px 24px;
 
   font-size: var(--font-size-s);
@@ -63,3 +75,5 @@
   display: flex;
   justify-content: flex-end;
 }
+
+
