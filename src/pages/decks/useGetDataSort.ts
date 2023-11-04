@@ -1,10 +1,18 @@
 import { useMemo, useState } from 'react'
 
 import { Sort } from '@/components/ui/tables'
-import { useGetDecksQuery } from '@/service'
+import { useAppSelector, useGetDecksQuery } from '@/service'
 
 export const useGetDataSort = () => {
-  const { data, isSuccess, isLoading } = useGetDecksQuery()
+  const currentPage = useAppSelector(state => state.deckReducer.currentPage)
+  const itemsPerPage = useAppSelector(state => state.deckReducer.itemsPerPage)
+
+  console.log('itemsPerPage', itemsPerPage)
+  console.log('currentPage', currentPage)
+
+  const { data, isSuccess, isLoading } = useGetDecksQuery(
+    `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`
+  ) //!!!!!!!! Вынести в константу
 
   const [sort, setSort] = useState<Sort>(null)
 
