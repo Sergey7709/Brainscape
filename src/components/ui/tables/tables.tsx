@@ -60,7 +60,7 @@ export const Header: FC<
     } else if (sort?.key === key && sort?.direction === 'desc') {
       chevron = <ChevronDown key={sort.key} className={classNames.chevron} />
     } else {
-      chevron = ''
+      chevron = null
     }
 
     return (
@@ -69,19 +69,11 @@ export const Header: FC<
         {chevron}
       </HeadCell>
     )
-  }) ///!!!!!!!!!!
+  })
 
   return (
     <Head {...restProps}>
-      <Row>
-        {/*{columns.map(({ title, key, sortable }) => (*/}
-        {/*  <HeadCell key={key} onClick={handleSort(key, sortable)} sortable={sortable}>*/}
-        {/*    {title}*/}
-        {/*    /!*{sort?.key === key ? <Chevron className={classNames.chevron} /> : ''}*!/*/}
-        {/*  </HeadCell>*/}
-        {/*))}*/}
-        {headCell}
-      </Row>
+      <Row>{headCell}</Row>
     </Head>
   )
 }
