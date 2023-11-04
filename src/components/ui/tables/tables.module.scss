@@ -24,9 +24,16 @@
 
   > span {
     user-select: none;
+
     display: flex;
     gap: 4px;
     align-items: center;
+
+    font-size: 0.875rem;//!!!!!!!
+    font-weight: 700;//!!!!!!!
+    font-style: normal;//!!!!!!!
+    line-height: 1.5rem;//!!!!!!!
+
   }
 
   &.sortable > span {
