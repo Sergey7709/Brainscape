@@ -32,5 +32,5 @@ export const useGetDataSort = () => {
     }
   }, [sortString, data, isSuccess])
 
-  return { sort, setSort, isSuccess, sortedData, isLoading }
+  return { sort, setSort, isSuccess, sortedData, isLoading, data }
 }
