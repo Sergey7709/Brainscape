@@ -4,6 +4,7 @@ import s from './layout.module.scss'
 
 import { Header } from '@/components/header'
 import { Loader } from '@/components/ui/loader'
+import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button/scroll-to-top-button.tsx'
 import { useGetAuthUserMeDataQuery, useLogoutUserMutation } from '@/service'
 
 export const Layout = () => {
@@ -24,6 +25,7 @@ export const Layout = () => {
         onSignOut={getLogOut}
       />
       <Outlet />
+      <ScrollToTopButton />
     </div>
   )
 }
