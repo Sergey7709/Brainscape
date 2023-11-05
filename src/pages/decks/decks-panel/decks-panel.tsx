@@ -5,14 +5,13 @@ import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
 import { TextField } from '@/components/ui/textField'
-import { useAppDispatch } from '@/service'
+import { useAppDispatch, useAppSelector } from '@/service'
 import { minMaxCardsCountReducer, initialState } from '@/service/store/deckParamsSlice.ts'
 
 export const DecksPanel = () => {
   const dispatch = useAppDispatch()
-  const {
-    minMaxCardsCount: [minCardsCount, maxCardsCount],
-  } = initialState ///!!!!!!!! Уточнить нормально ли так брать из слайса?
+
+  const [minCardsCount, maxCardsCount] = useAppSelector(state => state.deckReducer.minMaxCardsCount) ///!!!!!!!! Уточнить нормально ли так брать из слайса?
 
   const classNames = {
     decksPanel: s.decksPanel,
