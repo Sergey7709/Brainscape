@@ -5,12 +5,24 @@ import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
 import { TextField } from '@/components/ui/textField'
+import { useAppDispatch } from '@/service'
+import { minMaxCardsCountReducer, initialState } from '@/service/store/deckParamsSlice.ts'
 
 export const DecksPanel = () => {
+  const dispatch = useAppDispatch()
+  const {
+    minMaxCardsCount: [minCardsCount, maxCardsCount],
+  } = initialState ///!!!!!!!! Уточнить нормально ли так брать из слайса?
+
   const classNames = {
     decksPanel: s.decksPanel,
     searchInput: s.searchInput,
     slider: s.slider,
+  }
+
+  const handlerChangeValue = (value: number[]) => {
+    console.log('value', value)
+    dispatch(minMaxCardsCountReducer({ minMaxCardsCount: value }))
   }
 
   return (
@@ -35,9 +47,10 @@ export const DecksPanel = () => {
       <Slider
         className={classNames.slider}
         label={'Number of cards'}
-        min={0}
-        max={10}
-        defaultValue={[0, 10]}
+        min={minCardsCount}
+        max={maxCardsCount}
+        defaultValue={[minCardsCount, maxCardsCount]}
+        onValueCommit={handlerChangeValue}
       />
       <Button variant={'secondary'}>
         <Delete /> Clear Filter
