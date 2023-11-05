@@ -6,12 +6,13 @@ import { useAppSelector, useGetDecksQuery } from '@/service'
 export const useGetDataSort = () => {
   const currentPage = useAppSelector(state => state.deckReducer.currentPage)
   const itemsPerPage = useAppSelector(state => state.deckReducer.itemsPerPage)
+  const minMaxCardsCount = useAppSelector(state => state.deckReducer.minMaxCardsCount)
 
   console.log('itemsPerPage', itemsPerPage)
   console.log('currentPage', currentPage)
 
   const { data, isSuccess, isLoading } = useGetDecksQuery(
-    `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`
+    `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}&minCardsCount=${minMaxCardsCount[0]}&maxCardsCount=${minMaxCardsCount[1]}`
   ) //!!!!!!!! Вынести в константу
 
   const [sort, setSort] = useState<Sort>(null)
