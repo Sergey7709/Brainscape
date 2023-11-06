@@ -9,7 +9,10 @@ import { useAppDispatch } from '@/service'
 import { maxCardsValue, minCardsValue } from '@/service/store/constantsForInitialValue.ts'
 import { minMaxCardsCountReducer } from '@/service/store/deckParamsSlice.ts'
 
-export const DecksPanel = () => {
+type DecksPanelProps = {
+  handlerTabSwitchChangeValue: (value: string) => void
+}
+export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => {
   const dispatch = useAppDispatch()
 
   const classNames = {
@@ -18,10 +21,14 @@ export const DecksPanel = () => {
     slider: s.slider,
   }
 
-  const handlerChangeValue = (value: number[]) => {
-    console.log('value', value)
+  const handlerSliderChangeValue = (value: number[]) => {
+    console.log('valueSlider', value)
     dispatch(minMaxCardsCountReducer({ minMaxCardsCount: value }))
   }
+
+  // const handlerTabSwitchChangeValue = (value: string) => {
+  //   console.log('valueTabSwitch', value)
+  // }
 
   return (
     <div className={classNames.decksPanel}>
@@ -41,6 +48,7 @@ export const DecksPanel = () => {
             value: 'allCards',
           },
         ]}
+        onValueChange={handlerTabSwitchChangeValue}
       />
       <Slider
         className={classNames.slider}
@@ -48,7 +56,7 @@ export const DecksPanel = () => {
         min={minCardsValue}
         max={maxCardsValue}
         defaultValue={[minCardsValue, maxCardsValue]}
-        onValueCommit={handlerChangeValue}
+        onValueCommit={handlerSliderChangeValue}
       />
       <Button variant={'secondary'}>
         <Delete /> Clear Filter
