@@ -9,7 +9,7 @@ import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
-import { useAppDispatch, useAppSelector, useGetAuthUserMeDataQuery } from '@/service'
+import { useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
 import { currentPageReducer, myOrAllAuthorCardsReducer } from '@/service/store/deckParamsSlice.ts'
 
 export const Decks = () => {
@@ -18,10 +18,8 @@ export const Decks = () => {
   const { data: meData } = useGetAuthUserMeDataQuery()
   const meID = meData?.id
 
-  const { sort, setSort, sortedData, isSuccess, isLoading, data } = useGetDataSort()
+  const { sort, setSort, sortedData, isSuccess, isLoading, data, currentPage } = useGetDataSort()
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
-
-  const currentPage = useAppSelector(state => state.deckReducer.currentPage)
 
   const classNames = {
     container: s.container,
@@ -48,16 +46,6 @@ export const Decks = () => {
     }
   }
 
-  // const pagination =
-  //   data && data.pagination.totalPages ? (
-  //     <Pagination
-  //       currentPage={currentPage}
-  //       pageSize={data.pagination.itemsPerPage}
-  //       totalCount={data.pagination.totalItems}
-  //       onPageChange={page => handlerPagination(page)}
-  //     />
-  //   ) : null
-
   const pagination = !!totalPages && (
     <Pagination
       currentPage={currentPage}
@@ -66,8 +54,6 @@ export const Decks = () => {
       onPageChange={page => handlerPagination(page)}
     />
   )
-
-  // console.log('totalPage', data?.pagination.totalPages)
 
   //!!!!!!!!! Вынести <div className={classNames.container}> в отдельный компонент
   return (
