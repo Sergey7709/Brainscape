@@ -38,6 +38,8 @@ export const Decks = () => {
     setCurrentPage(page)
   }
 
+  // console.log('totalPage', data?.pagination.totalPages)
+
   //!!!!!!!!! Вынести <div className={classNames.container}> в отдельный компонент
   return (
     <>
@@ -63,7 +65,7 @@ export const Decks = () => {
             <Pagination
               currentPage={currentPage}
               pageSize={data.pagination.itemsPerPage}
-              totalCount={data.pagination.totalPages}
+              totalCount={data.pagination.totalItems}
               onPageChange={page => handlerPagination(page)}
             />
           )}
