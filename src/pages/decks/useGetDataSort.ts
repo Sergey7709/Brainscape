@@ -7,12 +7,13 @@ export const useGetDataSort = () => {
   const currentPage = useAppSelector(state => state.deckReducer.currentPage)
   const itemsPerPage = useAppSelector(state => state.deckReducer.itemsPerPage)
   const minMaxCardsCount = useAppSelector(state => state.deckReducer.minMaxCardsCount)
+  const myOrAllAuthorCards = useAppSelector(state => state.deckReducer.authorCards)
 
   console.log('itemsPerPage', itemsPerPage)
   console.log('currentPage', currentPage)
 
   const { data, isSuccess, isLoading } = useGetDecksQuery(
-    `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}&minCardsCount=${minMaxCardsCount[0]}&maxCardsCount=${minMaxCardsCount[1]}`
+    `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}&minCardsCount=${minMaxCardsCount[0]}&maxCardsCount=${minMaxCardsCount[1]}&authorId=${myOrAllAuthorCards}`
   ) //!!!!!!!! Вынести в константу
 
   const [sort, setSort] = useState<Sort>(null)
