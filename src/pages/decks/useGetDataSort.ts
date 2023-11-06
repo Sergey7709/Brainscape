@@ -1,20 +1,47 @@
 import { useMemo, useState } from 'react'
 
 import { Sort } from '@/components/ui/tables'
-import { useAppSelector, useGetDecksQuery } from '@/service'
+import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
+import {
+  authorCardsIDAbsent,
+  itemsPerPageValue,
+  maxCardsValue,
+  minCardsValue,
+  useAppSelector,
+  useGetDecksQuery,
+} from '@/service'
 
 export const useGetDataSort = () => {
-  const currentPage = useAppSelector(state => state.deckReducer.currentPage)
-  const itemsPerPage = useAppSelector(state => state.deckReducer.itemsPerPage)
-  const minMaxCardsCount = useAppSelector(state => state.deckReducer.minMaxCardsCount)
-  const myOrAllAuthorCards = useAppSelector(state => state.deckReducer.authorCards)
+  // const currentPage = useAppSelector(state => state.deckReducer.currentPage)
+  // const itemsPerPage = useAppSelector(state => state.deckReducer.itemsPerPage)
+  // const minMaxCardsCount = useAppSelector(state => state.deckReducer.minMaxCardsCount)
+  // const myOrAllAuthorCards = useAppSelector(state => state.deckReducer.authorCards)
+
+  const { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards } =
+    useCombineAppSelector()
 
   console.log('itemsPerPage', itemsPerPage)
   console.log('currentPage', currentPage)
 
-  const { data, isSuccess, isLoading } = useGetDecksQuery(
-    `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}&minCardsCount=${minMaxCardsCount[0]}&maxCardsCount=${minMaxCardsCount[1]}&authorId=${myOrAllAuthorCards}`
-  ) //!!!!!!!! Вынести в константу
+  // const { data, isSuccess, isLoading } = useGetDecksQuery(
+  //   `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}&minCardsCount=${minMaxCardsCount[0]}&maxCardsCount=${minMaxCardsCount[1]}&authorId=${myOrAllAuthorCards}`
+  // ) //!!!!!!!! Вынести в константу
+
+  const queryString = [
+    currentPage ? `currentPage=${currentPage}` : '',
+    itemsPerPage !== itemsPerPageValue ? `itemsPerPage=${itemsPerPage}` : '',
+    minMaxCardsCount[0] !== minCardsValue ? `minCardsCount=${minMaxCardsCount[0]}` : '',
+    minMaxCardsCount[1] !== maxCardsValue ? `maxCardsCount=${minMaxCardsCount[1]}` : '',
+    myOrAllAuthorCards !== authorCardsIDAbsent ? `authorId=${myOrAllAuthorCards}` : '',
+  ]
+    .filter(el => !!el)
+    .join('&')
+
+  console.log('queryString', queryString)
+
+  const { data, isSuccess, isLoading } = useGetDecksQuery(queryString)
+
+  //////
 
   const [sort, setSort] = useState<Sort>(null)
 
@@ -42,5 +69,5 @@ export const useGetDataSort = () => {
     }
   }, [sortString, data, isSuccess])
 
-  return { sort, setSort, isSuccess, sortedData, isLoading, data }
+  return { sort, setSort, isSuccess, sortedData, isLoading, data, currentPage }
 }
