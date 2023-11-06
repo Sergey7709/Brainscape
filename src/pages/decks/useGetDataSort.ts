@@ -28,7 +28,7 @@ export const useGetDataSort = () => {
   // ) //!!!!!!!! Вынести в константу
 
   const queryString = [
-    currentPage ? `currentPage=${currentPage}` : '',
+    currentPage !== currentPage ? `currentPage=${currentPage}` : '',
     itemsPerPage !== itemsPerPageValue ? `itemsPerPage=${itemsPerPage}` : '',
     minMaxCardsCount[0] !== minCardsValue ? `minCardsCount=${minMaxCardsCount[0]}` : '',
     minMaxCardsCount[1] !== maxCardsValue ? `maxCardsCount=${minMaxCardsCount[1]}` : '',
