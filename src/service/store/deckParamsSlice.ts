@@ -34,9 +34,14 @@ const deckParamsSlice = createSlice({
     myOrAllAuthorCardsReducer: (state, action: PayloadAction<InitialState>) => {
       state.authorCards = action.payload.authorCards ?? authorCardsIDAbsent
     },
+    clearFilterReducer: () => initialState,
   },
 })
 
-export const { currentPageReducer, minMaxCardsCountReducer, myOrAllAuthorCardsReducer } =
-  deckParamsSlice.actions
+export const {
+  currentPageReducer,
+  minMaxCardsCountReducer,
+  myOrAllAuthorCardsReducer,
+  clearFilterReducer,
+} = deckParamsSlice.actions
 export default deckParamsSlice.reducer
