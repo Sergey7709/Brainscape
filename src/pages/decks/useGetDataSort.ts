@@ -35,7 +35,7 @@ export const useGetDataSort = () => {
     myOrAllAuthorCards !== authorCardsIDAbsent ? `authorId=${myOrAllAuthorCards}` : '',
   ]
     .filter(el => !!el)
-    .join('&')
+    .join('&') //!!!!!!!! Вынести в useCombineAppSelector
 
   console.log('queryString', queryString)
 
