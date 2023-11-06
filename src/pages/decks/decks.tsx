@@ -9,7 +9,7 @@ import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
-import { useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
+import { authorCardsIDAbsent, useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
 import { currentPageReducer, myOrAllAuthorCardsReducer } from '@/service/store/deckParamsSlice.ts'
 
 export const Decks = () => {
@@ -42,7 +42,7 @@ export const Decks = () => {
     if (value === 'myCards') {
       dispatch(myOrAllAuthorCardsReducer({ authorCards: meID }))
     } else {
-      dispatch(myOrAllAuthorCardsReducer({ authorCards: '' }))
+      dispatch(myOrAllAuthorCardsReducer({ authorCards: authorCardsIDAbsent }))
     }
   }
 
