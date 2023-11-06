@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import s from './decks.module.scss'
 
 import { Button } from '@/components/ui/button'
@@ -11,15 +9,19 @@ import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
-import { useAppDispatch } from '@/service'
-import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
+import { useAppDispatch, useAppSelector, useGetAuthUserMeDataQuery } from '@/service'
+import { currentPageReducer, myOrAllAuthorCardsReducer } from '@/service/store/deckParamsSlice.ts'
 
 export const Decks = () => {
   const dispatch = useAppDispatch()
 
-  const { sort, setSort, sortedData, isSuccess, isLoading, data } = useGetDataSort()
+  const { data: meData } = useGetAuthUserMeDataQuery()
+  const meID = meData?.id
 
-  const [currentPage, setCurrentPage] = useState<number>(data?.pagination.currentPage || 1)
+  const { sort, setSort, sortedData, isSuccess, isLoading, data } = useGetDataSort()
+  const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
+
+  const currentPage = useAppSelector(state => state.deckReducer.currentPage)
 
   const classNames = {
     container: s.container,
@@ -35,8 +37,35 @@ export const Decks = () => {
   const handlerPagination = (page: number) => {
     console.log('page', page)
     dispatch(currentPageReducer({ currentPage: page }))
-    setCurrentPage(page)
   }
+
+  const handlerTabSwitchChangeValue = (value: string) => {
+    console.log('valueTabSwitch', value)
+    if (value === 'myCards') {
+      dispatch(myOrAllAuthorCardsReducer({ authorCards: meID }))
+    } else {
+      dispatch(myOrAllAuthorCardsReducer({ authorCards: '' }))
+    }
+  }
+
+  // const pagination =
+  //   data && data.pagination.totalPages ? (
+  //     <Pagination
+  //       currentPage={currentPage}
+  //       pageSize={data.pagination.itemsPerPage}
+  //       totalCount={data.pagination.totalItems}
+  //       onPageChange={page => handlerPagination(page)}
+  //     />
+  //   ) : null
+
+  const pagination = !!totalPages && (
+    <Pagination
+      currentPage={currentPage}
+      pageSize={itemsPerPage ?? 0}
+      totalCount={totalItems ?? 0}
+      onPageChange={page => handlerPagination(page)}
+    />
+  )
 
   // console.log('totalPage', data?.pagination.totalPages)
 
@@ -50,7 +79,7 @@ export const Decks = () => {
             <Typography variant={'large'}>Packs list</Typography>
             <Button>Add new pack</Button>
           </div>
-          <DecksPanel />
+          <DecksPanel handlerTabSwitchChangeValue={handlerTabSwitchChangeValue} />
           <div className={classNames.tableWrapper}>
             <Table.Root>
               <Table.Header columns={columns} sort={sort} onSort={setSort} />
@@ -60,16 +89,7 @@ export const Decks = () => {
             </Table.Root>
           </div>
         </div>
-        <div className={classNames.pagination}>
-          {data && (
-            <Pagination
-              currentPage={currentPage}
-              pageSize={data.pagination.itemsPerPage}
-              totalCount={data.pagination.totalItems}
-              onPageChange={page => handlerPagination(page)}
-            />
-          )}
-        </div>
+        <div className={classNames.pagination}>{pagination}</div>
       </div>
     </>
   )
