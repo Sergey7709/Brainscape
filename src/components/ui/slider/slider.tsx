@@ -13,13 +13,23 @@ type Props = {
 }
 
 export const Slider = (props: Props & Omit<RadixSlider.SliderProps, keyof Props>) => {
-  const { min = 0, max = 10, defaultValue, label, className, style, ...restProps } = props
+  const {
+    min = 0,
+    max = 10,
+    defaultValue,
+    label,
+    className,
+    value = [0, 99],
+    style,
+    ...restProps
+  } = props
 
-  const [value, setValue] = useState<number[]>(defaultValue || [min, max])
-
-  const handleOnValueChange = (value: number[]) => {
-    setValue(value)
-  }
+  // const [value, setValue] = useState<number[]>(defaultValue || [min, max])
+  //
+  // const handleOnValueChange = (value: number[]) => {
+  //   setValue(value)
+  // }
+  console.log('value', value)
 
   return (
     <div className={className} style={style}>
@@ -32,8 +42,9 @@ export const Slider = (props: Props & Omit<RadixSlider.SliderProps, keyof Props>
         <input type="number" className={s.input} value={value[0]} readOnly />
         <RadixSlider.Root
           className={s.root}
-          defaultValue={defaultValue}
-          onValueChange={handleOnValueChange}
+          // defaultValue={defaultValue}
+          // onValueChange={handleOnValueChange}
+          value={[value[0], value[1]]}
           min={min}
           max={max}
           {...restProps}
