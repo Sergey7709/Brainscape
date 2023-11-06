@@ -1,13 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import {
+  currentPageValue,
+  itemsPerPageValue,
+  maxCardsValue,
+  minCardsValue,
+} from '@/service/store/constantsForInitialValue.ts'
+
 type InitialState = {
   currentPage?: number
   itemsPerPage?: number
   minMaxCardsCount?: number[] //!!!!!!!!! доработать типизацию
 }
 export const initialState = {
-  currentPage: 1,
-  itemsPerPage: 10,
-  minMaxCardsCount: [0, 50],
+  currentPage: currentPageValue,
+  itemsPerPage: itemsPerPageValue,
+  minMaxCardsCount: [minCardsValue, maxCardsValue],
 }
 
 const deckParamsSlice = createSlice({
