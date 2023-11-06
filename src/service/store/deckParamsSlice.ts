@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import {
+  authorCardsIDAbsent,
   currentPageValue,
   itemsPerPageValue,
   maxCardsValue,
@@ -11,11 +12,13 @@ type InitialState = {
   currentPage?: number
   itemsPerPage?: number
   minMaxCardsCount?: number[] //!!!!!!!!! доработать типизацию
+  authorCards?: string
 }
 export const initialState = {
   currentPage: currentPageValue,
   itemsPerPage: itemsPerPageValue,
   minMaxCardsCount: [minCardsValue, maxCardsValue],
+  authorCards: authorCardsIDAbsent,
 }
 
 const deckParamsSlice = createSlice({
@@ -23,13 +26,17 @@ const deckParamsSlice = createSlice({
   initialState,
   reducers: {
     currentPageReducer: (state, action: PayloadAction<InitialState>) => {
-      state.currentPage = action.payload.currentPage ?? 1
+      state.currentPage = action.payload.currentPage ?? currentPageValue
     },
     minMaxCardsCountReducer: (state, action: PayloadAction<InitialState>) => {
-      state.minMaxCardsCount = action.payload.minMaxCardsCount ?? [0, 50]
+      state.minMaxCardsCount = action.payload.minMaxCardsCount ?? [minCardsValue, maxCardsValue]
+    },
+    myOrAllAuthorCardsReducer: (state, action: PayloadAction<InitialState>) => {
+      state.authorCards = action.payload.authorCards ?? authorCardsIDAbsent
     },
   },
 })
 
-export const { currentPageReducer, minMaxCardsCountReducer } = deckParamsSlice.actions
+export const { currentPageReducer, minMaxCardsCountReducer, myOrAllAuthorCardsReducer } =
+  deckParamsSlice.actions
 export default deckParamsSlice.reducer
