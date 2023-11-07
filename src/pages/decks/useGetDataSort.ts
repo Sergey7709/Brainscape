@@ -3,13 +3,7 @@ import { useMemo, useState } from 'react'
 import { Sort } from '@/components/ui/tables'
 import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
 import { useQueryString } from '@/pages/decks/useQueryString.ts'
-import {
-  authorCardsIDAbsent,
-  itemsPerPageValue,
-  maxCardsValue,
-  minCardsValue,
-  useGetDecksQuery,
-} from '@/service'
+import { useGetDecksQuery } from '@/service'
 
 export const useGetDataSort = () => {
   const { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards } =
@@ -24,21 +18,9 @@ export const useGetDataSort = () => {
 
   console.log('itemsPerPage', itemsPerPage)
   console.log('currentPage', currentPage)
-  // const queryString = [
-  //   currentPage !== currentPage ? `currentPage=${currentPage}` : '',
-  //   itemsPerPage !== itemsPerPageValue ? `itemsPerPage=${itemsPerPage}` : '',
-  //   minMaxCardsCount[0] !== minCardsValue ? `minCardsCount=${minMaxCardsCount[0]}` : '',
-  //   minMaxCardsCount[1] !== maxCardsValue ? `maxCardsCount=${minMaxCardsCount[1]}` : '',
-  //   myOrAllAuthorCards !== authorCardsIDAbsent ? `authorId=${myOrAllAuthorCards}` : '',
-  // ]
-  //   .filter(el => !!el)
-  //   .join('&') //!!!!!!!! Вынести в useCombineAppSelector
-
   console.log('queryString', queryString)
 
   const { data, isSuccess, isLoading } = useGetDecksQuery(queryString)
-
-  //////
 
   const [sort, setSort] = useState<Sort>(null)
 
