@@ -83,10 +83,7 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => 
         label={'Number of cards'}
         min={minCardsValue}
         max={maxCardsValue}
-        defaultValue={[minCardsCount, maxCardsCount]}
-        // defaultValue={[minCardsValue, maxCardsValue]}
         onValueCommit={handlerSliderChangeValue}
-        // value={[minMaxCardsCount[0], minMaxCardsCount[1]]}
         value={valueForSlider}
         onValueChange={handleOnValueChange}
       />
