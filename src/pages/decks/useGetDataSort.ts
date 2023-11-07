@@ -2,40 +2,37 @@ import { useMemo, useState } from 'react'
 
 import { Sort } from '@/components/ui/tables'
 import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
+import { useQueryString } from '@/pages/decks/useQueryString.ts'
 import {
   authorCardsIDAbsent,
   itemsPerPageValue,
   maxCardsValue,
   minCardsValue,
-  useAppSelector,
   useGetDecksQuery,
 } from '@/service'
 
 export const useGetDataSort = () => {
-  // const currentPage = useAppSelector(state => state.deckReducer.currentPage)
-  // const itemsPerPage = useAppSelector(state => state.deckReducer.itemsPerPage)
-  // const minMaxCardsCount = useAppSelector(state => state.deckReducer.minMaxCardsCount)
-  // const myOrAllAuthorCards = useAppSelector(state => state.deckReducer.authorCards)
-
   const { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards } =
     useCombineAppSelector()
 
+  const queryString = useQueryString({
+    currentPage,
+    itemsPerPage,
+    minMaxCardsCount,
+    myOrAllAuthorCards,
+  })
+
   console.log('itemsPerPage', itemsPerPage)
   console.log('currentPage', currentPage)
-
-  // const { data, isSuccess, isLoading } = useGetDecksQuery(
-  //   `currentPage=${currentPage}&itemsPerPage=${itemsPerPage}&minCardsCount=${minMaxCardsCount[0]}&maxCardsCount=${minMaxCardsCount[1]}&authorId=${myOrAllAuthorCards}`
-  // ) //!!!!!!!! Вынести в константу
-
-  const queryString = [
-    currentPage !== currentPage ? `currentPage=${currentPage}` : '',
-    itemsPerPage !== itemsPerPageValue ? `itemsPerPage=${itemsPerPage}` : '',
-    minMaxCardsCount[0] !== minCardsValue ? `minCardsCount=${minMaxCardsCount[0]}` : '',
-    minMaxCardsCount[1] !== maxCardsValue ? `maxCardsCount=${minMaxCardsCount[1]}` : '',
-    myOrAllAuthorCards !== authorCardsIDAbsent ? `authorId=${myOrAllAuthorCards}` : '',
-  ]
-    .filter(el => !!el)
-    .join('&') //!!!!!!!! Вынести в useCombineAppSelector
+  // const queryString = [
+  //   currentPage !== currentPage ? `currentPage=${currentPage}` : '',
+  //   itemsPerPage !== itemsPerPageValue ? `itemsPerPage=${itemsPerPage}` : '',
+  //   minMaxCardsCount[0] !== minCardsValue ? `minCardsCount=${minMaxCardsCount[0]}` : '',
+  //   minMaxCardsCount[1] !== maxCardsValue ? `maxCardsCount=${minMaxCardsCount[1]}` : '',
+  //   myOrAllAuthorCards !== authorCardsIDAbsent ? `authorId=${myOrAllAuthorCards}` : '',
+  // ]
+  //   .filter(el => !!el)
+  //   .join('&') //!!!!!!!! Вынести в useCombineAppSelector
 
   console.log('queryString', queryString)
 
