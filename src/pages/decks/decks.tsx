@@ -3,14 +3,18 @@ import s from './decks.module.scss'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
-import { Table } from '@/components/ui/tables/tables'
+import { Sort, Table } from '@/components/ui/tables/tables'
 import { Typography } from '@/components/ui/typography'
 import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
 import { authorCardsIDAbsent, useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
-import { currentPageReducer, myOrAllAuthorCardsReducer } from '@/service/store/deckParamsSlice.ts'
+import {
+  currentPageReducer,
+  myOrAllAuthorCardsReducer,
+  orderByReducer,
+} from '@/service/store/deckParamsSlice.ts'
 
 export const Decks = () => {
   const dispatch = useAppDispatch()
@@ -42,10 +46,18 @@ export const Decks = () => {
     // console.log('valueTabSwitch', value)
     if (value === 'myCards') {
       dispatch(myOrAllAuthorCardsReducer({ authorCards: meID }))
-      dispatch(currentPageReducer({ currentPage: 1 })) ///!!! Уточнить норм ли так переключать на 1 страницу?
+      dispatch(currentPageReducer({ currentPage: 1 }))
     } else {
       dispatch(myOrAllAuthorCardsReducer({ authorCards: authorCardsIDAbsent }))
     }
+  }
+
+  const handlerSortValue = (sort: Sort) => {
+    setSort(sort)
+    // console.log('sort.Key', `${sort?.key}-${sort?.direction}`)
+    sort?.key && sort?.direction !== undefined
+      ? dispatch(orderByReducer({ orderBy: `${sort?.key}-${sort?.direction}` }))
+      : dispatch(orderByReducer({ orderBy: '' }))
   }
 
   const pagination = !!totalPages && (
@@ -57,7 +69,6 @@ export const Decks = () => {
     />
   )
 
-  //!!!!!!!!! Вынести <div className={classNames.container}> в отдельный компонент
   return (
     <>
       {isLoading || (isFetching && <Loader />)}
@@ -67,10 +78,10 @@ export const Decks = () => {
             <Typography variant={'large'}>Packs list</Typography>
             <Button>Add new pack</Button>
           </div>
-          <DecksPanel handlerTabSwitchChangeValue={handlerTabSwitchChangeValue} />
+          <DecksPanel handlerTabSwitchChangeValue={handlerTabSwitchChangeValue} setSort={setSort} />
           <div className={classNames.tableWrapper}>
             <Table.Root>
-              <Table.Header columns={columns} sort={sort} onSort={setSort} />
+              <Table.Header columns={columns} sort={sort} onSort={handlerSortValue} />
               <Table.Body>
                 {isSuccess && sortedData.map(deck => <DeckRow key={deck.id} {...deck} />)}
               </Table.Body>
