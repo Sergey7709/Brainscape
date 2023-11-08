@@ -6,6 +6,7 @@ import { Delete } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
+import { Sort } from '@/components/ui/tables'
 import { TextField } from '@/components/ui/textField'
 import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
 import { useAppDispatch } from '@/service'
@@ -20,8 +21,9 @@ import { useDebounce } from '@/utils/functions/useDebounce.ts'
 
 type DecksPanelProps = {
   handlerTabSwitchChangeValue: (value: string) => void
+  setSort?: React.Dispatch<React.SetStateAction<Sort>>
 }
-export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => {
+export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelProps) => {
   const dispatch = useAppDispatch()
 
   const {
@@ -62,6 +64,7 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => 
     dispatch(clearFilterReducer())
     setValueForSlider([minCardsValue, maxCardsValue])
     setSearchValue('')
+    setSort?.(null)
   }
 
   const handlerValueChangeSlider = (value: number[]) => {
