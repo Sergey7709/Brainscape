@@ -18,7 +18,8 @@ export const Decks = () => {
   const { data: meData } = useGetAuthUserMeDataQuery()
   const meID = meData?.id
 
-  const { sort, setSort, sortedData, isSuccess, isLoading, data, currentPage } = useGetDataSort()
+  const { sort, setSort, sortedData, isSuccess, isLoading, data, currentPage, isFetching } =
+    useGetDataSort()
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
 
   const classNames = {
@@ -33,14 +34,15 @@ export const Decks = () => {
   }
 
   const handlerPagination = (page: number) => {
-    console.log('page', page)
+    // console.log('page', page)
     dispatch(currentPageReducer({ currentPage: page }))
   }
 
   const handlerTabSwitchChangeValue = (value: string) => {
-    console.log('valueTabSwitch', value)
+    // console.log('valueTabSwitch', value)
     if (value === 'myCards') {
       dispatch(myOrAllAuthorCardsReducer({ authorCards: meID }))
+      dispatch(dispatch(currentPageReducer({ currentPage: 1 }))) ///!!! Уточнить норм ли так переключать на 1 страницу?
     } else {
       dispatch(myOrAllAuthorCardsReducer({ authorCards: authorCardsIDAbsent }))
     }
@@ -58,7 +60,7 @@ export const Decks = () => {
   //!!!!!!!!! Вынести <div className={classNames.container}> в отдельный компонент
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading || (isFetching && <Loader />)}
       <div className={classNames.container}>
         <div className={classNames.deck}>
           <div className={classNames.head}>
