@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
   authorCardsIDAbsent,
   currentPageValue,
+  findNameValue,
   itemsPerPageValue,
   maxCardsValue,
   minCardsValue,
@@ -13,12 +14,14 @@ type InitialState = {
   itemsPerPage?: number
   minMaxCardsCount?: number[] //!!!!!!!!! доработать типизацию
   authorCards?: string
+  findName?: string
 }
 export const initialState = {
   currentPage: currentPageValue,
   itemsPerPage: itemsPerPageValue,
   minMaxCardsCount: [minCardsValue, maxCardsValue],
   authorCards: authorCardsIDAbsent,
+  findName: findNameValue,
 }
 
 const deckParamsSlice = createSlice({
@@ -34,6 +37,9 @@ const deckParamsSlice = createSlice({
     myOrAllAuthorCardsReducer: (state, action: PayloadAction<InitialState>) => {
       state.authorCards = action.payload.authorCards ?? authorCardsIDAbsent
     },
+    findNameReducer: (state, action: PayloadAction<InitialState>) => {
+      state.findName = action.payload.findName ?? findNameValue
+    },
     clearFilterReducer: () => initialState,
   },
 })
@@ -43,5 +49,6 @@ export const {
   minMaxCardsCountReducer,
   myOrAllAuthorCardsReducer,
   clearFilterReducer,
+  findNameReducer,
 } = deckParamsSlice.actions
 export default deckParamsSlice.reducer
