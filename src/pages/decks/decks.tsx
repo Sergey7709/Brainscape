@@ -42,7 +42,7 @@ export const Decks = () => {
     // console.log('valueTabSwitch', value)
     if (value === 'myCards') {
       dispatch(myOrAllAuthorCardsReducer({ authorCards: meID }))
-      dispatch(dispatch(currentPageReducer({ currentPage: 1 }))) ///!!! Уточнить норм ли так переключать на 1 страницу?
+      dispatch(currentPageReducer({ currentPage: 1 })) ///!!! Уточнить норм ли так переключать на 1 страницу?
     } else {
       dispatch(myOrAllAuthorCardsReducer({ authorCards: authorCardsIDAbsent }))
     }
