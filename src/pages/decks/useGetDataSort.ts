@@ -6,7 +6,7 @@ import { useQueryString } from '@/pages/decks/useQueryString.ts'
 import { useGetDecksQuery } from '@/service'
 
 export const useGetDataSort = () => {
-  const { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards } =
+  const { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards, findName } =
     useCombineAppSelector()
 
   const queryString = useQueryString({
@@ -14,13 +14,16 @@ export const useGetDataSort = () => {
     itemsPerPage,
     minMaxCardsCount,
     myOrAllAuthorCards,
+    findName,
   })
 
-  console.log('itemsPerPage', itemsPerPage)
+  // console.log('itemsPerPage', itemsPerPage)
   console.log('currentPage', currentPage)
-  console.log('queryString', queryString)
+  // console.log('queryString', queryString)
 
-  const { data, isSuccess, isLoading } = useGetDecksQuery(queryString)
+  const { data, isSuccess, isLoading, isFetching } = useGetDecksQuery(queryString)
+
+  // console.log('Load', isLoading, 'fetch', isFetching)
 
   const [sort, setSort] = useState<Sort>(null)
 
@@ -48,5 +51,5 @@ export const useGetDataSort = () => {
     }
   }, [sortString, data, isSuccess])
 
-  return { sort, setSort, isSuccess, sortedData, isLoading, data, currentPage }
+  return { sort, setSort, isSuccess, sortedData, isLoading, data, currentPage, isFetching }
 }
