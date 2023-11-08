@@ -39,7 +39,7 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => 
   useEffect(() => {
     // console.log('TextFieldValue', debounce)
     dispatch(findNameReducer({ findName: debounce }))
-    dispatch(currentPageReducer({ currentPage: 1 })) ///!!! Уточнить норм ли так переключать на 1 страницу?
+    dispatch(currentPageReducer({ currentPage: 1 }))
   }, [debounce])
 
   const classNames = {
@@ -51,7 +51,7 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => 
   const handlerSliderCommitValue = (value: number[]) => {
     // console.log('valueSlider', value)
     dispatch(minMaxCardsCountReducer({ minMaxCardsCount: value }))
-    dispatch(currentPageReducer({ currentPage: 1 })) ///!!! Уточнить норм ли так переключать на 1 страницу?
+    dispatch(currentPageReducer({ currentPage: 1 }))
   }
 
   const handlerTextFieldChangeValue = useCallback((value: string) => {
@@ -61,6 +61,7 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => 
   const handlerClearFilter = () => {
     dispatch(clearFilterReducer())
     setValueForSlider([minCardsValue, maxCardsValue])
+    setSearchValue('')
   }
 
   const handlerValueChangeSlider = (value: number[]) => {
@@ -78,6 +79,7 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue }: DecksPanelProps) => 
             type={'search'}
             placeholder={'Input search'}
             onValueChange={handlerTextFieldChangeValue}
+            value={searchValue}
           />
         </div>
         <TabSwitcher
