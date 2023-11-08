@@ -6,6 +6,7 @@ export const useCombineAppSelector = () => {
   const minMaxCardsCount = useAppSelector(state => state.deckReducer.minMaxCardsCount)
   const myOrAllAuthorCards = useAppSelector(state => state.deckReducer.authorCards)
   const findName = useAppSelector(state => state.deckReducer.findName)
+  const orderBy = useAppSelector(state => state.deckReducer.orderBy)
 
-  return { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards, findName }
+  return { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards, findName, orderBy }
 }
