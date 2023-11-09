@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
+import { useSearchParams } from 'react-router-dom'
+
 import s from './decks-panel.module.scss'
 
 import { Delete } from '@/assets/icons'
@@ -25,6 +27,8 @@ type DecksPanelProps = {
 }
 export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelProps) => {
   const dispatch = useAppDispatch()
+
+  const [searchParams, setSearchParams] = useSearchParams() ///!!!!
 
   const {
     minMaxCardsCount: [minCardsCount, maxCardsCount],
@@ -65,6 +69,7 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelP
     setValueForSlider([minCardsValue, maxCardsValue])
     setSearchValue('')
     setSort?.(null)
+    setSearchParams('') ////!!!!!!!!!!!!!
   }
 
   const handlerValueChangeSlider = (value: number[]) => {
