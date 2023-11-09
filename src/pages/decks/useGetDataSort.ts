@@ -1,4 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+
+import { useSearchParams } from 'react-router-dom'
 
 import { Sort } from '@/components/ui/tables'
 import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
@@ -9,6 +11,8 @@ export const useGetDataSort = () => {
   const { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards, findName, orderBy } =
     useCombineAppSelector()
 
+  const [searchParams, setSearchParams] = useSearchParams() ///!!!!!
+
   const queryString = useQueryString({
     currentPage,
     itemsPerPage,
@@ -18,13 +22,23 @@ export const useGetDataSort = () => {
     orderBy,
   })
 
-  // console.log('itemsPerPage', itemsPerPage)
-  // console.log('currentPage', currentPage)
+  useEffect(() => {
+    setSearchParams(queryString)
+    // console.log(`?${searchParams.toString()}`)
+    // console.log('searchParams', searchParams)
+    // console.log('queryString', queryString)
+  }, [queryString]) ///!!!!!
+
   // console.log('queryString', queryString)
+  // console.log(`searchParams?${searchParams.toString()}`)
 
-  const { data, isSuccess, isLoading, isFetching } = useGetDecksQuery(queryString)
+  const query = Object.keys(Object.fromEntries(searchParams)).length
+    ? `${searchParams.toString()}`
+    : queryString ///!!!!!!!!!!!
 
-  // console.log('Load', isLoading, 'fetch', isFetching)
+  console.log('query', query)
+  // const { data, isSuccess, isLoading, isFetching } = useGetDecksQuery(queryString)
+  const { data, isSuccess, isLoading, isFetching } = useGetDecksQuery(query) ///???????????????
 
   const [sort, setSort] = useState<Sort>(null)
 
