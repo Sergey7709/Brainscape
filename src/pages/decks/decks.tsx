@@ -26,6 +26,10 @@ export const Decks = () => {
     useGetDataSort()
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
 
+  // const { path } = useParams() ///!!!
+  //
+  // console.log(path) ///!!!
+
   const classNames = {
     container: s.container,
     decksPanel: s.decksPanel,
@@ -69,9 +73,15 @@ export const Decks = () => {
     />
   )
 
+  if (isLoading || isFetching) {
+    return <Loader />
+  } //!!!
+
+  console.log('Deck')
+
   return (
     <>
-      {isLoading || (isFetching && <Loader />)}
+      {/*{isLoading || (isFetching && <Loader />)}*/}
       <div className={classNames.container}>
         <div className={classNames.deck}>
           <div className={classNames.head}>
