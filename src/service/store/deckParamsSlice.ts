@@ -8,6 +8,7 @@ import {
   maxCardsValue,
   minCardsValue,
   orderByValue,
+  searchParamsQueryValue,
 } from '@/service/store/constantsForInitialValue.ts'
 
 type InitialState = {
@@ -17,6 +18,7 @@ type InitialState = {
   authorCards?: string
   findName?: string
   orderBy?: string //!!!!!!!!! доработать типизацию
+  searchParamsQuery?: string ///!!!!!!!
 }
 export const initialState = {
   currentPage: currentPageValue,
@@ -25,6 +27,7 @@ export const initialState = {
   authorCards: authorCardsIDAbsent,
   findName: findNameValue,
   orderBy: orderByValue,
+  searchParamsQuery: searchParamsQueryValue, ///!!!!!!!
 }
 
 const deckParamsSlice = createSlice({
@@ -46,6 +49,9 @@ const deckParamsSlice = createSlice({
     orderByReducer: (state, action: PayloadAction<InitialState>) => {
       state.orderBy = action.payload.orderBy ?? orderByValue
     },
+    searchParamsQuery: (state, action: PayloadAction<InitialState>) => {
+      state.searchParamsQuery = action.payload.searchParamsQuery ?? searchParamsQueryValue
+    }, //!!!!!!!!
     clearFilterReducer: () => initialState,
   },
 })
@@ -57,5 +63,6 @@ export const {
   clearFilterReducer,
   findNameReducer,
   orderByReducer,
+  searchParamsQuery, ///!!!!!
 } = deckParamsSlice.actions
 export default deckParamsSlice.reducer
