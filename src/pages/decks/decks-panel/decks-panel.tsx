@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
@@ -18,6 +18,7 @@ import {
   currentPageReducer,
   findNameReducer,
   minMaxCardsCountReducer,
+  searchParamsQuery,
 } from '@/service/store/deckParamsSlice.ts'
 import { useDebounce } from '@/utils/functions/useDebounce.ts'
 
@@ -39,14 +40,20 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelP
     [minCardsCount, maxCardsCount] || [minCardsValue, maxCardsValue]
   )
 
-  const [searchValue, setSearchValue] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('') ///!!! проверить надо ли добавить для инициации из слайса findName
   const debounce = useDebounce({ value: searchValue, milliSeconds: 700 })
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+
+      return
+    }
     // console.log('TextFieldValue', debounce)
     dispatch(findNameReducer({ findName: debounce }))
     dispatch(currentPageReducer({ currentPage: 1 }))
-  }, [debounce])
+  }, [debounce]) ///!!!!
 
   const classNames = {
     decksPanel: s.decksPanel,
@@ -69,7 +76,8 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelP
     setValueForSlider([minCardsValue, maxCardsValue])
     setSearchValue('')
     setSort?.(null)
-    setSearchParams('') ////!!!!!!!!!!!!!
+    setSearchParams('') ////!!!!!!!!!!!!! обнуляю SearchParams
+    dispatch(searchParamsQuery({ searchParamsQuery: '' })) ///!!!!!!
   }
 
   const handlerValueChangeSlider = (value: number[]) => {
