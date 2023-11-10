@@ -7,6 +7,15 @@ export const useCombineAppSelector = () => {
   const myOrAllAuthorCards = useAppSelector(state => state.deckReducer.authorCards)
   const findName = useAppSelector(state => state.deckReducer.findName)
   const orderBy = useAppSelector(state => state.deckReducer.orderBy)
+  const queryRedirect = useAppSelector(state => state.deckReducer.searchParamsQuery) ///!!!!! в комбайн
 
-  return { currentPage, itemsPerPage, minMaxCardsCount, myOrAllAuthorCards, findName, orderBy }
+  return {
+    currentPage,
+    itemsPerPage,
+    minMaxCardsCount,
+    myOrAllAuthorCards,
+    findName,
+    orderBy,
+    queryRedirect,
+  }
 }
