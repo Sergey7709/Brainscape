@@ -22,6 +22,8 @@ export const useQueryString = ({
   findName,
   orderBy,
 }: QueryString) => {
+  // console.log('currentPage', currentPage)
+
   return [
     currentPage ? `currentPage=${currentPage}` : '',
     itemsPerPage !== itemsPerPageValue ? `itemsPerPage=${itemsPerPage}` : '',
