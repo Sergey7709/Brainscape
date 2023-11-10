@@ -25,9 +25,9 @@ export const Layout = () => {
 
   const [getLogOut] = useLogoutUserMutation()
 
-  if (isLoading) {
-    return <Loader />
-  } //!!!!!!!!!!
+  // if (isLoading || isFetching) {
+  //   return <Loader />
+  // } //!!!!!!!!!!
   console.log('layout')
 
   return (
