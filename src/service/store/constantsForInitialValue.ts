@@ -5,3 +5,4 @@ export const itemsPerPageValue = 10
 export const authorCardsIDAbsent = 'allCards'
 export const findNameValue = ''
 export const orderByValue = ''
+export const searchParamsQueryValue = ''
