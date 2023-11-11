@@ -20,6 +20,7 @@ import {
   minMaxCardsCountReducer,
   searchParamsQuery,
 } from '@/service/store/deckParamsSlice.ts'
+import { useIsFirstRender } from '@/utils'
 import { useDebounce } from '@/utils/functions/useDebounce.ts'
 
 type DecksPanelProps = {
@@ -42,12 +43,10 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelP
 
   const [searchValue, setSearchValue] = useState<string>('') ///!!! проверить надо ли добавить для инициации из слайса findName
   const debounce = useDebounce({ value: searchValue, milliSeconds: 700 })
-  const isFirstRender = useRef(true)
+  const isFirstRender = useIsFirstRender()
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-
+    if (isFirstRender) {
       return
     }
     // console.log('TextFieldValue', debounce)
@@ -62,7 +61,6 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelP
   }
 
   const handlerSliderCommitValue = (value: number[]) => {
-    // console.log('valueSlider', value)
     dispatch(minMaxCardsCountReducer({ minMaxCardsCount: value }))
     dispatch(currentPageReducer({ currentPage: 1 }))
   }
