@@ -17,6 +17,8 @@ import {
 } from '@/service/store/deckParamsSlice.ts'
 
 export const Decks = () => {
+  console.log('Deck start')
+
   const dispatch = useAppDispatch()
 
   const { data: meData } = useGetAuthUserMeDataQuery()
@@ -24,6 +26,7 @@ export const Decks = () => {
 
   const { sort, setSort, sortedData, isSuccess, isLoading, data, currentPage, isFetching } =
     useGetDataSort()
+
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
 
   const classNames = {
@@ -69,15 +72,17 @@ export const Decks = () => {
     />
   )
 
-  // if (isLoading || isFetching) {
-  //   return <Loader />
-  // } //!!!
+  console.log('Deck load')
 
-  console.log('Deck')
+  if (isLoading || isFetching) {
+    return <Loader />
+  } //!!!
+
+  console.log('Deck return JSX')
 
   return (
     <>
-      {/*{isLoading || (isFetching && <Loader />)}*/}
+      {isLoading || (isFetching && <Loader />)}
       <div className={classNames.container}>
         <div className={classNames.deck}>
           <div className={classNames.head}>
