@@ -86,11 +86,10 @@ export const useGetDataSort = () => {
     currentPage && dispatch(currentPageReducer({ currentPage: Number(currentPage) }))
     authorId && dispatch(myOrAllAuthorCardsReducer({ authorCards: authorId }))
     name && dispatch(findNameReducer({ findName: name }))
-    minCardsCount &&
-      maxCardsCount &&
+    ;(minCardsCount || maxCardsCount) &&
       dispatch(
         minMaxCardsCountReducer({
-          minMaxCardsCount: [Number(minCardsCount), Number(maxCardsCount)],
+          minMaxCardsCount: [Number(minCardsCount || 0), Number(maxCardsCount || 100)], ///!!! Исправил 0 на 100 макс
         })
       )
   }, [])
