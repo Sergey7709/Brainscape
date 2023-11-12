@@ -36,6 +36,7 @@ export const Header: FC<
     'children'
   >
 > = ({ columns, sort, onSort, ...restProps }) => {
+  console.log('sort', sort)
   const classNames = {
     chevron: sort?.direction === 'asc' ? '' : s.chevron,
   }

@@ -1,26 +1,22 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
 import { Sort } from '@/components/ui/tables'
 import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
 import { useQueryString } from '@/pages/decks/useQueryString.ts'
+import { useAppDispatch, useGetDecksQuery } from '@/service'
 import {
-  useAppDispatch,
-  useAppSelector,
-  useGetAuthUserMeDataQuery,
-  useGetDecksQuery,
-} from '@/service'
-import { searchParamsQuery } from '@/service/store/deckParamsSlice.ts'
+  currentPageReducer,
+  findNameReducer,
+  minMaxCardsCountReducer,
+  myOrAllAuthorCardsReducer,
+  orderByReducer,
+  searchParamsQuery,
+} from '@/service/store/deckParamsSlice.ts'
 import { useIsFirstRender } from '@/utils'
 
 export const useGetDataSort = () => {
-  // const queryRedirect = useAppSelector(state => state.deckReducer.searchParamsQuery) ///!!!!! в комбайн
-
-  const { isSuccess: isAuthenticated } = useGetAuthUserMeDataQuery() ///!!!! Удалить
-
-  console.log('isAuthenticated', isAuthenticated)
-
   const {
     currentPage,
     itemsPerPage,
@@ -35,9 +31,6 @@ export const useGetDataSort = () => {
 
   const [searchParams, setSearchParams] = useSearchParams() ///!!!!!
 
-  console.log('searchParams', searchParams.toString())
-  console.log('queryRedirect', queryRedirect)
-
   const queryString = useQueryString({
     currentPage,
     itemsPerPage,
@@ -47,80 +40,7 @@ export const useGetDataSort = () => {
     orderBy,
   })
 
-  // console.log('queryString', queryString)
   ////!!!!!!!!!! Доделать диспатчи для сохранения при ручном обновлении
-  // useEffect(() => {
-  //   const queryUrl = searchParams.toString()
-  //
-  //   if (!queryUrl) return
-  //
-  //   const { currentPage, itemsPerPage, name, orderBy, minCardsCount, maxCardsCount, authorId } =
-  //     Object.fromEntries(searchParams)
-  //
-  //   console.log(
-  //     'searchQueryParse',
-  //     currentPage,
-  //     itemsPerPage,
-  //     name,
-  //     orderBy,
-  //     minCardsCount,
-  //     maxCardsCount,
-  //     authorId
-  //   )
-
-  // authorId && dispatch() //!!! диспатчить значения в слайс
-  // }, [])
-  ////!!!!!!!!!!
-
-  // const isFirstRender = useIsFirstRender()
-  //
-  // useEffect(() => {
-  //   if (isFirstRender) {
-  //     if (queryRedirect) {
-  //       setSearchParams(queryRedirect)
-  //     }
-  //   } else {
-  //     setSearchParams(queryString)
-  //   }
-  // }, [queryString, searchParams])
-
-  // useLayoutEffect(() => {
-  //   setSearchParams(queryString)
-  //   // console.log(queryString)
-  //   dispatch(searchParamsQuery({ searchParamsQuery: queryString })) ///!!!!!! вернуть если диспатчить из private router
-  // }, [queryString]) ///!!!!!! вернуть закомментированное в useEffect если диспатчить из private router
-
-  // useEffect(() => {
-  //   setSearchParams(queryString)
-  //   // console.log(queryString)
-  //   dispatch(searchParamsQuery({ searchParamsQuery: queryString })) ///!!!!!! вернуть если диспатчить из private router
-  // }, [queryString]) ///!!!!!! вернуть закомментированное в useEffect если диспатчить из private router
-
-  const isFirstRender = useIsFirstRender()
-
-  useEffect(() => {
-    if (isFirstRender) {
-      return
-    }
-    setSearchParams(queryString)
-    // console.log(queryString)
-    dispatch(searchParamsQuery({ searchParamsQuery: queryString })) ///!!!!!! вернуть если диспатчить из private router
-  }, [queryString]) ///!!!!!! вернуть закомментированное в useEffect если диспатчить из private router
-
-  const query = () =>
-    searchParams.toString().length ? `${searchParams.toString()}` : queryRedirect || queryString ///!!!!!!!!!!!
-
-  const resultQuery = query()
-  // const query = searchParams.toString().length ? `${searchParams.toString()}` : queryString ///!!!!!!!!!!!
-  ///!!!!!! вернуть закомментированное const query = searchParams.toString().length ? `${searchParams.toString()}` : queryString если диспатчить из private router
-
-  console.log('query', resultQuery)
-  // const query = queryRedirect || queryString ///!!!!!!!!!!! если в private router let за компонентом
-
-  // console.log('query', query)
-  // const { data, isSuccess, isLoading, isFetching } = useGetDecksQuery(queryString)
-  const { data, isSuccess, isLoading, isFetching } = useGetDecksQuery(resultQuery) ///???????????????
-
   const initialSort = useMemo(() => {
     if (!orderBy) return undefined
 
@@ -133,8 +53,89 @@ export const useGetDataSort = () => {
       direction,
     } as Sort
   }, [orderBy])
-
   const [sort, setSort] = useState<Sort>(initialSort || null)
+
+  useEffect(() => {
+    const queryUrl = searchParams.toString()
+
+    if (!queryUrl) return
+
+    const { currentPage, itemsPerPage, name, orderBy, minCardsCount, maxCardsCount, authorId } =
+      Object.fromEntries(searchParams)
+
+    // console.log(Object.fromEntries(searchParams))
+
+    console.log(
+      'searchQueryParse',
+      currentPage,
+      itemsPerPage,
+      name,
+      orderBy,
+      minCardsCount,
+      maxCardsCount,
+      authorId
+    )
+    if (orderBy) {
+      const [key, direction] = orderBy.split('-')
+      const orderByObj = { key, direction: direction as 'asc' | 'desc' }
+
+      orderBy && dispatch(orderByReducer({ orderBy: orderBy }))
+      orderBy && setSort(orderByObj)
+    }
+
+    currentPage && dispatch(currentPageReducer({ currentPage: Number(currentPage) }))
+    authorId && dispatch(myOrAllAuthorCardsReducer({ authorCards: authorId }))
+    name && dispatch(findNameReducer({ findName: name }))
+    minCardsCount &&
+      maxCardsCount &&
+      dispatch(
+        minMaxCardsCountReducer({
+          minMaxCardsCount: [Number(minCardsCount), Number(maxCardsCount)],
+        })
+      )
+  }, [])
+  ////!!!!!!!!!! Доделать диспатчи для сохранения при ручном обновлении
+
+  const isFirstRender = useIsFirstRender()
+
+  useEffect(() => {
+    if (isFirstRender) {
+      return
+    }
+    setSearchParams(queryString)
+    // console.log(queryString)
+    dispatch(searchParamsQuery({ searchParamsQuery: queryString })) ///!!!!!! вернуть если диспатчить из private router
+  }, [queryString]) ///!!!!!! вернуть закомментированное в useEffect если диспатчить из private router
+
+  console.log('searchParams', searchParams.toString())
+  console.log('queryRedirect', queryRedirect)
+  const query = () =>
+    searchParams.toString().length ? `${searchParams.toString()}` : queryRedirect || queryString ///!!!!!!!!!!!
+
+  const resultQuery = query()
+  // const query = searchParams.toString().length ? `${searchParams.toString()}` : queryString ///!!!!!!!!!!!
+  ///!!!!!! вернуть закомментированное const query = searchParams.toString().length ? `${searchParams.toString()}` : queryString если диспатчить из private router
+
+  console.log('query', resultQuery)
+
+  const { data, isSuccess, isLoading, isFetching } = useGetDecksQuery(resultQuery) ///???????????????
+
+  // const initialSort = useMemo(() => {
+  //   if (!orderBy) return undefined
+  //
+  //   const [key, direction] = orderBy.split('-')
+  //
+  //   if (!key || !direction) return undefined
+  //
+  //   return {
+  //     key,
+  //     direction,
+  //   } as Sort
+  // }, [orderBy]) ///!!!!! исходная позиция
+
+  console.log('initialSort', initialSort)
+
+  // const [sort, setSort] = useState<Sort>(initialSort || null) ///!!!!! исходная позиция
 
   const sortString: string = `${sort?.key}-${sort?.direction}`
 
@@ -160,9 +161,20 @@ export const useGetDataSort = () => {
     }
   }, [sortString, data, isSuccess])
 
-  // console.log('query', query)
-  console.log('sortedData ', sortedData)
+  // console.log('query', query)console.log('sortedData ', sortedData)
+
+  console.log('sortedData', sortedData)
   console.log('useGetDataSort')
+  console.log(
+    'searchQueryParsew',
+    currentPage,
+    // itemsPerPage,
+    // name,
+    orderBy
+    // minCardsCount,
+    // maxCardsCount,
+    // authorId
+  )
 
   return { sort, setSort, isSuccess, sortedData, isLoading, data, currentPage, isFetching }
 }

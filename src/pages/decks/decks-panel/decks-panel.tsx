@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ import { TabSwitcher } from '@/components/ui/tab-switcher'
 import { Sort } from '@/components/ui/tables'
 import { TextField } from '@/components/ui/textField'
 import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
-import { useAppDispatch } from '@/service'
+import { useAppDispatch, useAppSelector } from '@/service'
 import { maxCardsValue, minCardsValue } from '@/service/store/constantsForInitialValue.ts'
 import {
   clearFilterReducer,
@@ -27,7 +27,7 @@ type DecksPanelProps = {
   handlerTabSwitchChangeValue: (value: string) => void
   setSort?: React.Dispatch<React.SetStateAction<Sort>>
 }
-export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelProps) => {
+export const DecksPanel = memo(({ handlerTabSwitchChangeValue, setSort }: DecksPanelProps) => {
   const dispatch = useAppDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams() ///!!!!
@@ -35,20 +35,26 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelP
   const {
     minMaxCardsCount: [minCardsCount, maxCardsCount],
     myOrAllAuthorCards,
+    findName,
   } = useCombineAppSelector()
 
   const [valueForSlider, setValueForSlider] = useState<number[]>(
     [minCardsCount, maxCardsCount] || [minCardsValue, maxCardsValue]
   )
 
-  const [searchValue, setSearchValue] = useState<string>('') ///!!! проверить надо ли добавить для инициации из слайса findName
-  const debounce = useDebounce({ value: searchValue, milliSeconds: 700 })
-  const isFirstRender = useIsFirstRender()
+  const [searchValue, setSearchValue] = useState<string>(searchParams.get('name') ?? '') ///!!! проверить надо ли добавить для инициации из слайса findName
+  const debounce = useDebounce({ value: searchValue, milliSeconds: 1000 })
+
+  const isFirstRender = useIsFirstRender() ///!!!!
 
   useEffect(() => {
     if (isFirstRender) {
+      // setSearchValue(searchParams.get('name') ?? '') ///!!!!! что бы восстановить значение searchValue при перерендеренге после get запроса
+      // setSearchValue(findName) ///!!!!! что бы восстановить значение searchValue при перерендеренге после get запроса
+
       return
     }
+    console.log('name', searchParams.get('name'))
     // console.log('TextFieldValue', debounce)
     dispatch(findNameReducer({ findName: debounce }))
     dispatch(currentPageReducer({ currentPage: 1 }))
@@ -126,4 +132,4 @@ export const DecksPanel = ({ handlerTabSwitchChangeValue, setSort }: DecksPanelP
       </div>
     </>
   )
-}
+})
