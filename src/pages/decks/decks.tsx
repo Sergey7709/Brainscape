@@ -1,3 +1,8 @@
+import { useState } from 'react'
+
+import { SetURLSearchParams, URLSearchParamsInit, useSearchParams } from 'react-router-dom'
+import { object } from 'zod'
+
 import s from './decks.module.scss'
 
 import { Button } from '@/components/ui/button'
@@ -15,9 +20,12 @@ import {
   myOrAllAuthorCardsReducer,
   orderByReducer,
 } from '@/service/store/deckParamsSlice.ts'
+import { utilityForSearchParamsEdit } from '@/utils'
 
+//type Params = Record<string, string>
 export const Decks = () => {
-  console.log('Deck start')
+  // console.log('Deck start')
+  const [searchParams, setSearchParams] = useSearchParams() ///!!!!!!!!
 
   const dispatch = useAppDispatch()
 
@@ -41,18 +49,22 @@ export const Decks = () => {
   }
 
   const handlerPagination = (page: number) => {
-    // console.log('page', page)
     dispatch(currentPageReducer({ currentPage: page }))
+    utilityForSearchParamsEdit({
+      searchParams,
+      setSearchParams,
+      param: 'currentPage',
+      valueForNewParam: page.toString() ?? '',
+    })
   }
 
-  const handlerTabSwitchChangeValue = (value: string) => {
-    // console.log('valueTabSwitch', value)
-    if (value === 'myCards') {
-      dispatch(myOrAllAuthorCardsReducer({ authorCards: meID }))
-      dispatch(currentPageReducer({ currentPage: 1 }))
-    } else {
-      dispatch(myOrAllAuthorCardsReducer({ authorCards: authorCardsIDAbsent }))
-    }
+  const handlerTabSwitchChangeValue = () => {
+    utilityForSearchParamsEdit({
+      searchParams,
+      setSearchParams,
+      param: 'authorId',
+      valueForNewParam: meID ?? '',
+    })
   }
 
   const handlerSortValue = (sort: Sort) => {
@@ -74,9 +86,9 @@ export const Decks = () => {
 
   console.log('Deck load')
 
-  if (isLoading || isFetching) {
-    return <Loader />
-  } //!!!
+  // if (isLoading || isFetching) {
+  //   return <Loader />
+  // } //!!!
 
   console.log('Deck return JSX')
 
