@@ -9,23 +9,21 @@ import { searchParamsQuery } from '@/service/store/deckParamsSlice.ts'
 // let newSearch = {}
 
 export const PrivateRoutes = memo(() => {
-  console.log('privatRouter start')
-
-  const [search, setSearch] = useSearchParams()
-
-  const dispatch = useAppDispatch() ///!!!!!!
-  const queryState = useAppSelector(state => state.deckReducer.searchParamsQuery)
-
+  // console.log('privatRouter start')
+  // const [search, setSearch] = useSearchParams()
+  // const dispatch = useAppDispatch() ///!!!!!!
+  // const queryState = useAppSelector(state => state.deckReducer.searchParamsQuery)
+  //
   const { isSuccess: isAuthenticated, isLoading } = useGetAuthUserMeDataQuery()
 
-  useEffect(() => {
-    if (search.toString().length) {
-      dispatch(searchParamsQuery({ searchParamsQuery: search.toString() })) ///!!!!!!
-    }
-
-    setSearch(queryState)
-    // }, [isAuthenticated])  ///!!! было
-  }, [search])
+  // useEffect(() => {
+  //   if (search.toString().length) {
+  //     dispatch(searchParamsQuery({ searchParamsQuery: search.toString() })) ///!!!!!!
+  //   }
+  //
+  //   setSearch(queryState)
+  //   // }, [isAuthenticated])  ///!!! было
+  // }, [search])
 
   // useLayoutEffect(() => {
   //   if (search.toString().length) {
@@ -34,13 +32,13 @@ export const PrivateRoutes = memo(() => {
   //
   //   setSearch(queryState)
   // }, [search]) ////!!!!
-
+  //
   if (isLoading) {
     return <Loader />
   } //!!!!!!!!!!
 
   console.log('privatRouter JSX')
-  console.log('search.toString()', search.toString())
+  // console.log('search.toString()', search.toString())
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 })
