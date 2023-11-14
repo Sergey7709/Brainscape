@@ -1,7 +1,4 @@
-import { useState } from 'react'
-
-import { SetURLSearchParams, URLSearchParamsInit, useSearchParams } from 'react-router-dom'
-import { object } from 'zod'
+import { useSearchParams } from 'react-router-dom'
 
 import s from './decks.module.scss'
 
@@ -14,20 +11,15 @@ import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
-import { authorCardsIDAbsent, useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
-import {
-  currentPageReducer,
-  myOrAllAuthorCardsReducer,
-  orderByReducer,
-} from '@/service/store/deckParamsSlice.ts'
+import { useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
+import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
 import { utilityForSearchParamsEdit } from '@/utils'
 
-//type Params = Record<string, string>
 export const Decks = () => {
   // console.log('Deck start')
-  const [searchParams, setSearchParams] = useSearchParams() ///!!!!!!!!
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch() ////!!!!!!!!!!!!! удалить
 
   const { data: meData } = useGetAuthUserMeDataQuery()
   const meID = meData?.id
@@ -69,10 +61,19 @@ export const Decks = () => {
 
   const handlerSortValue = (sort: Sort) => {
     setSort(sort)
-    // console.log('sort.Key', `${sort?.key}-${sort?.direction}`)
     sort?.key && sort?.direction !== undefined
-      ? dispatch(orderByReducer({ orderBy: `${sort?.key}-${sort?.direction}` }))
-      : dispatch(orderByReducer({ orderBy: '' }))
+      ? utilityForSearchParamsEdit({
+          searchParams,
+          setSearchParams,
+          param: 'orderBy',
+          valueForNewParam: `${sort?.key}-${sort?.direction}`,
+        })
+      : utilityForSearchParamsEdit({
+          searchParams,
+          setSearchParams,
+          param: 'orderBy',
+          valueForNewParam: '',
+        })
   }
 
   const pagination = !!totalPages && (
@@ -84,17 +85,15 @@ export const Decks = () => {
     />
   )
 
-  console.log('Deck load')
-
   // if (isLoading || isFetching) {
   //   return <Loader />
   // } //!!!
 
-  console.log('Deck return JSX')
+  console.log('Deck load', 'Deck return JSX')
 
   return (
     <>
-      {isLoading || (isFetching && <Loader />)}
+      {(isLoading || isFetching) && <Loader />}
       <div className={classNames.container}>
         <div className={classNames.deck}>
           <div className={classNames.head}>
