@@ -47,19 +47,25 @@ export const DecksPanel = memo(({ handlerTabSwitchChangeValue, setSort }: DecksP
   const [searchValue, setSearchValue] = useState<string>(nameValueTextField ?? '') ///!!! searchParams
   const debounce = useDebounce({ value: searchValue, milliSeconds: 1000 })
 
-  const isFirstRender = useIsFirstRender() ///!!!!
+  // const isFirstRender = useIsFirstRender() ///!!!!
 
   useEffect(() => {
-    if (isFirstRender) {
-      // setSearchValue(searchParams.get('name') ?? '') ///!!!!! что бы восстановить значение searchValue при перерендеренге после get запроса
-      // setSearchValue(findName) ///!!!!! что бы восстановить значение searchValue при перерендеренге после get запроса
-
-      return
-    }
+    // if (isFirstRender) {
+    //   // setSearchValue(searchParams.get('name') ?? '') ///!!!!! что бы восстановить значение searchValue при перерендеренге после get запроса
+    //   // setSearchValue(findName) ///!!!!! что бы восстановить значение searchValue при перерендеренге после get запроса
+    //
+    //   return
+    // }
+    utilityForSearchParamsEdit({
+      searchParams,
+      setSearchParams,
+      param: 'name',
+      valueForNewParam: debounce,
+    })
     // console.log('name', searchParams.get('name'))
     // console.log('TextFieldValue', debounce)
-    dispatch(findNameReducer({ findName: debounce }))
-    dispatch(currentPageReducer({ currentPage: 1 }))
+    // dispatch(findNameReducer({ findName: debounce }))
+    // dispatch(currentPageReducer({ currentPage: 1 }))
   }, [debounce]) ///!!!!
 
   const classNames = {
