@@ -6,3 +6,4 @@ export const authorCardsIDAbsent = 'allCards'
 export const findNameValue = ''
 export const orderByValue = ''
 export const searchParamsQueryValue = ''
+export const milliSecondsValue = 1000
