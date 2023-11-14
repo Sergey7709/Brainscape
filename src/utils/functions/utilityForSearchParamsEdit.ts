@@ -1,5 +1,7 @@
 import { SetURLSearchParams } from 'react-router-dom'
 
+import { currentPageValue, maxCardsValue, minCardsValue } from '@/utils'
+
 type UtilityForSearchParamsEdit = {
   searchParams: URLSearchParams
   setSearchParams: SetURLSearchParams
@@ -8,14 +10,18 @@ type UtilityForSearchParamsEdit = {
   valueForNewParam: string
   valueForNewParam2?: string
 }
+
+const maxCardsValueString = maxCardsValue.toString()
+const currentPageValueString = currentPageValue.toString()
+
 export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) => {
   const {
     searchParams,
     setSearchParams,
     param,
-    param2 = '100',
+    param2 = maxCardsValueString,
     valueForNewParam,
-    valueForNewParam2 = '100',
+    valueForNewParam2 = maxCardsValueString,
   } = props
 
   const urlQueryParamValue = searchParams.get(param)
@@ -27,7 +33,11 @@ export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) =>
       if (urlQueryParamValue) {
         setSearchParams(restOffSearchObject)
       } else if (!urlQueryParamValue && valueForNewParam) {
-        setSearchParams({ ...restOffSearchObject, currentPage: '1', [param]: valueForNewParam })
+        setSearchParams({
+          ...restOffSearchObject,
+          currentPage: currentPageValueString,
+          [param]: valueForNewParam,
+        })
       }
 
       break
@@ -40,22 +50,22 @@ export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) =>
       break
 
     case 'minCardsCount' || 'maxCardsCount':
-      if (Number(valueForNewParam) === 0 || Number(valueForNewParam) === null) {
+      if (Number(valueForNewParam) === minCardsValue || Number(valueForNewParam) === null) {
         setSearchParams({
           ...restOffSearchObject,
-          currentPage: '1',
+          currentPage: currentPageValueString,
           maxCardsCount: valueForNewParam2,
         })
-      } else if (Number(valueForNewParam2) === 100) {
+      } else if (Number(valueForNewParam2) === maxCardsValue) {
         setSearchParams({
           ...restOffSearchObject,
-          currentPage: '1',
+          currentPage: currentPageValueString,
           minCardsCount: valueForNewParam,
         })
       } else {
         setSearchParams({
           ...restOffSearchObject,
-          currentPage: '1',
+          currentPage: currentPageValueString,
           minCardsCount: valueForNewParam,
           maxCardsCount: valueForNewParam2,
         })
@@ -65,7 +75,11 @@ export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) =>
 
     case 'name':
       if (valueForNewParam) {
-        setSearchParams({ ...restOffSearchObject, currentPage: '1', [param]: valueForNewParam })
+        setSearchParams({
+          ...restOffSearchObject,
+          currentPage: currentPageValueString,
+          [param]: valueForNewParam,
+        })
       }
       break
 
