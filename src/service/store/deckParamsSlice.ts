@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { currentPageValue } from '@/service/store/constantsForInitialValue.ts'
+import { currentPageValue } from '@/utils/constants/constantsForInitialValue.ts'
 
 type InitialState = {
   currentPage?: number
