@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { DeckType } from '@/service/decks/decks.types.ts'
 import {
   authorCardsIDAbsent,
   currentPageValue,
@@ -19,6 +20,7 @@ type InitialState = {
   findName?: string
   orderBy?: string //!!!!!!!!! доработать типизацию
   searchParamsQuery?: string ///!!!!!!!
+  sortedData?: DeckType[]
 }
 export const initialState = {
   currentPage: currentPageValue,
@@ -28,6 +30,7 @@ export const initialState = {
   findName: findNameValue,
   orderBy: orderByValue,
   searchParamsQuery: searchParamsQueryValue, ///!!!!!!!
+  sortedData: [] as DeckType[],
 }
 
 const deckParamsSlice = createSlice({
@@ -49,8 +52,11 @@ const deckParamsSlice = createSlice({
     orderByReducer: (state, action: PayloadAction<InitialState>) => {
       state.orderBy = action.payload.orderBy ?? orderByValue
     },
-    searchParamsQuery: (state, action: PayloadAction<InitialState>) => {
-      state.searchParamsQuery = action.payload.searchParamsQuery ?? searchParamsQueryValue
+    // searchParamsQuery: (state, action: PayloadAction<InitialState>) => {
+    //   state.searchParamsQuery = action.payload.searchParamsQuery ?? searchParamsQueryValue
+    // }, //!!!!!!!!
+    sortedDataReducer: (state, action: PayloadAction<InitialState>) => {
+      state.sortedData = action.payload.sortedData ?? []
     }, //!!!!!!!!
     clearFilterReducer: () => initialState,
   },
@@ -61,8 +67,9 @@ export const {
   minMaxCardsCountReducer,
   myOrAllAuthorCardsReducer,
   clearFilterReducer,
+  sortedDataReducer,
   findNameReducer,
   orderByReducer,
-  searchParamsQuery, ///!!!!!
+  // searchParamsQuery, ///!!!!!
 } = deckParamsSlice.actions
 export default deckParamsSlice.reducer
