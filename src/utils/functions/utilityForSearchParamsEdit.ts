@@ -64,6 +64,12 @@ export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) =>
 
       break
 
+    case 'name':
+      if (valueForNewParam) {
+        setSearchParams({ ...restOffSearchObject, currentPage: '1', [param]: valueForNewParam })
+      }
+      break
+
     // case 'maxCardsCount':
     //   if (Number(valueForNewParam) === 100 || Number(urlQueryParamValue) === 100) {
     //     setSearchParams(restOffSearchObject)
