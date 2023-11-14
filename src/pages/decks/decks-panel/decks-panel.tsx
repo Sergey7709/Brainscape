@@ -10,10 +10,10 @@ import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
 import { Sort } from '@/components/ui/tables'
 import { TextField } from '@/components/ui/textField'
-import { useAppDispatch } from '@/service'
-import { maxCardsValue, minCardsValue } from '@/service/store/constantsForInitialValue.ts'
+import { milliSecondsValue, useAppDispatch } from '@/service'
 import { clearFilterReducer } from '@/service/store/deckParamsSlice.ts'
 import { utilityForSearchParamsEdit } from '@/utils'
+import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
 import { useDebounce } from '@/utils/functions/useDebounce.ts'
 
 type DecksPanelProps = {
@@ -25,14 +25,14 @@ export const DecksPanel = memo(({ handlerTabSwitchChangeValue, setSort }: DecksP
 
   const [searchParams, setSearchParams] = useSearchParams()
   const nameValueTextField = searchParams.get('name') || ''
-  const minCardsCount = Number(searchParams.get('minCardsCount')) || 0
-  const maxCardsCount = Number(searchParams.get('maxCardsCount')) || 100
+  const minCardsCount = Number(searchParams.get('minCardsCount')) || minCardsValue
+  const maxCardsCount = Number(searchParams.get('maxCardsCount')) || maxCardsValue
   const myOrAllAuthorCards = searchParams.get('authorId') || 'allCards'
 
   const [valueForSlider, setValueForSlider] = useState<number[]>([minCardsCount, maxCardsCount])
 
   const [searchValue, setSearchValue] = useState<string>(nameValueTextField ?? '')
-  const debounce = useDebounce({ value: searchValue, milliSeconds: 1000 }) ///!!! Добавить пременную
+  const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
   useEffect(() => {
     utilityForSearchParamsEdit({
