@@ -32,17 +32,4 @@ export const Layout = () => {
       </div>
     </>
   )
-
-  // return (
-  //   <div className={classNames.container}>
-  //     {isLoading && <Loader />}
-  //     <Header
-  //       isAuth={isAuthenticated}
-  //       user={data === null ? undefined : data}
-  //       onSignOut={getLogOut}
-  //     />
-  //     <Outlet />
-  //     <ScrollToTopButton />
-  //   </div>
-  // )
 }
