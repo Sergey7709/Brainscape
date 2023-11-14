@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom'
 
-import { useCombineAppSelector } from '@/pages/decks/useCombineAppSelector.ts'
 import { useDataSort } from '@/pages/decks/useDataSort.ts'
 import { useGetDecksQuery } from '@/service'
+import { useCombineAppSelector } from '@/utils/functions/useCombineAppSelector.ts'
 
 export const useGetDataSort = () => {
   const { currentPage } = useCombineAppSelector()
