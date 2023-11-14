@@ -6,9 +6,7 @@ export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       getDecks: builder.query<GetEntitiesResponse<DeckType> & { maxCardsCount: number }, string>({
-        ///!!!! Исправить тип аргументов запроса
-        query: arg => `v1/decks?${arg}`, ///!!!!!!!!!!
-        // query: () => `v1/decks?orderBy=created-asc&itemsPerPage=15&currentPage=3`,
+        query: arg => `v1/decks?${arg}`,
         providesTags: ['Deck'],
       }),
       createDeck: builder.mutation<DeckType, CreateDeckRequest>({
@@ -19,8 +17,9 @@ export const decksService = baseApi.injectEndpoints({
         }),
         invalidatesTags: ['Deck'],
       }),
-      retrieveDeckById: builder.query<DeckType, string>({
+      getDeckById: builder.query<DeckType, string>({
         query: id => `v1/decks/${id}`,
+        providesTags: ['Deck'],
       }),
       updateDeck: builder.mutation<DeckType, UpdateDeckRequest>({
         query: ({ id, ...body }) => ({
@@ -44,7 +43,7 @@ export const decksService = baseApi.injectEndpoints({
 export const {
   useGetDecksQuery,
   useCreateDeckMutation,
-  useRetrieveDeckByIdQuery,
   useUpdateDeckMutation,
   useDeleteDeckMutation,
+  useGetDeckByIdQuery,
 } = decksService
