@@ -17,11 +17,10 @@ export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) =>
     valueForNewParam,
     valueForNewParam2 = '100',
   } = props
-  // const urlQueryParamValue = searchParams.get(param)
+
   const urlQueryParamValue = searchParams.get(param)
 
-  // const { [param]: _, ...restOffSearchObject } = Object.fromEntries(searchParams)
-  const { [param]: _, [param2]: __, ...restOffSearchObject } = Object.fromEntries(searchParams) ///!!!!!
+  const { [param]: _, [param2]: __, ...restOffSearchObject } = Object.fromEntries(searchParams)
 
   switch (param) {
     case 'authorId':
@@ -70,18 +69,13 @@ export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) =>
       }
       break
 
-    // case 'maxCardsCount':
-    //   if (Number(valueForNewParam) === 100 || Number(urlQueryParamValue) === 100) {
-    //     setSearchParams(restOffSearchObject)
-    //   } else if (
-    //     Number(urlQueryParamValue) !== 100 &&
-    //     Number(urlQueryParamValue) !== Number(valueForNewParam)
-    //   ) {
-    //     console.log(urlQueryParamValue, valueForNewParam)
-    //     console.log({ ...restOffSearchObject, [param]: valueForNewParam })
-    //     setSearchParams({ ...restOffSearchObject, currentPage: '1', [param]: valueForNewParam })
-    //   }
-    //   break
+    case 'orderBy':
+      if (valueForNewParam) {
+        setSearchParams({ ...restOffSearchObject, [param]: valueForNewParam })
+      } else if (!valueForNewParam) {
+        setSearchParams(restOffSearchObject)
+      }
+      break
 
     default:
       return null
