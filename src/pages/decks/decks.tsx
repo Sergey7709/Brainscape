@@ -1,27 +1,10 @@
-import { useSearchParams } from 'react-router-dom'
-
-import s from './decks.module.scss'
-
-import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
-import { Pagination } from '@/components/ui/pagination'
-import { Sort, Table } from '@/components/ui/tables/tables'
-import { Typography } from '@/components/ui/typography'
-import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckComposition } from '@/pages/decks/deck-composition/deck-composition.tsx'
-import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
-import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
-import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
-import { useAppDispatch, useGetAuthUserMeDataQuery, useGetDecksQuery } from '@/service'
-import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
-import { utilityForSearchParamsEdit } from '@/utils'
+import { utilitySearchParams } from '@/pages/decks/hooks-and-functions/utilitySearchParams.ts'
+import { useGetDecksQuery } from '@/service'
 
 export const Decks = () => {
-  // const { isLoading, isFetching } = useGetDataSort()
-
-  const [searchParams] = useSearchParams()
-  const resultQuery = `${searchParams.toString()}`
-  const { isLoading, isFetching } = useGetDecksQuery(resultQuery)
+  const { isLoading, isFetching } = useGetDecksQuery(utilitySearchParams())
 
   console.log('Deck')
   // const [searchParams, setSearchParams] = useSearchParams()
@@ -107,26 +90,11 @@ export const Decks = () => {
   //
   // console.log('Deck load', 'Deck return JSX')
 
+  // return <>{isLoading || isFetching ? <Loader /> : <DeckComposition />}</>
   return (
     <>
-      {isLoading || isFetching ? <Loader /> : <DeckComposition />}
-      {/*{(isLoading || isFetching) && <Loader />}*/}
-      {/*<div className={classNames.container}>*/}
-      {/*  <div className={classNames.deck}>*/}
-      {/*    <div className={classNames.head}>*/}
-      {/*      <Typography variant={'large'}>Packs list</Typography>*/}
-      {/*      <Button>Add new pack</Button>*/}
-      {/*    </div>*/}
-      {/*    <DecksPanel handlerTabSwitchChangeValue={handlerTabSwitchChangeValue} setSort={setSort} />*/}
-      {/*    <div className={classNames.tableWrapper}>*/}
-      {/*      <Table.Root>*/}
-      {/*        <Table.Header columns={columns} sort={sort} onSort={handlerSortValue} />*/}
-      {/*        <Table.Body>{sortedDataOrnNothing}</Table.Body>*/}
-      {/*      </Table.Root>*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*  <div className={classNames.pagination}>{pagination}</div>*/}
-      {/*</div>*/}
+      {isLoading || (isFetching && <Loader />)}
+      <DeckComposition />
     </>
   )
 }
