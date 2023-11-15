@@ -11,23 +11,7 @@ type DataSort = {
 export const useDataSort = (props: DataSort) => {
   const { isSuccess, data } = props
 
-  // const [searchParams] = useSearchParams()
-  // const urlQueryOrderByValue = searchParams.get('orderBy')
-  // const initialSort = useMemo(() => {
-  //   if (!urlQueryOrderByValue) return undefined
-  //
-  //   const [key, direction] = urlQueryOrderByValue.split('-')
-  //
-  //   if (!key || !direction) return undefined
-  //
-  //   return {
-  //     key,
-  //     direction,
-  //   } as Sort
-  // }, [urlQueryOrderByValue])
-  // const [sort, setSort] = useState<Sort>(initialSort || null)
-
-  const { sortTable: sort } = useCombineAppSelector() ///!!!!!!!!!!
+  const { sortTable: sort } = useCombineAppSelector()
 
   const sortString: string = `${sort?.key}-${sort?.direction}`
 
@@ -53,6 +37,5 @@ export const useDataSort = (props: DataSort) => {
     }
   }, [sortString, data])
 
-  // return { sortedData, sort, setSort }
   return { sortedData, sort }
 }
