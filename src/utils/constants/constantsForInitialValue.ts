@@ -7,3 +7,5 @@ export const findNameValue = ''
 export const orderByValue = ''
 export const searchParamsQueryValue = ''
 export const milliSecondsValue = 1000
+
+export const sortTableValue = null
