@@ -7,8 +7,8 @@ type UtilityForSearchParamsEdit = {
   setSearchParams: SetURLSearchParams
   param: string
   param2?: string
-  valueForNewParam: string
-  valueForNewParam2?: string
+  valueForNewParam: string | string[]
+  valueForNewParam2?: string | string[]
 }
 
 const maxCardsValueString = maxCardsValue.toString()
@@ -24,71 +24,110 @@ export const utilityForSearchParamsEdit = (props: UtilityForSearchParamsEdit) =>
     valueForNewParam2 = maxCardsValueString,
   } = props
 
-  const urlQueryParamValue = searchParams.get(param)
+  // const urlQueryParamValue = searchParams.get(param)
 
   const { [param]: _, [param2]: __, ...restOffSearchObject } = Object.fromEntries(searchParams)
 
+  // setSearchParams({
+  //   ...restOffSearchObject,
+  //   currentPage: currentPageValueString,
+  //   [param]: valueForNewParam,
+  //   [param2]: valueForNewParam2,
+  // })
   switch (param) {
     case 'authorId':
-      if (urlQueryParamValue) {
-        setSearchParams(restOffSearchObject)
-      } else if (!urlQueryParamValue && valueForNewParam) {
+      {
         setSearchParams({
           ...restOffSearchObject,
           currentPage: currentPageValueString,
           [param]: valueForNewParam,
         })
       }
+      //   // if (urlQueryParamValue) {
+      //   //   setSearchParams(restOffSearchObject)
+      //   // } else if (!urlQueryParamValue && valueForNewParam) {
+      //   //   setSearchParams({
+      //   //     ...restOffSearchObject,
+      //   //     currentPage: currentPageValueString,
+      //   //     [param]: valueForNewParam,
+      // //   //   })
+      // }
 
       break
 
     case 'currentPage':
-      if (urlQueryParamValue !== valueForNewParam) {
+      {
+        console.log('valueForNewParam', valueForNewParam)
         setSearchParams({ ...restOffSearchObject, [param]: valueForNewParam })
       }
 
-      break
-
-    case 'minCardsCount' || 'maxCardsCount':
-      if (Number(valueForNewParam) === minCardsValue || Number(valueForNewParam) === null) {
-        setSearchParams({
-          ...restOffSearchObject,
-          currentPage: currentPageValueString,
-          maxCardsCount: valueForNewParam2,
-        })
-      } else if (Number(valueForNewParam2) === maxCardsValue) {
-        setSearchParams({
-          ...restOffSearchObject,
-          currentPage: currentPageValueString,
-          minCardsCount: valueForNewParam,
-        })
-      } else {
-        setSearchParams({
-          ...restOffSearchObject,
-          currentPage: currentPageValueString,
-          minCardsCount: valueForNewParam,
-          maxCardsCount: valueForNewParam2,
-        })
-      }
+      // if (urlQueryParamValue !== valueForNewParam) {
+      //   setSearchParams({ ...restOffSearchObject, [param]: valueForNewParam })
+      // }
 
       break
+
+    case 'minCardsCount' || 'maxCardsCount': {
+      setSearchParams({
+        ...restOffSearchObject,
+        currentPage: currentPageValueString,
+        [param]: valueForNewParam,
+        [param2]: valueForNewParam2,
+      })
+      //   // if (Number(valueForNewParam) === minCardsValue || Number(valueForNewParam) === null) {
+      //   //   setSearchParams({
+      //   //     ...restOffSearchObject,
+      //   //     currentPage: currentPageValueString,
+      //   //     maxCardsCount: valueForNewParam2,
+      //   //   })
+      //   // } else if (Number(valueForNewParam2) === maxCardsValue) {
+      //   //   setSearchParams({
+      //   //     ...restOffSearchObject,
+      //   //     currentPage: currentPageValueString,
+      //   //     minCardsCount: valueForNewParam,
+      //   //   })
+      //   // } else {
+      //   //   setSearchParams({
+      //   //     ...restOffSearchObject,
+      //   //     currentPage: currentPageValueString,
+      //   //     minCardsCount: valueForNewParam,
+      //   //     maxCardsCount: valueForNewParam2,
+      //   //   })
+      //   // }
+      //
+      break
+    }
 
     case 'name':
-      if (valueForNewParam) {
+      {
         setSearchParams({
           ...restOffSearchObject,
           currentPage: currentPageValueString,
           [param]: valueForNewParam,
         })
       }
+      //   // if (valueForNewParam) {
+      //   //   setSearchParams({
+      //   //     ...restOffSearchObject,
+      //   //     currentPage: currentPageValueString,
+      //   //     [param]: valueForNewParam,
+      //   //   })
+      //
       break
 
     case 'orderBy':
-      if (valueForNewParam) {
-        setSearchParams({ ...restOffSearchObject, [param]: valueForNewParam })
-      } else if (!valueForNewParam) {
-        setSearchParams(restOffSearchObject)
+      {
+        setSearchParams({
+          ...restOffSearchObject,
+          currentPage: currentPageValueString,
+          [param]: valueForNewParam,
+        })
       }
+      // if (valueForNewParam) {
+      //   setSearchParams({ ...restOffSearchObject, [param]: valueForNewParam })
+      // } else if (!valueForNewParam) {
+      //   setSearchParams(restOffSearchObject)
+      // }
       break
 
     default:
