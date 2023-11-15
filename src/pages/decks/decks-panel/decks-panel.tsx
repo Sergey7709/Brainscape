@@ -1,4 +1,4 @@
-import { Dispatch, memo, SetStateAction, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
@@ -8,30 +8,38 @@ import { Delete } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
-import { Sort } from '@/components/ui/tables'
 import { TextField } from '@/components/ui/textField'
-import { milliSecondsValue, useAppDispatch } from '@/service'
-import { clearFilterReducer } from '@/service/store/deckParamsSlice.ts'
-import { utilityForSearchParamsEdit } from '@/utils'
+import { milliSecondsValue, useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
+import {
+  clearFilterReducer,
+  findNameReducer,
+  minMaxCardsCountReducer,
+} from '@/service/store/deckParamsSlice.ts'
+import { useCombineAppSelector, utilityForSearchParamsEdit } from '@/utils'
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
 import { useDebounce } from '@/utils/functions/useDebounce.ts'
 
-type DecksPanelProps = {
-  handlerTabSwitchChangeValue: (value: string) => void
-  setSort?: Dispatch<SetStateAction<Sort>>
-}
-export const DecksPanel = memo(({ handlerTabSwitchChangeValue, setSort }: DecksPanelProps) => {
-  const dispatch = useAppDispatch() ////!!!!!!!!!!!!! удалить
+// type DecksPanelProps = {
+//   setSort?: Dispatch<SetStateAction<Sort>>
+// }
+// export const DecksPanel = memo(({ setSort }: DecksPanelProps) => {
+export const DecksPanel = memo(() => {
+  const dispatch = useAppDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams()
-  const nameValueTextField = searchParams.get('name') || ''
-  const minCardsCount = Number(searchParams.get('minCardsCount')) || minCardsValue
-  const maxCardsCount = Number(searchParams.get('maxCardsCount')) || maxCardsValue
+  // const nameValueTextField = searchParams.get('name') || ''
+  // const minCardsCount = Number(searchParams.get('minCardsCount')) || minCardsValue
+  // const maxCardsCount = Number(searchParams.get('maxCardsCount')) || maxCardsValue
   const myOrAllAuthorCards = searchParams.get('authorId') || 'allCards'
 
-  const [valueForSlider, setValueForSlider] = useState<number[]>([minCardsCount, maxCardsCount])
+  const { data: meData } = useGetAuthUserMeDataQuery()
+  const meID = meData?.id ?? ''
 
-  const [searchValue, setSearchValue] = useState<string>(nameValueTextField ?? '')
+  const { searchValue, valueForSlider } = useCombineAppSelector()
+
+  // const [valueForSlider, setValueForSlider] = useState<number[]>([minCardsCount, maxCardsCount])
+  // const [searchValue, setSearchValue] = useState<string>('')
+
   const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
   useEffect(() => {
@@ -39,8 +47,9 @@ export const DecksPanel = memo(({ handlerTabSwitchChangeValue, setSort }: DecksP
       searchParams,
       setSearchParams,
       param: 'name',
-      valueForNewParam: debounce,
+      valueForNewParam: debounce ? debounce : [],
     })
+    console.log('debounce', debounce)
   }, [debounce])
 
   const classNames = {
@@ -55,24 +64,34 @@ export const DecksPanel = memo(({ handlerTabSwitchChangeValue, setSort }: DecksP
       setSearchParams,
       param: 'minCardsCount',
       param2: 'maxCardsCount',
-      valueForNewParam: value[0].toString(),
-      valueForNewParam2: value[1].toString(),
+      valueForNewParam: value[0] === 0 ? [] : value[0].toString(), ////!!!!!!
+      valueForNewParam2: value[1] === 100 ? [] : value[1].toString(), ///!!!!
     })
   }
   const handlerValueChangeSlider = (value: number[]) => {
-    setValueForSlider(value)
+    // setValueForSlider(value)
+    dispatch(minMaxCardsCountReducer({ minMaxCardsCount: value }))
   }
 
   const handlerTextFieldChangeValue = useCallback((value: string) => {
-    setSearchValue(value)
+    // setSearchValue(value)
+    dispatch(findNameReducer({ findName: value }))
   }, [])
 
   const handlerClearFilter = () => {
     dispatch(clearFilterReducer()) ////!!!!!!!!!!!!! удалить
-    setValueForSlider([minCardsValue, maxCardsValue])
-    setSearchValue('')
-    setSort?.(null)
+    // setValueForSlider([minCardsValue, maxCardsValue])
+    // setSearchValue('')
+    // setSort?.(null)
     setSearchParams('')
+  }
+  const handlerTabSwitchChangeValue = (value: string | string[]) => {
+    utilityForSearchParamsEdit({
+      searchParams,
+      setSearchParams,
+      param: 'authorId',
+      valueForNewParam: value,
+    })
   }
 
   return (
@@ -99,7 +118,7 @@ export const DecksPanel = memo(({ handlerTabSwitchChangeValue, setSort }: DecksP
               value: 'allCards',
             },
           ]}
-          onValueChange={handlerTabSwitchChangeValue}
+          onValueChange={value => handlerTabSwitchChangeValue(value === 'myCards' ? meID : [])} ////!!!!! Исправить
         />
         <Slider
           className={classNames.slider}
