@@ -1,7 +1,5 @@
 import { memo } from 'react'
 
-import { useSearchParams } from 'react-router-dom'
-
 import s from './../decks.module.scss'
 
 import { Button } from '@/components/ui/button'
@@ -17,16 +15,11 @@ import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
 import { useCombineAppSelector, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const DeckComposition = memo(() => {
-  // const [searchParams, setSearchParams] = useSearchParams()
-
   const { currentPage } = useCombineAppSelector()
 
   const dispatch = useAppDispatch()
 
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
-
-  // const { data: meData } = useGetAuthUserMeDataQuery()
-  // const meID = meData?.id
 
   const { sort, sortedData, isSuccess, isFetching, data } = useGetDataSort()
 
@@ -46,34 +39,15 @@ export const DeckComposition = memo(() => {
   const handlerPagination = (page: number) => {
     dispatch(currentPageReducer({ currentPage: page }))
     utilityForSearchParamsEdit({
-      // searchParams,
-      // setSearchParams,
       param: 'currentPage',
       valueForNewParam: page.toString() ?? '',
     })
   }
 
   const handlerSortValue = (sort: Sort) => {
-    // setSort(sort)
-
-    dispatch(sortTableReducer({ sortTable: sort })) ///!!!!!!
-    // sort?.key && sort?.direction !== undefined
-    //   ? utilityForSearchParamsEdit({
-    //       searchParams,
-    //       setSearchParams,
-    //       param: 'orderBy',
-    //       valueForNewParam: `${sort?.key}-${sort?.direction}`,
-    //     })
-    //   : utilityForSearchParamsEdit({
-    //       searchParams,
-    //       setSearchParams,
-    //       param: 'orderBy',
-    //       valueForNewParam: '',
-    //     })
+    dispatch(sortTableReducer({ sortTable: sort }))
 
     utilityForSearchParamsEdit({
-      // searchParams,
-      // setSearchParams,
       param: 'orderBy',
       valueForNewParam:
         sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
@@ -89,17 +63,6 @@ export const DeckComposition = memo(() => {
     />
   )
 
-  // const sortedDataOrnNothing =
-  //   isSuccess && sortedData.length ? (
-  //     sortedData.map(deck => <DeckRow key={deck.id} {...deck} />)
-  //   ) : (
-  //     <tr>
-  //       <td className={s.td} colSpan={5}>
-  //         <p className={s.textNoData}>Упс... данные отсутствуют</p>
-  //       </td>
-  //     </tr>
-  //   ) ///!!!! Переделать т.к. вылазит во время загрузке
-
   const sortedDataOrnNothing =
     (isSuccess &&
       sortedData.length &&
@@ -110,7 +73,7 @@ export const DeckComposition = memo(() => {
           <p className={s.textNoData}>Упс... данные отсутствуют</p>
         </td>
       </tr>
-    )) ///!!!! Переделать т.к. вылазит во время загрузке
+    ))
 
   return (
     <div className={classNames.container}>
@@ -119,7 +82,6 @@ export const DeckComposition = memo(() => {
           <Typography variant={'large'}>Packs list</Typography>
           <Button>Add new pack</Button>
         </div>
-        {/*<DecksPanel setSort={setSort} />*/}
         <DecksPanel />
         <div className={classNames.tableWrapper}>
           <Table.Root>
