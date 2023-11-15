@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { useSearchParams } from 'react-router-dom'
 
 import s from './../decks.module.scss'
@@ -9,23 +11,22 @@ import { Typography } from '@/components/ui/typography'
 import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
-import { useGetDataSort } from '@/pages/decks/useGetDataSort.ts'
-import { useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
+import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
+import { sortTableReducer, useAppDispatch } from '@/service'
 import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
-import { utilityForSearchParamsEdit } from '@/utils'
+import { useCombineAppSelector, utilityForSearchParamsEdit } from '@/utils'
 
-// type  DeckCompositionProps = {
-//     handlerPagination:
-// }
-export const DeckComposition = () => {
+export const DeckComposition = memo(() => {
   const [searchParams, setSearchParams] = useSearchParams()
+
+  const { currentPage } = useCombineAppSelector()
 
   const dispatch = useAppDispatch() ////!!!!!!!!!!!!! удалить
 
-  const { data: meData } = useGetAuthUserMeDataQuery()
-  const meID = meData?.id
+  // const { data: meData } = useGetAuthUserMeDataQuery()
+  // const meID = meData?.id
 
-  const { sort, setSort, sortedData, isSuccess, data, currentPage } = useGetDataSort()
+  const { sort, sortedData, isSuccess, data } = useGetDataSort()
 
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
 
@@ -50,30 +51,31 @@ export const DeckComposition = () => {
     })
   }
 
-  const handlerTabSwitchChangeValue = () => {
+  const handlerSortValue = (sort: Sort) => {
+    // setSort(sort)
+    console.log('sort', sort)
+    dispatch(sortTableReducer({ sortTable: sort })) ///!!!!!!
+    // sort?.key && sort?.direction !== undefined
+    //   ? utilityForSearchParamsEdit({
+    //       searchParams,
+    //       setSearchParams,
+    //       param: 'orderBy',
+    //       valueForNewParam: `${sort?.key}-${sort?.direction}`,
+    //     })
+    //   : utilityForSearchParamsEdit({
+    //       searchParams,
+    //       setSearchParams,
+    //       param: 'orderBy',
+    //       valueForNewParam: '',
+    //     })
+
     utilityForSearchParamsEdit({
       searchParams,
       setSearchParams,
-      param: 'authorId',
-      valueForNewParam: meID ?? '',
+      param: 'orderBy',
+      valueForNewParam:
+        sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
     })
-  }
-
-  const handlerSortValue = (sort: Sort) => {
-    setSort(sort)
-    sort?.key && sort?.direction !== undefined
-      ? utilityForSearchParamsEdit({
-          searchParams,
-          setSearchParams,
-          param: 'orderBy',
-          valueForNewParam: `${sort?.key}-${sort?.direction}`,
-        })
-      : utilityForSearchParamsEdit({
-          searchParams,
-          setSearchParams,
-          param: 'orderBy',
-          valueForNewParam: '',
-        })
   }
 
   const pagination = !!totalPages && (
@@ -85,14 +87,16 @@ export const DeckComposition = () => {
     />
   )
 
-  // const sortedDataOrnNothing =
-  //   isSuccess && sortedData.length ? (
-  //     sortedData.map(deck => <DeckRow key={deck.id} {...deck} />)
-  //   ) : (
-  //     <div className={s.noData}>
-  //       <p className={s.textNoData}>Упс... данные отсутствуют</p>
-  //     </div>
-  //   )
+  const sortedDataOrnNothing =
+    isSuccess && sortedData.length ? (
+      sortedData.map(deck => <DeckRow key={deck.id} {...deck} />)
+    ) : (
+      <tr>
+        <td className={s.td} colSpan={5}>
+          <p className={s.textNoData}>Упс... данные отсутствуют</p>
+        </td>
+      </tr>
+    ) ///!!!! Переделать т.к. вылазит во время загрузке
 
   return (
     <div className={classNames.container}>
@@ -101,23 +105,16 @@ export const DeckComposition = () => {
           <Typography variant={'large'}>Packs list</Typography>
           <Button>Add new pack</Button>
         </div>
-        <DecksPanel handlerTabSwitchChangeValue={handlerTabSwitchChangeValue} setSort={setSort} />
+        {/*<DecksPanel setSort={setSort} />*/}
+        <DecksPanel />
         <div className={classNames.tableWrapper}>
           <Table.Root>
             <Table.Header columns={columns} sort={sort} onSort={handlerSortValue} />
-            <Table.Body>
-              {isSuccess && sortedData.length ? (
-                sortedData.map(deck => <DeckRow key={deck.id} {...deck} />)
-              ) : (
-                <div className={s.noData}>
-                  <p className={s.textNoData}>Упс... данные отсутствуют</p>
-                </div>
-              )}
-            </Table.Body>
+            <Table.Body>{sortedDataOrnNothing}</Table.Body>
           </Table.Root>
         </div>
       </div>
       <div className={classNames.pagination}>{pagination}</div>
     </div>
   )
-}
+})
