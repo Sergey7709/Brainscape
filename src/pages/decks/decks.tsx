@@ -91,6 +91,7 @@ export const Decks = () => {
   // console.log('Deck load', 'Deck return JSX')
 
   // return <>{isLoading || isFetching ? <Loader /> : <DeckComposition />}</>
+  ///!!!! Исправить загрузку и debounce!
   return (
     <>
       {isLoading || (isFetching && <Loader />)}
