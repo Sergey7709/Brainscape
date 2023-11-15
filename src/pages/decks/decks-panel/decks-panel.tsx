@@ -15,7 +15,7 @@ import {
   findNameReducer,
   minMaxCardsCountReducer,
 } from '@/service/store/deckParamsSlice.ts'
-import { useCombineAppSelector, utilityForSearchParamsEdit } from '@/utils'
+import { useCombineAppSelector, useUtilityForSearchParamsEdit } from '@/utils'
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
 import { useDebounce } from '@/utils/functions/useDebounce.ts'
 
@@ -27,6 +27,9 @@ export const DecksPanel = memo(() => {
   const dispatch = useAppDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams()
+
+  const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
+
   // const nameValueTextField = searchParams.get('name') || ''
   // const minCardsCount = Number(searchParams.get('minCardsCount')) || minCardsValue
   // const maxCardsCount = Number(searchParams.get('maxCardsCount')) || maxCardsValue
@@ -43,14 +46,13 @@ export const DecksPanel = memo(() => {
   const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
   useEffect(() => {
-    utilityForSearchParamsEdit({
-      searchParams,
-      setSearchParams,
-      param: 'name',
-      valueForNewParam: debounce ? debounce : [],
-    })
+    debounce &&
+      utilityForSearchParamsEdit({
+        param: 'name',
+        valueForNewParam: debounce ? debounce : [],
+      })
     console.log('debounce', debounce)
-  }, [debounce])
+  }, [debounce]) ///!!!! Исправить!
 
   const classNames = {
     decksPanel: s.decksPanel,
@@ -60,8 +62,8 @@ export const DecksPanel = memo(() => {
 
   const handlerSliderCommitValue = (value: number[]) => {
     utilityForSearchParamsEdit({
-      searchParams,
-      setSearchParams,
+      // searchParams,
+      // setSearchParams,
       param: 'minCardsCount',
       param2: 'maxCardsCount',
       valueForNewParam: value[0] === 0 ? [] : value[0].toString(), ////!!!!!!
@@ -87,8 +89,8 @@ export const DecksPanel = memo(() => {
   }
   const handlerTabSwitchChangeValue = (value: string | string[]) => {
     utilityForSearchParamsEdit({
-      searchParams,
-      setSearchParams,
+      // searchParams,
+      // setSearchParams,
       param: 'authorId',
       valueForNewParam: value,
     })
