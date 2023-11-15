@@ -3,8 +3,6 @@ import { useSearchParams } from 'react-router-dom'
 import { currentPageValue, maxCardsValue } from '@/utils'
 
 type UseUtilityForSearchParamsEdit = {
-  // searchParams: URLSearchParams
-  // setSearchParams: SetURLSearchParams
   param: string
   param2?: string
   valueForNewParam: string | string[]
@@ -19,8 +17,6 @@ export const useUtilityForSearchParamsEdit = () => {
 
   return (props: UseUtilityForSearchParamsEdit) => {
     const {
-      // searchParams,
-      // setSearchParams,
       param,
       param2 = maxCardsValueString,
       valueForNewParam,
