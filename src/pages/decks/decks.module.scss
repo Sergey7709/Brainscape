@@ -31,16 +31,19 @@
   justify-content: start;
   width: 1006px; }///!!!!!!!! исправить для адаптива
 
-.noData {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  width: 100%;
+
 
   .textNoData {
     font-weight: 700;
     color: var(--color-danger-500);
   }
-  }
 
 
+.td {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: 2rem;
+}
