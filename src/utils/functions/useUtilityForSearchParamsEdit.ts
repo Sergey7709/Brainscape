@@ -46,16 +46,16 @@ export const useUtilityForSearchParamsEdit = () => {
 
         break
 
-      case 'minCardsCount' || 'maxCardsCount': {
-        setSearchParams({
-          ...restOffSearchObject,
-          currentPage: currentPageValueString,
-          [param]: valueForNewParam,
-          [param2]: valueForNewParam2,
-        })
-
+      case 'minCardsCount' || 'maxCardsCount':
+        {
+          setSearchParams({
+            ...restOffSearchObject,
+            currentPage: currentPageValueString,
+            [param]: valueForNewParam,
+            [param2]: valueForNewParam2,
+          })
+        }
         break
-      }
 
       case 'name':
         {
