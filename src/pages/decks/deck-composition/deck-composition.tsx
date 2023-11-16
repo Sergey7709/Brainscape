@@ -12,7 +12,7 @@ import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
-import { currentPageValue, itemsPerPageValue, sortTableReducer, useAppDispatch } from '@/service'
+import { currentPageValue, sortTableReducer, useAppDispatch } from '@/service'
 import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
 import { useUtilityForSearchParamsEdit } from '@/utils'
 
@@ -67,38 +67,19 @@ export const DeckComposition = memo(() => {
     />
   )
 
-  const sortedDataOrnNothing =
+  const sortedDataOrNothing =
     (isSuccess &&
       sortedData.length &&
       sortedData.map(deck => <DeckRow key={deck.id} {...deck} />)) ||
-    (!isFetching && !sortedData.length && (
-      <tr className={s.td}>
-        <td className={s.td} colSpan={5}>
-          <p className={s.textNoData}>Упс... данные отсутствуют</p>
-        </td>
-      </tr>
-    ))
-
-  const skeleton =
-    isFetching &&
-    new Array((!sortedData.length && 1) || itemsPerPageValue)
-      .fill(1)
-      .map((_, index) => (
-        <DeckRow
-          key={index}
-          name={'Loading'}
-          cardsCount={0}
-          updated={new Date()}
-          author={{ id: index.toString(), name: 'Loading' }}
-          userId={index.toString()}
-          shots={0}
-          rating={0}
-          cover={''}
-          id={index.toString()}
-          isPrivate={true}
-          created={''}
-        />
-      ))
+    (!isFetching &&
+      !sortedData.length &&
+      new Array(1).fill(1).map((_, index) => (
+        <tr key={index} className={s.td}>
+          <td colSpan={5}>
+            <p className={s.textNoData}>Упс... данные отсутствуют</p>
+          </td>
+        </tr>
+      )))
 
   return (
     <div className={classNames.container}>
@@ -111,15 +92,13 @@ export const DeckComposition = memo(() => {
         <div className={classNames.tableWrapper}>
           <Table.Root>
             <Table.Header columns={columns} sort={sort} onSort={handlerSortValue} />
-            {!isFetching && isSuccess ? (
-              <Table.Body>{sortedDataOrnNothing}</Table.Body>
-            ) : (
-              <Table.Body>{skeleton}</Table.Body>
-            )}
+            {<Table.Body>{sortedDataOrNothing}</Table.Body>}
           </Table.Root>
         </div>
       </div>
-      <div className={classNames.pagination}>{pagination}</div>
+      <div className={classNames.pagination}>
+        {!isFetching && isSuccess && (totalPages || 1) > 1 && pagination}
+      </div>
     </div>
   )
 })
