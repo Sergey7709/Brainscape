@@ -11,6 +11,7 @@
 
 .deck {
   width: 1006px; ///!!!!!!!! исправить для адаптива
+  height: 100vh;
 }
 
 .head {
@@ -36,6 +37,7 @@
   .textNoData {
     font-weight: 700;
     color: var(--color-danger-500);
+
   }
 
 
@@ -45,5 +47,11 @@
   justify-content: center;
 
   width: 100%;
-  padding: 2rem;
+
+  border: 1px solid  var(--color-dark-500);
+
+
+
+
+  //padding: 2rem;
 }
