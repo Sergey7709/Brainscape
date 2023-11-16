@@ -41,15 +41,6 @@ export const DecksPanel = memo(() => {
     Number(searchParams.get('minCardsCount') || valueForSlider[0]),
     Number(searchParams.get('maxCardsCount') || valueForSlider[1]),
   ]
-  // const storeValueForSlider =
-  //   valueForSlider[0] !== minCardsValue && valueForSlider[1] !== maxCardsValue
-  //     ? valueForSlider
-  //     : minMaxCardsUrlValue
-
-  // const actualValueSlider =
-  //   isFirstRender && dispatch(minMaxCardsCountReducer({ minMaxCardsCount: minMaxCardsUrlValue }))
-  //     ? minMaxCardsUrlValue
-  //     : valueForSlider
 
   const actualValueSlider = isFirstRender
     ? dispatch(minMaxCardsCountReducer({ minMaxCardsCount: minMaxCardsUrlValue })) &&
@@ -84,10 +75,9 @@ export const DecksPanel = memo(() => {
     dispatch(minMaxCardsCountReducer({ minMaxCardsCount: value }))
   }
 
-  const handlerTextFieldChangeValue = useCallback((value: string) => {
+  const handlerTextFieldChangeValue = (value: string) => {
     dispatch(findNameReducer({ findName: value }))
-  }, [])
-
+  }
   const handlerClearFilter = () => {
     dispatch(clearFilterReducer())
     setSearchParams('')
@@ -131,7 +121,7 @@ export const DecksPanel = memo(() => {
           min={minCardsValue}
           max={maxCardsValue}
           onValueCommit={handlerSliderCommitValue}
-          value={actualValueSlider} ///!!!!!
+          value={actualValueSlider}
           onValueChange={handlerValueChangeSlider}
         />
         <Button variant={'secondary'} onClick={handlerClearFilter}>
