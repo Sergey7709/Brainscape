@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
