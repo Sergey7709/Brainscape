@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 
+import Home from '../pages/home/home.tsx'
+
 import { Layout } from '@/components/layout'
 import { CreateNewPassword } from '@/pages/create-new-password'
 import { Decks } from '@/pages/decks/decks.tsx'
@@ -12,6 +14,10 @@ import { VerifyEmail } from '@/pages/verify-email'
 import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 
 const publicRoutes: RouteObject[] = [
+  {
+    path: '/',
+    element: <Home />,
+  }, ///!!!!!!!!!!!!!!!!!!!!!! доделать роут
   {
     path: '/login',
     element: <Login />,
@@ -39,12 +45,16 @@ const publicRoutes: RouteObject[] = [
 ]
 
 const privateRoutes: RouteObject[] = [
+  // {
+  //   path: '/',
+  //   element: <Home />,
+  // },
   {
     path: '/profile',
     element: <Profile />,
   },
   {
-    path: '/',
+    path: '/deck',
     element: <Decks />,
   },
 ]
