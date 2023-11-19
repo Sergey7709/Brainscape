@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 import s from './layout.module.scss'
 
@@ -16,7 +16,14 @@ export const Layout = () => {
 
   const [getLogOut] = useLogoutUserMutation()
 
-  console.log('layout', isAuthenticated)
+  const navigate = useNavigate()
+
+  const logOut = () => {
+    getLogOut()
+    navigate('/greeting')
+  }
+
+  // console.log('layout', isAuthenticated, 'isLoading', isLoading, 'data', data)
 
   return (
     <>
@@ -25,7 +32,7 @@ export const Layout = () => {
         <Header
           isAuth={isAuthenticated}
           user={data === null ? undefined : data}
-          onSignOut={getLogOut}
+          onSignOut={logOut}
         />
         <Outlet />
         <ScrollToTopButton />
