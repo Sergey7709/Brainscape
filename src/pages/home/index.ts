@@ -1,3 +1,3 @@
 // export * from './home.tsx'
-export * from './greeting .tsx' ///!!!!!!!!!!
-export * from './home-Authorized.tsx' ///!!!!!!!!!!
+export * from './greetingNonAuthorized.tsx' ///!!!!!!!!!!
+export * from './greetingAuthorized.tsx' ///!!!!!!!!!!
