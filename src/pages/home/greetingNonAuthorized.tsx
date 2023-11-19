@@ -7,7 +7,7 @@ import { Typography } from '@/components/ui/typography'
 import { VideoComponent } from '@/components/ui/VideoPlayer'
 import s from '@/pages/home/home.module.scss'
 
-export const Greeting = () => {
+export const GreetingNonAuthorized = () => {
   console.log('greeting')
 
   return (
