@@ -4,6 +4,8 @@ import { Layout } from '@/components/layout'
 import { CreateNewPassword } from '@/pages/create-new-password'
 import { Decks } from '@/pages/decks/decks.tsx'
 import { Error404 } from '@/pages/Error404'
+import { GreetingNonAuthorized } from '@/pages/home'
+import { GreetingAuthorized } from '@/pages/home/greetingAuthorized.tsx'
 import { Login } from '@/pages/login'
 import { PasswordRecovery } from '@/pages/password-recovery'
 import { Profile } from '@/pages/profile'
@@ -12,6 +14,10 @@ import { VerifyEmail } from '@/pages/verify-email'
 import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 
 const publicRoutes: RouteObject[] = [
+  {
+    path: '/greeting',
+    element: <GreetingNonAuthorized />,
+  },
   {
     path: '/login',
     element: <Login />,
@@ -40,11 +46,15 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
+    path: '/',
+    element: <GreetingAuthorized />,
+  },
+  {
     path: '/profile',
     element: <Profile />,
   },
   {
-    path: '/',
+    path: '/deck',
     element: <Decks />,
   },
 ]
@@ -63,4 +73,4 @@ const router = createBrowserRouter([
   },
 ])
 
-export const Router = () => <RouterProvider router={router}/>
+export const Router = () => <RouterProvider router={router} />
