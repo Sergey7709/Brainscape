@@ -17,7 +17,7 @@ const publicRoutes: RouteObject[] = [
   {
     path: '/greeting',
     element: <GreetingNonAuthorized />,
-  }, ///!!!!!!!!!!!!!!!!!!!!!! доделать роут
+  },
   {
     path: '/login',
     element: <Login />,
@@ -48,7 +48,7 @@ const privateRoutes: RouteObject[] = [
   {
     path: '/',
     element: <GreetingAuthorized />,
-  }, ///!!!!!!!!!!!!!!!!!!!!!! доделать роут
+  },
   {
     path: '/profile',
     element: <Profile />,

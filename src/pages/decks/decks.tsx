@@ -7,7 +7,7 @@ export const Decks = () => {
   const { isLoading, isFetching } = useGetDecksQuery(utilitySearchParams())
 
   console.log('Deck')
-  window.scrollTo(0, 0) ///!!!!!!!!!!
+  window.scrollTo(0, 0)
 
   return (
     <>

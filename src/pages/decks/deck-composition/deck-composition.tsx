@@ -23,12 +23,9 @@ export const DeckComposition = memo(() => {
 
   const [searchParams] = useSearchParams()
 
-  // const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
-  const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue ///!!!!!!!!!!
+  const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
 
-  // const { sort, sortedData, isSuccess, isFetching, data, isLoading } = useGetDataSort()
   const { sort, isSuccess, isFetching, data } = useGetDataSort()
-  // const { isSuccess, isFetching, data } = useGetDataSort()
 
   const isFirstRender = useIsFirstRender()
 
@@ -81,24 +78,10 @@ export const DeckComposition = memo(() => {
 
   const sortedDataOrNothing = useMemo(
     () =>
-      // (isSuccess &&
-      //   sortedData.length &&
-      //   sortedData.map(deck => <DeckRow key={deck.id} {...deck} />)) ||
-      // sortedData.map(deck => <DeckRow key={deck.id} {...deck} />) ||
-      // (!isFetching &&
-      //   !sortedData.length &&
-      //   new Array(1).fill(1).map((_, index) => (
-      //     <tr key={index} className={s.td}>
-      //       <td colSpan={5}>
-      //         <p className={s.textNoData}>Упс... данные отсутствуют</p>
-      //       </td>
-      //     </tr>
-      //   ))),[sortedData]
       (!!data?.items.length && data?.items.map(deck => <DeckRow key={deck.id} {...deck} />)) ||
       (!data?.items.length && !isFirstRender && renderNoData()),
     [data]
   )
-  // console.log('sortedDataOrNothing ', sortedDataOrNothing)
 
   return (
     <div className={classNames.container}>
