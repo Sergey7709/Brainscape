@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import s from './profile.module.scss'
 
@@ -13,6 +13,8 @@ import { useGetAuthUserMeDataQuery, useLogoutUserMutation } from '@/service'
 export const Profile = memo(() => {
   const { data } = useGetAuthUserMeDataQuery()
   const [logOut] = useLogoutUserMutation()
+
+  const navigate = useNavigate()
 
   const { utilityFormData, isLoading } = useUtilityFormData()
 
@@ -51,8 +53,14 @@ export const Profile = memo(() => {
         />
       )}
       <div className={s.button}>
-        <Button variant={'tertiary'} as={NavLink} to={'/'} className={s.btn} fullWidth>
-          Back to main page
+        <Button
+          variant={'tertiary'}
+          as={'button'}
+          onClick={() => navigate(-1)}
+          className={s.btn}
+          fullWidth
+        >
+          Back to previous page
         </Button>
       </div>
     </div>

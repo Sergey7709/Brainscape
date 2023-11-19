@@ -40,8 +40,10 @@
     }
 
     &.selected {
+      pointer-events: none;///!!!!!!!!!!!!
       color: var(--color-dark-900);
       background-color: var(--color-light-100);
+
     }
 
     &.disabled {

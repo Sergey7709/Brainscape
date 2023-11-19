@@ -29,12 +29,16 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       label,
       onChange,
       onValueChange,
+      value,
       ...restProps
     },
     ref
   ) => {
     const [showPassword, setShowPassword] = useState(false)
-    const [inputValue, setInputValue] = useState<string>('')
+
+    const [localValue, setLocalValue] = useState<string>('')
+
+    const inputValue = value ?? localValue
 
     const isShowPasswordButtonShown = type === 'password'
     const isSearchInput = type === 'search'
@@ -42,13 +46,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const finalType = getFinalType(type, showPassword)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.target.value)
+      setLocalValue(e.target.value)
       onChange?.(e)
       onValueChange?.(e.target.value)
     }
 
     const clearHandler = () => {
-      setInputValue('')
+      setLocalValue('')
       onValueChange?.('')
     }
 

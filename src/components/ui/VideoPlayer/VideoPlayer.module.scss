@@ -1,0 +1,75 @@
+//.videoContainer {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//
+//  width: 100%;
+//  height:100%;
+//}
+//
+//.videoFrame {
+//  cursor: pointer;
+//  width: 640px;
+//  height: 360px;///!!!!! Исправить на адаптивность
+//
+//
+//}
+
+.videoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height:100%;
+}
+
+.videoFrame {
+  cursor: pointer;
+  width: 640px;
+  height: 360px;
+}
+
+.loader {
+  width: 640px;
+  height: 360px;
+
+  background-color: white;
+
+  //width: 640px;
+  //height: 360px;
+  //background: #4f3596;
+  //animation: shimmer 1.5s infinite;
+
+  //animation: pulse 0.5s infinite ease-in-out;
+  background-image: linear-gradient(
+                  90deg,
+                  #1d0f42 0,
+                  rgb(229 229 229 / 90%) 40px,
+                  #1d0f42 80px
+  );
+  background-position: 100% 0;
+  background-size: 300%;
+  border-radius: inherit;
+
+  animation: shimmer 1s infinite;
+}
+
+//@keyframes pulse {
+//  0% {
+//    background-color: #ddd;
+//  }
+//
+//  50% {
+//    background-color: #eee;
+//  }
+//
+//  100% {
+//    background-color: #ddd;
+//  }
+//}
+@keyframes shimmer {
+  to {
+    background-position: -100% 0;
+  }
+}
