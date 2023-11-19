@@ -4,8 +4,8 @@ import { Layout } from '@/components/layout'
 import { CreateNewPassword } from '@/pages/create-new-password'
 import { Decks } from '@/pages/decks/decks.tsx'
 import { Error404 } from '@/pages/Error404'
-import { Greeting } from '@/pages/home'
-import { HomeAuthorized } from '@/pages/home/home-Authorized.tsx'
+import { GreetingNonAuthorized } from '@/pages/home'
+import { GreetingAuthorized } from '@/pages/home/greetingAuthorized.tsx'
 import { Login } from '@/pages/login'
 import { PasswordRecovery } from '@/pages/password-recovery'
 import { Profile } from '@/pages/profile'
@@ -16,7 +16,7 @@ import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 const publicRoutes: RouteObject[] = [
   {
     path: '/greeting',
-    element: <Greeting />,
+    element: <GreetingNonAuthorized />,
   }, ///!!!!!!!!!!!!!!!!!!!!!! доделать роут
   {
     path: '/login',
@@ -47,7 +47,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <HomeAuthorized />,
+    element: <GreetingAuthorized />,
   }, ///!!!!!!!!!!!!!!!!!!!!!! доделать роут
   {
     path: '/profile',
