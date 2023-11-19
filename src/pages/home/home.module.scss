@@ -1,23 +1,21 @@
 .signInButton {
-  width: 100%;
-  padding-right: 36px;
-  padding-left: 36px;
+  //width: 100%;
+  width: 640px;///!!!!! Исправить на адаптивность
+  //padding-right: 36px;
+  //padding-left: 36px;
 
 }
 
 .signInTypography {
   display: flex;
   justify-content: center;
-
   width: 100%;
-  margin-bottom: 1rem;
-
    text-align: center;
 }
 
 
 .container {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -26,6 +24,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  width: 640px;///!!!!! Исправить на адаптивность
+
 
   text-align: center;
 }
@@ -42,4 +43,7 @@
   background-color: transparent;
 }
 
-
+ //.imgSuspense {
+ //  width: 640px;
+ //  height: 360px;///!!!!! Исправить на адаптивность
+ //}
