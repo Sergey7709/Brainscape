@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 
-import Home from '../pages/home/home.tsx'
-
 import { Layout } from '@/components/layout'
 import { CreateNewPassword } from '@/pages/create-new-password'
 import { Decks } from '@/pages/decks/decks.tsx'
 import { Error404 } from '@/pages/Error404'
+import { Greeting } from '@/pages/home'
+import { HomeAuthorized } from '@/pages/home/home-Authorized.tsx'
 import { Login } from '@/pages/login'
 import { PasswordRecovery } from '@/pages/password-recovery'
 import { Profile } from '@/pages/profile'
@@ -15,8 +15,8 @@ import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
-    path: '/',
-    element: <Home />,
+    path: '/greeting',
+    element: <Greeting />,
   }, ///!!!!!!!!!!!!!!!!!!!!!! доделать роут
   {
     path: '/login',
@@ -45,10 +45,10 @@ const publicRoutes: RouteObject[] = [
 ]
 
 const privateRoutes: RouteObject[] = [
-  // {
-  //   path: '/',
-  //   element: <Home />,
-  // },
+  {
+    path: '/',
+    element: <HomeAuthorized />,
+  }, ///!!!!!!!!!!!!!!!!!!!!!! доделать роут
   {
     path: '/profile',
     element: <Profile />,
