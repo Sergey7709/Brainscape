@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-import s from '@/pages/home/home.module.scss'
+import s from '@/pages/home/greeting.module.scss'
 
 export const GreetingAuthorized = () => {
   return (

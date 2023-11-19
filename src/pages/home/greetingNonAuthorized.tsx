@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 // import { VideoComponent } from '@/components/ui/VideoPlayer'
 import { VideoComponent } from '@/components/ui/VideoPlayer'
-import s from '@/pages/home/home.module.scss'
+import s from '@/pages/home/greeting.module.scss'
 
 export const GreetingNonAuthorized = () => {
   console.log('greeting')
