@@ -35,27 +35,43 @@ export const DecksPanel = memo(() => {
   const meID = meData?.id ?? ''
 
   const myOrAllAuthorCards = searchParams.get('authorId') || 'allCards'
-  const findText = searchParams.get('name') ?? ''
+  // const findText = searchParams.get('name') ?? ''
+  const findText = searchParams.get('name') || ''
+
+  console.log('isFirstRender ', isFirstRender)
+  console.log('findText ', findText)
+  // console.log('searchValue ', searchValue)
 
   const minMaxCardsUrlValue = [
     Number(searchParams.get('minCardsCount') || valueForSlider[0]),
     Number(searchParams.get('maxCardsCount') || valueForSlider[1]),
   ]
 
-  const actualValueSlider = isFirstRender
-    ? dispatch(minMaxCardsCountReducer({ minMaxCardsCount: minMaxCardsUrlValue })) &&
-      minMaxCardsUrlValue
-    : valueForSlider
+  useEffect(() => {
+    if (isFirstRender) {
+      dispatch(minMaxCardsCountReducer({ minMaxCardsCount: minMaxCardsUrlValue }))
+    }
+  }, [isFirstRender])
+
+  const actualValueSlider = isFirstRender ? minMaxCardsUrlValue : valueForSlider
+
+  // const actualValueSlider = isFirstRender
+  //   ? dispatch(minMaxCardsCountReducer({ minMaxCardsCount: minMaxCardsUrlValue })) &&
+  //     minMaxCardsUrlValue
+  //   : valueForSlider
 
   const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
   useEffect(() => {
+    // debounce &&
     debounce &&
+      debounce !== findText &&
       utilityForSearchParamsEdit({
         param: 'name',
         valueForNewParam: debounce ? debounce : [],
       })
-  }, [debounce]) //!!! Исправить
+    isFirstRender && dispatch(findNameReducer({ findName: findText }))
+  }, [debounce])
 
   const classNames = {
     decksPanel: s.decksPanel,
@@ -88,6 +104,8 @@ export const DecksPanel = memo(() => {
       valueForNewParam: value,
     })
   }
+
+  console.log('deck panel JSX')
 
   return (
     <>
