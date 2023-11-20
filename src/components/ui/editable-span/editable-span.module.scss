@@ -1,0 +1,57 @@
+.nameContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.editNameButton {
+  all: unset;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-end;
+  justify-content: center;
+
+  margin-top: 6px;
+  margin-bottom:5px;
+
+  > button:focus {
+    padding: 0;
+    outline: none;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.email {
+  margin-top: 2px;
+
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-dark-100);
+  text-align: center;
+
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 36px;
+}
+
+.buttonSave {
+  margin-top: 36px;
+}
+
+.logoutButton {
+  width:122px;
+  margin-top: 13px
+}

@@ -1,15 +1,20 @@
-import { Button } from '@/components/ui/button'
+import { Flip, ToastContainer } from 'react-toastify'
 
+import { Router } from '@/router'
+import 'react-toastify/dist/ReactToastify.css'
 export function App() {
   return (
-    <div>
-      <Button as={'button'} variant={'primary'}>
-        button primary
-      </Button>
-      Hello
-      <Button as={'a'} variant={'primary'} href={'/link'}>
-        link
-      </Button>
-    </div>
+    <>
+      <Router />
+      <ToastContainer
+        transition={Flip}
+        theme="colored"
+        hideProgressBar
+        newestOnTop
+        autoClose={3000}
+        position={'bottom-center'}
+      />
+    </>
   )
 }
+//test deploy

@@ -1,0 +1,155 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-color: rgb(0 0 0 / 70%);
+  backdrop-filter: blur(1px);
+}
+
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.childrenContainer{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+
+  background-color: var(--color-dark-700);
+
+  &.sm {
+   width: 420px;
+  }
+
+  &.md {
+    width: 542px;
+
+  }
+
+  &.lg {
+    width: 764px;
+  }
+
+  @media screen and (width <= 768px) {
+    &,
+    &.sm,
+    &.md,
+    &.lg {
+      width: calc(100% - 32px);
+    }
+  }
+}
+
+.childrenContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  border: 1px solid var(--color-dark-500);
+  border-radius: 0.25rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+
+}
+
+.childrenHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 18px 24px;
+
+  &.borderBottom{
+  border-bottom: 1px solid var(--color-dark-500);}
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.left {
+    justify-content: left;
+  }
+
+  &.right {
+    justify-content: right;
+  }
+
+}
+
+.childrenBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+
+  padding: 24px;
+}
+
+.childrenFooter {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 24px 36px;
+
+  &.sm {
+    gap: 125px;
+  }
+
+  &.md {
+    gap: 248px;
+  }
+
+  &.lg {
+    gap: 470px;
+  }
+}
+
+
+
+.closeButton {
+  cursor: pointer;
+
+  position: absolute;
+  top: -0.1rem;
+  right: -0.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+
+  transition: 0.2s background-color;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-dark-300);
+    outline: none;
+  }
+
+  &.spanClose {
+    user-select: none;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    color: var(--color-light-900);
+  }
+}
+
+

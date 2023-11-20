@@ -1,0 +1,85 @@
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 210px;
+  min-height: 36px;
+  padding: 6px 12px;
+
+  background: var(--color-dark-900);
+  border: 1px var(--color-dark-300) solid;
+
+  &:hover {
+    background: var(--dark-500, #333);
+  }
+
+  &:focus {
+    border: 1px solid var(--info-700, #2f68cc);
+    border-radius: 2px;
+    outline: none;
+  }
+
+  &:disabled {
+    border: 1px solid var(--dark-300, #4c4c4c);
+    border-radius: 2px;
+  }
+}
+
+.content {
+  width: 210px;
+  border: 1px var(--color-dark-300) solid;
+  border-top: none;
+  border-radius: 2px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.item {
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 16px;
+  background: var(--color-dark-900);
+
+  &:hover,
+  &:focus {
+    color: var(--primary-300, #a280ff);
+    background: var(--primary-900, #382766);
+    outline: none;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  color: var(--color-dark-100);
+}
+
+.disabled {
+  color: var(--color-dark-300);
+
+  &:hover {
+    background: var(--color-dark-900);
+  }
+}
+
+.triggerPagination,
+.contentPagination {
+  width: 60px;
+  font-size: 13px;
+}
+
+.triggerPagination,
+.itemPagination {
+  padding: 5px;
+}
+
+.fullWidth {
+  width: 484px;
+}

@@ -1,14 +1,17 @@
-import { useState } from 'react'
-
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from './button.tsx'
-import { IconLogout } from './iconLogout.tsx'
+
+import { Logout } from '@/assets/icons'
 
 const meta = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
+  args: {
+    href: 'https://sass-lang.com/',
+    fullWidth: false,
+  },
   argTypes: {
     onClick: {
       action: 'clicked',
@@ -16,6 +19,15 @@ const meta = {
     variant: {
       options: ['primary', 'secondary', 'tertiary', 'link'],
       control: { type: 'select' },
+    },
+    fullWidth: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    ref: { control: { type: 'select' } },
+    as: { options: ['button', 'a'], control: { type: 'radio' } },
+    className: { control: 'text' },
+    href: {
+      control: 'text',
+      if: { arg: 'as', eq: 'a' },
     },
   },
 } satisfies Meta<typeof Button>
@@ -29,6 +41,7 @@ export const Primary: Story = {
     children: 'Button Primary',
     disabled: false,
     as: 'button',
+    loading: false,
   },
 }
 
@@ -54,39 +67,7 @@ export const Link: Story = {
     children: 'Link-button',
     as: 'a',
     href: 'https://webref.ru/',
-  },
-  render: args => {
-    const [isDisabled, setIsDisabled] = useState(false)
-
-    return (
-      <>
-        <div style={{ marginBottom: '2rem' }}>
-          <input
-            type="radio"
-            id="enabled"
-            name="disableStatus"
-            checked={!isDisabled}
-            onChange={() => setIsDisabled(false)}
-          />
-          <label htmlFor="enabled" style={{ color: 'lightseagreen', marginRight: '1rem' }}>
-            Enabled link
-          </label>
-          <input
-            type="radio"
-            id="disabled"
-            name="disableStatus"
-            checked={isDisabled}
-            onChange={() => setIsDisabled(true)}
-          />
-          <label style={{ color: 'crimson' }} htmlFor="disabled">
-            Disabled link
-          </label>
-        </div>
-        <div style={{ marginLeft: '3rem', cursor: 'not-allowed' }}>
-          <Button className={isDisabled ? 'disabled-link' : ''} {...args} />
-        </div>
-      </>
-    )
+    disabled: false,
   },
 }
 
@@ -95,7 +76,7 @@ export const ButtonWithIcon: Story = {
     variant: 'primary',
     children: (
       <>
-        <IconLogout />
+        <Logout />
         <div>Button Primary</div>
       </>
     ),
@@ -111,6 +92,20 @@ export const FullWidth: Story = {
     disabled: false,
     fullWidth: true,
     as: 'button',
+  },
+}
+
+export const LoadingButton: Story = {
+  args: {
+    variant: 'primary',
+    disabled: false,
+    as: 'button',
+    loading: true,
+    children: (
+      <>
+        <div>Button Primary</div>
+      </>
+    ),
   },
 }
 export const AsLink: Story = {
