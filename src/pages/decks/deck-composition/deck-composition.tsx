@@ -12,13 +12,10 @@ import { columns } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
-import { currentPageValue, sortTableReducer, useAppDispatch } from '@/service'
-import { currentPageReducer } from '@/service/store/deckParamsSlice.ts'
+import { currentPageValue } from '@/service'
 import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const DeckComposition = memo(() => {
-  const dispatch = useAppDispatch()
-
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
   const [searchParams] = useSearchParams()
@@ -43,7 +40,6 @@ export const DeckComposition = memo(() => {
   }
 
   const handlerPagination = (page: number) => {
-    dispatch(currentPageReducer({ currentPage: page }))
     utilityForSearchParamsEdit({
       param: 'currentPage',
       valueForNewParam: page.toString() ?? '',
@@ -51,8 +47,6 @@ export const DeckComposition = memo(() => {
   }
 
   const handlerSortValue = (sort: Sort) => {
-    dispatch(sortTableReducer({ sortTable: sort }))
-
     utilityForSearchParamsEdit({
       param: 'orderBy',
       valueForNewParam:
