@@ -3,6 +3,8 @@ import { Flip, ToastContainer } from 'react-toastify'
 import { Router } from '@/router'
 import 'react-toastify/dist/ReactToastify.css'
 export function App() {
+  console.log(1)
+
   return (
     <>
       <Router />
@@ -17,6 +19,4 @@ export function App() {
     </>
   )
 }
-
-//
-
+//test deploy
