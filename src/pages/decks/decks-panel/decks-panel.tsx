@@ -35,11 +35,11 @@ export const DecksPanel = memo(() => {
   const meID = meData?.id ?? ''
 
   const myOrAllAuthorCards = searchParams.get('authorId') || 'allCards'
-  // const findText = searchParams.get('name') ?? ''
+
   const findText = searchParams.get('name') || ''
 
-  console.log('isFirstRender ', isFirstRender)
-  console.log('findText ', findText)
+  // console.log('isFirstRender ', isFirstRender)
+  // console.log('findText ', findText)
   // console.log('searchValue ', searchValue)
 
   const minMaxCardsUrlValue = [
@@ -55,15 +55,9 @@ export const DecksPanel = memo(() => {
 
   const actualValueSlider = isFirstRender ? minMaxCardsUrlValue : valueForSlider
 
-  // const actualValueSlider = isFirstRender
-  //   ? dispatch(minMaxCardsCountReducer({ minMaxCardsCount: minMaxCardsUrlValue })) &&
-  //     minMaxCardsUrlValue
-  //   : valueForSlider
-
   const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
   useEffect(() => {
-    // debounce &&
     debounce &&
       debounce !== findText &&
       utilityForSearchParamsEdit({

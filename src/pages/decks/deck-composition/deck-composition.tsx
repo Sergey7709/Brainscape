@@ -16,8 +16,6 @@ import { currentPageValue } from '@/service'
 import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const DeckComposition = memo(() => {
-  // const dispatch = useAppDispatch()
-
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
   const [searchParams] = useSearchParams()
@@ -42,7 +40,6 @@ export const DeckComposition = memo(() => {
   }
 
   const handlerPagination = (page: number) => {
-    // dispatch(currentPageReducer({ currentPage: page }))
     utilityForSearchParamsEdit({
       param: 'currentPage',
       valueForNewParam: page.toString() ?? '',
@@ -50,8 +47,6 @@ export const DeckComposition = memo(() => {
   }
 
   const handlerSortValue = (sort: Sort) => {
-    // dispatch(sortTableReducer({ sortTable: sort }))
-
     utilityForSearchParamsEdit({
       param: 'orderBy',
       valueForNewParam:
