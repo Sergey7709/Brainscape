@@ -26,20 +26,16 @@
   margin-top: 36px;
 }
 
-
 .paginationWrapper {
   display: flex;
   justify-content: start;
-  width: 1006px; }///!!!!!!!! исправить для адаптива
+  width: 1006px;
+} ///!!!!!!!! исправить для адаптива
 
-
-
-  .textNoData {
-    font-weight: 700;
-    color: var(--color-danger-500);
-
-  }
-
+.textNoData {
+  font-weight: 700;
+  color: var(--color-danger-500);
+}
 
 .td {
   display: flex;
@@ -48,10 +44,37 @@
 
   width: 100%;
 
-  border: 1px solid  var(--color-dark-500);
+  border: 1px solid var(--color-dark-500);
 
+}
 
+.nameContainer {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
 
+  max-width: 213px;
+  max-height: 61px;
+}
 
-  //padding: 2rem;
+.imgCover {
+  flex-shrink: 0;
+
+  width: 118.265px;
+  max-height: 48px;
+
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.textForName {
+  overflow-wrap: break-word;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-start;
 }
