@@ -56,8 +56,7 @@
   align-items: center;
   justify-content: flex-start;
 
-  max-width: 213px;
-  max-height: 61px;
+   max-height: 61px;
 }
 
 .imgCover {
@@ -71,7 +70,11 @@
 }
 
 .textForName {
-  overflow-wrap: break-word;
+  display: flex;
+  flex-wrap: wrap;
+
+  //overflow-wrap: break-word;
+  align-content: flex-start;
 }
 
 .buttonContainer {
