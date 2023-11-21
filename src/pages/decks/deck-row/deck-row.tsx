@@ -20,7 +20,6 @@ export const DeckRow = (deck: DeckType) => {
           {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
           <p className={s.textForName}> {deck.name}</p>
         </div>
-        {/*{deck.name}*/}
       </Table.Cell>
       <Table.Cell>{deck.cardsCount}</Table.Cell>
       <Table.Cell>{updatedDateFormat}</Table.Cell>
