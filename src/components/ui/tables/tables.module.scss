@@ -47,14 +47,14 @@
 
 .trStyle {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  grid-template-columns: 2.5fr 1fr 1fr 2fr 1fr;
 }
 
 .tableCell {
   display: flex;
    align-items: center;
 
-  padding: 6px 24px;
+   padding: 6px 24px;
 
   font-size: var(--font-size-s);
   line-height: var(--line-height-m);
