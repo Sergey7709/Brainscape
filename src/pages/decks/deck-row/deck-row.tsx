@@ -15,7 +15,13 @@ export const DeckRow = (deck: DeckType) => {
 
   return (
     <Table.Row key={deck.id}>
-      <Table.Cell>{deck.name}</Table.Cell>
+      <Table.Cell>
+        <div className={s.nameContainer}>
+          {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
+          <p className={s.textForName}> {deck.name}</p>
+        </div>
+        {/*{deck.name}*/}
+      </Table.Cell>
       <Table.Cell>{deck.cardsCount}</Table.Cell>
       <Table.Cell>{updatedDateFormat}</Table.Cell>
       <Table.Cell>
