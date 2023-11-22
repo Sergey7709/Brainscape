@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom'
+
 import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/tables'
@@ -16,10 +18,16 @@ export const DeckRow = (deck: DeckType) => {
   return (
     <Table.Row key={deck.id}>
       <Table.Cell>
-        <div className={s.nameContainer}>
-          {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
-          <p className={s.textForName}> {deck.name}</p>
-        </div>
+        <Button as={NavLink} to={'/'} variant={'link'} className={s.linkCell} fullWidth>
+          <div className={s.nameContainer}>
+            {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
+            <p className={s.textForName}> {deck.name}</p>
+          </div>
+        </Button>
+        {/*<div className={s.nameContainer}>*/}
+        {/*  {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}*/}
+        {/*  <p className={s.textForName}> {deck.name}</p>*/}
+        {/*</div>*/}
       </Table.Cell>
       <Table.Cell>{deck.cardsCount}</Table.Cell>
       <Table.Cell>{updatedDateFormat}</Table.Cell>
