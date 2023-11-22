@@ -72,9 +72,20 @@
 .textForName {
   display: flex;
   flex-wrap: wrap;
-
-  //overflow-wrap: break-word;
   align-content: flex-start;
+}
+
+.linkCell {
+  display: flex;
+  justify-content: flex-start ;
+  color: var(--color-light-100)!important;
+
+  &:hover:not(:disabled) {
+    color: var(--color-light-100);
+    background-color: var(--color-accent-900);
+
+  }
+
 }
 
 .buttonContainer {
