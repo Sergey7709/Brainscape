@@ -18,7 +18,7 @@ export const DeckRow = (deck: DeckType) => {
   return (
     <Table.Row key={deck.id}>
       <Table.Cell>
-        <Button as={NavLink} to={'/'} variant={'link'} className={s.linkCell} fullWidth>
+        <Button as={NavLink} to={'/pack'} variant={'link'} className={s.linkCell} fullWidth>
           <div className={s.nameContainer}>
             {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
             <p className={s.textForName}> {deck.name}</p>
