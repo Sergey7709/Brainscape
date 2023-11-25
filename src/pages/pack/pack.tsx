@@ -1,4 +1,6 @@
-import { NavLink } from 'react-router-dom'
+import { useMemo } from 'react'
+
+import { NavLink, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import s from './pack.module.scss'
 
@@ -7,37 +9,143 @@ import { Elipse } from '@/assets/icons/elipse.tsx'
 import { MoreVerticalOutline } from '@/assets/icons/more-vertical-outline.tsx'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
+import { Pagination } from '@/components/ui/pagination'
+import { Sort, Table } from '@/components/ui/tables'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
-import { useGetDeckByIdQuery } from '@/service'
+import { useDataSort } from '@/pages/decks/hooks-and-functions/useDataSort.ts'
+import { utilitySearchParams } from '@/pages/decks/hooks-and-functions/utilitySearchParams.ts'
+import { columnsPack } from '@/pages/pack/constantsPack.ts'
+import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
+import { currentPageValue, useGetDeckByIdCardsQuery, useGetDeckByIdQuery } from '@/service'
+import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
-  const id = 'clnsvp4pv109xvo2qgonbceqc' ///!!!!!!!!!!!!!
+  // const id = 'clo2xwc7615czvo2qprwiihz4' ///!!!!!!!!!!!!!
+  // const { packId } = useCombineAppSelector()
 
-  const { data, isSuccess, isLoading, isFetching } = useGetDeckByIdQuery(id)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const packId = useParams() ///!!!!??????
+
+  // console.log(packId.id)
+
+  const { data, isSuccess, isLoading, isFetching } = useGetDeckByIdQuery(packId.id ?? '')
+
+  const {
+    data: dataCards,
+    isSuccess: isSuccessCards,
+    isLoading: isLoadingCards,
+    isFetching: isFetchingCards,
+  } = useGetDeckByIdCardsQuery({ id: packId.id ?? '', query: utilitySearchParams() })
+
+  const { itemsPerPage, totalItems, totalPages } = dataCards?.pagination ?? {}
+
+  // console.log(itemsPerPage, totalItems, totalPages)
+
+  const [searchParams] = useSearchParams()
+
+  const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
+
+  const isFirstRender = useIsFirstRender() ///!!! Перенести в хук или функцию в utility
+
+  const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
+
+  const { sort } = useDataSort()
+  const renderNoData = () => (
+    <tr className={s.td}>
+      <td colSpan={5}>
+        <p className={s.textNoData}>Упс... данные отсутствуют</p>
+      </td>
+    </tr>
+  ) ///!!! Перенести в хук или функцию в utility
+  const sortedPackDataOrNothing = useMemo(
+    () =>
+      (!!dataCards?.items.length &&
+        dataCards?.items.map(pack => (
+          <PackRow key={pack.id} rating={data?.rating || 0} {...pack} />
+        ))) ||
+      (!dataCards?.items.length && !isFirstRender && renderNoData()),
+    [dataCards]
+  ) ///!!! Перенести в хук или функцию в utility
+
+  const handlerSortValuePack = (sort: Sort) => {
+    utilityForSearchParamsEdit({
+      param: 'orderBy',
+      valueForNewParam:
+        sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
+    })
+  }
+
+  const handlerPagination = (page: number) => {
+    utilityForSearchParamsEdit({
+      param: 'currentPage',
+      valueForNewParam: page.toString() ?? '',
+    })
+  }
+
+  const pagination = !!totalPages && (
+    <Pagination
+      currentPage={paginationValueInURL}
+      pageSize={itemsPerPage ?? 0}
+      totalCount={totalItems ?? 0}
+      onPageChange={page => handlerPagination(page)}
+    />
+  )
+
+  const navigateBackToDeck = () => {
+    const from = sessionStorage.getItem('previousPath')
+
+    if (from) {
+      navigate(from)
+    } else {
+      navigate('/deck') // Замените на ваш путь по умолчанию
+    }
+  }
+  // console.log('pagination', pagination)
+  // console.log('s.packHeaderStyle', s.packHeaderStyle)
 
   return (
     <>
       {(isLoading || isFetching) && <Loader />}
       <div className={s.containerPack}>
-        <div className={s.containerLinkPackList}>
-          <ArrowLeftFull />
-          <Button as={NavLink} to={'/deck'} variant={'link'} className={s.linkPackList}>
+        <div className={s.pack}>
+          {/*<div className={s.containerLinkPackList}>*/}
+          {/*<ArrowLeftFull />*/}
+          <Button variant={'link'} className={s.linkPackList} onClick={navigateBackToDeck}>
+            <ArrowLeftFull />
             Back to Packs List
           </Button>
-        </div>
-        <div className={s.containerTitleAndButton}>
-          <div className={s.containerTitle}>
-            <Typography variant={'large'}>My Pack</Typography>
-            <Elipse className={s.packDropDown}>
-              <MoreVerticalOutline />
-            </Elipse>
+          {/*</div>*/}
+          <div className={s.containerTitleAndButton}>
+            <div className={s.containerTitle}>
+              <Typography variant={'large'}>My Pack</Typography>
+              <Elipse className={s.packDropDown}>
+                <MoreVerticalOutline />
+              </Elipse>
+            </div>
+            <Button className={s.packButton}>Add New Card</Button>
           </div>
-          <Button className={s.packButton}>Add New Card</Button>
+          <img src={data?.cover} alt={'Not found'} className={s.packImg} />
+          <div className={s.inputPackRowWrapper}>
+            <TextField type={'search'} placeholder={'Input search'} />
+          </div>
+          <Table.Root>
+            {/*<Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack} />*/}
+            <Table.Header
+              columns={columnsPack}
+              sort={sort}
+              onSort={handlerSortValuePack}
+              classNameForRow={s.packHeaderStyle}
+            />
+            {<Table.Body>{sortedPackDataOrNothing}</Table.Body>}
+          </Table.Root>
+          <div className={s.paginationWrapperPack}>
+            {/*{!isFetchingCards && isSuccessCards && (totalPages || 1) > 1 && pagination}*/}{' '}
+            {!isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && pagination}
+          </div>
         </div>
-        <img src={data?.cover} alt={'Not found'} className={s.packImg} />
-        <TextField type={'search'} placeholder={'Input search'}></TextField>
-        <div>table</div>
       </div>
     </>
   )
