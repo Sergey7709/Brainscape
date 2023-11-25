@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort, Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
-import { columns } from '@/pages/decks/constantsDeck.ts'
+import { columnsDecks } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
@@ -87,13 +87,14 @@ export const DeckComposition = memo(() => {
         <DecksPanel />
         <div className={classNames.tableWrapper}>
           <Table.Root>
-            <Table.Header columns={columns} sort={sort} onSort={handlerSortValue} />
+            <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue} />
             {<Table.Body>{sortedDataOrNothing}</Table.Body>}
           </Table.Root>
         </div>
       </div>
       <div className={classNames.pagination}>
-        {!isFetching && isSuccess && (totalPages || 1) > 1 && pagination}
+        {/*{!isFetching && isSuccess && (totalPages || 1) > 1 && pagination}*/}
+        {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
       </div>
     </div>
   )
