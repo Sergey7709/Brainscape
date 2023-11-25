@@ -93,7 +93,6 @@ export const DeckComposition = memo(() => {
         </div>
       </div>
       <div className={classNames.pagination}>
-        {/*{!isFetching && isSuccess && (totalPages || 1) > 1 && pagination}*/}
         {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
       </div>
     </div>
