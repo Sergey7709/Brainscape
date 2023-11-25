@@ -32,10 +32,12 @@ export const Header: FC<
       columns: Column[]
       sort: Sort
       onSort: (sort: Sort) => void
+      classNameForRow?: string ///!!!!!!!!!!!!!!
     },
     'children'
   >
-> = ({ columns, sort, onSort, ...restProps }) => {
+> = ({ columns, sort, onSort, classNameForRow = '', ...restProps }) => {
+  ///!!!!!!!!!!!!!!
   const classNames = {
     chevron: sort?.direction === 'asc' ? '' : s.chevron,
   }
@@ -73,7 +75,7 @@ export const Header: FC<
 
   return (
     <Head {...restProps}>
-      <Row>{headCell}</Row>
+      <Row className={classNameForRow}>{headCell}</Row>
     </Head>
   )
 }
@@ -82,7 +84,7 @@ export const Body: FC<ComponentProps<'tbody'>> = props => {
 }
 
 export const Row: FC<ComponentProps<'tr'>> = props => {
-  return <tr {...props} className={s.trStyle} /> //!!!!
+  return <tr {...props} className={clsx(s.trStyle, props.className)} /> //!!!!
 }
 
 export const HeadCell: FC<
