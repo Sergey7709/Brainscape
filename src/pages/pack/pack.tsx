@@ -18,18 +18,12 @@ import { utilitySearchParams } from '@/pages/decks/hooks-and-functions/utilitySe
 import { columnsPack } from '@/pages/pack/constantsPack.ts'
 import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
 import { currentPageValue, useGetDeckByIdCardsQuery, useGetDeckByIdQuery } from '@/service'
-import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
+import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
-  // const id = 'clo2xwc7615czvo2qprwiihz4' ///!!!!!!!!!!!!!
-  // const { packId } = useCombineAppSelector()
-
   const navigate = useNavigate()
-  const location = useLocation()
 
   const packId = useParams() ///!!!!??????
-
-  // console.log(packId.id)
 
   const { data, isSuccess, isLoading, isFetching } = useGetDeckByIdQuery(packId.id ?? '')
 
@@ -41,8 +35,6 @@ export const Pack = () => {
   } = useGetDeckByIdCardsQuery({ id: packId.id ?? '', query: utilitySearchParams() })
 
   const { itemsPerPage, totalItems, totalPages } = dataCards?.pagination ?? {}
-
-  // console.log(itemsPerPage, totalItems, totalPages)
 
   const [searchParams] = useSearchParams()
 
@@ -103,21 +95,16 @@ export const Pack = () => {
       navigate('/deck') // Замените на ваш путь по умолчанию
     }
   }
-  // console.log('pagination', pagination)
-  // console.log('s.packHeaderStyle', s.packHeaderStyle)
 
   return (
     <>
       {(isLoading || isFetching) && <Loader />}
       <div className={s.containerPack}>
         <div className={s.pack}>
-          {/*<div className={s.containerLinkPackList}>*/}
-          {/*<ArrowLeftFull />*/}
           <Button variant={'link'} className={s.linkPackList} onClick={navigateBackToDeck}>
             <ArrowLeftFull />
             Back to Packs List
           </Button>
-          {/*</div>*/}
           <div className={s.containerTitleAndButton}>
             <div className={s.containerTitle}>
               <Typography variant={'large'}>My Pack</Typography>
@@ -132,7 +119,6 @@ export const Pack = () => {
             <TextField type={'search'} placeholder={'Input search'} />
           </div>
           <Table.Root>
-            {/*<Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack} />*/}
             <Table.Header
               columns={columnsPack}
               sort={sort}
@@ -142,7 +128,6 @@ export const Pack = () => {
             {<Table.Body>{sortedPackDataOrNothing}</Table.Body>}
           </Table.Root>
           <div className={s.paginationWrapperPack}>
-            {/*{!isFetchingCards && isSuccessCards && (totalPages || 1) > 1 && pagination}*/}{' '}
             {!isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && pagination}
           </div>
         </div>
