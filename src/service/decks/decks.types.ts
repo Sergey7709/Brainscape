@@ -24,3 +24,20 @@ export type CreateDeckRequest = {
 }
 
 export type UpdateDeckRequest = CreateDeckRequest & { id: string }
+
+export type PackCards = {
+  id: string
+  deckId: string
+  userId: string
+  question: string
+  answer: string
+  shots: number
+  answerImg: string
+  questionImg: string
+  questionVideo: string
+  answerVideo: string
+  created: string
+  updated: string
+} ///!!!!!!!!!
+
+export type PackRowType = Pick<DeckType, 'rating'> & PackCards
