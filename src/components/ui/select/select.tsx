@@ -18,13 +18,15 @@ type SelectOption = {
 
 type SelectType = {
   options: SelectOption[]
-  onValueChange: (value: string) => void
+  onValueChange?: (value: string) => void
   disabled?: boolean
   label?: string
   className?: string
   placeholder?: string
   variant?: 'common' | 'pagination'
   fullWidth?: boolean
+  isOpen?: boolean
+  setIsOpen?: (isOpen: boolean) => void
 }
 
 export const Select = ({
@@ -36,13 +38,18 @@ export const Select = ({
   variant = 'common',
   className,
   /*
-  Use this temporary prop for cards
-   **/
+                         Use this temporary prop for cards
+                          **/
   fullWidth,
+  isOpen = false,
+  setIsOpen,
 }: SelectType) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(isOpen)
+
   const onOpenChangeHandler = () => {
-    disabled || setOpen(!open)
+    if (!disabled) {
+      setIsOpen ? setIsOpen(isOpen) : setOpen(!open)
+    }
   }
 
   const classNames = {
