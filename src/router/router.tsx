@@ -59,7 +59,7 @@ const privateRoutes: RouteObject[] = [
     element: <Decks />,
   },
   {
-    path: '/pack',
+    path: '/pack/:id',
     element: <Pack />,
   },
 ]
