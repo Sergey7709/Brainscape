@@ -1,4 +1,4 @@
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
@@ -15,9 +15,7 @@ export const DeckRow = (deck: DeckType) => {
     .reverse()
     .join('.')
 
-  // const dispatch = useAppDispatch()
   const location = useLocation()
-  const navigate = useNavigate()
   const saveUrlDeck = () => {
     sessionStorage.setItem('previousPath', location.pathname + location.search)
   }
@@ -27,14 +25,6 @@ export const DeckRow = (deck: DeckType) => {
   return (
     <Table.Row key={deck.id}>
       <Table.Cell>
-        {/*<Button*/}
-        {/*  as={NavLink}*/}
-        {/*  to={`/pack/${deck.id}`}*/}
-        {/*  variant={'link'}*/}
-        {/*  className={s.linkCell}*/}
-        {/*  // onClick={() => dispatch(packIdReducer({ packId: deck.id }))}*/}
-        {/*  fullWidth*/}
-        {/*>*/}
         <Button
           as={NavLink}
           variant={'link'}
@@ -48,10 +38,6 @@ export const DeckRow = (deck: DeckType) => {
             <p className={s.textForName}> {deck.name}</p>
           </div>
         </Button>
-        {/*<div className={s.nameContainer}>*/}
-        {/*  {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}*/}
-        {/*  <p className={s.textForName}> {deck.name}</p>*/}
-        {/*</div>*/}
       </Table.Cell>
       <Table.Cell>{deck.cardsCount}</Table.Cell>
       <Table.Cell>{updatedDateFormat}</Table.Cell>
