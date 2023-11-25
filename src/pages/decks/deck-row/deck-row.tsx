@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
@@ -15,10 +15,34 @@ export const DeckRow = (deck: DeckType) => {
     .reverse()
     .join('.')
 
+  // const dispatch = useAppDispatch()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const saveUrlDeck = () => {
+    sessionStorage.setItem('previousPath', location.pathname + location.search)
+  }
+
+  // console.log('location', location)
+
   return (
     <Table.Row key={deck.id}>
       <Table.Cell>
-        <Button as={NavLink} to={'/pack'} variant={'link'} className={s.linkCell} fullWidth>
+        {/*<Button*/}
+        {/*  as={NavLink}*/}
+        {/*  to={`/pack/${deck.id}`}*/}
+        {/*  variant={'link'}*/}
+        {/*  className={s.linkCell}*/}
+        {/*  // onClick={() => dispatch(packIdReducer({ packId: deck.id }))}*/}
+        {/*  fullWidth*/}
+        {/*>*/}
+        <Button
+          as={NavLink}
+          variant={'link'}
+          to={`/pack/${deck.id}`}
+          className={s.linkCell}
+          onClick={saveUrlDeck}
+          fullWidth
+        >
           <div className={s.nameContainer}>
             {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
             <p className={s.textForName}> {deck.name}</p>
