@@ -1,6 +1,6 @@
 import { Column } from '@/components/ui/tables'
 
-export const columns: Column[] = [
+export const columnsDecks: Column[] = [
   {
     key: 'name',
     title: 'Name',
