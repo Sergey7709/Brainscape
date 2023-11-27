@@ -17,7 +17,7 @@ export const DeckRow = (deck: DeckType) => {
 
   const location = useLocation()
   const saveUrlDeck = () => {
-    sessionStorage.setItem('previousPath', location.pathname + location.search)
+    sessionStorage.setItem('previousPath', location.search)
   }
 
   // console.log('location', location)
