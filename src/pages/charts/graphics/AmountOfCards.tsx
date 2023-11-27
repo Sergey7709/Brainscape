@@ -1,9 +1,11 @@
+import { memo } from 'react'
+
 import { Pie } from 'react-chartjs-2'
 
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
-export const AmountOfCards = ({ items }: Pick<GetEntitiesResponse<DeckType>, 'items'>) => {
+export const AmountOfCards = memo(({ items }: Pick<GetEntitiesResponse<DeckType>, 'items'>) => {
   const usersData = {
     '0': 0,
     '<10': 0,
@@ -57,4 +59,4 @@ export const AmountOfCards = ({ items }: Pick<GetEntitiesResponse<DeckType>, 'it
       />
     </div>
   )
-}
+})
