@@ -9,22 +9,23 @@
  //max-width: 260px;//!!!!
  //width: 260px;//!!!!
   width: 250px;
-  max-height: 61px;
+
+  //max-height: 61px;
 }
 
 .textForNamePackRow  {
-  display: flex;
-  flex-basis: 100%;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  //display: flex;
+  //flex-basis: 100%;
+  //flex-wrap: wrap;
+  //align-content: flex-start;
+  //
+  //word-break: break-word;
+  //overflow-wrap: break-word;
 
-  word-break: break-word;
-  overflow-wrap: break-word;
-
-  //overflow: hidden;
-  //max-width: 100%;
-  //text-overflow: ellipsis;
-  //white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .imgPackRow {
