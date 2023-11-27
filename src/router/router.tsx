@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
+import { Charts } from '@/pages/charts/Charts.tsx'
 import { CreateNewPassword } from '@/pages/create-new-password'
 import { Decks } from '@/pages/decks/decks.tsx'
 import { Error404 } from '@/pages/Error404'
@@ -56,6 +57,10 @@ const privateRoutes: RouteObject[] = [
   {
     path: '/deck',
     element: <Decks />,
+  },
+  {
+    path: '/charts',
+    element: <Charts />,
   },
 ]
 
