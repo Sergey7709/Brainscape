@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { NavLink, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import s from './pack.module.scss'
 
@@ -25,7 +25,12 @@ export const Pack = () => {
 
   const packId = useParams() ///!!!!??????
 
-  const { data, isSuccess, isLoading, isFetching } = useGetDeckByIdQuery(packId.id ?? '')
+  const {
+    data: dataDeck,
+    isSuccess: isSuccessDeck,
+    isLoading: isLoadingDeck,
+    isFetching: isFetchingDeck,
+  } = useGetDeckByIdQuery(packId.id ?? '')
 
   const {
     data: dataCards,
@@ -56,7 +61,7 @@ export const Pack = () => {
     () =>
       (!!dataCards?.items.length &&
         dataCards?.items.map(pack => (
-          <PackRow key={pack.id} rating={data?.rating || 0} {...pack} />
+          <PackRow key={pack.id} rating={dataDeck?.rating || 0} {...pack} />
         ))) ||
       (!dataCards?.items.length && !isFirstRender && renderNoData()),
     [dataCards]
@@ -77,6 +82,16 @@ export const Pack = () => {
     })
   }
 
+  const navigateBackToDeck = () => {
+    const urlDeck = sessionStorage.getItem('previousPath')
+
+    if (urlDeck) {
+      navigate(`/deck${urlDeck}`)
+    } else {
+      navigate('/deck')
+    }
+  }
+
   const pagination = !!totalPages && (
     <Pagination
       currentPage={paginationValueInURL}
@@ -86,19 +101,9 @@ export const Pack = () => {
     />
   )
 
-  const navigateBackToDeck = () => {
-    const from = sessionStorage.getItem('previousPath')
-
-    if (from) {
-      navigate(from)
-    } else {
-      navigate('/deck') // Замените на ваш путь по умолчанию
-    }
-  }
-
   return (
     <>
-      {(isLoading || isFetching) && <Loader />}
+      {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards) && <Loader />}
       <div className={s.containerPack}>
         <div className={s.pack}>
           <Button variant={'link'} className={s.linkPackList} onClick={navigateBackToDeck}>
@@ -114,7 +119,7 @@ export const Pack = () => {
             </div>
             <Button className={s.packButton}>Add New Card</Button>
           </div>
-          <img src={data?.cover} alt={'Not found'} className={s.packImg} />
+          <img src={dataDeck?.cover} alt={'Not found'} className={s.packImg} />
           <div className={s.inputPackRowWrapper}>
             <TextField type={'search'} placeholder={'Input search'} />
           </div>
