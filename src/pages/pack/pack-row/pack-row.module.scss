@@ -8,7 +8,9 @@
 
  //max-width: 260px;//!!!!
  //width: 260px;//!!!!
+ // width: 250px;
   width: 250px;
+  height: 61px;
 
   //max-height: 61px;
 }
@@ -55,6 +57,7 @@
 .packRowStyle {
   display: grid;
   grid-template-columns: 1.75fr 1.75fr 0.8fr 1fr 0.5fr;
+  width:100%
 }
 
 .packAnswerStyle {
