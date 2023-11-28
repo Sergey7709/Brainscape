@@ -1,7 +1,6 @@
 import { FC, useMemo } from 'react'
 
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { SortedPackData } from 'sortedPackData'
 
 import s from './pack.module.scss'
 
@@ -20,6 +19,7 @@ import { columnsPack } from '@/pages/pack/constantsPack.ts'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
 import { RenderNoData } from '@/pages/pack/renderNoData'
+import { SortedPackData } from '@/pages/pack/sortedPackData'
 import {
   currentPageValue,
   useGetAuthUserMeDataQuery,
