@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { FC, useMemo } from 'react'
 
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
@@ -16,65 +16,106 @@ import { Typography } from '@/components/ui/typography'
 import { useDataSort } from '@/pages/decks/hooks-and-functions/useDataSort.ts'
 import { utilitySearchParams } from '@/pages/decks/hooks-and-functions/utilitySearchParams.ts'
 import { columnsPack } from '@/pages/pack/constantsPack.ts'
+import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
+import { RenderNoData } from '@/pages/pack/renderNoData'
+import { SortedPackData } from '@/pages/pack/SortedPackData'
 import {
   currentPageValue,
   useGetAuthUserMeDataQuery,
   useGetDeckByIdCardsQuery,
   useGetDeckByIdQuery,
 } from '@/service'
+import { GetEntitiesResponse } from '@/service/common/types.ts'
+import { PackCards, PackRowType } from '@/service/decks/decks.types.ts'
 import { useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
   const navigate = useNavigate()
 
-  const packId = useParams() ///!!!!??????
+  // const packId = useParams() ///!!!!??????
+  //
+  // const {
+  //   isSuccess: isAuthenticated,
+  //   isLoading: IsLoadingAuth,
+  //   data: dataMeId,
+  // } = useGetAuthUserMeDataQuery()
+  //
+  // const {
+  //   data: dataDeck,
+  //   isSuccess: isSuccessDeck,
+  //   isLoading: isLoadingDeck,
+  //   isFetching: isFetchingDeck,
+  // } = useGetDeckByIdQuery(packId.id ?? '')
+  //
+  // const {
+  //   data: dataCards,
+  //   isSuccess: isSuccessCards,
+  //   isLoading: isLoadingCards,
+  //   isFetching: isFetchingCards,
+  // } = useGetDeckByIdCardsQuery({ id: packId.id ?? '', query: utilitySearchParams() })
+  //
+  // const { itemsPerPage, totalItems, totalPages } = dataCards?.pagination ?? {}
+  //
+  // const [searchParams] = useSearchParams()
+  //
+  // const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
 
   const {
-    isSuccess: isAuthenticated,
-    isLoading: IsLoadingAuth,
-    data: dataMeId,
-  } = useGetAuthUserMeDataQuery()
-
-  const {
-    data: dataDeck,
-    isSuccess: isSuccessDeck,
-    isLoading: isLoadingDeck,
-    isFetching: isFetchingDeck,
-  } = useGetDeckByIdQuery(packId.id ?? '')
-
-  const {
-    data: dataCards,
-    isSuccess: isSuccessCards,
-    isLoading: isLoadingCards,
-    isFetching: isFetchingCards,
-  } = useGetDeckByIdCardsQuery({ id: packId.id ?? '', query: utilitySearchParams() })
-
-  const { itemsPerPage, totalItems, totalPages } = dataCards?.pagination ?? {}
-
-  const [searchParams] = useSearchParams()
-
-  const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
+    isLoadingAuth,
+    dataMeId,
+    dataDeck,
+    isLoadingDeck,
+    isFetchingDeck,
+    dataCards,
+    isLoadingCards,
+    isFetchingCards,
+    isSuccessCards,
+    itemsPerPage,
+    totalItems,
+    totalPages,
+    paginationValueInURL,
+    sort,
+  } = useGetDataForPack()
 
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
-  const { sort } = useDataSort()
-  const renderNoData = () => (
-    <tr className={s.td}>
-      <td colSpan={5}>
-        <p className={s.textNoData}>Упс... данные отсутствуют</p>
-      </td>
-    </tr>
-  ) ///!!! Перенести в хук или функцию в utility
-  const sortedPackDataOrNothing = useMemo(
-    () =>
-      dataCards?.items.length
-        ? dataCards?.items.map(pack => (
-            <PackRow key={pack.id} rating={dataDeck?.rating || 0} {...pack} />
-          ))
-        : renderNoData(),
-    [dataCards]
-  ) ///!!! Перенести в хук или функцию в utility
+  // const RenderNoData = () => {
+  //   return (
+  //     <tr className={s.td}>
+  //       <td colSpan={5}>
+  //         <p className={s.textNoData}>Упс... данные отсутствуют</p>
+  //       </td>
+  //     </tr>
+  //   )
+  // } ///!!! Перенести в хук или функцию в utility
+  //
+  // type SortedPackDataProps = {
+  //   items: PackCards[]
+  //   rating: number
+  // }
+  // const SortedPackData = ({ items }: SortedPackDataProps) => {
+  //   return items.map(pack => <PackRow key={pack.id} rating={dataDeck?.rating || 0} {...pack} />)
+  // }
+  // ///!!! Перенести в хук или функцию в utility
+
+  // const { sort } = useDataSort()
+  // const renderNoData = () => (
+  //   <tr className={s.td}>
+  //     <td colSpan={5}>
+  //       <p className={s.textNoData}>Упс... данные отсутствуют</p>
+  //     </td>
+  //   </tr>
+  // ) ///!!! Перенести в хук или функцию в utility
+  // const sortedPackDataOrNothing = useMemo(
+  //   () =>
+  //     dataCards?.items.length
+  //       ? dataCards?.items.map(pack => (
+  //           <PackRow key={pack.id} rating={dataDeck?.rating || 0} {...pack} />
+  //         ))
+  //       : renderNoData(),
+  //   [dataCards]
+  // ) ///!!! Перенести в хук или функцию в utility
 
   const handlerSortValuePack = (sort: Sort) => {
     utilityForSearchParamsEdit({
@@ -112,7 +153,7 @@ export const Pack = () => {
 
   return (
     <>
-      {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || IsLoadingAuth) && (
+      {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || isLoadingAuth) && (
         <Loader />
       )}
       <div className={s.containerPack}>
@@ -151,7 +192,17 @@ export const Pack = () => {
                 </Table.Row>
               </Table.Head>
             </Table.Header>
-            {<Table.Body>{dataCards && sortedPackDataOrNothing}</Table.Body>}
+            {/*{<Table.Body>{dataCards && sortedPackDataOrNothing}</Table.Body>}*/}
+            {
+              <Table.Body>
+                {/*{dataCards ? <SortedPackDataOrNothing items={dataCards.items} /> : <RenderNoData />}*/}
+                {dataCards ? (
+                  <SortedPackData items={dataCards.items} rating={dataDeck?.rating || 0} />
+                ) : (
+                  <RenderNoData />
+                )}
+              </Table.Body>
+            }
           </Table.Root>
           <div className={s.paginationWrapperPack}>
             {!isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && pagination}
