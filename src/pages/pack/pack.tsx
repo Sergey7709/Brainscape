@@ -17,13 +17,24 @@ import { useDataSort } from '@/pages/decks/hooks-and-functions/useDataSort.ts'
 import { utilitySearchParams } from '@/pages/decks/hooks-and-functions/utilitySearchParams.ts'
 import { columnsPack } from '@/pages/pack/constantsPack.ts'
 import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
-import { currentPageValue, useGetDeckByIdCardsQuery, useGetDeckByIdQuery } from '@/service'
+import {
+  currentPageValue,
+  useGetAuthUserMeDataQuery,
+  useGetDeckByIdCardsQuery,
+  useGetDeckByIdQuery,
+} from '@/service'
 import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
   const navigate = useNavigate()
 
   const packId = useParams() ///!!!!??????
+
+  const {
+    isSuccess: isAuthenticated,
+    isLoading: IsLoadingAuth,
+    data: dataMeId,
+  } = useGetAuthUserMeDataQuery()
 
   const {
     data: dataDeck,
@@ -59,11 +70,11 @@ export const Pack = () => {
   ) ///!!! Перенести в хук или функцию в utility
   const sortedPackDataOrNothing = useMemo(
     () =>
-      (!!dataCards?.items.length &&
-        dataCards?.items.map(pack => (
-          <PackRow key={pack.id} rating={dataDeck?.rating || 0} {...pack} />
-        ))) ||
-      (!dataCards?.items.length && !isFirstRender && renderNoData()),
+      dataCards?.items.length
+        ? dataCards?.items.map(pack => (
+            <PackRow key={pack.id} rating={dataDeck?.rating || 0} {...pack} />
+          ))
+        : renderNoData(),
     [dataCards]
   ) ///!!! Перенести в хук или функцию в utility
 
@@ -103,7 +114,9 @@ export const Pack = () => {
 
   return (
     <>
-      {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards) && <Loader />}
+      {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || IsLoadingAuth) && (
+        <Loader />
+      )}
       <div className={s.containerPack}>
         <div className={s.pack}>
           <Button variant={'link'} className={s.linkPackList} onClick={navigateBackToDeck}>
@@ -112,7 +125,12 @@ export const Pack = () => {
           </Button>
           <div className={s.containerTitleAndButton}>
             <div className={s.containerTitle}>
-              <Typography variant={'large'}>My Pack</Typography>
+              {/*<Typography variant={'large'}>My Pack</Typography>*/}
+              <Typography variant={'large'}>
+                {dataMeId?.id === dataDeck?.userId
+                  ? `My Pack: "${dataDeck?.name}"`
+                  : `Friend’s Pack: "${dataDeck?.name}"`}
+              </Typography>
               <Elipse className={s.packDropDown}>
                 <MoreVerticalOutline />
               </Elipse>
@@ -124,13 +142,25 @@ export const Pack = () => {
             <TextField type={'search'} placeholder={'Input search'} />
           </div>
           <Table.Root>
-            <Table.Header
-              columns={columnsPack}
-              sort={sort}
-              onSort={handlerSortValuePack}
-              classNameForRow={s.packHeaderStyle}
-            />
-            {<Table.Body>{sortedPackDataOrNothing}</Table.Body>}
+            {/*<Table.Header*/}
+            {/*  columns={columnsPack}*/}
+            {/*  sort={sort}*/}
+            {/*  onSort={handlerSortValuePack}*/}
+            {/*  // classNameForRow={s.packHeaderStyle}*/}
+            {/*/>*/}
+            <Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack}>
+              <Table.Head>
+                <Table.Row className={s.packHeaderStyle}>
+                  <Table.HeadCellList
+                    className={s.packHeadCellListStyle}
+                    columns={columnsPack}
+                    sort={sort}
+                    onSort={handlerSortValuePack}
+                  />
+                </Table.Row>
+              </Table.Head>
+            </Table.Header>
+            {<Table.Body>{dataCards && sortedPackDataOrNothing}</Table.Body>}
           </Table.Root>
           <div className={s.paginationWrapperPack}>
             {!isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && pagination}
