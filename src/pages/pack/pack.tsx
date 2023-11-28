@@ -86,14 +86,6 @@ export const Pack = () => {
           </Button>
           <div className={s.containerTitleAndButton}>
             <div className={s.containerTitle}>
-              {/*<Typography variant={'large'}>*/}
-              {/*  {dataMeId?.id === dataDeck?.userId*/}
-              {/*    ? `My Pack: "${dataDeck?.name}"`*/}
-              {/*    : `Friend’s Pack: "${dataDeck?.name}"`}*/}
-              {/*</Typography>*/}
-              {/*<Elipse className={s.packDropDown}>*/}
-              {/*  <MoreVerticalOutline />*/}
-              {/*</Elipse>*/}
               {dataMeId?.id === dataDeck?.userId ? (
                 <>
                   <Typography variant={'large'}>{`My Pack: "${dataDeck?.name}"`}</Typography>
