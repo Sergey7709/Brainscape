@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react'
 
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { SortedPackData } from 'sortedPackData'
 
 import s from './pack.module.scss'
 
@@ -19,7 +20,6 @@ import { columnsPack } from '@/pages/pack/constantsPack.ts'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
 import { RenderNoData } from '@/pages/pack/renderNoData'
-import { SortedPackData } from '@/pages/pack/SortedPackData'
 import {
   currentPageValue,
   useGetAuthUserMeDataQuery,
@@ -94,7 +94,7 @@ export const Pack = () => {
   //   items: PackCards[]
   //   rating: number
   // }
-  // const SortedPackData = ({ items }: SortedPackDataProps) => {
+  // const sortedPackData = ({ items }: SortedPackDataProps) => {
   //   return items.map(pack => <PackRow key={pack.id} rating={dataDeck?.rating || 0} {...pack} />)
   // }
   // ///!!! Перенести в хук или функцию в utility
