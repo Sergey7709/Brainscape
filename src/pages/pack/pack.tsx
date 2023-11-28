@@ -86,14 +86,24 @@ export const Pack = () => {
           </Button>
           <div className={s.containerTitleAndButton}>
             <div className={s.containerTitle}>
-              <Typography variant={'large'}>
-                {dataMeId?.id === dataDeck?.userId
-                  ? `My Pack: "${dataDeck?.name}"`
-                  : `Friend’s Pack: "${dataDeck?.name}"`}
-              </Typography>
-              <Elipse className={s.packDropDown}>
-                <MoreVerticalOutline />
-              </Elipse>
+              {/*<Typography variant={'large'}>*/}
+              {/*  {dataMeId?.id === dataDeck?.userId*/}
+              {/*    ? `My Pack: "${dataDeck?.name}"`*/}
+              {/*    : `Friend’s Pack: "${dataDeck?.name}"`}*/}
+              {/*</Typography>*/}
+              {/*<Elipse className={s.packDropDown}>*/}
+              {/*  <MoreVerticalOutline />*/}
+              {/*</Elipse>*/}
+              {dataMeId?.id === dataDeck?.userId ? (
+                <>
+                  <Typography variant={'large'}>{`My Pack: "${dataDeck?.name}"`}</Typography>
+                  <Elipse className={s.packDropDown}>
+                    <MoreVerticalOutline />
+                  </Elipse>
+                </>
+              ) : (
+                <Typography variant={'large'}> {`Friend’s Pack: "${dataDeck?.name}"`} </Typography>
+              )}
             </div>
             <Button className={s.packButton}>Add New Card</Button>
           </div>
