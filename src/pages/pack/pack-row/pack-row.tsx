@@ -15,19 +15,15 @@ export const PackRow = (pack: PackRowType) => {
 
   return (
     <Table.Row key={pack.id} className={s.packRowStyle}>
-      {/*<Table.Row key={pack.id}>*/}
       <Table.Cell>
-        {/*<Button as={NavLink} to={'/pack'} variant={'link'} className={s.linkCell} fullWidth>*/}
         <div className={s.nameContainerPackRow}>
           {pack.questionImg && (
             <img className={s.imgPackRow} alt={'Not image'} src={pack.questionImg} />
           )}
           <p className={s.textForNamePackRow}> {pack.question}</p>
         </div>
-        {/*</Button>*/}
       </Table.Cell>
       <Table.Cell>
-        {/*<div className={s.packAnswerStyle}>{pack.answer}</div>*/}
         <div className={s.nameContainerPackRow}>
           {pack.answer && <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />}
           <p className={s.packAnswerStyle}> {pack.answer}</p>
