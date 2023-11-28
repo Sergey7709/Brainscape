@@ -34,8 +34,11 @@
   //display: grid;
   //grid-template-columns: 4fr 1fr;
   display: flex;
-  gap: 724px;
+
+  //gap: 718px;
+  //gap: 575px;
   align-items: center;
+  justify-content: space-between;
 
 
 
@@ -100,7 +103,11 @@
 
 .packHeaderStyle {
   display: grid;
-  grid-template-columns: 1.75fr 1.75fr 1fr 1fr 0.5fr;
+
+  //grid-template-columns: 1.75fr 1.75fr 1fr 1fr 0.5fr;
+  //grid-template-columns: 1.98fr 1.95fr 1fr 1.75fr;
+  //grid-template-columns: 1.75fr 1.75fr 0.8fr 1fr 0.5fr;
+  grid-template-columns:  1.75fr 1.75fr 0.8fr 1fr 0.6fr;
   width: 100%;
 
 }
@@ -114,3 +121,7 @@
   justify-content: start;
   width: 1006px;
 } ///!!!!!!!! исправить для адаптива
+
+.packHeadCellListStyle{
+  width: 100%;
+}
