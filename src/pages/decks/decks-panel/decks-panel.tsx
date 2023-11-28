@@ -58,8 +58,7 @@ export const DecksPanel = memo(() => {
   const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
   useEffect(() => {
-    debounce &&
-      debounce !== findText &&
+    debounce !== findText &&
       utilityForSearchParamsEdit({
         param: 'name',
         valueForNewParam: debounce ? debounce : [],
