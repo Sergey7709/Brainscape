@@ -23,7 +23,7 @@ import {
   useGetDeckByIdCardsQuery,
   useGetDeckByIdQuery,
 } from '@/service'
-import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
+import { useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
   const navigate = useNavigate()
@@ -55,8 +55,6 @@ export const Pack = () => {
   const [searchParams] = useSearchParams()
 
   const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
-
-  const isFirstRender = useIsFirstRender() ///!!! Перенести в хук или функцию в utility
 
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
@@ -125,7 +123,6 @@ export const Pack = () => {
           </Button>
           <div className={s.containerTitleAndButton}>
             <div className={s.containerTitle}>
-              {/*<Typography variant={'large'}>My Pack</Typography>*/}
               <Typography variant={'large'}>
                 {dataMeId?.id === dataDeck?.userId
                   ? `My Pack: "${dataDeck?.name}"`
@@ -142,12 +139,6 @@ export const Pack = () => {
             <TextField type={'search'} placeholder={'Input search'} />
           </div>
           <Table.Root>
-            {/*<Table.Header*/}
-            {/*  columns={columnsPack}*/}
-            {/*  sort={sort}*/}
-            {/*  onSort={handlerSortValuePack}*/}
-            {/*  // classNameForRow={s.packHeaderStyle}*/}
-            {/*/>*/}
             <Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack}>
               <Table.Head>
                 <Table.Row className={s.packHeaderStyle}>
