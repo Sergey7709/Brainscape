@@ -7,22 +7,7 @@ import { SortedPackData } from '@/pages/pack/sortedPackData'
 import { useUtilityForSearchParamsEdit } from '@/utils'
 
 export const TablePack = () => {
-  const {
-    // isLoadingAuth,
-    // dataMeId,
-    // dataDeck,
-    // isLoadingDeck,
-    // isFetchingDeck,
-    dataCards,
-    // isLoadingCards,
-    // isFetchingCards,
-    // isSuccessCards,
-    // itemsPerPage,
-    // totalItems,
-    // totalPages,
-    // paginationValueInURL,
-    sort,
-  } = useGetDataForPack()
+  const { dataCards, sort } = useGetDataForPack()
 
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
@@ -33,6 +18,8 @@ export const TablePack = () => {
         sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
     })
   }
+
+  console.log('dataCards', dataCards)
 
   return (
     <Table.Root>
@@ -50,11 +37,6 @@ export const TablePack = () => {
       </Table.Header>
       <Table.Body>
         {dataCards?.items.length ? (
-          // <SortedPackData
-          //   items={dataCards.items}
-          //   rating={dataDeck?.rating || 0}
-          //   mePackCards={mePackCards}
-          // />
           <SortedPackData />
         ) : (
           dataCards?.items !== undefined && <RenderNoData />
