@@ -11,23 +11,7 @@ type PackPanelProps = {
 }
 
 export const PackPanel = ({ navigateBackToDeck }: PackPanelProps) => {
-  const {
-    // isLoadingAuth,
-    dataMeId,
-    dataDeck,
-    mePackCards,
-    // isLoadingDeck,
-    // isFetchingDeck,
-    // dataCards,
-    // isLoadingCards,
-    // isFetchingCards,
-    // isSuccessCards,
-    // itemsPerPage,
-    // totalItems,
-    // totalPages,
-    // paginationValueInURL,
-    // sort,
-  } = useGetDataForPack()
+  const { dataMeId, dataDeck, mePackCards } = useGetDataForPack()
 
   console.log('dataMeId', dataMeId, 'dataDeck', dataDeck)
 
