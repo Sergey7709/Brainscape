@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import { ArrowLeftFull } from '@/assets/icons/arrow-left-full.tsx'
 import { Elipse } from '@/assets/icons/elipse.tsx'
 import { MoreVerticalOutline } from '@/assets/icons/more-vertical-outline.tsx'
@@ -6,12 +8,20 @@ import { Typography } from '@/components/ui/typography'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import s from '@/pages/pack/pack.module.scss'
 
-type PackPanelProps = {
-  navigateBackToDeck: () => void
-}
-
-export const PackPanel = ({ navigateBackToDeck }: PackPanelProps) => {
+export const PackPanel = () => {
   const { dataMeId, dataDeck, mePackCards } = useGetDataForPack()
+
+  const navigate = useNavigate()
+
+  const navigateBackToDeck = () => {
+    const urlDeck = sessionStorage.getItem('previousPath')
+
+    if (urlDeck) {
+      navigate(`/deck${urlDeck}`)
+    } else {
+      navigate('/deck')
+    }
+  }
 
   console.log('dataMeId', dataMeId, 'dataDeck', dataDeck)
 
