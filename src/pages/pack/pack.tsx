@@ -9,6 +9,7 @@ import { Pagination } from '@/components/ui/pagination'
 import { TextField } from '@/components/ui/textField'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackPanel } from '@/pages/pack/packPanel'
+import { PackSearch } from '@/pages/pack/packSearch'
 import { TablePack } from '@/pages/pack/tablePack'
 import { packFindNameReducer, useAppDispatch } from '@/service'
 import {
@@ -33,25 +34,28 @@ export const Pack = () => {
     paginationValueInURL,
   } = useGetDataForPack()
 
-  const dispatch = useAppDispatch()
-  const { packSearchValue } = useCombineAppSelector()
-  const [searchParams] = useSearchParams()
-  const findText = searchParams.get('question') || ''
+  const isFirstRender = useIsFirstRender()
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
-  const debounce = useDebounce({ value: packSearchValue, milliSeconds: milliSecondsValue })
 
-  useEffect(() => {
-    debounce !== findText &&
-      utilityForSearchParamsEdit({
-        param: 'question',
-        valueForNewParam: debounce ? debounce : [],
-      })
-    isFirstRender && dispatch(packFindNameReducer({ packFindName: findText }))
-  }, [debounce])
-
-  const handlerTextFieldChangeValue = (value: string) => {
-    dispatch(packFindNameReducer({ packFindName: value }))
-  }
+  // const dispatch = useAppDispatch()
+  // const { packSearchValue } = useCombineAppSelector()
+  // const [searchParams] = useSearchParams()
+  // const findText = searchParams.get('question') || ''
+  // const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
+  // const debounce = useDebounce({ value: packSearchValue, milliSeconds: milliSecondsValue })
+  //
+  // useEffect(() => {
+  //   debounce !== findText &&
+  //     utilityForSearchParamsEdit({
+  //       param: 'question',
+  //       valueForNewParam: debounce ? debounce : [],
+  //     })
+  //   isFirstRender && dispatch(packFindNameReducer({ packFindName: findText }))
+  // }, [debounce])
+  //
+  // const handlerTextFieldChangeValue = (value: string) => {
+  //   dispatch(packFindNameReducer({ packFindName: value }))
+  // }
 
   const handlerPagination = (page: number) => {
     utilityForSearchParamsEdit({
@@ -63,8 +67,6 @@ export const Pack = () => {
   const paginationReady =
     !isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && !!totalPages
 
-  const isFirstRender = useIsFirstRender()
-
   console.log('isFirstRender ', isFirstRender)
 
   return (
@@ -75,14 +77,15 @@ export const Pack = () => {
       <div className={s.containerPack}>
         <div className={s.pack}>
           <PackPanel />
-          <div className={s.inputPackRowWrapper}>
-            <TextField
-              type={'search'}
-              placeholder={'Input search'}
-              onValueChange={handlerTextFieldChangeValue}
-              value={isFirstRender ? findText : packSearchValue}
-            />
-          </div>
+          <PackSearch />
+          {/*<div className={s.inputPackRowWrapper}>*/}
+          {/*  <TextField*/}
+          {/*    type={'search'}*/}
+          {/*    placeholder={'Input search'}*/}
+          {/*    onValueChange={handlerTextFieldChangeValue}*/}
+          {/*    value={isFirstRender ? findText : packSearchValue}*/}
+          {/*  />*/}
+          {/*</div>*/}
           <TablePack />
           <div className={s.paginationWrapperPack}>
             {paginationReady && (
