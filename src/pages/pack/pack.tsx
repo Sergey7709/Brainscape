@@ -1,4 +1,6 @@
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+
+import { useSearchParams } from 'react-router-dom'
 
 import s from './pack.module.scss'
 
@@ -8,7 +10,14 @@ import { TextField } from '@/components/ui/textField'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackPanel } from '@/pages/pack/packPanel'
 import { TablePack } from '@/pages/pack/tablePack'
-import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
+import { packFindNameReducer, useAppDispatch } from '@/service'
+import {
+  milliSecondsValue,
+  useCombineAppSelector,
+  useDebounce,
+  useIsFirstRender,
+  useUtilityForSearchParamsEdit,
+} from '@/utils'
 
 export const Pack = () => {
   const {
@@ -24,7 +33,25 @@ export const Pack = () => {
     paginationValueInURL,
   } = useGetDataForPack()
 
+  const dispatch = useAppDispatch()
+  const { packSearchValue } = useCombineAppSelector()
+  const [searchParams] = useSearchParams()
+  const findText = searchParams.get('question') || ''
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
+  const debounce = useDebounce({ value: packSearchValue, milliSeconds: milliSecondsValue })
+
+  useEffect(() => {
+    debounce !== findText &&
+      utilityForSearchParamsEdit({
+        param: 'question',
+        valueForNewParam: debounce ? debounce : [],
+      })
+    isFirstRender && dispatch(packFindNameReducer({ packFindName: findText }))
+  }, [debounce])
+
+  const handlerTextFieldChangeValue = (value: string) => {
+    dispatch(packFindNameReducer({ packFindName: value }))
+  }
 
   const handlerPagination = (page: number) => {
     utilityForSearchParamsEdit({
@@ -49,7 +76,12 @@ export const Pack = () => {
         <div className={s.pack}>
           <PackPanel />
           <div className={s.inputPackRowWrapper}>
-            <TextField type={'search'} placeholder={'Input search'} />
+            <TextField
+              type={'search'}
+              placeholder={'Input search'}
+              onValueChange={handlerTextFieldChangeValue}
+              value={isFirstRender ? findText : packSearchValue}
+            />
           </div>
           <TablePack />
           <div className={s.paginationWrapperPack}>
