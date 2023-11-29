@@ -45,6 +45,10 @@
   &:active:not(:disabled) {
     transform: translateY(-1px);
   }
+
+  &:hover:not(:disabled) {
+    transition: 0.3s;
+  }
 }
 
 .primary {
