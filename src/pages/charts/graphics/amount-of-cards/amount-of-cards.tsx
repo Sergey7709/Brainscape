@@ -2,6 +2,9 @@ import { memo } from 'react'
 
 import { Pie } from 'react-chartjs-2'
 
+import s from './amount-of-cards.module.scss'
+
+import { Typography } from '@/components/ui/typography'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
@@ -16,14 +19,14 @@ export const AmountOfCards = memo(({ items }: Pick<GetEntitiesResponse<DeckType>
   items?.forEach(deck => {
     const cardsCount = deck.cardsCount
 
-    if (cardsCount === 0) usersData['0'] = usersData['0'] + 1
-    if (cardsCount > 0 && cardsCount < 10) usersData['<10'] = usersData['<10'] + 1
-    if (cardsCount >= 10 && cardsCount < 20) usersData['<20'] = usersData['<20'] + 1
-    if (cardsCount >= 20) usersData['<100'] = usersData['<100'] + 1
+    if (cardsCount === 0) usersData['0'] += 1
+    if (cardsCount > 0 && cardsCount < 10) usersData['<10'] += 1
+    if (cardsCount >= 10 && cardsCount < 20) usersData['<20'] += 1
+    if (cardsCount >= 20) usersData['<100'] += 1
   })
 
   const info = {
-    labels: ['0', '<10', '<20', '<100'],
+    labels: ['0', '< 10', '< 20', '< 100'],
     datasets: [
       {
         label: 'Amount of cards in the deck',
@@ -49,17 +52,29 @@ export const AmountOfCards = memo(({ items }: Pick<GetEntitiesResponse<DeckType>
     ],
   }
 
+  const classNames = {
+    wrapper: s.wrapper,
+    title: s.title,
+  }
+
   return (
-    <div>
-      <Pie
-        width={300}
-        height={300}
-        data={info}
-        options={{
-          maintainAspectRatio: false,
-          scales: { y: { beginAtZero: true, ticks: { display: false } } },
-        }}
-      />
+    <div className={classNames.wrapper}>
+      <Typography className={classNames.title} variant={'h2'}>
+        Cards in decks
+      </Typography>
+      <div>
+        <Pie
+          style={{ display: 'flex', gap: '20px' }}
+          width={350}
+          height={350}
+          data={info}
+          options={{
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true, ticks: { display: false } } },
+            datasets: {},
+          }}
+        />
+      </div>
     </div>
   )
 })

@@ -3,6 +3,7 @@ import { memo } from 'react'
 import s from './deck-creators.module.scss'
 
 import { Table } from '@/components/ui/tables'
+import { Typography } from '@/components/ui/typography'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
@@ -15,31 +16,38 @@ type AuthorsDictionary = {
   [key: string]: AuthorInfo
 }
 
-export const DeckCreators = memo(({ items }: Pick<GetEntitiesResponse<DeckType>, 'items'>) => {
-  const statistics = {} as AuthorsDictionary
+type AuthorTuple = [string, AuthorInfo]
 
+export const DeckCreators = memo(({ items }: Pick<GetEntitiesResponse<DeckType>, 'items'>) => {
   const classNames = {
     wrapper: s.wrapper,
+    title: s.title,
   }
 
+  const authorsDictionary = {} as AuthorsDictionary
+
   items.forEach(items => {
-    if (Object.keys(statistics).includes(items.author.id)) {
-      statistics[items.author.id].deckCreated += 1
+    if (Object.keys(authorsDictionary).includes(items.author.id)) {
+      authorsDictionary[items.author.id].deckCreated += 1
     } else {
-      statistics[items.author.id] = { name: items.author.name, deckCreated: 1 }
+      authorsDictionary[items.author.id] = { name: items.author.name, deckCreated: 1 }
     }
   })
 
-  type Tuple = [string, { name: string; deckCreated: number }]
-
-  const tuples: Tuple[] = Object.keys(statistics).map(function (key) {
-    return [key, statistics[key]]
+  const authorsTuples: AuthorTuple[] = Object.keys(authorsDictionary).map(function (key) {
+    return [key, authorsDictionary[key]]
   })
 
-  tuples.sort((first, second) => first[1].deckCreated - second[1].deckCreated).reverse()
+  const sortedAuthors = authorsTuples
+    .sort((first, second) => first[1].deckCreated - second[1].deckCreated)
+    .reverse()
+    .slice(0, 10)
 
   return (
     <div className={classNames.wrapper}>
+      <Typography className={classNames.title} variant={'h2'}>
+        The most productive Deck Creators
+      </Typography>
       <Table.Root>
         <Table.Head>
           <Table.Row>
@@ -49,7 +57,7 @@ export const DeckCreators = memo(({ items }: Pick<GetEntitiesResponse<DeckType>,
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {tuples.slice(0, 10).map((author, index) => {
+          {sortedAuthors.map((author, index) => {
             return (
               <Table.Row key={author[0]}>
                 <Table.Cell>{index + 1}</Table.Cell>

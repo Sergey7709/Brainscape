@@ -22,7 +22,7 @@ export const Charts = () => {
 
   return (
     <div className={classNames.wrapper}>
-      <div>DecksCount: {data?.items.length}</div>
+      {/*<div>DecksCount: {data?.items.length}</div>*/}
       <AmountOfCards items={data!.items} />
       <DeckCreators items={data!.items} />
     </div>
