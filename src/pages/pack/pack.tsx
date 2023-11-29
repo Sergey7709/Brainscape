@@ -11,8 +11,6 @@ import { TablePack } from '@/pages/pack/tablePack'
 import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
-  const navigate = useNavigate()
-
   const {
     isLoadingAuth,
     isLoadingDeck,
@@ -35,16 +33,6 @@ export const Pack = () => {
     })
   }
 
-  const navigateBackToDeck = () => {
-    const urlDeck = sessionStorage.getItem('previousPath')
-
-    if (urlDeck) {
-      navigate(`/deck${urlDeck}`)
-    } else {
-      navigate('/deck')
-    }
-  }
-
   const paginationReady =
     !isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && !!totalPages
 
@@ -59,7 +47,7 @@ export const Pack = () => {
       )}
       <div className={s.containerPack}>
         <div className={s.pack}>
-          <PackPanel navigateBackToDeck={navigateBackToDeck} />
+          <PackPanel />
           <div className={s.inputPackRowWrapper}>
             <TextField type={'search'} placeholder={'Input search'} />
           </div>
