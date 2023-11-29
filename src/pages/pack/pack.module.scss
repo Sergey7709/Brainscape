@@ -127,3 +127,20 @@
 .packHeadCellListStyle{
   width: 100%;
 }
+
+.textPackNoData {
+ width: 100%;
+  font-weight: 700;
+  color: var(--color-danger-500);
+}
+
+.trPack {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  width: 100%;
+
+  border: 1px solid var(--color-dark-500);
+
+}
