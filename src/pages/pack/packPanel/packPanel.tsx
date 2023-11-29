@@ -9,7 +9,7 @@ import { useGetDataForPack } from '@/pages/pack/hooks'
 import s from '@/pages/pack/pack.module.scss'
 
 export const PackPanel = () => {
-  const { dataMeId, dataDeck, mePackCards } = useGetDataForPack()
+  const { dataDeck, mePackCards } = useGetDataForPack()
 
   const navigate = useNavigate()
 
@@ -22,8 +22,6 @@ export const PackPanel = () => {
       navigate('/deck')
     }
   }
-
-  console.log('dataMeId', dataMeId, 'dataDeck', dataDeck)
 
   return (
     <>
