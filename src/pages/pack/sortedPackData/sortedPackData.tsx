@@ -1,4 +1,3 @@
-import { Loader } from '@/components/ui/loader'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
 // import { PackCards } from '@/service/decks/decks.types.ts'
@@ -14,11 +13,11 @@ export const SortedPackData = () => {
     // dataMeId,
     dataDeck,
     mePackCards,
-    isLoadingDeck,
-    isFetchingDeck,
+    // isLoadingDeck,
+    // isFetchingDeck,
     dataCards,
-    isLoadingCards,
-    isFetchingCards,
+    // isLoadingCards,
+    // isFetchingCards,
     // isSuccessCards,
     // itemsPerPage,
     // totalItems,
