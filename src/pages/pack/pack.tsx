@@ -13,19 +13,20 @@ import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { columnsPack } from '@/pages/pack/constantsPack.ts'
 import { useGetDataForPack } from '@/pages/pack/hooks'
+import { PackPanel } from '@/pages/pack/packPanel'
 import { RenderNoData } from '@/pages/pack/renderNoData'
 import { SortedPackData } from '@/pages/pack/sortedPackData'
-import { useUtilityForSearchParamsEdit } from '@/utils'
+import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
   const navigate = useNavigate()
 
   const {
-    isLoadingAuth,
-    dataMeId,
-    dataDeck,
-    isLoadingDeck,
-    isFetchingDeck,
+    // isLoadingAuth,
+    // dataMeId,
+    // dataDeck,
+    // isLoadingDeck,
+    // isFetchingDeck,
     dataCards,
     isLoadingCards,
     isFetchingCards,
@@ -36,6 +37,8 @@ export const Pack = () => {
     paginationValueInURL,
     sort,
   } = useGetDataForPack()
+
+  // const mePackCards = dataMeId?.id === dataDeck?.userId
 
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
@@ -64,42 +67,45 @@ export const Pack = () => {
     }
   }
 
-  const pagination = !!totalPages && (
-    <Pagination
-      currentPage={paginationValueInURL}
-      pageSize={itemsPerPage ?? 0}
-      totalCount={totalItems ?? 0}
-      onPageChange={page => handlerPagination(page)}
-    />
-  )
+  const paginationReady =
+    !isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && !!totalPages
+
+  const isFirstRender = useIsFirstRender()
+
+  console.log('isFirstRender ', isFirstRender)
+  // console.log('dataCards', dataCards)
 
   return (
     <>
-      {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || isLoadingAuth) && (
-        <Loader />
-      )}
+      {/*{(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || isLoadingAuth) && (*/}
+      {/*  <Loader />*/}
+      {/*)}*/}
+      {(isLoadingCards || isFetchingCards) && <Loader />}
       <div className={s.containerPack}>
         <div className={s.pack}>
-          <Button variant={'link'} className={s.linkPackList} onClick={navigateBackToDeck}>
-            <ArrowLeftFull />
-            Back to Packs List
-          </Button>
-          <div className={s.containerTitleAndButton}>
-            <div className={s.containerTitle}>
-              {dataMeId?.id === dataDeck?.userId ? (
-                <>
-                  <Typography variant={'large'}>{`My Pack: "${dataDeck?.name}"`}</Typography>
-                  <Elipse className={s.packDropDown}>
-                    <MoreVerticalOutline />
-                  </Elipse>
-                </>
-              ) : (
-                <Typography variant={'large'}> {`Friend’s Pack: "${dataDeck?.name}"`} </Typography>
-              )}
-            </div>
-            <Button className={s.packButton}>Add New Card</Button>
-          </div>
-          <img src={dataDeck?.cover} alt={'Not found'} className={s.packImg} />
+          <PackPanel navigateBackToDeck={navigateBackToDeck} />
+          {/*<Button variant={'link'} className={s.linkPackList} onClick={navigateBackToDeck}>*/}
+          {/*  <ArrowLeftFull />*/}
+          {/*  Back to Packs List*/}
+          {/*</Button>*/}
+          {/*<div className={s.containerTitleAndButton}>*/}
+          {/*  <div className={s.containerTitle}>*/}
+          {/*    {mePackCards ? (*/}
+          {/*      <>*/}
+          {/*        <Typography variant={'large'}>{`My Pack: "${dataDeck?.name || ''}"`}</Typography>*/}
+          {/*        <Elipse className={s.packDropDown}>*/}
+          {/*          <MoreVerticalOutline />*/}
+          {/*        </Elipse>*/}
+          {/*      </>*/}
+          {/*    ) : (*/}
+          {/*      <Typography variant={'large'}>*/}
+          {/*        {`Friend’s Pack: "${dataDeck?.name || ''}"`}*/}
+          {/*      </Typography>*/}
+          {/*    )}*/}
+          {/*  </div>*/}
+          {/*  <Button className={s.packButton}>Add New Card</Button>*/}
+          {/*</div>*/}
+          {/*<img src={dataDeck?.cover} alt={'Not found'} className={s.packImg} />*/}
           <div className={s.inputPackRowWrapper}>
             <TextField type={'search'} placeholder={'Input search'} />
           </div>
@@ -116,18 +122,28 @@ export const Pack = () => {
                 </Table.Row>
               </Table.Head>
             </Table.Header>
-            {
-              <Table.Body>
-                {dataCards ? (
-                  <SortedPackData items={dataCards.items} rating={dataDeck?.rating || 0} />
-                ) : (
-                  <RenderNoData />
-                )}
-              </Table.Body>
-            }
+            <Table.Body>
+              {dataCards?.items.length ? (
+                // <SortedPackData
+                //   items={dataCards.items}
+                //   rating={dataDeck?.rating || 0}
+                //   mePackCards={mePackCards}
+                // />
+                <SortedPackData />
+              ) : (
+                dataCards?.items !== undefined && <RenderNoData />
+              )}
+            </Table.Body>
           </Table.Root>
           <div className={s.paginationWrapperPack}>
-            {!isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && pagination}
+            {paginationReady && (
+              <Pagination
+                currentPage={paginationValueInURL}
+                pageSize={itemsPerPage ?? 0}
+                totalCount={totalItems ?? 0}
+                onPageChange={page => handlerPagination(page)}
+              />
+            )}
           </div>
         </div>
       </div>
