@@ -2,9 +2,9 @@ import s from '@/pages/pack/pack.module.scss'
 
 export const RenderNoData = () => {
   return (
-    <tr className={s.td}>
+    <tr className={s.trPack}>
       <td colSpan={5}>
-        <p className={s.textNoData}>Упс... данные отсутствуют</p>
+        <p className={s.textPackNoData}>Упс... данные отсутствуют</p>
       </td>
     </tr>
   )
