@@ -19,8 +19,6 @@ export const TablePack = () => {
     })
   }
 
-  console.log('dataCards', dataCards)
-
   return (
     <Table.Root>
       <Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack}>
