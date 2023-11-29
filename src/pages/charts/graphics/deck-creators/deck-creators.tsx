@@ -1,5 +1,7 @@
 import { memo } from 'react'
 
+import s from './deck-creators.module.scss'
+
 import { Table } from '@/components/ui/tables'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { DeckType } from '@/service/decks/decks.types.ts'
@@ -15,6 +17,10 @@ type AuthorsDictionary = {
 
 export const DeckCreators = memo(({ items }: Pick<GetEntitiesResponse<DeckType>, 'items'>) => {
   const statistics = {} as AuthorsDictionary
+
+  const classNames = {
+    wrapper: s.wrapper,
+  }
 
   items.forEach(items => {
     if (Object.keys(statistics).includes(items.author.id)) {
@@ -33,7 +39,7 @@ export const DeckCreators = memo(({ items }: Pick<GetEntitiesResponse<DeckType>,
   tuples.sort((first, second) => first[1].deckCreated - second[1].deckCreated).reverse()
 
   return (
-    <div>
+    <div className={classNames.wrapper}>
       <Table.Root>
         <Table.Head>
           <Table.Row>

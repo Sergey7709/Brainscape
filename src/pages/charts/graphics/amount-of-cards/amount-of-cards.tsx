@@ -52,10 +52,13 @@ export const AmountOfCards = memo(({ items }: Pick<GetEntitiesResponse<DeckType>
   return (
     <div>
       <Pie
-        width={400}
-        height={400}
+        width={300}
+        height={300}
         data={info}
-        options={{ maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }}
+        options={{
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, ticks: { display: false } } },
+        }}
       />
     </div>
   )
