@@ -27,10 +27,12 @@ export const SortedPackData = () => {
     // sort,
   } = useGetDataForPack()
 
-  return dataCards?.items.map(pack => (
+  return (
     <>
       {(isLoadingCards || isFetchingCards || isLoadingDeck || isFetchingDeck) && <Loader />}
-      <PackRow key={pack.id} rating={dataDeck?.rating || 0} mePackCards={mePackCards} {...pack} />
+      {dataCards?.items.map(pack => (
+        <PackRow key={pack.id} rating={dataDeck?.rating || 0} mePackCards={mePackCards} {...pack} />
+      ))}
     </>
-  ))
+  )
 }
