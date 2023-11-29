@@ -16,6 +16,7 @@ import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackPanel } from '@/pages/pack/packPanel'
 import { RenderNoData } from '@/pages/pack/renderNoData'
 import { SortedPackData } from '@/pages/pack/sortedPackData'
+import { TablePack } from '@/pages/pack/tablePack'
 import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
@@ -27,7 +28,7 @@ export const Pack = () => {
     // dataDeck,
     // isLoadingDeck,
     // isFetchingDeck,
-    dataCards,
+    // dataCards,
     isLoadingCards,
     isFetchingCards,
     isSuccessCards,
@@ -35,20 +36,20 @@ export const Pack = () => {
     totalItems,
     totalPages,
     paginationValueInURL,
-    sort,
+    // sort,
   } = useGetDataForPack()
 
   // const mePackCards = dataMeId?.id === dataDeck?.userId
 
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
-  const handlerSortValuePack = (sort: Sort) => {
-    utilityForSearchParamsEdit({
-      param: 'orderBy',
-      valueForNewParam:
-        sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
-    })
-  }
+  // const handlerSortValuePack = (sort: Sort) => {
+  //   utilityForSearchParamsEdit({
+  //     param: 'orderBy',
+  //     valueForNewParam:
+  //       sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
+  //   })
+  // }
 
   const handlerPagination = (page: number) => {
     utilityForSearchParamsEdit({
@@ -109,32 +110,33 @@ export const Pack = () => {
           <div className={s.inputPackRowWrapper}>
             <TextField type={'search'} placeholder={'Input search'} />
           </div>
-          <Table.Root>
-            <Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack}>
-              <Table.Head>
-                <Table.Row className={s.packHeaderStyle}>
-                  <Table.HeadCellList
-                    className={s.packHeadCellListStyle}
-                    columns={columnsPack}
-                    sort={sort}
-                    onSort={handlerSortValuePack}
-                  />
-                </Table.Row>
-              </Table.Head>
-            </Table.Header>
-            <Table.Body>
-              {dataCards?.items.length ? (
-                // <SortedPackData
-                //   items={dataCards.items}
-                //   rating={dataDeck?.rating || 0}
-                //   mePackCards={mePackCards}
-                // />
-                <SortedPackData />
-              ) : (
-                dataCards?.items !== undefined && <RenderNoData />
-              )}
-            </Table.Body>
-          </Table.Root>
+          <TablePack />
+          {/*<Table.Root>*/}
+          {/*  <Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack}>*/}
+          {/*    <Table.Head>*/}
+          {/*      <Table.Row className={s.packHeaderStyle}>*/}
+          {/*        <Table.HeadCellList*/}
+          {/*          className={s.packHeadCellListStyle}*/}
+          {/*          columns={columnsPack}*/}
+          {/*          sort={sort}*/}
+          {/*          onSort={handlerSortValuePack}*/}
+          {/*        />*/}
+          {/*      </Table.Row>*/}
+          {/*    </Table.Head>*/}
+          {/*  </Table.Header>*/}
+          {/*  <Table.Body>*/}
+          {/*    {dataCards?.items.length ? (*/}
+          {/*      // <SortedPackData*/}
+          {/*      //   items={dataCards.items}*/}
+          {/*      //   rating={dataDeck?.rating || 0}*/}
+          {/*      //   mePackCards={mePackCards}*/}
+          {/*      // />*/}
+          {/*      <SortedPackData />*/}
+          {/*    ) : (*/}
+          {/*      dataCards?.items !== undefined && <RenderNoData />*/}
+          {/*    )}*/}
+          {/*  </Table.Body>*/}
+          {/*</Table.Root>*/}
           <div className={s.paginationWrapperPack}>
             {paginationReady && (
               <Pagination
