@@ -40,6 +40,10 @@ export const useGetDataForPack = () => {
 
   const { sort } = useDataSort()
 
+  const mePackCards = dataMeId?.id === dataDeck?.userId
+
+  // console.log('dataMeId', dataMeId, 'dataDeck', dataDeck, 'dataCards', dataCards)
+
   return {
     isAuthenticated,
     isLoadingAuth,
@@ -57,5 +61,6 @@ export const useGetDataForPack = () => {
     totalPages,
     paginationValueInURL,
     sort,
+    mePackCards,
   }
 }
