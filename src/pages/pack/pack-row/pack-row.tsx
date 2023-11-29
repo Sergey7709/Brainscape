@@ -5,7 +5,8 @@ import { Table } from '@/components/ui/tables'
 import s from '@/pages/pack/pack-row/pack-row.module.scss'
 import { PackRowType } from '@/service/decks/decks.types.ts'
 
-export const PackRow = (pack: PackRowType) => {
+type extendPackRow = { mePackCards: boolean } & PackRowType
+export const PackRow = (pack: extendPackRow) => {
   const updatedDateFormat = new Date(pack.updated)
     .toISOString()
     .slice(0, 10)
@@ -36,14 +37,16 @@ export const PackRow = (pack: PackRowType) => {
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className={s.buttonContainerPackRow}>
-          <Button variant="link" className={s.editButtonPackRow}>
-            <Redactor />
-          </Button>
-          <Button variant="link" className={s.editButtonPackRow}>
-            <Delete />
-          </Button>
-        </div>
+        {pack.mePackCards && (
+          <div className={s.buttonContainerPackRow}>
+            <Button variant="link" className={s.editButtonPackRow}>
+              <Redactor />
+            </Button>
+            <Button variant="link" className={s.editButtonPackRow}>
+              <Delete />
+            </Button>
+          </div>
+        )}
       </Table.Cell>
     </Table.Row>
   )
