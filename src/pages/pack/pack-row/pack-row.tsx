@@ -3,9 +3,9 @@ import { Button } from '@/components/ui/button'
 import { Rating } from '@/components/ui/rating'
 import { Table } from '@/components/ui/tables'
 import s from '@/pages/pack/pack-row/pack-row.module.scss'
-import { PackRowType } from '@/service/decks/decks.types.ts'
+import { PackCards } from '@/service/decks/decks.types.ts'
 
-type extendPackRow = { mePackCards: boolean } & PackRowType
+type extendPackRow = { mePackCards: boolean } & PackCards
 export const PackRow = (pack: extendPackRow) => {
   const updatedDateFormat = new Date(pack.updated)
     .toISOString()
@@ -33,7 +33,7 @@ export const PackRow = (pack: extendPackRow) => {
       <Table.Cell>{updatedDateFormat}</Table.Cell>
       <Table.Cell>
         <div>
-          <Rating count={5} value={pack.rating} />
+          <Rating count={5} value={pack.grade} />
         </div>
       </Table.Cell>
       <Table.Cell>
