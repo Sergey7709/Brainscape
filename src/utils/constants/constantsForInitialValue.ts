@@ -8,4 +8,6 @@ export const orderByValue = ''
 export const searchParamsQueryValue = ''
 export const milliSecondsValue = 1000
 
+export const packFindNameValue = ''
+
 export const sortTableValue = null

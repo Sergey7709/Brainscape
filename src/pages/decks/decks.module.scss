@@ -26,20 +26,16 @@
   margin-top: 36px;
 }
 
-
 .paginationWrapper {
   display: flex;
   justify-content: start;
-  width: 1006px; }///!!!!!!!! исправить для адаптива
+  width: 1006px;
+} ///!!!!!!!! исправить для адаптива
 
-
-
-  .textNoData {
-    font-weight: 700;
-    color: var(--color-danger-500);
-
-  }
-
+.textNoData {
+  font-weight: 700;
+  color: var(--color-danger-500);
+}
 
 .td {
   display: flex;
@@ -48,10 +44,91 @@
 
   width: 100%;
 
-  border: 1px solid  var(--color-dark-500);
+  border: 1px solid var(--color-dark-500);
+
+}
+
+.nameContainer {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+
+ //width: 213px;
+  width: 285px;
+
+  //max-width: 260px;//!!!!
+   //max-height: 61px;
+  //height: 48px;//!!!!
+}
+
+.imgCover {
+  flex-shrink: 0;
+
+  width: 118.265px;
+  max-height: 48px;
+
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.textForName {
+  //word-break: break-word;
+  //overflow-wrap: break-word;
 
 
 
+  //display: flex;
+  //flex-basis: 100%;
+  //flex-wrap: wrap;
+  //align-content: flex-start;
+  overflow: hidden;
 
-  //padding: 2rem;
+  max-width: 100%;
+
+  //height: 48px;
+ margin: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+.linkCell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start ;
+
+  width: 285px;
+
+  //width: 213px;
+ height: 48px;
+
+  //width: 90%;
+
+  ////max-width: 290px;
+  //max-width: 265px;
+  //padding-right: 0.5rem;
+  //padding-left: 0.5rem;
+  padding: 0;
+
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-light-100)!important;///!!!! Исправить !important
+
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.editAvatarButton {
+  &:hover {
+    cursor: pointer;
+    scale: 130%;
+    transition: 0.3s;
+  }
 }

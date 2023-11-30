@@ -1,4 +1,4 @@
-import { ComponentProps, FC } from 'react'
+import { ComponentProps, FC, ReactNode } from 'react'
 
 import clsx from 'clsx'
 
@@ -26,18 +26,16 @@ export type Column = {
   key: string
   sortable?: boolean
 }
-export const Header: FC<
-  Omit<
-    HeadProps & {
-      columns: Column[]
-      sort: Sort
-      onSort: (sort: Sort) => void
-    },
-    'children'
-  >
-> = ({ columns, sort, onSort, ...restProps }) => {
+
+export const HeadCellList: FC<
+  ComponentProps<'th'> & {
+    columns: Column[]
+    sort: Sort
+    onSort: (sort: Sort) => void
+  }
+> = ({ columns, sort, onSort, className, ...restProps }) => {
   const classNames = {
-    chevron: sort?.direction === 'asc' ? '' : s.chevron,
+    chevron: sort?.direction === 'asc' ? '' : s.chevronDown,
   }
   const handleSort = (key: string, sortable?: boolean) => () => {
     if (!onSort || !sortable) return
@@ -46,35 +44,44 @@ export const Header: FC<
 
     if (sort.direction === 'desc') return onSort(null)
 
-    return onSort({
+    onSort({
       key,
       direction: sort?.direction === 'asc' ? 'desc' : 'asc',
     })
   }
 
-  const headCell = columns.map(({ title, key, sortable }) => {
-    let chevron
-
-    if (sort?.key === key && sort?.direction === 'asc') {
-      chevron = <ChevronUp key={sort.key} className={classNames.chevron} />
-    } else if (sort?.key === key && sort?.direction === 'desc') {
-      chevron = <ChevronUp key={sort.key} className={s.chevronDown} />
-    } else {
-      chevron = null
-    }
-
+  return columns.map(({ title, key, sortable }) => {
     return (
-      <HeadCell key={key} onClick={handleSort(key, sortable)} sortable={sortable}>
+      <HeadCell
+        key={key}
+        onClick={handleSort(key, sortable)}
+        sortable={sortable}
+        className={className}
+        {...restProps}
+      >
         {title}
-        {chevron}
+        {sort?.key === key && <ChevronUp key={sort.key} className={classNames.chevron} />}
       </HeadCell>
     )
   })
+}
 
+export const Header: FC<
+  Omit<HeadProps, 'children'> & {
+    columns: Column[]
+    sort: Sort
+    onSort: (sort: Sort) => void
+    children?: ReactNode
+  }
+> = ({ columns, sort, onSort, children, ...restProps }) => {
   return (
-    <Head {...restProps}>
-      <Row>{headCell}</Row>
-    </Head>
+    children || (
+      <Head {...restProps}>
+        <Row>
+          <HeadCellList columns={columns} sort={sort} onSort={onSort} />
+        </Row>
+      </Head>
+    )
   )
 }
 export const Body: FC<ComponentProps<'tbody'>> = props => {
@@ -82,7 +89,7 @@ export const Body: FC<ComponentProps<'tbody'>> = props => {
 }
 
 export const Row: FC<ComponentProps<'tr'>> = props => {
-  return <tr {...props} className={s.trStyle} /> //!!!!
+  return <tr {...props} className={clsx(s.trStyle, props.className)} /> //!!!!
 }
 
 export const HeadCell: FC<
@@ -135,6 +142,7 @@ export const Table = {
   Header,
   Body,
   Row,
+  HeadCellList,
   HeadCell,
   Cell,
   Empty,

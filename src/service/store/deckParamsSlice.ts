@@ -6,6 +6,7 @@ import {
   findNameValue,
   maxCardsValue,
   minCardsValue,
+  packFindNameValue,
 } from '@/utils/constants/constantsForInitialValue.ts'
 
 type InitialState = {
@@ -13,12 +14,14 @@ type InitialState = {
   findName?: string
   minMaxCardsCount?: number[]
   sortTable?: Sort
+  packFindName?: string
 }
 export const initialState = {
   currentPage: currentPageValue,
   findName: findNameValue,
   minMaxCardsCount: [minCardsValue, maxCardsValue],
   sortTable: null as Sort, ///!!!!
+  packFindName: packFindNameValue,
 }
 
 const deckParamsSlice = createSlice({
@@ -29,10 +32,13 @@ const deckParamsSlice = createSlice({
     //   state.currentPage = action.payload.currentPage ?? currentPageValue
     // },
     findNameReducer: (state, action: PayloadAction<InitialState>) => {
-      state.findName = action.payload.findName ?? ''
+      state.findName = action.payload.findName ?? findNameValue
     },
     minMaxCardsCountReducer: (state, action: PayloadAction<InitialState>) => {
       state.minMaxCardsCount = action.payload.minMaxCardsCount ?? [minCardsValue, maxCardsValue]
+    },
+    packFindNameReducer: (state, action: PayloadAction<InitialState>) => {
+      state.packFindName = action.payload.packFindName ?? packFindNameValue
     },
     // sortTableReducer: (state, action: PayloadAction<InitialState>) => {
     //   state.sortTable = action.payload.sortTable ?? null
@@ -46,6 +52,7 @@ export const {
   findNameReducer,
   clearFilterReducer,
   minMaxCardsCountReducer,
+  packFindNameReducer,
   // sortTableReducer,
 } = deckParamsSlice.actions
 export default deckParamsSlice.reducer

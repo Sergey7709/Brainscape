@@ -1,0 +1,76 @@
+.nameContainerPackRow {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+
+ //max-width: 260px;//!!!!
+ //width: 260px;//!!!!
+ // width: 250px;
+  width: 250px;
+  height: 61px;
+
+  //max-height: 61px;
+}
+
+.textForNamePackRow  {
+  //display: flex;
+  //flex-basis: 100%;
+  //flex-wrap: wrap;
+  //align-content: flex-start;
+  //
+  //word-break: break-word;
+  //overflow-wrap: break-word;
+
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imgPackRow {
+  flex-shrink: 0;
+
+  width: 118.265px;
+  max-height: 48px;
+
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.buttonContainerPackRow  {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 105px;
+}
+
+.editButtonPackRow  {
+ &:hover {
+    cursor: pointer;
+    scale: 130%;
+   transition: 0.3s;
+  }
+}
+
+.packRowStyle {
+  display: grid;
+  grid-template-columns: 1.75fr 1.75fr 0.8fr 1fr 0.5fr;
+  width:100%
+}
+
+.packAnswerStyle {
+  //overflow: hidden;
+  //max-width: 100%;
+  //text-overflow: ellipsis;
+  //white-space: nowrap;
+
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
