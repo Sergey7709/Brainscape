@@ -5,9 +5,14 @@ import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
 import s from '@/pages/decks/decks.module.scss'
+import { useGetAuthUserMeDataQuery } from '@/service'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
 export const DeckRow = (deck: DeckType) => {
+  const { data: dataMeId } = useGetAuthUserMeDataQuery()
+
+  const meDeck = dataMeId?.id === deck?.userId
+
   const updatedDateFormat = new Date(deck.updated)
     .toISOString()
     .slice(0, 10)
@@ -49,12 +54,22 @@ export const DeckRow = (deck: DeckType) => {
           <Button variant="link" className={s.editAvatarButton}>
             <Play />
           </Button>
-          <Button variant="link" className={s.editAvatarButton}>
-            <Redactor />
-          </Button>
-          <Button variant="link" className={s.editAvatarButton}>
-            <Delete />
-          </Button>
+          {meDeck && (
+            <>
+              <Button variant="link" className={s.editAvatarButton}>
+                <Redactor />
+              </Button>
+              <Button variant="link" className={s.editAvatarButton}>
+                <Delete />
+              </Button>
+            </>
+          )}
+          {/*<Button variant="link" className={s.editAvatarButton}>*/}
+          {/*  <Redactor />*/}
+          {/*</Button>*/}
+          {/*<Button variant="link" className={s.editAvatarButton}>*/}
+          {/*  <Delete />*/}
+          {/*</Button>*/}
         </div>
       </Table.Cell>
     </Table.Row>
