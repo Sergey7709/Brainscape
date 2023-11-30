@@ -12,8 +12,8 @@ import { columnsDecks } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
+import { RenderNoDataDeck } from '@/pages/decks/renderNoDataDeck'
 import { SortedDataDeck } from '@/pages/decks/sortedDataDeck'
-import { RenderNoData } from '@/pages/pack/renderNoData'
 import { currentPageValue } from '@/service'
 import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
@@ -95,7 +95,7 @@ export const DeckComposition = memo(() => {
                 {data?.items.length ? (
                   <SortedDataDeck />
                 ) : (
-                  data?.items !== undefined && <RenderNoData />
+                  data?.items !== undefined && <RenderNoDataDeck />
                 )}
               </Table.Body>
             }
