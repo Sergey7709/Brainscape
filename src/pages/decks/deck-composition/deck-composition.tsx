@@ -12,6 +12,8 @@ import { columnsDecks } from '@/pages/decks/constantsDeck.ts'
 import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
+import { SortedDataDeck } from '@/pages/decks/sortedDataDeck'
+import { RenderNoData } from '@/pages/pack/renderNoData'
 import { currentPageValue } from '@/service'
 import { useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 
@@ -24,7 +26,7 @@ export const DeckComposition = memo(() => {
 
   const { sort, isSuccess, isFetching, data } = useGetDataSort()
 
-  const isFirstRender = useIsFirstRender()
+  // const isFirstRender = useIsFirstRender()
 
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
 
@@ -62,20 +64,20 @@ export const DeckComposition = memo(() => {
       onPageChange={page => handlerPagination(page)}
     />
   )
-  const renderNoData = () => (
-    <tr className={s.td}>
-      <td colSpan={5}>
-        <p className={s.textNoData}>Упс... данные отсутствуют</p>
-      </td>
-    </tr>
-  )
-
-  const sortedDataOrNothing = useMemo(
-    () =>
-      (!!data?.items.length && data?.items.map(deck => <DeckRow key={deck.id} {...deck} />)) ||
-      (!data?.items.length && !isFirstRender && renderNoData()),
-    [data]
-  )
+  // const renderNoData = () => (
+  //   <tr className={s.td}>
+  //     <td colSpan={5}>
+  //       <p className={s.textNoData}>Упс... данные отсутствуют</p>
+  //     </td>
+  //   </tr>
+  // )
+  //
+  // const sortedDataOrNothing = useMemo(
+  //   () =>
+  //     (!!data?.items.length && data?.items.map(deck => <DeckRow key={deck.id} {...deck} />)) ||
+  //     (!data?.items.length && !isFirstRender && renderNoData()),
+  //   [data]
+  // )
 
   return (
     <div className={classNames.container}>
@@ -88,7 +90,15 @@ export const DeckComposition = memo(() => {
         <div className={classNames.tableWrapper}>
           <Table.Root>
             <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue} />
-            {<Table.Body>{sortedDataOrNothing}</Table.Body>}
+            {
+              <Table.Body>
+                {data?.items.length ? (
+                  <SortedDataDeck />
+                ) : (
+                  data?.items !== undefined && <RenderNoData />
+                )}
+              </Table.Body>
+            }
           </Table.Root>
         </div>
       </div>
