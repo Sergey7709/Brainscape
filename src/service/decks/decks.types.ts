@@ -38,6 +38,5 @@ export type PackCards = {
   answerVideo: string
   created: string
   updated: string
+  grade: number
 } ///!!!!!!!!!
-
-export type PackRowType = Pick<DeckType, 'rating'> & PackCards
