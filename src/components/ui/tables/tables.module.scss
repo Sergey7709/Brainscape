@@ -47,25 +47,34 @@
 
 .trStyle {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-}
+
+  //grid-template-columns: 2fr 1fr 1.5fr 2.2fr 1fr;
+  grid-template-columns: 2.7fr 1fr 1.5fr 2fr 1fr;
+
+  &:hover {
+    background-color:  var(--color-accent-900)
+  }///!!!!
+ }
+
+
 
 .tableCell {
   display: flex;
    align-items: center;
 
-  padding: 6px 24px;
+   padding: 6px 24px;
 
   font-size: var(--font-size-s);
   line-height: var(--line-height-m);
   overflow-wrap: break-word;
 
-    background-color: var(--color-dark-900);
+    //background-color: var(--color-dark-900);
     border-bottom: 1px solid var(--color-dark-500);
 
     button {
       padding: 20px 5px;
     }
+
 }
 
 .chevronDown {
