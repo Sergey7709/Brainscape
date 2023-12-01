@@ -61,7 +61,6 @@ export const Controlled: Story = {
     ],
     isOpen: true,
   },
-  argTypes: { setIsOpen: { action: 'Select is closed!' } },
 }
 
 export const Disabled: Story = {
