@@ -11,13 +11,8 @@ import { Typography } from '@/components/ui/typography'
 
 export default () => <RadixLabel.Root />
 
-type SelectOption = {
-  title: string | number
-  value: string
-}
-
 type SelectType = {
-  options: SelectOption[]
+  options: string[]
   onValueChange?: (value: string) => void
   disabled?: boolean
   label?: string
@@ -27,6 +22,7 @@ type SelectType = {
   fullWidth?: boolean
   isOpen?: boolean
   setIsOpen?: (isOpen: boolean) => void
+  value?: string
 }
 
 export const Select = ({
@@ -37,15 +33,12 @@ export const Select = ({
   onValueChange,
   variant = 'common',
   className,
-  /*
-                         Use this temporary prop for cards
-                          **/
   fullWidth,
   isOpen = false,
   setIsOpen,
+  value = '',
 }: SelectType) => {
   const [open, setOpen] = useState(isOpen)
-
   const onOpenChangeHandler = () => {
     if (!disabled) {
       setIsOpen ? setIsOpen(isOpen) : setOpen(!open)
@@ -89,13 +82,13 @@ export const Select = ({
         onOpenChange={onOpenChangeHandler}
         open={open}
         disabled={disabled}
+        value={value}
       >
         <RadixSelect.Trigger className={classNames.trigger}>
           <Typography variant={'body1'}>
-            <RadixSelect.Value
-              className={classNames.value}
-              placeholder={placeholder || options[0].title}
-            />
+            <RadixSelect.Value className={classNames.value} placeholder={placeholder}>
+              {value}
+            </RadixSelect.Value>
           </Typography>
           <RadixSelect.Icon className={classNames.icon}>
             {open ? <ArrowUp size={16} /> : <ArrowDown size={16} disabled={disabled} />}
@@ -104,13 +97,9 @@ export const Select = ({
         <RadixSelect.Portal>
           <RadixSelect.Content className={classNames.content} position="popper">
             <RadixSelect.Viewport>
-              {options.map(option => (
-                <RadixSelect.Item
-                  key={option.value}
-                  value={option.value}
-                  className={classNames.item}
-                >
-                  <RadixSelect.ItemText>{option.title}</RadixSelect.ItemText>
+              {options.map(value => (
+                <RadixSelect.Item key={value} value={value} className={classNames.item}>
+                  <RadixSelect.ItemText>{value}</RadixSelect.ItemText>
                 </RadixSelect.Item>
               ))}
             </RadixSelect.Viewport>
