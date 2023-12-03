@@ -28,6 +28,7 @@
 
 .paginationWrapper {
   display: flex;
+  gap: 24px;
   justify-content: start;
   width: 1006px;
 } ///!!!!!!!! исправить для адаптива
@@ -131,4 +132,17 @@
     scale: 130%;
     transition: 0.3s;
   }
+}
+
+.selectWrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+
+  //
+  //width: 50px;
+  //margin: 0;
+  //padding: 0;
+
 }
