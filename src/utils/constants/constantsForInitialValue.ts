@@ -10,4 +10,5 @@ export const milliSecondsValue = 1000
 
 export const packFindNameValue = ''
 
+export const selectItemsPerPageValue = '10'
 export const sortTableValue = null
