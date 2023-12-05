@@ -41,7 +41,7 @@ export const Select = ({
   const [open, setOpen] = useState(isOpen)
   const onOpenChangeHandler = () => {
     if (!disabled) {
-      setIsOpen ? setIsOpen(isOpen) : setOpen(!open)
+      setIsOpen ? setIsOpen(!isOpen) : setOpen(!open)
     }
   }
 
