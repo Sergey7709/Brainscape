@@ -57,7 +57,7 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
         s.TabsTrigger,
         el.disabled && s.disabled,
         fullWidth && s.fullWidth,
-        tabData.length - 1 === index && s.lastTab,
+        index !== 0 && s.nextTab,
         index === 0 && s.firstTab
       )}
       value={el.disabled ? 'disabled' : el.value}
