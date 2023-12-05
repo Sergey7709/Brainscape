@@ -4,11 +4,12 @@
   justify-content: space-between;
 
   width: 210px;
-  min-height: 36px;
   padding: 6px 12px;
 
   background: var(--color-dark-900);
   border: 1px var(--color-dark-300) solid;
+  border-radius: 2px;
+
 
   &:hover {
     cursor: pointer;
@@ -29,8 +30,8 @@
 
 .content {
   width: 210px;
+  height: max-content;
   border: 1px var(--color-dark-300) solid;
-  border-top: none;
   border-radius: 2px;
 
   &:focus {
@@ -40,7 +41,7 @@
 
 .item {
   width: 100%;
-  padding: 6px 12px;
+  padding: 3px 13px;
   font-size: 16px;
   background: var(--color-dark-900);
 
@@ -72,17 +73,38 @@
   }
 }
 
-.triggerPagination,
+
 .contentPagination {
-  width: 60px;
+  align-items: center;
+  justify-content: center;
+  width:47px;
   font-size: 13px;
+
 }
 
+
 .triggerPagination,
+ {
+  gap:2px;
+  align-items: center;
+  justify-content: center;
+
+  width: 47px;
+  padding: 0
+
+  //padding: 5px
+}
+
 .itemPagination {
-  padding: 5px;
+  align-items: center;
+  justify-content: center;
+
+  width:46px;
+  margin: 0;
+  padding: 6px;
+
 }
 
 .fullWidth {
-  width: 484px;
+  width: 100%
 }
