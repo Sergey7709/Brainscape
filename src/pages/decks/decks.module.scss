@@ -100,7 +100,9 @@
   justify-content: flex-start;
 }
 
-.editAvatarButton {
+.buttonRow {
+  padding: 0 5px;
+
   &:hover {
     cursor: pointer;
     scale: 130%;
