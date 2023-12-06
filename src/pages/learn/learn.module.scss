@@ -36,6 +36,9 @@ padding: 33px 36px 48px
   display: flex;
   flex-direction: column;
   gap: 5px;
+  justify-content: flex-start;
+
+  width: 100%;
   margin-bottom: 41px;
 }
 
@@ -62,4 +65,13 @@ padding: 33px 36px 48px
   font-weight: 700;
   font-style: normal;
   line-height: 24px;
+}
+
+.learnRadioGroupAnswer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  margin-bottom: 29px;
 }
