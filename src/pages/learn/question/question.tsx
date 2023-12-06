@@ -8,6 +8,7 @@ type QuestionProps = {
   question: string
   shots: number
   handlerLearn: (value: boolean) => void
+  isLoading: boolean
 }
 export const Question = ({
   nameCard,
@@ -15,6 +16,7 @@ export const Question = ({
   question,
   shots,
   handlerLearn,
+  isLoading,
 }: QuestionProps) => {
   const readyJSX = nameCard && imageQuestion && question && shots
 
@@ -22,7 +24,7 @@ export const Question = ({
 
   return (
     <>
-      {
+      {isLoading ? null : (
         <>
           <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
           <div className={s.learnQuestionWrapper}>
@@ -38,7 +40,7 @@ export const Question = ({
             <Typography className={s.learnButtonText}>Show Answer</Typography>
           </Button>
         </>
-      }
+      )}
     </>
   )
 }
