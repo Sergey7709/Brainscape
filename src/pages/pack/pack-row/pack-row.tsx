@@ -26,7 +26,9 @@ export const PackRow = (pack: extendPackRow) => {
       </Table.Cell>
       <Table.Cell>
         <div className={s.nameContainerPackRow}>
-          {pack.answer && <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />}
+          {pack.answerImg && (
+            <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />
+          )}
           <p className={s.packAnswerStyle}> {pack.answer}</p>
         </div>
       </Table.Cell>
