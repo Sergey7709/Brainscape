@@ -20,10 +20,6 @@ export const Question = ({
   isLoading,
   isFetching,
 }: QuestionProps) => {
-  const readyJSX = nameCard && imageQuestion && question && shots
-
-  console.log('readyJSX', readyJSX, nameCard, imageQuestion, question, shots)
-
   return (
     <>
       {(isLoading || isFetching) && !imageQuestion ? null : (
