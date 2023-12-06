@@ -1,34 +1,17 @@
-import { useNavigate } from 'react-router-dom'
-
-import { ArrowLeftFull } from '@/assets/icons/arrow-left-full.tsx'
 import { Elipse } from '@/assets/icons/elipse.tsx'
 import { MoreVerticalOutline } from '@/assets/icons/more-vertical-outline.tsx'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
+import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import s from '@/pages/pack/pack.module.scss'
 
 export const PackPanel = () => {
   const { dataDeck, mePackCards } = useGetDataForPack()
 
-  const navigate = useNavigate()
-
-  const navigateBackToDeck = () => {
-    const urlDeck = sessionStorage.getItem('previousPath')
-
-    if (urlDeck) {
-      navigate(`/deck${urlDeck}`)
-    } else {
-      navigate('/deck')
-    }
-  }
-
   return (
     <>
-      <Button variant={'link'} className={s.linkPackList} onClick={navigateBackToDeck}>
-        <ArrowLeftFull />
-        Back to Packs List
-      </Button>
+      <BackToDeckLink className={s.linkPackList} />
       <div className={s.containerTitleAndButton}>
         <div className={s.containerTitle}>
           {mePackCards ? (
