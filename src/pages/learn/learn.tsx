@@ -17,46 +17,10 @@ export const Learn = () => {
   const packId = useParams()
   const { data, isLoading, isFetching, isSuccess } = useGetRandomCardsQuery(packId.id ?? '')
   const { dataDeck, isLoadingDeck, isFetchingDeck } = useGetDataForPack()
-  // const [postGradeAnswer, { isLoading: isLoadingPost }] = useGradeCardMutation()
 
   const [openAnswer, setOpenAnswer] = useState(false)
 
-  // console.log('data', data?.id, 'data', dataDeck?.name, 'openAnswer', openAnswer)
-
   const isFirstRender = useIsFirstRender()
-
-  // console.log(
-  //   'openAnswer',
-  //   openAnswer,
-  //   'isFirstRender',
-  //   isFirstRender,
-  //   'isSuccess',
-  //   isSuccess,
-  //   'isLoading',
-  //   isLoading,
-  //   'isFetching',
-  //   isFetching,
-  //   'dataDeck',
-  //   dataDeck,
-  //   'isLoadingDeck',
-  //   isLoadingDeck,
-  //   'isFetchingDeck ',
-  //   isFetchingDeck,
-  //   'isSuccessDeck ',
-  //   isSuccessDeck
-  //   // 'isLoadingPost'
-  //   // isLoadingPost
-  // )
-
-  // const render = !isLoading && !isFetching && !isSuccess
-
-  // if (isFirstRender || isLoading || isFetching || isLoadingPost) {
-  //   return <Loader />
-  // }
-
-  // if (isLoading || isFetching) {
-  //   return <Loader />
-  // }
 
   return (
     <>
