@@ -1,10 +1,11 @@
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
 import s from '@/pages/decks/decks.module.scss'
+import { useSaveUrlDeck } from '@/pages/pack/hooks'
 import { useGetAuthUserMeDataQuery } from '@/service'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
@@ -20,12 +21,7 @@ export const DeckRow = (deck: DeckType) => {
     .reverse()
     .join('.')
 
-  const location = useLocation()
-  const saveUrlDeck = () => {
-    sessionStorage.setItem('previousPath', location.search)
-  }
-
-  // console.log('location', location)
+  const saveUrlDeck = useSaveUrlDeck()
 
   return (
     <Table.Row key={deck.id}>
@@ -51,25 +47,25 @@ export const DeckRow = (deck: DeckType) => {
       </Table.Cell>
       <Table.Cell>
         <div className={s.buttonContainer}>
-          <Button variant="link" className={s.editAvatarButton}>
+          <Button
+            variant={'link'}
+            as={NavLink}
+            to={`/learn/${deck.id}`}
+            className={s.buttonRow}
+            onClick={saveUrlDeck}
+          >
             <Play />
           </Button>
           {meDeck && (
             <>
-              <Button variant="link" className={s.editAvatarButton}>
+              <Button variant="link" className={s.buttonRow}>
                 <Redactor />
               </Button>
-              <Button variant="link" className={s.editAvatarButton}>
+              <Button variant="link" className={s.buttonRow}>
                 <Delete />
               </Button>
             </>
           )}
-          {/*<Button variant="link" className={s.editAvatarButton}>*/}
-          {/*  <Redactor />*/}
-          {/*</Button>*/}
-          {/*<Button variant="link" className={s.editAvatarButton}>*/}
-          {/*  <Delete />*/}
-          {/*</Button>*/}
         </div>
       </Table.Cell>
     </Table.Row>

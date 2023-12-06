@@ -7,6 +7,7 @@ import {
   maxCardsValue,
   minCardsValue,
   packFindNameValue,
+  selectItemsPerPageValue,
 } from '@/utils/constants/constantsForInitialValue.ts'
 
 type InitialState = {
@@ -15,13 +16,15 @@ type InitialState = {
   minMaxCardsCount?: number[]
   sortTable?: Sort
   packFindName?: string
+  selectItemsPerPage?: string
 }
 export const initialState = {
   currentPage: currentPageValue,
   findName: findNameValue,
   minMaxCardsCount: [minCardsValue, maxCardsValue],
-  sortTable: null as Sort, ///!!!!
+  sortTable: null as Sort,
   packFindName: packFindNameValue,
+  selectItemsPerPage: selectItemsPerPageValue,
 }
 
 const deckParamsSlice = createSlice({
@@ -40,6 +43,9 @@ const deckParamsSlice = createSlice({
     packFindNameReducer: (state, action: PayloadAction<InitialState>) => {
       state.packFindName = action.payload.packFindName ?? packFindNameValue
     },
+    selectItemsPerPageReducer: (state, action: PayloadAction<InitialState>) => {
+      state.selectItemsPerPage = action.payload.selectItemsPerPage ?? selectItemsPerPageValue
+    },
     // sortTableReducer: (state, action: PayloadAction<InitialState>) => {
     //   state.sortTable = action.payload.sortTable ?? null
     // },
@@ -53,6 +59,7 @@ export const {
   clearFilterReducer,
   minMaxCardsCountReducer,
   packFindNameReducer,
+  selectItemsPerPageReducer,
   // sortTableReducer,
 } = deckParamsSlice.actions
 export default deckParamsSlice.reducer

@@ -7,6 +7,7 @@ import { Decks } from '@/pages/decks/decks.tsx'
 import { Error404 } from '@/pages/Error404'
 import { GreetingNonAuthorized } from '@/pages/home'
 import { GreetingAuthorized } from '@/pages/home/greetingAuthorized.tsx'
+import { Learn } from '@/pages/learn'
 import { Login } from '@/pages/login'
 import { Pack } from '@/pages/pack'
 import { PasswordRecovery } from '@/pages/password-recovery'
@@ -66,6 +67,10 @@ const privateRoutes: RouteObject[] = [
    {
     path: '/pack/:id',
     element: <Pack />,
+  },
+  {
+    path: '/learn/:id',
+    element: <Learn />,
   },
 ]
 

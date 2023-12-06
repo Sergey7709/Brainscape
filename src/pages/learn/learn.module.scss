@@ -1,0 +1,77 @@
+.learnContainer {
+  gap:48px;
+  padding-top: 84px;
+}
+
+.linkBackToDeck {
+  padding-left:0;
+  color: var(--color-light-100);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-accent-300);
+    transition: 0.5s;
+  }
+}
+
+.learnBackToDeckWrapper {
+  margin-bottom: 36px;
+  margin-left: 136px;
+}
+
+.learnCards {
+padding: 33px 36px 48px
+}
+
+.learnNamePack {
+  margin-bottom: 45px;
+
+  font-size: 26px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 36px;
+}
+
+.learnQuestionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+
+  width: 100%;
+  margin-bottom: 41px;
+}
+
+.learnQuestionText {
+  font-size: 16px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 24px}
+
+.learnQuestionImg {
+  width: 100%;
+}
+
+.learnCount {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  color: var(--color-dark-100);
+}
+
+.learnButtonText {
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 24px;
+}
+
+.learnRadioGroupAnswer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  margin-bottom: 29px;
+}

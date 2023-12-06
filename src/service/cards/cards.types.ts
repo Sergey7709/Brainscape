@@ -35,5 +35,5 @@ export type CreateCardRequest = {
 
 export type GradeCardRequest = {
   id: string
-  rating: 1 | 2 | 3 | 4 | 5
+  body: { cardId: string; grade: 1 | 2 | 3 | 4 | 5 }
 }
