@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { RadioGroupAnswer } from '@/pages/learn/answer/radioGroupAnswer.tsx'
+import { isGrade } from '@/pages/learn/constants-learn'
 import s from '@/pages/learn/learn.module.scss'
 import { useGradeCardMutation } from '@/service'
 
@@ -15,6 +16,7 @@ type AnswerProps = {
   cardID: string
   deckID: string
 }
+
 export const Answer = ({
   nameCard,
   imageAnswer,
@@ -32,14 +34,20 @@ export const Answer = ({
   }
 
   const handlerPostAnswer = () => {
-    console.log('value', gradeAnswer, 'cardID', cardID, 'deckID', deckID)
-    postGradeAnswer({
-      id: deckID,
-      body: {
-        cardId: cardID,
-        grade: Number(gradeAnswer),
-      },
-    })
+    // console.log('value', gradeAnswer, 'cardID', cardID, 'deckID', deckID)
+    const grade = Number(gradeAnswer)
+
+    if (isGrade(grade)) {
+      postGradeAnswer({
+        id: deckID,
+        body: {
+          cardId: cardID,
+          grade: grade,
+        },
+      })
+    } else {
+      console.error('Invalid gradeAnswer:', gradeAnswer)
+    }
     handlerLearn(false)
   }
 
