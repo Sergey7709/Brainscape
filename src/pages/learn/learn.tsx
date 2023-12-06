@@ -9,7 +9,7 @@ import { Loader } from '@/components/ui/loader'
 import { Answer } from '@/pages/learn/answer/answer.tsx'
 import { Question } from '@/pages/learn/question'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
-import { useGetDataForPack } from '@/pages/pack/hooks/hooks.ts'
+import { useGetDataForPack } from '@/pages/pack/hooks/useGetDataForPack.ts'
 import { useGetRandomCardsQuery } from '@/service'
 
 export const Learn = () => {
