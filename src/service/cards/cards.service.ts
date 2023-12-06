@@ -28,14 +28,7 @@ export const cardsService = baseApi.injectEndpoints({
         query: id => `v1/decks/${id}/learn`,
         providesTags: ['Cards'],
       }),
-      // gradeCard: builder.mutation<void, GradeCardRequest>({
-      //   query: ({ id, ...body }) => ({
-      //     url: `v1/decks/${id}/cards`,
-      //     method: 'POST',
-      //     body,
-      //   }),
-      //   invalidatesTags: ['Cards'],
-      // }),
+
       gradeCard: builder.mutation<void, GradeCardRequest>({
         query: ({ id, body }) => ({
           url: `v1/decks/${id}/learn`,
