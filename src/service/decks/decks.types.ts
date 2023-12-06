@@ -25,6 +25,16 @@ export type CreateDeckRequest = {
 
 export type UpdateDeckRequest = CreateDeckRequest & { id: string }
 
+export type GetDeckParams = {
+  minCardsCount?: string
+  maxCardsCount?: string
+  name?: string
+  authorId?: string
+  orderBy?: 'asc' | 'desc'
+  currentPage?: number
+  itemsPerPage?: number
+}
+
 export type PackCards = {
   id: string
   deckId: string
