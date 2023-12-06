@@ -51,17 +51,17 @@ export const DeckRow = (deck: DeckType) => {
             variant={'link'}
             as={NavLink}
             to={`/learn/${deck.id}`}
-            className={s.editAvatarButton}
+            className={s.buttonRow}
             onClick={saveUrlDeck}
           >
             <Play />
           </Button>
           {meDeck && (
             <>
-              <Button variant="link" className={s.editAvatarButton}>
+              <Button variant="link" className={s.buttonRow}>
                 <Redactor />
               </Button>
-              <Button variant="link" className={s.editAvatarButton}>
+              <Button variant="link" className={s.buttonRow}>
                 <Delete />
               </Button>
             </>
