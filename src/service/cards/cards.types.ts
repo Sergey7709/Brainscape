@@ -33,7 +33,11 @@ export type CreateCardRequest = {
   answerVideo: string
 }
 
+// export type GradeCardRequest = {
+//   id: string
+//   rating: 1 | 2 | 3 | 4 | 5
+// }
 export type GradeCardRequest = {
   id: string
-  rating: 1 | 2 | 3 | 4 | 5
+  body: { cardId: string; grade: number }
 }
