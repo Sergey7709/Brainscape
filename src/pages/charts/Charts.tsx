@@ -13,18 +13,18 @@ Chart.register(...registerables)
 Chart.register(ArcElement)
 
 export const Charts = () => {
-  const { data, isFetching, isLoading } = useGetDecksQuery('itemsPerPage=1746')
+  const { data, isFetching, isLoading } = useGetDecksQuery(`itemsPerPage=100000000`)
 
   const classNames = {
     wrapper: s.wrapper,
-    common: s.common,
+    firstSection: s.firstSection,
   }
 
   if (isFetching || isLoading) return <Loader />
 
   return (
-    <div className={classNames.common}>
-      <div className={classNames.wrapper}>
+    <div className={classNames.wrapper}>
+      <div className={classNames.firstSection}>
         <AmountOfCards items={data!.items} />
         <DeckCreators items={data!.items} />
       </div>

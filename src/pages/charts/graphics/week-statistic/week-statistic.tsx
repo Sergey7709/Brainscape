@@ -8,8 +8,10 @@ import { Typography } from '@/components/ui/typography'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
+type WeekdayDict = { [key: string]: number }
+
 export const WeekStatistic = memo(({ items }: Pick<GetEntitiesResponse<DeckType>, 'items'>) => {
-  const weekday: { [key: string]: number } = {
+  const weekday: WeekdayDict = {
     Sunday: 0,
     Monday: 0,
     Tuesday: 0,
@@ -26,32 +28,32 @@ export const WeekStatistic = memo(({ items }: Pick<GetEntitiesResponse<DeckType>
   })
 
   const info = {
-    labels: Object.keys(weekday),
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     datasets: [
       {
         label: 'Decks created this day',
         data: [
-          weekday.Sunday,
           weekday.Monday,
           weekday.Tuesday,
           weekday.Wednesday,
           weekday.Thursday,
           weekday.Friday,
           weekday.Saturday,
+          weekday.Sunday,
         ],
         backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
           'rgba(255, 206, 86, 0.2)',
           'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
           'rgba(255, 159, 64, 0.2)',
           'rgba(20, 204, 112, 0.2)',
         ],
         borderColor: [
+          'rgba(255, 99, 132, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(54, 162, 235, 1)',
-          'rgba(255, 99, 132, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)',

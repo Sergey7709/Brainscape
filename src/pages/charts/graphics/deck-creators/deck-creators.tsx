@@ -46,7 +46,7 @@ export const DeckCreators = memo(({ items }: Pick<GetEntitiesResponse<DeckType>,
   return (
     <div className={classNames.wrapper}>
       <Typography className={classNames.title} variant={'h2'}>
-        The most productive Deck Creators
+        Top deck creators
       </Typography>
       <Table.Root>
         <Table.Head>
