@@ -37,17 +37,6 @@ export const Answer = ({
     isSuccess && handlerLearn(false)
   }, [isLoadingPost])
 
-  // console.log(
-  //   'isFirstRender',
-  //   isFirstRender,
-  //   'isLoadingPost',
-  //   isLoadingPost,
-  //   'isSuccess',
-  //   isSuccess,
-  //   'data',
-  //   data
-  // )
-
   const handlerValueAnswer = (value: string) => {
     setGradeAnswer(value)
   }
@@ -66,7 +55,6 @@ export const Answer = ({
     } else {
       console.error('Invalid gradeAnswer:', gradeAnswer)
     }
-    // handlerLearn(false)
   }
 
   return (
