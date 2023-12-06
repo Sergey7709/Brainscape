@@ -9,6 +9,7 @@ type QuestionProps = {
   shots: number
   handlerLearn: (value: boolean) => void
   isLoading: boolean
+  isFetching: boolean
 }
 export const Question = ({
   nameCard,
@@ -17,6 +18,7 @@ export const Question = ({
   shots,
   handlerLearn,
   isLoading,
+  isFetching,
 }: QuestionProps) => {
   const readyJSX = nameCard && imageQuestion && question && shots
 
@@ -24,7 +26,7 @@ export const Question = ({
 
   return (
     <>
-      {isLoading ? null : (
+      {(isLoading || isFetching) && !imageQuestion ? null : (
         <>
           <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
           <div className={s.learnQuestionWrapper}>
