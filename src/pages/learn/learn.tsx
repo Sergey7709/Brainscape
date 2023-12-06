@@ -38,6 +38,7 @@ export const Learn = () => {
                 question={data?.question || ''}
                 shots={data?.shots || 0}
                 handlerLearn={setOpenAnswer}
+                isLoading={isLoading}
               />
             </>
           ) : (
@@ -50,6 +51,7 @@ export const Learn = () => {
                 handlerLearn={setOpenAnswer}
                 cardID={data?.id || ''}
                 deckID={dataDeck?.id || ''}
+                isLoading={isLoading}
               />
             </>
           )}
