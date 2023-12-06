@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import s from './header.module.scss'
 
-import { Logout } from '@/assets/icons'
+import { Logout, SlicesOutlined } from '@/assets/icons'
 import Logo from '@/assets/icons/logo.tsx'
 import ProfileOutline from '@/assets/icons/profile-outline.tsx'
 import defaultAvatar from '@/assets/images/test.png'
@@ -81,6 +81,11 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
         onSelect={() => navigate('/profile')}
         textValue={'My Profile'}
         icon={<ProfileOutline />}
+      />
+      <DropDownItemWithIcon
+        onSelect={() => navigate('/charts')}
+        textValue={'Analytics'}
+        icon={<SlicesOutlined />}
       />
       <DropDownItemWithIcon onSelect={onSignOut} textValue={'Sign out'} icon={<Logout />} />
     </DropdownMenu>
