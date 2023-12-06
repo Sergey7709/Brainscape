@@ -61,8 +61,8 @@ export const Answer = ({
           {`Количество попыток ответов на вопрос: ${shots}`}
         </Typography>
       </div>
-      <Typography>{`Rate yourself:`}</Typography>
-      <div>
+      <div className={s.learnRadioGroupAnswer}>
+        <Typography>{`Rate yourself:`}</Typography>
         <RadioGroupAnswer handlerValueAnswer={handlerValueAnswer} />
       </div>
       <Button onClick={handlerPostAnswer} fullWidth>
