@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
@@ -16,6 +16,7 @@ type AnswerProps = {
   cardID: string
   deckID: string
   isLoading: boolean
+  isFetching: boolean
 }
 
 export const Answer = ({
@@ -27,16 +28,31 @@ export const Answer = ({
   deckID,
   handlerLearn,
   isLoading,
+  isFetching,
 }: AnswerProps) => {
   const [gradeAnswer, setGradeAnswer] = useState('')
-  const [postGradeAnswer] = useGradeCardMutation()
+  const [postGradeAnswer, { isLoading: isLoadingPost, isSuccess }] = useGradeCardMutation()
+
+  useEffect(() => {
+    isSuccess && handlerLearn(false)
+  }, [isLoadingPost])
+
+  // console.log(
+  //   'isFirstRender',
+  //   isFirstRender,
+  //   'isLoadingPost',
+  //   isLoadingPost,
+  //   'isSuccess',
+  //   isSuccess,
+  //   'data',
+  //   data
+  // )
 
   const handlerValueAnswer = (value: string) => {
     setGradeAnswer(value)
   }
 
   const handlerPostAnswer = () => {
-    // console.log('value', gradeAnswer, 'cardID', cardID, 'deckID', deckID)
     const grade = Number(gradeAnswer)
 
     if (isGrade(grade)) {
@@ -50,12 +66,12 @@ export const Answer = ({
     } else {
       console.error('Invalid gradeAnswer:', gradeAnswer)
     }
-    handlerLearn(false)
+    // handlerLearn(false)
   }
 
   return (
     <>
-      {isLoading ? null : (
+      {isLoading || isFetching ? null : (
         <>
           <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
           <div className={s.learnQuestionWrapper}>
