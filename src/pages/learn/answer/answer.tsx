@@ -15,6 +15,7 @@ type AnswerProps = {
   handlerLearn: (value: boolean) => void
   cardID: string
   deckID: string
+  isLoading: boolean
 }
 
 export const Answer = ({
@@ -25,6 +26,7 @@ export const Answer = ({
   cardID,
   deckID,
   handlerLearn,
+  isLoading,
 }: AnswerProps) => {
   const [gradeAnswer, setGradeAnswer] = useState('')
   const [postGradeAnswer] = useGradeCardMutation()
@@ -53,21 +55,27 @@ export const Answer = ({
 
   return (
     <>
-      <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
-      <div className={s.learnQuestionWrapper}>
-        {imageAnswer && <img className={s.learnQuestionImg} src={imageAnswer} alt={'Not Image'} />}
-        <Typography className={s.learnQuestionText}>{`Answer:  ${answer}`}</Typography>
-        <Typography className={s.learnCount}>
-          {`Количество попыток ответов на вопрос: ${shots}`}
-        </Typography>
-      </div>
-      <div className={s.learnRadioGroupAnswer}>
-        <Typography>{`Rate yourself:`}</Typography>
-        <RadioGroupAnswer handlerValueAnswer={handlerValueAnswer} />
-      </div>
-      <Button onClick={handlerPostAnswer} fullWidth>
-        <Typography className={s.learnButtonText}>Next Question</Typography>
-      </Button>
+      {isLoading ? null : (
+        <>
+          <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
+          <div className={s.learnQuestionWrapper}>
+            {imageAnswer && (
+              <img className={s.learnQuestionImg} src={imageAnswer} alt={'Not Image'} />
+            )}
+            <Typography className={s.learnQuestionText}>{`Answer:  ${answer}`}</Typography>
+            <Typography className={s.learnCount}>
+              {`Количество попыток ответов на вопрос: ${shots}`}
+            </Typography>
+          </div>
+          <div className={s.learnRadioGroupAnswer}>
+            <Typography>{`Rate yourself:`}</Typography>
+            <RadioGroupAnswer handlerValueAnswer={handlerValueAnswer} />
+          </div>
+          <Button onClick={handlerPostAnswer} fullWidth>
+            <Typography className={s.learnButtonText}>Next Question</Typography>
+          </Button>
+        </>
+      )}
     </>
   )
 }
