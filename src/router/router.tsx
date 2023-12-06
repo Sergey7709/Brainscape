@@ -8,6 +8,7 @@ import { Error404 } from '@/pages/Error404'
 import { GreetingNonAuthorized } from '@/pages/home'
 import { GreetingAuthorized } from '@/pages/home/greetingAuthorized.tsx'
 import { Login } from '@/pages/login'
+import { Pack } from '@/pages/pack'
 import { PasswordRecovery } from '@/pages/password-recovery'
 import { Profile } from '@/pages/profile'
 import { Registration } from '@/pages/registration'
@@ -61,6 +62,10 @@ const privateRoutes: RouteObject[] = [
   {
     path: '/charts',
     element: <Charts />,
+   },
+   {
+    path: '/pack/:id',
+    element: <Pack />,
   },
 ]
 

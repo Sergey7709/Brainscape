@@ -58,8 +58,7 @@ export const DecksPanel = memo(() => {
   const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
   useEffect(() => {
-    debounce &&
-      debounce !== findText &&
+    debounce !== findText &&
       utilityForSearchParamsEdit({
         param: 'name',
         valueForNewParam: debounce ? debounce : [],
@@ -77,8 +76,8 @@ export const DecksPanel = memo(() => {
     utilityForSearchParamsEdit({
       param: 'minCardsCount',
       param2: 'maxCardsCount',
-      valueForNewParam: value[0] === 0 ? [] : value[0].toString(),
-      valueForNewParam2: value[1] === 100 ? [] : value[1].toString(),
+      valueForNewParam: value[0] === minCardsValue ? [] : value[0].toString(),
+      valueForNewParam2: value[1] === maxCardsValue ? [] : value[1].toString(),
     })
   }
   const handlerValueChangeSlider = (value: number[]) => {

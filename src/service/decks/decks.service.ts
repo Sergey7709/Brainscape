@@ -1,6 +1,11 @@
 import { baseApi } from '@/service/common/base-api.ts'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
-import { CreateDeckRequest, DeckType, UpdateDeckRequest } from '@/service/decks/decks.types.ts'
+import {
+  CreateDeckRequest,
+  DeckType,
+  PackCards,
+  UpdateDeckRequest,
+} from '@/service/decks/decks.types.ts'
 
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -19,6 +24,13 @@ export const decksService = baseApi.injectEndpoints({
       }),
       getDeckById: builder.query<DeckType, string>({
         query: id => `v1/decks/${id}`,
+        providesTags: ['Deck'],
+      }),
+      getDeckByIdCards: builder.query<
+        GetEntitiesResponse<PackCards>,
+        { id: string; query: string }
+      >({
+        query: arg => `v1/decks/${arg.id}/cards?${arg.query}`,
         providesTags: ['Deck'],
       }),
       updateDeck: builder.mutation<DeckType, UpdateDeckRequest>({
@@ -46,4 +58,5 @@ export const {
   useUpdateDeckMutation,
   useDeleteDeckMutation,
   useGetDeckByIdQuery,
+  useGetDeckByIdCardsQuery,
 } = decksService

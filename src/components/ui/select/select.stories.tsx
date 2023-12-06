@@ -49,6 +49,21 @@ export const Common: Story = {
   },
 }
 
+export const Controlled: Story = {
+  render: args => {
+    return <Select {...args} />
+  },
+  args: {
+    options: [
+      { title: 'Option 1', value: '1' },
+      { title: 'Option 2', value: '2' },
+      { title: 'Option 3', value: '3' },
+    ],
+    isOpen: true,
+  },
+  argTypes: { setIsOpen: { action: 'Select is closed!' } },
+}
+
 export const Disabled: Story = {
   args: {
     options: [

@@ -1,14 +1,14 @@
 import { Column } from '@/components/ui/tables'
 
-export const columnsDecks: Column[] = [
+export const columnsPack: Column[] = [
   {
-    key: 'name',
-    title: 'Name',
+    key: 'question',
+    title: 'Question',
     sortable: true,
   },
   {
-    key: 'cardsCount',
-    title: 'Cards',
+    key: 'answer',
+    title: 'Answer',
     sortable: true,
   },
   {
@@ -17,8 +17,8 @@ export const columnsDecks: Column[] = [
     sortable: true,
   },
   {
-    key: 'created',
-    title: 'Created by',
+    key: 'grade',
+    title: 'Grade',
     sortable: true,
   },
   {
