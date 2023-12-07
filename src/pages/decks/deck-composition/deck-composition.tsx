@@ -4,11 +4,11 @@ import { useSearchParams } from 'react-router-dom'
 
 import s from './../decks.module.scss'
 
-import { Button } from '@/components/ui/button'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort, Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
 import { columnsDecks } from '@/pages/decks/constantsDeck.ts'
+import { DeckAddNewPack } from '@/pages/decks/deck-addNewPack'
 import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
@@ -68,7 +68,7 @@ export const DeckComposition = memo(() => {
       <div className={classNames.deck}>
         <div className={classNames.head}>
           <Typography variant={'large'}>Packs list</Typography>
-          <Button>Add new pack</Button>
+          <DeckAddNewPack borderBottomHeader justifyContentHeader={'left'} />
         </div>
         <DecksPanel />
         <div className={classNames.tableWrapper}>
