@@ -17,7 +17,7 @@ import {
 } from '@/service/store/deckParamsSlice.ts'
 import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
-import { useDebounce } from '@/utils/functions/useDebounce.ts'
+import { useDebounce } from '@/utils/hooks/useDebounce.ts'
 
 export const DecksPanel = memo(() => {
   const dispatch = useAppDispatch()

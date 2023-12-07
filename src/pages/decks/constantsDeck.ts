@@ -26,3 +26,5 @@ export const columnsDecks: Column[] = [
     title: '',
   },
 ]
+
+export const optionsForDeckItemsPerPage = ['5', '10', '20', '30', '50', '100']

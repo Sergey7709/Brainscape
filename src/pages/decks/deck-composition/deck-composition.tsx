@@ -9,6 +9,7 @@ import { Pagination } from '@/components/ui/pagination'
 import { Sort, Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
 import { columnsDecks } from '@/pages/decks/constantsDeck.ts'
+import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
 import { DecksPanel } from '@/pages/decks/decks-panel/decks-panel.tsx'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
 import { RenderNoDataDeck } from '@/pages/decks/renderNoDataDeck'
@@ -87,6 +88,7 @@ export const DeckComposition = memo(() => {
       </div>
       <div className={classNames.pagination}>
         {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
+        <DeckItemsPerPage />
       </div>
     </div>
   )
