@@ -22,7 +22,7 @@ export const Question = ({
 }: QuestionProps) => {
   return (
     <>
-      {(isLoading || isFetching) && !imageQuestion ? null : (
+      {(isLoading || isFetching) && !imageQuestion && nameCard ? null : (
         <>
           <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
           <div className={s.learnQuestionWrapper}>
