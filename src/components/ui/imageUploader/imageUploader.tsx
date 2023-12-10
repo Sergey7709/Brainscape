@@ -1,6 +1,6 @@
 import { ChangeEvent, ComponentPropsWithoutRef, useRef, useState } from 'react'
 
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { UseFormRegister } from 'react-hook-form'
 
 import { ChangePhoto } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
@@ -11,7 +11,7 @@ type ImageAdderProps = {
   classNameInput?: string
   classNameImg?: string
   errorMessage?: string
-  register: UseFormRegister<FieldValues>
+  register: UseFormRegister<{ namePack: string; privatePack?: boolean; imageCover?: FileList }>
 } & ComponentPropsWithoutRef<'input'>
 
 export const ImageUploader = ({
