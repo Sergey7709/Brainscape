@@ -62,26 +62,10 @@ export const DeckAddNewPack = (props: ModalProps) => {
     defaultValue: false,
   })
 
-  const [cover, setCover] = useState<File | null>(null)
-  const handleAddImage = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-
-    // console.log('file', file)
-    if (file) {
-      // onAddImage(file)
-      setCover(file)
-    }
-  }
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
     // onHandleSubmit(form)
     console.log('form', form)
   })
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null)
-  const handleInputRef = () => {
-    console.log('btn', fileInputRef.current)
-    fileInputRef.current?.click()
-  }
 
   return (
     <Modal>
@@ -98,34 +82,13 @@ export const DeckAddNewPack = (props: ModalProps) => {
           <ModalConstructor.Body>
             <div className={s.cover}>
               <div className={s.buttonCoverWrapper}>
-                {/*<Button*/}
-                {/*  type={'button'}*/}
-                {/*  as={'button'}*/}
-                {/*  variant="secondary"*/}
-                {/*  className={s.modalAddButtonCover}*/}
-                {/*  onClick={handleInputRef}*/}
-                {/*>*/}
-                {/*  <ChangePhoto onClick={handleInputRef} />*/}
-                {/*</Button>*/}
                 <ImageUploader
                   classNameButton={s.modalAddButtonCover}
                   classNameInput={s.modalAddInputCover}
                   classNameImg={s.imageCover}
-                  //{...register('imageCover')}
                   register={register}
                   errorMessage={errors.imageCover?.message}
                 />
-                {/*<TextField*/}
-                {/*  type={'file'}*/}
-                {/*  // label={'imageCover'}*/}
-                {/*  // className={s.modalAddInputCover}*/}
-                {/*  {...register('imageCover')}*/}
-                {/*  // ref={fileInputRef}*/}
-                {/*  onChange={handleAddImage}*/}
-                {/*/>*/}
-                {/*{cover && (*/}
-                {/*  <img className={s.imageCover} src={URL.createObjectURL(cover)} alt="Not Image" />*/}
-                {/*)}*/}
               </div>
             </div>
             <TextField
