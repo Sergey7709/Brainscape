@@ -1,13 +1,9 @@
-import { ChangeEvent, useRef, useState } from 'react'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import s from './deck-addNewPack.module.scss'
 
-import { ChangePhoto } from '@/assets/icons'
-import { SignInForm, signInSchema } from '@/components/auth/sign-in'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
 import { ImageUploader } from '@/components/ui/imageUploader'
@@ -99,7 +95,7 @@ export const DeckAddNewPack = (props: ModalProps) => {
             <Checkbox label={'Private Pack'} checked={value} onChange={onChange} />
           </ModalConstructor.Body>
           <ModalConstructor.Footer>
-            <Button variant={'secondary'}>
+            <Button type={'button'} variant={'secondary'}>
               <Typography as={'span'} variant={'body2'}>
                 Cancel
               </Typography>
