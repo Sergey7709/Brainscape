@@ -79,6 +79,7 @@ export const DeckAddNewPack = (props: ModalProps) => {
 
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const handleInputRef = () => {
+    console.log('btn', fileInputRef.current)
     fileInputRef.current?.click()
   }
 
@@ -97,9 +98,6 @@ export const DeckAddNewPack = (props: ModalProps) => {
           <ModalConstructor.Body>
             <div className={s.cover}>
               <div className={s.buttonCoverWrapper}>
-                {cover && (
-                  <img className={s.imageCover} src={URL.createObjectURL(cover)} alt="Not Image" />
-                )}
                 {/*<Button*/}
                 {/*  type={'button'}*/}
                 {/*  as={'button'}*/}
@@ -109,21 +107,25 @@ export const DeckAddNewPack = (props: ModalProps) => {
                 {/*>*/}
                 {/*  <ChangePhoto onClick={handleInputRef} />*/}
                 {/*</Button>*/}
-                {/*<ImageUploader*/}
-                {/*  classNameButton={s.modalAddButtonCover}*/}
-                {/*  classNameInput={s.modalAddInputCover}*/}
-                {/*  classNameImg={s.imageCover}*/}
-                {/*  {...register('imageCover')}*/}
-                {/*  errorMessage={errors.imageCover?.message}*/}
-                {/*/>*/}
-                <TextField
-                  type={'file'}
-                  label={'imageCover'}
-                  // className={s.modalAddInputCover}
-                  {...register('imageCover')}
-                  // ref={fileInputRef}
-                  onChange={handleAddImage}
+                <ImageUploader
+                  classNameButton={s.modalAddButtonCover}
+                  classNameInput={s.modalAddInputCover}
+                  classNameImg={s.imageCover}
+                  //{...register('imageCover')}
+                  register={register}
+                  errorMessage={errors.imageCover?.message}
                 />
+                {/*<TextField*/}
+                {/*  type={'file'}*/}
+                {/*  // label={'imageCover'}*/}
+                {/*  // className={s.modalAddInputCover}*/}
+                {/*  {...register('imageCover')}*/}
+                {/*  // ref={fileInputRef}*/}
+                {/*  onChange={handleAddImage}*/}
+                {/*/>*/}
+                {/*{cover && (*/}
+                {/*  <img className={s.imageCover} src={URL.createObjectURL(cover)} alt="Not Image" />*/}
+                {/*)}*/}
               </div>
             </div>
             <TextField
