@@ -6,14 +6,12 @@ import s from './imageUploader.module.scss'
 
 import { ChangePhoto } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
-import { Typography } from '@/components/ui/typography'
 
 type ImageAdderProps = {
-  errorMessage?: string
   register: UseFormRegister<{ namePack: string; privatePack?: boolean; imageCover?: FileList }>
 } & ComponentPropsWithoutRef<'input'>
 
-export const ImageUploader = ({ errorMessage, register }: ImageAdderProps) => {
+export const ImageUploader = ({ register }: ImageAdderProps) => {
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
 
   const [cover, setCover] = useState<string>('')
@@ -52,8 +50,17 @@ export const ImageUploader = ({ errorMessage, register }: ImageAdderProps) => {
         className={s.modalAddButtonCover}
         onClick={onUpload}
       >
-        <ChangePhoto onClick={() => {}} />
-        Add cover
+        {cover ? (
+          <>
+            <img className={s.modalAddImageCover} src={cover} alt="Not Image" />
+            <span className={s.tooltip}>Change</span>
+          </>
+        ) : (
+          <>
+            <ChangePhoto onClick={() => {}} />
+            Add cover
+          </>
+        )}
       </Button>
     </div>
   )
