@@ -1,7 +1,7 @@
 
 .modalAddWrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   width: 100%;
   margin: 0;
@@ -27,8 +27,9 @@
   flex-shrink: 0;
   align-self: flex-start;
 
-  //width: max-content;
-  width: 161px;
+  width: max-content;
+
+  //width: 161px;
   margin: 0;
   padding: 6px;
 
@@ -41,10 +42,12 @@
     text-align: center;
 
     visibility: hidden;
-    opacity: 0.7;
+    opacity: 0.8;
     background-color: var(--color-accent-300);
     border-radius: 6px;
   }
+
+
 
   &:hover {
     .tooltip {
@@ -56,7 +59,8 @@
 .modalAddInputCover {
   cursor: pointer;
   display: none;
-  width: 0;
+
+  //width: 0;
 }
 
 .modalAddImageCover {
@@ -65,3 +69,15 @@
   border-radius: 2px;
 
 }
+
+.deleteCover {
+  //position: absolute;
+  //top: -15px;
+  //right: -20px;
+
+  &:hover {
+    cursor: pointer;
+    scale: 110%;
+  }
+}
+
