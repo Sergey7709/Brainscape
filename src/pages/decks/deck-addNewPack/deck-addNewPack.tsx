@@ -76,17 +76,17 @@ export const DeckAddNewPack = (props: ModalProps) => {
             </Typography>
           </ModalConstructor.Head>
           <ModalConstructor.Body>
-            <div className={s.cover}>
-              <div className={s.buttonCoverWrapper}>
-                <ImageUploader
-                  classNameButton={s.modalAddButtonCover}
-                  classNameInput={s.modalAddInputCover}
-                  classNameImg={s.imageCover}
-                  register={register}
-                  errorMessage={errors.imageCover?.message}
-                />
-              </div>
-            </div>
+            {/*<div className={s.cover}>*/}
+            {/*<div className={s.buttonCoverWrapper}>*/}
+            <ImageUploader
+              // classNameButton={s.modalAddButtonCover}
+              // classNameInput={s.modalAddInputCover}
+              // classNameImg={s.imageCover}
+              register={register}
+              // errorMessage={errors.imageCover?.message}
+            />
+            {/*</div>*/}
+            {/*</div>*/}
             <TextField
               label={'Name Pack'}
               {...register('namePack')}
