@@ -1,6 +1,6 @@
 import { ChangeEvent, ComponentPropsWithoutRef, useRef, useState } from 'react'
 
-import { useForm, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
 import s from './imageUploader.module.scss'
 
@@ -18,25 +18,22 @@ export const ImageUploader = ({ register, setValue }: ImageAdderProps) => {
 
   const [cover, setCover] = useState<string>('')
 
-  // const { ref: registerRef, ...rest } = register('imageCover')
-
   const handleUploadedFile = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
 
-    console.log('file', file)
+    // console.log('file', file)
     if (file) {
-      console.log(event.target.files)
+      // console.log(event.target.files)
       setCover(URL.createObjectURL(file))
       setValue('imageCover', event.currentTarget.files || undefined)
     } else {
       setCover('')
       setValue('imageCover', undefined)
     }
-    // file && setCover(URL.createObjectURL(file))
   }
 
   const onUpload = () => {
-    console.log(hiddenInputRef)
+    // console.log(hiddenInputRef)
     hiddenInputRef.current?.click()
   }
 
@@ -44,12 +41,9 @@ export const ImageUploader = ({ register, setValue }: ImageAdderProps) => {
     <div className={s.modalAddWrapper}>
       <input
         ref={e => {
-          // registerRef(e)
           register('imageCover')
           hiddenInputRef.current = e
         }}
-        //{...rest}
-        // ref={hiddenInputRef}
         type="file"
         accept="image/*"
         className={s.modalAddInputCover}
@@ -65,17 +59,20 @@ export const ImageUploader = ({ register, setValue }: ImageAdderProps) => {
         {cover ? (
           <>
             <img className={s.modalAddImageCover} src={cover} alt="Not Image" />
-            <span className={s.tooltip}>Change</span>
+            {/*<span className={s.tooltip}>Change</span>*/}
+            <Typography variant={'subtitle2'} className={s.textCoverPreview}>
+              This preview in cover, click to change
+            </Typography>
           </>
         ) : (
           <>
             <ChangePhoto onClick={() => {}} />
-            Add cover
+            Click to add a cover for your pack
           </>
         )}
       </Button>
       {cover && (
-        <Typography variant={'body2'} className={s.deleteCover} onClick={handleUploadedFile}>
+        <Typography variant={'caption'} className={s.deleteCover} onClick={handleUploadedFile}>
           ❌
         </Typography>
       )}
