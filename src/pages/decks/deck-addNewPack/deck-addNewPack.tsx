@@ -2,8 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import s from './deck-addNewPack.module.scss'
-
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
 import { ImageUploader } from '@/components/ui/imageUploader'
