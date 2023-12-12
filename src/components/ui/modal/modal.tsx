@@ -1,4 +1,4 @@
-import { FC, createContext, useState } from 'react'
+import { FC, createContext } from 'react'
 
 import { ModalContextValue, ModalProps } from '@/components/ui/modal/typeForModal.ts'
 
@@ -21,13 +21,12 @@ export const Modal: FC<ModalProps> = props => {
   const {
     children,
     className,
-    active = false,
+    open,
+    setOpen,
     size = 'md',
     showCloseButton = true,
     ...restProps
   } = props
-
-  const [open, setOpen] = useState(active)
 
   return (
     <>
