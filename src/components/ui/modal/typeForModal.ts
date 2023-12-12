@@ -19,7 +19,8 @@ export type ModalContextValue = {
   ComponentPropsWithRef<'div'>
 
 export type ModalProps = {
-  active?: boolean
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
 } & ShowCloseBtn &
   SizeModal &
   ComponentPropsWithRef<'div'> &
