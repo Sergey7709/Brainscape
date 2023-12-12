@@ -8,30 +8,20 @@
   padding: 0;
 }
 
-
-//.modalAddButtonCover {
-//  flex-shrink: 0;
-//  align-self: flex-start;
-//
-//  //width: 145px;
-//  //height: 28px;
-//  width: max-content;
-//  margin: 0;
-//  padding: 6px;
-//
-//}
-
 .modalAddButtonCover {
   position: relative;
 
   flex-shrink: 0;
   align-self: flex-start;
+justify-content: flex-start;
 
-  width: max-content;
-
-  //width: 161px;
+  //width: max-content;
+  width:70%;
+  height:  65px;
   margin: 0;
-  padding: 6px;
+  padding:  6px 10px;
+
+  background-color: transparent;
 
   .tooltip {
     position: absolute;
@@ -81,3 +71,6 @@
   }
 }
 
+//.textCoverPreview {
+//  position: absolute;
+//}
