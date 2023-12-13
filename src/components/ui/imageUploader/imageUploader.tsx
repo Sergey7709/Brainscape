@@ -1,6 +1,14 @@
-import { ChangeEvent, ComponentPropsWithoutRef, useRef, useState } from 'react'
+import {
+  ChangeEvent,
+  ComponentPropsWithoutRef,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+} from 'react'
 
-import { UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import s from './imageUploader.module.scss'
 
@@ -11,13 +19,30 @@ import { Typography } from '@/components/ui/typography'
 type ImageAdderProps = {
   setValue: UseFormSetValue<{ namePack: string; privatePack?: boolean; imageCover?: FileList }>
   register: UseFormRegister<{ namePack: string; privatePack?: boolean; imageCover?: FileList }>
+  cover: string
+  setCover: Dispatch<SetStateAction<string>>
+  errorMessage?: string
+  clearErrors?: UseFormClearErrors<{
+    namePack: string
+    privatePack?: boolean
+    imageCover?: FileList
+  }>
 } & ComponentPropsWithoutRef<'input'>
 
-export const ImageUploader = ({ register, setValue }: ImageAdderProps) => {
+export const ImageUploader = ({
+  register,
+  setValue,
+  cover,
+  setCover,
+  errorMessage,
+  clearErrors,
+}: ImageAdderProps) => {
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
 
-  const [cover, setCover] = useState<string>('')
-
+  useEffect(() => {
+    toast.error(errorMessage)
+    clearErrors && clearErrors('imageCover')
+  }, [errorMessage])
   const handleUploadedFile = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
 
@@ -57,13 +82,13 @@ export const ImageUploader = ({ register, setValue }: ImageAdderProps) => {
           <>
             <img className={s.modalAddImageCover} src={cover} alt="Not Image" />
             <Typography variant={'subtitle2'} className={s.textCoverPreview}>
-              This preview in cover, click to change
+              This preview in cover, click to change.
             </Typography>
           </>
         ) : (
           <>
             <ChangePhoto onClick={() => {}} />
-            Click to add a cover for your pack
+            Click to add a cover, max size 1mb.
           </>
         )}
       </Button>
@@ -72,6 +97,7 @@ export const ImageUploader = ({ register, setValue }: ImageAdderProps) => {
           ❌
         </Typography>
       )}
+      {/*<Typography variant="error">{errorMessage}</Typography>*/}
     </div>
   )
 }
