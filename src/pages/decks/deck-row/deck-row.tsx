@@ -51,7 +51,7 @@ export const DeckRow = (deck: DeckType) => {
             variant={'link'}
             as={NavLink}
             to={`/learn/${deck.id}`}
-            className={s.buttonRow}
+            className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}
             onClick={saveUrlDeck}
           >
             <Play />
