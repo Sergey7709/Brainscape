@@ -14,7 +14,9 @@ import { Typography } from '@/components/ui/typography'
 import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
 import { useCreateDeckMutation } from '@/service'
 
-const fileSchema = z.any().refine(file => file[0]?.size <= FILE_SIZE_LIMIT, `Max file size is 1MB.`)
+const fileSchema = z
+  .any()
+  .refine(fileList => fileList[0]?.size <= FILE_SIZE_LIMIT, `Max file size is 1MB.`)
 
 export const addNewPackSchema = z.object({
   namePack: z
@@ -76,8 +78,6 @@ export const DeckAddNewPack = (props: ModalProps) => {
     formData.append('isPrivate', JSON.stringify(form.privatePack))
 
     handlerAddNewPackSubmit(formData)
-
-    console.log('formData', formData)
 
     setOpen(!open)
     setNameValue('')
