@@ -8,11 +8,11 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
 import { ImageUploader } from '@/components/ui/imageUploader'
 import { Modal, ModalConstructor } from '@/components/ui/modal'
-import { ModalProps } from '@/components/ui/modal/typeForModal.ts'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
-import { useCreateDeckMutation } from '@/service'
+import { useAddNewPack } from '@/pages/decks/hooks-and-functions/useAddNewPack.ts'
+import { DeckAddNewPackProp } from '@/service/decks/decks.types.ts'
 
 const fileSchema = z
   .any()
@@ -32,7 +32,7 @@ export const addNewPackSchema = z.object({
   imageCover: fileSchema.optional(),
 })
 
-export type NewPackSchema = z.infer<typeof addNewPackSchema>
+type NewPackSchema = z.infer<typeof addNewPackSchema>
 
 const initialValues: NewPackSchema = {
   imageCover: undefined,
@@ -40,8 +40,8 @@ const initialValues: NewPackSchema = {
   privatePack: false,
 }
 
-export const DeckAddNewPack = (props: ModalProps) => {
-  const [handlerAddNewPackSubmit] = useCreateDeckMutation()
+export const DeckAddNewPack = (props: DeckAddNewPackProp) => {
+  const { utilityAddNewPack } = useAddNewPack()
 
   const [open, setOpen] = useState(false)
   const [nameValue, setNameValue] = useState('')
@@ -77,7 +77,7 @@ export const DeckAddNewPack = (props: ModalProps) => {
     formData.append('name', form.namePack)
     formData.append('isPrivate', JSON.stringify(form.privatePack))
 
-    handlerAddNewPackSubmit(formData)
+    utilityAddNewPack(formData)
 
     setOpen(!open)
     setNameValue('')
