@@ -110,12 +110,17 @@
   }
 }
 
+.disabledButtonRow {
+  pointer-events: none;
+  padding: 0 5px;
+  opacity: 0.3
+  }
+
 .selectWrapper {
   display: flex;
   gap: 12px;
   align-items: center;
   justify-content: flex-start;
-
 
 }
 
