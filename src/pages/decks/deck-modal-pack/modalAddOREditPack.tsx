@@ -44,7 +44,7 @@ type ModalAddOREditPackProps = {
   onChange: (...event: any[]) => void
   handlerClosedModal: () => void
 }
-export const ModalAddOREditPack = (props: ModalAddOREditPackProps) => {
+export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
   const {
     open,
     setOpen,
