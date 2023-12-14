@@ -11,9 +11,8 @@ import { Modal, ModalConstructor } from '@/components/ui/modal'
 import { ModalProps } from '@/components/ui/modal/typeForModal.ts'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
+import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
 import { useCreateDeckMutation } from '@/service'
-
-const FILE_SIZE_LIMIT = 1000 * 1000
 
 const fileSchema = z.any().refine(file => file[0]?.size <= FILE_SIZE_LIMIT, `Max file size is 1MB.`)
 
@@ -28,7 +27,6 @@ export const addNewPackSchema = z.object({
     .max(30),
 
   privatePack: z.boolean().optional(),
-  // imageCover: z.instanceof(FileList).optional(),
   imageCover: fileSchema.optional(),
 })
 
@@ -56,8 +54,6 @@ export const DeckAddNewPack = (props: ModalProps) => {
     clearErrors,
     formState: { errors },
   } = useForm<NewPackSchema>({
-    mode: 'onBlur',
-    reValidateMode: 'onBlur',
     resolver: zodResolver(addNewPackSchema),
     defaultValues: initialValues,
   })
@@ -79,7 +75,7 @@ export const DeckAddNewPack = (props: ModalProps) => {
     formData.append('name', form.namePack)
     formData.append('isPrivate', JSON.stringify(form.privatePack))
 
-    // handlerAddNewPackSubmit(formData)
+    handlerAddNewPackSubmit(formData)
 
     console.log('formData', formData)
 
@@ -90,10 +86,6 @@ export const DeckAddNewPack = (props: ModalProps) => {
   })
 
   const handlerClosedModal = () => {
-    // setOpen(!open)
-    // setNameValue('')
-    // setCover('')
-    // reset()
     setOpen(!open)
   }
 
@@ -119,12 +111,9 @@ export const DeckAddNewPack = (props: ModalProps) => {
               setValue={setValue}
               cover={cover}
               setCover={setCover}
-              errorMessage={
-                errors.imageCover?.message ? errors.imageCover.message.toString() : undefined
-              }
+              errorMessage={errors.imageCover?.message?.toString()}
               clearErrors={clearErrors}
             />
-            {/*<Typography variant="error">{errors.imageCover?.message}</Typography>*/}
             <TextField
               value={nameValue}
               onValueChange={handlerNameChange}
@@ -137,7 +126,7 @@ export const DeckAddNewPack = (props: ModalProps) => {
           <ModalConstructor.Footer>
             <Button type={'button'} variant={'secondary'} onClick={handlerClosedModal}>
               <Typography as={'span'} variant={'body2'}>
-                Clear
+                Cancel
               </Typography>
             </Button>
             <Button variant={'primary'} fullWidth>
