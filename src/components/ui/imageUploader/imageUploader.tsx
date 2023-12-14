@@ -5,6 +5,7 @@ import {
   SetStateAction,
   useEffect,
   useRef,
+  useState,
 } from 'react'
 
 import { UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
@@ -39,6 +40,8 @@ export const ImageUploader = ({
 }: ImageAdderProps) => {
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
 
+  const [key, setKey] = useState<number>(0)
+
   useEffect(() => {
     toast.error(errorMessage)
     clearErrors && clearErrors('imageCover')
@@ -48,11 +51,14 @@ export const ImageUploader = ({
 
     if (file) {
       setCover(URL.createObjectURL(file))
-      setValue('imageCover', event.currentTarget.files || undefined)
-    } else {
-      setCover('')
-      setValue('imageCover', undefined)
+      setValue('imageCover', event.target.files || undefined)
     }
+  }
+
+  const handleDeletedFile = () => {
+    setCover('')
+    setValue('imageCover', undefined)
+    setKey(key => key + 1) //To force re-rendering of the file input element at each call
   }
 
   const onUpload = () => {
@@ -62,6 +68,7 @@ export const ImageUploader = ({
   return (
     <div className={s.modalAddWrapper}>
       <input
+        key={key}
         ref={e => {
           register('imageCover')
           hiddenInputRef.current = e
@@ -93,11 +100,10 @@ export const ImageUploader = ({
         )}
       </Button>
       {cover && (
-        <Typography variant={'caption'} className={s.deleteCover} onClick={handleUploadedFile}>
+        <Typography variant={'caption'} className={s.deleteCover} onClick={handleDeletedFile}>
           ❌
         </Typography>
       )}
-      {/*<Typography variant="error">{errorMessage}</Typography>*/}
     </div>
   )
 }
