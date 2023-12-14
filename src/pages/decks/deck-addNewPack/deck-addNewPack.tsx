@@ -1,18 +1,12 @@
 import { useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useController, useForm } from 'react-hook-form'
+import { FieldErrors, useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/check-box'
-import { ImageUploader } from '@/components/ui/imageUploader'
-import { Modal, ModalConstructor } from '@/components/ui/modal'
-import { TextField } from '@/components/ui/textField'
-import { Typography } from '@/components/ui/typography'
 import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
+import { ModalAddOREditPack } from '@/pages/decks/deck-modal-pack/modalAddOREditPack.tsx'
 import { useAddNewPack } from '@/pages/decks/hooks-and-functions/useAddNewPack.ts'
-import { DeckAddNewPackProp } from '@/service/decks/decks.types.ts'
 
 const fileSchema = z
   .any()
@@ -40,7 +34,7 @@ const initialValues: NewPackSchema = {
   privatePack: false,
 }
 
-export const DeckAddNewPack = (props: DeckAddNewPackProp) => {
+export const DeckAddNewPack = () => {
   const { utilityAddNewPack } = useAddNewPack()
 
   const [open, setOpen] = useState(false)
@@ -94,54 +88,76 @@ export const DeckAddNewPack = (props: DeckAddNewPackProp) => {
   }
 
   return (
-    <Modal open={open} setOpen={setOpen}>
-      <ModalConstructor.PortalAndOverlay>
-        <form onSubmit={onHandleSubmitForm}>
-          <ModalConstructor.Head
-            borderBottomHeader={props.borderBottomHeader}
-            justifyContentHeader={props.justifyContentHeader}
-          >
-            <Typography as={'span'} variant={'large'}>
-              Add new pack
-            </Typography>
-          </ModalConstructor.Head>
-          <ModalConstructor.Body>
-            <ImageUploader
-              register={register}
-              setValue={setValue}
-              cover={cover}
-              setCover={setCover}
-              errorMessage={errors.imageCover?.message?.toString()}
-              clearErrors={clearErrors}
-            />
-            <TextField
-              value={nameValue}
-              onValueChange={handlerNameChange}
-              label={'Name Pack'}
-              {...register('namePack')}
-              errorMessage={errors.namePack?.message}
-            ></TextField>
-            <Checkbox label={'Private Pack'} checked={value} onChange={onChange} />
-          </ModalConstructor.Body>
-          <ModalConstructor.Footer>
-            <Button type={'button'} variant={'secondary'} onClick={handlerClosedModal}>
-              <Typography as={'span'} variant={'body2'}>
-                Cancel
-              </Typography>
-            </Button>
-            <Button variant={'primary'} fullWidth>
-              <Typography as={'span'} variant={'body2'}>
-                Add new pack
-              </Typography>
-            </Button>
-          </ModalConstructor.Footer>
-        </form>
-      </ModalConstructor.PortalAndOverlay>
-      <ModalConstructor.Trigger>
-        <Button as={'button'} variant={'primary'}>
-          Add new pack
-        </Button>
-      </ModalConstructor.Trigger>
-    </Modal>
+    <ModalAddOREditPack
+      open={open}
+      setOpen={setOpen}
+      onHandleSubmitForm={onHandleSubmitForm}
+      register={register}
+      errors={
+        errors as FieldErrors<{
+          namePack: string
+          privatePack?: boolean | undefined
+          imageCover?: FileList | undefined
+        }>
+      }
+      clearErrors={clearErrors}
+      setValue={setValue}
+      cover={cover}
+      setCover={setCover}
+      nameValue={nameValue}
+      handlerNameChange={handlerNameChange}
+      value={value}
+      onChange={onChange}
+      handlerClosedModal={handlerClosedModal}
+    />
+    // <Modal open={open} setOpen={setOpen}>
+    //   <ModalConstructor.PortalAndOverlay>
+    //     <form onSubmit={onHandleSubmitForm}>
+    //       <ModalConstructor.Head
+    //         borderBottomHeader={props.borderBottomHeader}
+    //         justifyContentHeader={props.justifyContentHeader}
+    //       >
+    //         <Typography as={'span'} variant={'large'}>
+    //           Add new pack
+    //         </Typography>
+    //       </ModalConstructor.Head>
+    //       <ModalConstructor.Body>
+    //         <ImageUploader
+    //           register={register}
+    //           setValue={setValue}
+    //           cover={cover}
+    //           setCover={setCover}
+    //           errorMessage={errors.imageCover?.message?.toString()}
+    //           clearErrors={clearErrors}
+    //         />
+    //         <TextField
+    //           value={nameValue}
+    //           onValueChange={handlerNameChange}
+    //           label={'Name Pack'}
+    //           {...register('namePack')}
+    //           errorMessage={errors.namePack?.message}
+    //         ></TextField>
+    //         <Checkbox label={'Private Pack'} checked={value} onChange={onChange} />
+    //       </ModalConstructor.Body>
+    //       <ModalConstructor.Footer>
+    //         <Button type={'button'} variant={'secondary'} onClick={handlerClosedModal}>
+    //           <Typography as={'span'} variant={'body2'}>
+    //             Cancel
+    //           </Typography>
+    //         </Button>
+    //         <Button variant={'primary'} fullWidth>
+    //           <Typography as={'span'} variant={'body2'}>
+    //             Add new pack
+    //           </Typography>
+    //         </Button>
+    //       </ModalConstructor.Footer>
+    //     </form>
+    //   </ModalConstructor.PortalAndOverlay>
+    //   <ModalConstructor.Trigger>
+    //     <Button as={'button'} variant={'primary'}>
+    //       Add new pack
+    //     </Button>
+    //   </ModalConstructor.Trigger>
+    // </Modal>
   )
 }
