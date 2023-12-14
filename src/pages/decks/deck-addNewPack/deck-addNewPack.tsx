@@ -5,7 +5,7 @@ import { FieldErrors, useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
-import { ModalAddOREditPack } from '@/pages/decks/deck-modal-pack/modalAddOREditPack.tsx'
+import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
 import { useAddNewPack } from '@/pages/decks/hooks-and-functions/useAddNewPack.ts'
 
 const fileSchema = z
@@ -88,7 +88,7 @@ export const DeckAddNewPack = () => {
   }
 
   return (
-    <ModalAddOREditPack
+    <ModalAddOrEditPack
       open={open}
       setOpen={setOpen}
       onHandleSubmitForm={onHandleSubmitForm}
