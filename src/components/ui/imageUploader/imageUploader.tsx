@@ -95,7 +95,7 @@ export const ImageUploader = ({
         ) : (
           <>
             <ChangePhoto onClick={() => {}} />
-            Click to add a cover, max size 1mb.
+            Click to add a cover, max size 1MB.
           </>
         )}
       </Button>
