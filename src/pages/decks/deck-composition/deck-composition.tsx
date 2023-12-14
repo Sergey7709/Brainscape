@@ -68,7 +68,7 @@ export const DeckComposition = memo(() => {
       <div className={classNames.deck}>
         <div className={classNames.head}>
           <Typography variant={'large'}>Packs list</Typography>
-          <DeckAddNewPack borderBottomHeader justifyContentHeader={'left'} />
+          <DeckAddNewPack />
         </div>
         <DecksPanel />
         <div className={classNames.tableWrapper}>
