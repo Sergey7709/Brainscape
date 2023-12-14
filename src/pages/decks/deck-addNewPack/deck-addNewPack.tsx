@@ -110,54 +110,5 @@ export const DeckAddNewPack = () => {
       onChange={onChange}
       handlerClosedModal={handlerClosedModal}
     />
-    // <Modal open={open} setOpen={setOpen}>
-    //   <ModalConstructor.PortalAndOverlay>
-    //     <form onSubmit={onHandleSubmitForm}>
-    //       <ModalConstructor.Head
-    //         borderBottomHeader={props.borderBottomHeader}
-    //         justifyContentHeader={props.justifyContentHeader}
-    //       >
-    //         <Typography as={'span'} variant={'large'}>
-    //           Add new pack
-    //         </Typography>
-    //       </ModalConstructor.Head>
-    //       <ModalConstructor.Body>
-    //         <ImageUploader
-    //           register={register}
-    //           setValue={setValue}
-    //           cover={cover}
-    //           setCover={setCover}
-    //           errorMessage={errors.imageCover?.message?.toString()}
-    //           clearErrors={clearErrors}
-    //         />
-    //         <TextField
-    //           value={nameValue}
-    //           onValueChange={handlerNameChange}
-    //           label={'Name Pack'}
-    //           {...register('namePack')}
-    //           errorMessage={errors.namePack?.message}
-    //         ></TextField>
-    //         <Checkbox label={'Private Pack'} checked={value} onChange={onChange} />
-    //       </ModalConstructor.Body>
-    //       <ModalConstructor.Footer>
-    //         <Button type={'button'} variant={'secondary'} onClick={handlerClosedModal}>
-    //           <Typography as={'span'} variant={'body2'}>
-    //             Cancel
-    //           </Typography>
-    //         </Button>
-    //         <Button variant={'primary'} fullWidth>
-    //           <Typography as={'span'} variant={'body2'}>
-    //             Add new pack
-    //           </Typography>
-    //         </Button>
-    //       </ModalConstructor.Footer>
-    //     </form>
-    //   </ModalConstructor.PortalAndOverlay>
-    //   <ModalConstructor.Trigger>
-    //     <Button as={'button'} variant={'primary'}>
-    //       Add new pack
-    //     </Button>
-    //   </ModalConstructor.Trigger>
-    // </Modal>
   )
 }
