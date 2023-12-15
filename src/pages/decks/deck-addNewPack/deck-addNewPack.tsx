@@ -4,35 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FieldErrors, useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
+import { Button } from '@/components/ui/button'
 import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
 import { useAddNewPack } from '@/pages/decks/hooks-and-functions/useAddNewPack.ts'
+import { utilityZodPackSchema } from '@/pages/decks/hooks-and-functions/utilityZodPackSchema.ts'
 
-const fileSchema = z
-  .any()
-  .refine(fileList => fileList[0]?.size <= FILE_SIZE_LIMIT, `Max file size is 1MB.`)
-
-export const addNewPackSchema = z.object({
-  namePack: z
-    .string({
-      required_error: 'Name is required',
-    })
-    .trim()
-    .nonempty('Name is required')
-    .min(3, 'Name must be at least 3 characters')
-    .max(30),
-
-  privatePack: z.boolean().optional(),
-  imageCover: fileSchema.optional(),
-})
+const { initialValues, addNewPackSchema } = utilityZodPackSchema()
 
 type NewPackSchema = z.infer<typeof addNewPackSchema>
-
-const initialValues: NewPackSchema = {
-  imageCover: undefined,
-  namePack: '',
-  privatePack: false,
-}
 
 export const DeckAddNewPack = () => {
   const { utilityAddNewPack } = useAddNewPack()
@@ -109,6 +88,12 @@ export const DeckAddNewPack = () => {
       value={value}
       onChange={onChange}
       handlerClosedModal={handlerClosedModal}
-    />
+      headerTitle={'Add new pack'}
+      buttonTitle={'Add new pack'}
+    >
+      <Button as={'button'} variant={'primary'}>
+        Add new pack
+      </Button>
+    </ModalAddOrEditPack>
   )
 }
