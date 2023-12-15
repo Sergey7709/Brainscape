@@ -19,14 +19,7 @@ export type Author = {
   name: string
 }
 
-export type CreateDeckRequest = {
-  name: string
-  // cover?: string
-  cover?: FormData | undefined
-  isPrivate?: boolean ///!!!!!!!!  удалить
-}
-
-export type UpdateDeckRequest = CreateDeckRequest & { id: string } ///!!!!!!!!  удалить
+export type UpdateDeckRequest = { id: string; body: FormData }
 
 export type GetDeckParams = {
   minCardsCount?: string
