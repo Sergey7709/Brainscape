@@ -169,11 +169,10 @@ const Footer: FC<PropsChildren> = ({ children, className = '' }: PropsChildren):
  * @returns {ReactNode} The rendered trigger element.
  */
 
-const Trigger: FC<{ children: ReactElement }> = ({
-  children,
-}: {
-  children: ReactElement
-}): ReactNode => {
+type TriggerProps = {
+  children?: ReactElement
+}
+const Trigger: FC<TriggerProps> = ({ children }): ReactNode => {
   if (!children) {
     return null
   }
