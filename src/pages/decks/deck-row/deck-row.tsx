@@ -6,6 +6,7 @@ import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
+import { DeckEditPack } from '@/pages/decks/deck-editPack/deckEditPack.tsx'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import s from '@/pages/decks/decks.module.scss'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
@@ -18,7 +19,9 @@ export const DeckRow = (deck: DeckType) => {
 
   const { utilityDeletePack } = useDeletePack(deck.name)
 
-  const [open, setOpen] = useState(false)
+  const [openModalDelete, setOpenModalDelete] = useState(false)
+
+  const [openEditModal, setOpenEditModal] = useState(false)
 
   const meDeck = dataMeId?.id === deck?.userId
 
@@ -32,16 +35,16 @@ export const DeckRow = (deck: DeckType) => {
   const saveUrlDeck = useSaveUrlDeck()
 
   const handlerOpenModal = () => {
-    setOpen(!open)
+    setOpenModalDelete(!openModalDelete)
   }
 
   const handlerDeletePack = () => {
     utilityDeletePack(deck.id)
-    setOpen(!open)
+    setOpenModalDelete(!openModalDelete)
   }
 
-  const handlerClosedModal = () => {
-    setOpen(!open)
+  const handlerEditModal = () => {
+    setOpenEditModal(!openEditModal)
   }
 
   return (
@@ -80,7 +83,7 @@ export const DeckRow = (deck: DeckType) => {
             </Button>
             {meDeck && (
               <>
-                <Button variant="link" className={s.buttonRow}>
+                <Button variant="link" className={s.buttonRow} onClick={handlerEditModal}>
                   <Redactor />
                 </Button>
                 <Button variant="link" className={s.buttonRow} onClick={handlerOpenModal}>
@@ -91,12 +94,24 @@ export const DeckRow = (deck: DeckType) => {
           </div>
         </Table.Cell>
       </Table.Row>
-      <ModalDeletePack
-        open={open}
-        setOpen={setOpen}
-        handlerClosedModal={handlerClosedModal}
-        handlerDeletePack={handlerDeletePack}
-      />
+      <tr className={s.modalRow}>
+        <td>
+          <ModalDeletePack
+            open={openModalDelete}
+            setOpen={setOpenModalDelete}
+            handlerClosedModal={handlerOpenModal}
+            handlerDeletePack={handlerDeletePack}
+          />
+          <DeckEditPack
+            id={deck.id}
+            coverPack={deck.cover}
+            titlePack={deck.name}
+            open={openEditModal}
+            setOpen={setOpenEditModal}
+            isPrivate={deck.isPrivate}
+          />
+        </td>
+      </tr>
     </>
   )
 }
