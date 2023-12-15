@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, Dispatch, SetStateAction } from 'react'
+import { BaseSyntheticEvent, Dispatch, ReactElement, SetStateAction } from 'react'
 
 import { FieldErrors, UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
@@ -43,6 +43,9 @@ type ModalAddOREditPackProps = {
   value: any
   onChange: (...event: any[]) => void
   handlerClosedModal: () => void
+  children?: ReactElement
+  headerTitle: string
+  buttonTitle: string
 }
 export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
   const {
@@ -62,6 +65,8 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     handlerClosedModal,
     borderBottomHeader,
     justifyContentHeader,
+    headerTitle,
+    buttonTitle,
   } = props
 
   return (
@@ -73,7 +78,7 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
             justifyContentHeader={justifyContentHeader}
           >
             <Typography as={'span'} variant={'large'}>
-              Add new pack
+              {headerTitle}
             </Typography>
           </ModalConstructor.Head>
           <ModalConstructor.Body>
@@ -91,7 +96,7 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
               label={'Name Pack'}
               {...register('namePack')}
               errorMessage={errors.namePack?.message}
-            ></TextField>
+            />
             <Checkbox label={'Private Pack'} checked={value} onChange={onChange} />
           </ModalConstructor.Body>
           <ModalConstructor.Footer>
@@ -102,17 +107,13 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
             </Button>
             <Button variant={'primary'} fullWidth>
               <Typography as={'span'} variant={'body2'}>
-                Add new pack
+                {buttonTitle}
               </Typography>
             </Button>
           </ModalConstructor.Footer>
         </form>
       </ModalConstructor.PortalAndOverlay>
-      <ModalConstructor.Trigger>
-        <Button as={'button'} variant={'primary'}>
-          Add new pack
-        </Button>
-      </ModalConstructor.Trigger>
+      <ModalConstructor.Trigger>{props.children}</ModalConstructor.Trigger>
     </Modal>
   )
 }
