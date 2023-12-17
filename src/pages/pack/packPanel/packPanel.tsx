@@ -32,24 +32,25 @@ export const PackPanel = () => {
     setOpenEditModal(!openEditModal)
   }
 
+  const title = mePackCards ? `My Pack: "${dataDeck?.name}"` : `Friend’s Pack: "${dataDeck?.name}"`
+
+  const dropdown =
+    mePackCards && dataDeck ? (
+      <PackDropDownMenu
+        id={dataDeck?.id}
+        handlerEditModal={handlerEditModal}
+        handlerOpenModal={handlerOpenModal}
+        cardsCount={dataDeck?.cardsCount}
+      />
+    ) : null
+
   return (
     <>
       <BackToDeckLink className={s.linkPackList} />
       <div className={s.containerTitleAndButton}>
         <div className={s.containerTitle}>
-          {mePackCards ? (
-            <>
-              <Typography variant={'large'}>{`My Pack: "${dataDeck?.name || ''}"`}</Typography>
-              <PackDropDownMenu
-                id={dataDeck?.id || ''}
-                handlerEditModal={handlerEditModal}
-                handlerOpenModal={handlerOpenModal}
-                cardsCount={dataDeck?.cardsCount || 0}
-              />
-            </>
-          ) : (
-            <Typography variant={'large'}>{`Friend’s Pack: "${dataDeck?.name || ''}"`}</Typography>
-          )}
+          {dataDeck && <Typography variant={'large'}>{title}</Typography>}
+          {dropdown}
         </div>
         {mePackCards ? (
           <Button className={s.packButton}>Add New Card</Button>
