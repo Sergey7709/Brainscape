@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom'
+
 import s from './pack.module.scss'
 
 import { Loader } from '@/components/ui/loader'
@@ -20,6 +22,10 @@ export const Pack = () => {
     totalItems,
     totalPages,
     paginationValueInURL,
+    dataDeck,
+    dataCards,
+    sort,
+    mePackCards,
   } = useGetDataForPack()
 
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
@@ -34,30 +40,34 @@ export const Pack = () => {
   const paginationReady =
     !isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && !!totalPages
 
-  console.log('Pack')
+  if (dataDeck === null) {
+    return <Navigate to="/deck" />
+  }
 
   return (
     <>
       {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || isLoadingAuth) && (
         <Loader />
       )}
-      <div className={s.containerPack}>
-        <div className={s.pack}>
-          <PackPanel />
-          <PackSearch />
-          <TablePack />
-          <div className={s.paginationWrapperPack}>
-            {paginationReady && (
-              <Pagination
-                currentPage={paginationValueInURL}
-                pageSize={itemsPerPage ?? 0}
-                totalCount={totalItems ?? 0}
-                onPageChange={page => handlerPagination(page)}
-              />
-            )}
+      {dataDeck && dataCards && sort && (
+        <div className={s.containerPack}>
+          <div className={s.pack}>
+            <PackPanel dataDeck={dataDeck} mePackCards={mePackCards} />
+            <PackSearch />
+            <TablePack dataCards={dataCards} sort={sort} />
+            <div className={s.paginationWrapperPack}>
+              {paginationReady && (
+                <Pagination
+                  currentPage={paginationValueInURL}
+                  pageSize={itemsPerPage ?? 0}
+                  totalCount={totalItems ?? 0}
+                  onPageChange={page => handlerPagination(page)}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
