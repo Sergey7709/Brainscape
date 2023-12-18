@@ -1,14 +1,17 @@
 import { Sort, Table } from '@/components/ui/tables'
 import { columnsPack } from '@/pages/pack/constantsPack.ts'
-import { useGetDataForPack } from '@/pages/pack/hooks'
 import s from '@/pages/pack/pack.module.scss'
 import { RenderNoData } from '@/pages/pack/renderNoData'
 import { SortedPackData } from '@/pages/pack/sortedPackData'
+import { GetEntitiesResponse } from '@/service/common/types.ts'
+import { PackCards } from '@/service/decks/decks.types.ts'
 import { useUtilityForSearchParamsEdit } from '@/utils'
 
-export const TablePack = () => {
-  const { dataCards, sort } = useGetDataForPack()
-
+type TablePackProps = {
+  dataCards: GetEntitiesResponse<PackCards>
+  sort: Sort
+}
+export const TablePack = ({ dataCards, sort }: TablePackProps) => {
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
   const handlerSortValuePack = (sort: Sort) => {
