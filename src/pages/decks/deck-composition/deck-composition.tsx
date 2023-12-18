@@ -54,7 +54,7 @@ export const DeckComposition = memo(() => {
     })
   }
 
-  const pagination = !!totalPages && (
+  const pagination = (
     <Pagination
       currentPage={paginationValueInURL}
       pageSize={itemsPerPage ?? 0}
@@ -87,8 +87,12 @@ export const DeckComposition = memo(() => {
         </div>
       </div>
       <div className={classNames.pagination}>
-        {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
-        <DeckItemsPerPage />
+        {!!totalPages && (
+          <>
+            {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
+            <DeckItemsPerPage />
+          </>
+        )}
       </div>
     </div>
   )
