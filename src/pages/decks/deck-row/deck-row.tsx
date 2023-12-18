@@ -49,51 +49,53 @@ export const DeckRow = (deck: DeckType) => {
 
   return (
     <>
-      <Table.Row key={deck.id}>
-        <Table.Cell>
-          <Button
-            as={NavLink}
-            variant={'link'}
-            to={`/pack/${deck.id}`}
-            className={s.linkCell}
-            onClick={saveUrlDeck}
-            fullWidth
-          >
-            <div className={s.nameContainer}>
-              {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
-              <p className={s.textForName}> {deck.name}</p>
-            </div>
-          </Button>
-        </Table.Cell>
-        <Table.Cell>{deck.cardsCount}</Table.Cell>
-        <Table.Cell>{updatedDateFormat}</Table.Cell>
-        <Table.Cell>
-          <Typography>{deck.author.name}</Typography>
-        </Table.Cell>
-        <Table.Cell>
-          <div className={s.buttonContainer}>
+      {deck && (
+        <Table.Row key={deck.id}>
+          <Table.Cell>
             <Button
-              variant={'link'}
               as={NavLink}
-              to={`/learn/${deck.id}`}
-              className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}
+              variant={'link'}
+              to={`/pack/${deck.id}`}
+              className={s.linkCell}
               onClick={saveUrlDeck}
+              fullWidth
             >
-              <Play />
+              <div className={s.nameContainer}>
+                {!!deck.cover && <img className={s.imgCover} src={deck.cover} />}
+                <p className={s.textForName}> {deck.name}</p>
+              </div>
             </Button>
-            {meDeck && (
-              <>
-                <Button variant="link" className={s.buttonRow} onClick={handlerEditModal}>
-                  <Redactor />
-                </Button>
-                <Button variant="link" className={s.buttonRow} onClick={handlerOpenModal}>
-                  <Delete />
-                </Button>
-              </>
-            )}
-          </div>
-        </Table.Cell>
-      </Table.Row>
+          </Table.Cell>
+          <Table.Cell>{deck.cardsCount}</Table.Cell>
+          <Table.Cell>{updatedDateFormat}</Table.Cell>
+          <Table.Cell>
+            <Typography>{deck.author.name}</Typography>
+          </Table.Cell>
+          <Table.Cell>
+            <div className={s.buttonContainer}>
+              <Button
+                variant={'link'}
+                as={NavLink}
+                to={`/learn/${deck.id}`}
+                className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}
+                onClick={saveUrlDeck}
+              >
+                <Play />
+              </Button>
+              {meDeck && (
+                <>
+                  <Button variant="link" className={s.buttonRow} onClick={handlerEditModal}>
+                    <Redactor />
+                  </Button>
+                  <Button variant="link" className={s.buttonRow} onClick={handlerOpenModal}>
+                    <Delete />
+                  </Button>
+                </>
+              )}
+            </div>
+          </Table.Cell>
+        </Table.Row>
+      )}
       <tr className={s.modalRow}>
         <td>
           <ModalDeletePack
