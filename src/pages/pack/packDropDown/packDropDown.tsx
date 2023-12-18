@@ -13,7 +13,7 @@ type PackDropDownMenuProps = {
   cardsCount: number
 }
 
-export const PackDropDownMenu = ({
+export const PackDropDown = ({
   id,
   handlerEditModal,
   handlerOpenModal,
