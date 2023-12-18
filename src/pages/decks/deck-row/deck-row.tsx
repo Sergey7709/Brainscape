@@ -61,7 +61,7 @@ export const DeckRow = (deck: DeckType) => {
               fullWidth
             >
               <div className={s.nameContainer}>
-                {!!deck.cover && <img className={s.imgCover} src={deck.cover} />}
+                {<img className={s.imgCover} src={deck.cover} />}
                 <p className={s.textForName}> {deck.name}</p>
               </div>
             </Button>
