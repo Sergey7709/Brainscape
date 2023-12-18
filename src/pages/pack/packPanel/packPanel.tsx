@@ -6,13 +6,15 @@ import { DeckEditPack } from '@/pages/decks/deck-editPack'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
-import { useGetDataForPack } from '@/pages/pack/hooks'
 import s from '@/pages/pack/pack.module.scss'
 import { PackDropDownMenu } from '@/pages/pack/packDropDown'
+import { DeckType } from '@/service/decks/decks.types.ts'
 
-export const PackPanel = () => {
-  const { dataDeck, mePackCards } = useGetDataForPack()
-
+type PackPanelProps = {
+  dataDeck: DeckType
+  mePackCards: boolean
+}
+export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
   const { utilityDeletePack } = useDeletePack(dataDeck?.name || '')
 
   const [openModalDelete, setOpenModalDelete] = useState(false)
