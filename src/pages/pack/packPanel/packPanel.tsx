@@ -58,11 +58,11 @@ export const PackPanel = () => {
           <Button className={s.packButton}>Learn to Pack</Button>
         )}
       </div>
-      <img
-        src={dataDeck?.cover}
-        alt={'Not found'}
-        className={dataDeck?.cover ? s.packImg : s.packImgNone}
-      />
+      {dataDeck?.cover ? (
+        <img src={dataDeck?.cover} alt={'Not found'} className={s.packImg} />
+      ) : (
+        <div className={s.packImgNone} />
+      )}
       <ModalDeletePack
         open={openModalDelete}
         setOpen={setOpenModalDelete}
