@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { DeckEditPack } from '@/pages/decks/deck-editPack'
@@ -7,7 +9,7 @@ import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
 import s from '@/pages/pack/pack.module.scss'
-import { PackDropDownMenu } from '@/pages/pack/packDropDown'
+import { PackDropDown } from '@/pages/pack/packDropDown'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
 type PackPanelProps = {
@@ -16,6 +18,8 @@ type PackPanelProps = {
 }
 export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
   const { utilityDeletePack } = useDeletePack(dataDeck?.name || '')
+
+  const navigate = useNavigate()
 
   const [openModalDelete, setOpenModalDelete] = useState(false)
 
@@ -38,13 +42,17 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
 
   const dropdown =
     mePackCards && dataDeck ? (
-      <PackDropDownMenu
+      <PackDropDown
         id={dataDeck?.id}
         handlerEditModal={handlerEditModal}
         handlerOpenModal={handlerOpenModal}
         cardsCount={dataDeck?.cardsCount}
       />
     ) : null
+
+  const handlerNavigateLearn = () => {
+    navigate(`/learn/${dataDeck.id}`)
+  }
 
   return (
     <>
@@ -57,7 +65,9 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
         {mePackCards ? (
           <Button className={s.packButton}>Add New Card</Button>
         ) : (
-          <Button className={s.packButton}>Learn to Pack</Button>
+          <Button className={s.packButton} onClick={handlerNavigateLearn}>
+            Learn to Pack
+          </Button>
         )}
       </div>
       {dataDeck?.cover ? (
