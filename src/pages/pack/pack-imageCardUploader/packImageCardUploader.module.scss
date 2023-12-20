@@ -1,0 +1,76 @@
+
+.modalAddWrapper {
+  display: flex;
+  justify-content: flex-start;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modalAddButtonCover {
+  position: relative;
+
+  flex-shrink: 0;
+  align-self: flex-start;
+  justify-content: flex-start;
+
+  //width: max-content;
+  width:70%;
+  height:  65px;
+  margin: 0;
+  padding:  6px 10px;
+
+  background-color: transparent;
+
+  .tooltip {
+    position: absolute;
+
+    padding: 3px;
+
+    color: #fff;
+    text-align: center;
+
+    visibility: hidden;
+    opacity: 0.8;
+    background-color: var(--color-accent-300);
+    border-radius: 6px;
+  }
+
+
+
+  &:hover {
+    .tooltip {
+      visibility: visible;
+    }
+  }
+}
+
+.modalAddInputCover {
+  cursor: pointer;
+  display: none;
+
+  //width: 0;
+}
+
+.modalAddImageCover {
+  max-width: 118.265px;
+  max-height: 48px;
+  border-radius: 2px;
+
+}
+
+.deleteCover {
+  //position: absolute;
+  //top: -15px;
+  //right: -20px;
+
+  &:hover {
+    cursor: pointer;
+    scale: 110%;
+  }
+}
+
+//.textCoverPreview {
+//  position: absolute;
+//}
