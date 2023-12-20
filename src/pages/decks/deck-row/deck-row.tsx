@@ -17,11 +17,13 @@ import { DeckType } from '@/service/decks/decks.types.ts'
 export const DeckRow = (deck: DeckType) => {
   const { data: dataMeId } = useGetAuthUserMeDataQuery()
 
-  const { utilityDeletePack } = useDeletePack(deck.name)
-
   const [openModalDelete, setOpenModalDelete] = useState(false)
 
   const [openEditModal, setOpenEditModal] = useState(false)
+
+  const { utilityDeletePack } = useDeletePack(deck.name)
+
+  const saveUrlDeck = useSaveUrlDeck()
 
   const meDeck = dataMeId?.id === deck?.userId
 
@@ -31,8 +33,6 @@ export const DeckRow = (deck: DeckType) => {
     .split('-')
     .reverse()
     .join('.')
-
-  const saveUrlDeck = useSaveUrlDeck()
 
   const handlerOpenModal = () => {
     setOpenModalDelete(!openModalDelete)
