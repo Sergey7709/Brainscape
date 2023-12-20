@@ -10,32 +10,22 @@ import { JustifyContent } from '@/components/ui/modal/typeForModal.ts'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 
+type FormPack = {
+  namePack: string
+  privatePack?: boolean | undefined
+  imageCover?: FileList | undefined
+}
+
 type ModalAddOREditPackProps = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
   onHandleSubmitForm: (e: BaseSyntheticEvent | undefined) => Promise<void>
   borderBottomHeader?: boolean | undefined
   justifyContentHeader?: JustifyContent | undefined
-  register: UseFormRegister<{
-    namePack: string
-    privatePack?: boolean | undefined
-    imageCover?: FileList | undefined
-  }>
-  errors: FieldErrors<{
-    namePack: string
-    privatePack?: boolean | undefined
-    imageCover?: FileList | undefined
-  }>
-  clearErrors: UseFormClearErrors<{
-    namePack: string
-    privatePack?: boolean | undefined
-    imageCover?: FileList | undefined
-  }>
-  setValue: UseFormSetValue<{
-    namePack: string
-    privatePack?: boolean | undefined
-    imageCover?: FileList | undefined
-  }>
+  register: UseFormRegister<FormPack>
+  errors: FieldErrors<FormPack>
+  clearErrors: UseFormClearErrors<FormPack>
+  setValue: UseFormSetValue<FormPack>
   cover: string
   setCover: Dispatch<SetStateAction<string>>
   nameValue: string
@@ -89,6 +79,7 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
               setCover={setCover}
               errorMessage={errors.imageCover?.message?.toString()}
               clearErrors={clearErrors}
+              fieldName={'imageCover'}
             />
             <TextField
               value={nameValue}
