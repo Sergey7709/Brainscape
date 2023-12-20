@@ -8,6 +8,7 @@ import { DeckEditPack } from '@/pages/decks/deck-editPack'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
+import { PackAddNewCard } from '@/pages/pack/pack-addNewCard'
 import s from '@/pages/pack/pack.module.scss'
 import { PackDropDown } from '@/pages/pack/packDropDown'
 import { DeckType } from '@/service/decks/decks.types.ts'
@@ -63,7 +64,8 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
           {dropdown}
         </div>
         {mePackCards ? (
-          <Button className={s.packButton}>Add New Card</Button>
+          // <Button className={s.packButton}>Add New Card</Button>
+          <PackAddNewCard />
         ) : (
           <Button className={s.packButton} onClick={handlerNavigateLearn}>
             Learn to Pack
