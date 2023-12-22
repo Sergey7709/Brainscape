@@ -4,7 +4,7 @@ import { FieldErrors, UseFormClearErrors, UseFormRegister, UseFormSetValue } fro
 
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
-import { Test } from '@/components/ui/imageUploader/test.tsx'
+import { ImageUploader } from '@/components/ui/imageUploader/imageUploader.tsx'
 import { Modal, ModalConstructor } from '@/components/ui/modal'
 import { JustifyContent } from '@/components/ui/modal/typeForModal.ts'
 import { TextField } from '@/components/ui/textField'
@@ -76,7 +76,7 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
             </Typography>
           </ModalConstructor.Head>
           <ModalConstructor.Body>
-            <Test
+            <ImageUploader
               value={cover}
               nameFieldCover={nameFieldCover}
               initialCover={initialCover}
