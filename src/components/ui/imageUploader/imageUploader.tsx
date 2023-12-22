@@ -8,7 +8,8 @@ import {
   useState,
 } from 'react'
 
-import { UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { FieldPath } from 'react-hook-form/dist/types/path'
 import { toast } from 'react-toastify'
 
 import s from './imageUploader.module.scss'
@@ -40,30 +41,18 @@ type PackForm = {
   privatePack?: boolean
   imageCover?: FileList
 }
-type FormImage = 'imageCover'
 
-type ImageAdderProps = {
-  setValue: UseFormSetValue<PackForm>
-  register: UseFormRegister<PackForm>
+type ImageAdderProps<T extends FieldValues> = {
+  setValue: UseFormSetValue<T>
+  register: UseFormRegister<T>
   cover: string
   setCover: Dispatch<SetStateAction<string>>
   errorMessage?: string
-  clearErrors?: UseFormClearErrors<PackForm>
-  fieldName: FormImage
+  clearErrors?: UseFormClearErrors<T>
+  fieldName: FieldPath
 } & ComponentPropsWithoutRef<'input'>
 
-// type ImageAdderProps<T extends FieldValues> = {
-//   setValue: UseFormSetValue<T>
-//   register: UseFormRegister<T>
-//   cover: string
-//   setCover: Dispatch<SetStateAction<string>>
-//   errorMessage?: string
-//   clearErrors?: UseFormClearErrors<T>
-//   fieldName: string
-// } & ComponentPropsWithoutRef<'input'>
-
-// export const ImageUploader = <T extends FieldValues>({
-export const ImageUploader = ({
+export const ImageUploader = <T extends FieldValues>({
   register,
   setValue,
   cover,
@@ -71,8 +60,27 @@ export const ImageUploader = ({
   errorMessage,
   clearErrors,
   fieldName,
-}: ImageAdderProps) => {
-  // }: ImageAdderProps<T>) => {
+}: ImageAdderProps<T>) => {
+  ///!!!!!!
+  // type ImageAdderProps = {
+  //   setValue: UseFormSetValue<PackForm>
+  //   register: UseFormRegister<PackForm>
+  //   cover: string
+  //   setCover: Dispatch<SetStateAction<string>>
+  //   errorMessage?: string
+  //   clearErrors?: UseFormClearErrors<PackForm>
+  //   fieldName: 'imageCover'
+  // } & ComponentPropsWithoutRef<'input'>
+  // export const ImageUploader = ({
+  //   register,
+  //   setValue,
+  //   cover,
+  //   setCover,
+  //   errorMessage,
+  //   clearErrors,
+  //   fieldName,
+  // }: ImageAdderProps) => {
+  //!!!!!!
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
 
   const [key, setKey] = useState<number>(0)
