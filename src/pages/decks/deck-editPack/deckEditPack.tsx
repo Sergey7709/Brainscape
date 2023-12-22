@@ -92,7 +92,6 @@ export const DeckEditPack = ({
 
   return (
     <ModalAddOrEditPack
-      resetField={handlerResetField}
       open={open}
       setOpen={setOpen}
       onHandleSubmitForm={onHandleSubmitForm}
@@ -111,6 +110,7 @@ export const DeckEditPack = ({
       cover={coverValue}
       setCover={handlerCoverOnChange}
       nameValue={nameValue}
+      resetField={handlerResetField}
       handlerNameChange={handlerNameChange}
       value={value}
       onChange={onChange}
