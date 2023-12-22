@@ -1,10 +1,19 @@
 import { BaseSyntheticEvent, Dispatch, ReactElement, SetStateAction } from 'react'
 
-import { FieldErrors, UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import {
+  // Control,
+  FieldErrors,
+  // useController,
+  // UseControllerProps,
+  UseFormClearErrors,
+  UseFormRegister,
+  UseFormSetValue,
+} from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
-import { ImageUploader } from '@/components/ui/imageUploader'
+// import { ImageUploader } from '@/components/ui/imageUploader'
+import { Test } from '@/components/ui/imageUploader/test.tsx'
 import { Modal, ModalConstructor } from '@/components/ui/modal'
 import { JustifyContent } from '@/components/ui/modal/typeForModal.ts'
 import { TextField } from '@/components/ui/textField'
@@ -26,8 +35,13 @@ type ModalAddOREditPackProps = {
   errors: FieldErrors<FormPack>
   clearErrors: UseFormClearErrors<FormPack>
   setValue: UseFormSetValue<FormPack>
-  cover: string
-  setCover: Dispatch<SetStateAction<string>>
+  nameFieldCover: string ///!!!!
+  initialCover: string ///!!!!
+  cover: FileList
+  // cover: string
+  // setCover: Dispatch<SetStateAction<string>>
+  // setCover: (e: FileList) => void
+  setCover: (e: FileList | undefined) => void
   nameValue: string
   handlerNameChange: (value: string) => void
   value: any
@@ -36,7 +50,9 @@ type ModalAddOREditPackProps = {
   children?: ReactElement
   headerTitle: string
   buttonTitle: string
-}
+  resetField: () => void
+  // control: Control<FormPack, any>
+} /*& UseControllerProps<FormPack>*/
 export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
   const {
     open,
@@ -44,10 +60,13 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     onHandleSubmitForm,
     register,
     errors,
-    clearErrors,
+    resetField,
+    // clearErrors,
+    initialCover, ///!!!!
+    nameFieldCover, ///!!!!
     cover,
     setCover,
-    setValue,
+    // setValue,
     nameValue,
     value,
     onChange,
@@ -57,7 +76,9 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     justifyContentHeader,
     headerTitle,
     buttonTitle,
+    // control,
   } = props
+  // const { onChange: registerOnchange } = register('imageCover')
 
   return (
     <Modal open={open} setOpen={setOpen}>
@@ -72,15 +93,28 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
             </Typography>
           </ModalConstructor.Head>
           <ModalConstructor.Body>
-            <ImageUploader
-              register={register}
-              setValue={setValue}
-              cover={cover}
-              setCover={setCover}
-              errorMessage={errors.imageCover?.message?.toString()}
-              clearErrors={clearErrors}
-              fieldName={'imageCover'}
+            {/*<Controller*/}
+            {/*// render=*/}
+            {/*{({ field: { value, onChange } }) => {*/}
+            <Test
+              value={cover}
+              nameFieldCover={nameFieldCover} ///!!!!
+              initialCover={initialCover} ///!!!!
+              onChange={setCover}
+              resetField={resetField}
             />
+            {/*}}*/}
+            {/*name={'imageCover'}*/}
+            {/*/>*/}
+            {/*<ImageUploader*/}
+            {/*  register={register}*/}
+            {/*  setValue={setValue}*/}
+            {/*  cover={cover}*/}
+            {/*  setCover={setCover}*/}
+            {/*  errorMessage={errors.imageCover?.message?.toString()}*/}
+            {/*  clearErrors={clearErrors}*/}
+            {/*  fieldName={'imageCover'}*/}
+            {/*/>*/}
             <TextField
               value={nameValue}
               onValueChange={handlerNameChange}
