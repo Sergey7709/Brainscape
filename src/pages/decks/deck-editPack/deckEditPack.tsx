@@ -32,14 +32,16 @@ export const DeckEditPack = ({
   type NewPackSchema = z.infer<typeof addNewPackSchema>
 
   const [nameValue, setNameValue] = useState(titlePack)
-  const [cover, setCover] = useState<string>(coverPack)
+  const [cover] = useState<string>(coverPack)
 
+  // console.log(coverPack)
   const {
     control,
     handleSubmit,
     register,
     setValue,
     clearErrors,
+    resetField,
     formState: { errors },
   } = useForm<NewPackSchema>({
     resolver: zodResolver(addNewPackSchema),
@@ -54,12 +56,20 @@ export const DeckEditPack = ({
     defaultValue: isPrivate,
   })
 
+  const {
+    // field: { value: coverValue, onChange: coverOnChange },
+    field: { value: coverValue, onChange: coverOnChange, name: nameFieldCover }, ///!!!!
+  } = useController({ name: 'imageCover', control })
+
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
     const formData = new FormData()
 
+    // console.log(form, form.imageCover)
     if (form.imageCover?.[0] instanceof File) {
       formData.append('cover', form.imageCover[0])
-    } else if (!cover) {
+      // } else if (!cover) {
+    } else if (form.imageCover === undefined) {
+      // console.log(form.imageCover)
       formData.append('cover', '')
     }
     formData.append('name', form.namePack)
@@ -80,6 +90,10 @@ export const DeckEditPack = ({
 
   return (
     <ModalAddOrEditPack
+      // control={control}
+      resetField={() => {
+        resetField('imageCover')
+      }}
       open={open}
       setOpen={setOpen}
       onHandleSubmitForm={onHandleSubmitForm}
@@ -93,8 +107,14 @@ export const DeckEditPack = ({
       }
       clearErrors={clearErrors}
       setValue={setValue}
-      cover={cover}
-      setCover={setCover}
+      nameFieldCover={nameFieldCover} ///!!!!
+      initialCover={coverPack} ///!!!!
+      cover={coverValue}
+      // setCover={setCover}
+      setCover={e => {
+        // console.log(e)
+        coverOnChange(e)
+      }}
       nameValue={nameValue}
       handlerNameChange={handlerNameChange}
       value={value}
