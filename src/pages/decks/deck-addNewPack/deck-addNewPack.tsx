@@ -18,7 +18,7 @@ export const DeckAddNewPack = () => {
 
   const [open, setOpen] = useState(false)
   const [nameValue, setNameValue] = useState('')
-  // const [cover, setCover] = useState<string>('')
+  const [cover, setCover] = useState<string>('')
 
   const {
     control,
@@ -59,7 +59,7 @@ export const DeckAddNewPack = () => {
 
     setOpen(!open)
     setNameValue('')
-    // setCover('')
+    setCover('')
     reset()
   })
 
@@ -94,8 +94,8 @@ export const DeckAddNewPack = () => {
       }
       clearErrors={clearErrors}
       setValue={setValue}
-      // cover={cover}
-      // setCover={setCover}
+      cover={cover}
+      setCover={setCover}
       nameFieldCover={nameFieldCover}
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
