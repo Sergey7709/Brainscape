@@ -6,7 +6,7 @@ import { ChangePhoto } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 
-interface A {
+type imageUploaderProps = {
   value: FileList | undefined
   onChange: (e: FileList | undefined) => void
   resetField: (name: string) => void
@@ -14,7 +14,13 @@ interface A {
   initialCover: string
 }
 
-export const Test = ({ value, onChange, resetField, initialCover, nameFieldCover }: A) => {
+export const Test = ({
+  value,
+  onChange,
+  resetField,
+  initialCover,
+  nameFieldCover,
+}: imageUploaderProps) => {
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
 
   const initialValue = (value && URL.createObjectURL(value?.[0])) ?? initialCover
@@ -58,11 +64,7 @@ export const Test = ({ value, onChange, resetField, initialCover, nameFieldCover
         >
           {cover ? (
             <>
-              <img
-                className={s.modalAddImageCover}
-                src={value ? URL.createObjectURL(value?.[0]) : initialCover}
-                alt="Not Image"
-              />
+              <img className={s.modalAddImageCover} src={cover} alt="Not Image" />
               <Typography variant={'subtitle2'} className={s.textCoverPreview}>
                 This preview in cover, click to change.
               </Typography>
