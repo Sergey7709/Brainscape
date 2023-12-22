@@ -32,9 +32,7 @@ export const DeckEditPack = ({
   type NewPackSchema = z.infer<typeof addNewPackSchema>
 
   const [nameValue, setNameValue] = useState(titlePack)
-  const [cover] = useState<string>(coverPack)
 
-  // console.log(coverPack)
   const {
     control,
     handleSubmit,
@@ -57,19 +55,15 @@ export const DeckEditPack = ({
   })
 
   const {
-    // field: { value: coverValue, onChange: coverOnChange },
-    field: { value: coverValue, onChange: coverOnChange, name: nameFieldCover }, ///!!!!
+    field: { value: coverValue, onChange: coverOnChange, name: nameFieldCover },
   } = useController({ name: 'imageCover', control })
 
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
     const formData = new FormData()
 
-    // console.log(form, form.imageCover)
     if (form.imageCover?.[0] instanceof File) {
       formData.append('cover', form.imageCover[0])
-      // } else if (!cover) {
     } else if (form.imageCover === undefined) {
-      // console.log(form.imageCover)
       formData.append('cover', '')
     }
     formData.append('name', form.namePack)
@@ -88,12 +82,17 @@ export const DeckEditPack = ({
     setNameValue(value)
   }
 
+  const handlerResetField = () => {
+    resetField('imageCover')
+  }
+
+  const handlerCoverOnChange = (event: FileList | undefined) => {
+    coverOnChange(event)
+  }
+
   return (
     <ModalAddOrEditPack
-      // control={control}
-      resetField={() => {
-        resetField('imageCover')
-      }}
+      resetField={handlerResetField}
       open={open}
       setOpen={setOpen}
       onHandleSubmitForm={onHandleSubmitForm}
@@ -107,14 +106,10 @@ export const DeckEditPack = ({
       }
       clearErrors={clearErrors}
       setValue={setValue}
-      nameFieldCover={nameFieldCover} ///!!!!
-      initialCover={coverPack} ///!!!!
+      nameFieldCover={nameFieldCover}
+      initialCover={coverPack}
       cover={coverValue}
-      // setCover={setCover}
-      setCover={e => {
-        // console.log(e)
-        coverOnChange(e)
-      }}
+      setCover={handlerCoverOnChange}
       nameValue={nameValue}
       handlerNameChange={handlerNameChange}
       value={value}
