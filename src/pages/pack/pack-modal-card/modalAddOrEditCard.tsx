@@ -30,8 +30,10 @@ type ModalAddOrEditCardProps = {
   setCoverQuestionImage: Dispatch<SetStateAction<string>>
   coverAnswerImage: string
   setCoverAnswerImage: Dispatch<SetStateAction<string>>
-  nameValue: string
-  handlerNameChange: (value: string) => void
+  questionValue: string
+  handlerQuestionChange: (value: string) => void
+  answerValue: string
+  handlerAnswerChange: (value: string) => void
   handlerClosedModal: () => void
   children?: ReactElement
   headerTitle: string
@@ -50,8 +52,10 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
     coverAnswerImage,
     setCoverAnswerImage,
     setValue,
-    nameValue,
-    handlerNameChange,
+    questionValue,
+    handlerQuestionChange,
+    answerValue,
+    handlerAnswerChange,
     handlerClosedModal,
     borderBottomHeader,
     justifyContentHeader,
@@ -73,8 +77,8 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
           </ModalConstructor.Head>
           <ModalConstructor.Body>
             <TextField
-              value={nameValue}
-              onValueChange={handlerNameChange}
+              value={questionValue}
+              onValueChange={handlerQuestionChange}
               label={'Question'}
               {...register('question')}
               errorMessage={errors.question?.message}
@@ -89,8 +93,8 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
               fieldName={'imageQuestion'}
             />
             <TextField
-              value={nameValue}
-              onValueChange={handlerNameChange}
+              value={answerValue}
+              onValueChange={handlerAnswerChange}
               label={'Answer'}
               {...register('answer')}
               errorMessage={errors.answer?.message}
