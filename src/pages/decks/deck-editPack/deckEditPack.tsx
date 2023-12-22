@@ -55,7 +55,7 @@ export const DeckEditPack = ({
   })
 
   const {
-    field: { value: coverValue, onChange: coverOnChange, name: nameFieldCover },
+    field: { value: coverFormValue, onChange: coverFormOnChange, name: nameFieldCover },
   } = useController({ name: 'imageCover', control })
 
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
@@ -86,8 +86,8 @@ export const DeckEditPack = ({
     resetField('imageCover')
   }
 
-  const handlerCoverOnChange = (event: FileList | undefined) => {
-    coverOnChange(event)
+  const handlerFormCoverOnChange = (event: FileList | undefined) => {
+    coverFormOnChange(event)
   }
 
   return (
@@ -107,8 +107,8 @@ export const DeckEditPack = ({
       setValue={setValue}
       nameFieldCover={nameFieldCover}
       initialCover={coverPack}
-      cover={coverValue}
-      setCover={handlerCoverOnChange}
+      coverFormValue={coverFormValue}
+      handlerFormCoverOnChange={handlerFormCoverOnChange}
       nameValue={nameValue}
       resetField={handlerResetField}
       handlerNameChange={handlerNameChange}
