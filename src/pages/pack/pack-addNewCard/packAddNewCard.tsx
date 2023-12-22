@@ -17,7 +17,8 @@ export const PackAddNewCard = () => {
   const { utilityAddNewPack } = useAddNewPack()
 
   const [open, setOpen] = useState(false)
-  const [nameValue, setNameValue] = useState('')
+  const [questionValue, setQuestionValue] = useState('')
+  const [answerValue, setAnswerValue] = useState('')
   const [coverQuestionImage, setCoverQuestionImage] = useState<string>('')
   const [coverAnswerImage, setCoverAnswerImage] = useState<string>('')
 
@@ -34,20 +35,24 @@ export const PackAddNewCard = () => {
   })
 
   // const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
-  const onHandleSubmitForm = handleSubmit((form: any) => {
+  const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
 
-    if (form.imageCover?.[0] instanceof File) {
-      formData.append('cover', form.imageCover[0])
+    if (form.imageAnswer?.[0] instanceof File && form.imageQuestion?.[0] instanceof File) {
+      formData.append('imageQuestion', form.imageQuestion[0])
+      formData.append('imageAnswer', form.imageAnswer[0])
     }
-    formData.append('name', form.namePack)
-    formData.append('isPrivate', JSON.stringify(form.privatePack))
+    formData.append('question', form.question)
+    formData.append('answer', form.answer)
 
-    utilityAddNewPack(formData)
+    // utilityAddNewPack(formData)
+    console.log(formData)
 
     setOpen(!open)
-    setNameValue('')
-    setCover('')
+    setQuestionValue('')
+    setAnswerValue('')
+    setCoverQuestionImage('')
+    setCoverAnswerImage('')
     reset()
   })
 
@@ -55,8 +60,12 @@ export const PackAddNewCard = () => {
     setOpen(!open)
   }
 
-  const handlerNameChange = (value: string) => {
-    setNameValue(value)
+  const handlerQuestionChange = (value: string) => {
+    setQuestionValue(value)
+  }
+
+  const handlerAnswerChange = (value: string) => {
+    setAnswerValue(value)
   }
 
   return (
@@ -79,8 +88,10 @@ export const PackAddNewCard = () => {
       setCoverQuestionImage={setCoverQuestionImage}
       coverAnswerImage={coverAnswerImage}
       setCoverAnswerImage={setCoverAnswerImage}
-      nameValue={nameValue}
-      handlerNameChange={handlerNameChange}
+      questionValue={questionValue}
+      handlerQuestionChange={handlerQuestionChange}
+      answerValue={answerValue}
+      handlerAnswerChange={handlerAnswerChange}
       handlerClosedModal={handlerClosedModal}
       headerTitle={'Add new card'}
       buttonTitle={'Add new card'}
