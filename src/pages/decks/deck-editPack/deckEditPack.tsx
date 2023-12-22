@@ -33,6 +33,8 @@ export const DeckEditPack = ({
 
   const [nameValue, setNameValue] = useState(titlePack)
 
+  const [cover, setCover] = useState<string>(coverPack)
+
   const {
     control,
     handleSubmit,
@@ -106,7 +108,9 @@ export const DeckEditPack = ({
       clearErrors={clearErrors}
       setValue={setValue}
       nameFieldCover={nameFieldCover}
-      initialCover={coverPack}
+      // initialCover={coverPack}
+      cover={cover}
+      setCover={setCover}
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
       nameValue={nameValue}
