@@ -24,7 +24,6 @@ export const utilityZodPackSchema = (isPrivate?: boolean, titlePack?: string) =>
   type NewPackSchema = z.infer<typeof addNewPackSchema>
 
   const initialValues: NewPackSchema = {
-    // imageCover: coverPack ?? undefined,
     imageCover: undefined,
     namePack: titlePack ?? '',
     privatePack: isPrivate ?? false,
