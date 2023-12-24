@@ -63,7 +63,10 @@ export const DeckEditPack = ({
 
     if (form.imageCover?.[0] instanceof File) {
       formData.append('cover', form.imageCover[0])
+    } else if (form.imageCover === '') {
+      formData.append('cover', '')
     }
+
     formData.append('name', form.namePack)
     formData.append('isPrivate', JSON.stringify(form.privatePack))
 
@@ -80,7 +83,7 @@ export const DeckEditPack = ({
     setNameValue(value)
   }
 
-  const handlerFormCoverOnChange = (event: FileList | undefined) => {
+  const handlerFormCoverOnChange = (event: FileList | undefined | string) => {
     coverFormOnChange(event)
   }
 
