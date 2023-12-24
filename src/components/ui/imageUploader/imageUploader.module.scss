@@ -1,7 +1,7 @@
 
 .modalAddWrapper {
   display: flex;
-  justify-content: flex-start;
+  justify-content: start;
 
   width: 100%;
   margin: 0;
@@ -13,44 +13,19 @@
 
   flex-shrink: 0;
   align-self: flex-start;
-justify-content: flex-start;
+  justify-content: flex-start;
 
-  //width: max-content;
-  width:70%;
   height:  65px;
   margin: 0;
   padding:  6px 10px;
 
   background-color: transparent;
 
-  .tooltip {
-    position: absolute;
-
-    padding: 3px;
-
-    color: #fff;
-    text-align: center;
-
-    visibility: hidden;
-    opacity: 0.8;
-    background-color: var(--color-accent-300);
-    border-radius: 6px;
-  }
-
-
-
-  &:hover {
-    .tooltip {
-      visibility: visible;
-    }
-  }
 }
 
 .modalAddInputCover {
   cursor: pointer;
   display: none;
-
-  //width: 0;
 }
 
 .modalAddImageCover {
@@ -61,16 +36,17 @@ justify-content: flex-start;
 }
 
 .deleteCover {
-  //position: absolute;
-  //top: -15px;
-  //right: -20px;
-
-  &:hover {
+ &:hover {
     cursor: pointer;
     scale: 110%;
   }
 }
 
-//.textCoverPreview {
-//  position: absolute;
-//}
+.coverErrorWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 5px;
+ }
+
+
