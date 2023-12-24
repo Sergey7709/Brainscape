@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FieldErrors, useForm } from 'react-hook-form'
+import { FieldErrors, useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
-import { useAddNewPack } from '@/pages/decks/hooks-and-functions'
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 
@@ -14,7 +13,7 @@ const { initialValues, addNewCardSchema } = utilityZodCardSchema()
 type NewCardSchema = z.infer<typeof addNewCardSchema>
 
 export const PackAddNewCard = () => {
-  const { utilityAddNewPack } = useAddNewPack()
+  // const { utilityAddNewPack } = useAddNewPack()
 
   const [open, setOpen] = useState(false)
   const [questionValue, setQuestionValue] = useState('')
@@ -25,16 +24,30 @@ export const PackAddNewCard = () => {
   const {
     handleSubmit,
     register,
-    setValue,
     reset,
-    clearErrors,
+    control,
     formState: { errors },
   } = useForm<NewCardSchema>({
     resolver: zodResolver(addNewCardSchema),
     defaultValues: initialValues,
   })
 
-  // const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
+  const {
+    field: {
+      value: imageQuestionFormValue,
+      onChange: onChangeImageQuestionForm,
+      // name: nameFieldImageQuestion,
+    },
+  } = useController({ name: 'imageQuestion', control })
+
+  const {
+    field: {
+      value: imageAnswerFormValue,
+      onChange: onChangeImageAnswerForm,
+      // name: nameFieldImageAnswer,
+    },
+  } = useController({ name: 'imageAnswer', control })
+
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
 
@@ -46,7 +59,7 @@ export const PackAddNewCard = () => {
     formData.append('answer', form.answer)
 
     // utilityAddNewPack(formData)
-    console.log(formData)
+    console.log(form.question, form.answer, form.imageQuestion?.[0], form.imageAnswer[0])
 
     setOpen(!open)
     setQuestionValue('')
@@ -82,8 +95,10 @@ export const PackAddNewCard = () => {
           imageAnswer?: FileList | undefined
         }>
       }
-      clearErrors={clearErrors}
-      setValue={setValue}
+      imageQuestionFormValue={imageQuestionFormValue}
+      onChangeImageQuestionForm={onChangeImageQuestionForm}
+      imageAnswerFormValue={imageAnswerFormValue}
+      onChangeImageAnswerForm={onChangeImageAnswerForm}
       coverQuestionImage={coverQuestionImage}
       setCoverQuestionImage={setCoverQuestionImage}
       coverAnswerImage={coverAnswerImage}
