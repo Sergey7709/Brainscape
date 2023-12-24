@@ -3,9 +3,9 @@ import { z } from 'zod'
 import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
 
 export const utilityZodPackSchema = (isPrivate?: boolean, titlePack?: string) => {
-  const fileSchema = z
-    .any()
-    .refine(fileList => fileList[0]?.size <= FILE_SIZE_LIMIT, `Error, max file size is 1MB.`)
+  const fileSchema = z.any().refine((fileList: FileList | string) => {
+    return fileList === '' || (fileList instanceof FileList && fileList[0]?.size <= FILE_SIZE_LIMIT)
+  }, `Error, max file size is 1MB.`)
 
   const addNewPackSchema = z.object({
     namePack: z
