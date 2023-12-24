@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, Dispatch, ReactElement, SetStateAction } from 'react'
 
-import { FieldErrors, UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
@@ -24,10 +24,8 @@ type ModalAddOREditPackProps = {
   justifyContentHeader?: JustifyContent | undefined
   register: UseFormRegister<FormPack>
   errors: FieldErrors<FormPack>
-  clearErrors: UseFormClearErrors<FormPack>
   setValue: UseFormSetValue<FormPack>
   nameFieldCover: string
-  // initialCover?: string
   cover: string
   setCover: Dispatch<SetStateAction<string>>
   coverFormValue: FileList
@@ -40,7 +38,6 @@ type ModalAddOREditPackProps = {
   children?: ReactElement
   headerTitle: string
   buttonTitle: string
-  resetField: () => void
 }
 export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
   const {
@@ -49,8 +46,6 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     onHandleSubmitForm,
     register,
     errors,
-    resetField,
-    // initialCover = '',
     nameFieldCover,
     cover,
     setCover,
@@ -85,9 +80,8 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
               setCover={setCover}
               valueForm={coverFormValue}
               nameFieldCover={nameFieldCover}
-              // initialCover={initialCover}
+              errorMessage={errors.imageCover?.message}
               onChangeForm={handlerFormCoverOnChange}
-              resetField={resetField}
             />
             <TextField
               value={nameValue}
