@@ -27,9 +27,9 @@ type ModalAddOREditPackProps = {
   clearErrors: UseFormClearErrors<FormPack>
   setValue: UseFormSetValue<FormPack>
   nameFieldCover: string
-  initialCover?: string
-  // cover: FileList
-  // setCover: (e: FileList | undefined) => void
+  // initialCover?: string
+  cover: string
+  setCover: Dispatch<SetStateAction<string>>
   coverFormValue: FileList
   handlerFormCoverOnChange: (e: FileList | undefined) => void
   nameValue: string
@@ -50,10 +50,10 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     register,
     errors,
     resetField,
-    initialCover = '',
+    // initialCover = '',
     nameFieldCover,
-    // cover,
-    // setCover,
+    cover,
+    setCover,
     coverFormValue,
     handlerFormCoverOnChange,
     nameValue,
@@ -81,10 +81,12 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
           </ModalConstructor.Head>
           <ModalConstructor.Body>
             <ImageUploader
-              value={coverFormValue}
+              cover={cover}
+              setCover={setCover}
+              valueForm={coverFormValue}
               nameFieldCover={nameFieldCover}
-              initialCover={initialCover}
-              onChange={handlerFormCoverOnChange}
+              // initialCover={initialCover}
+              onChangeForm={handlerFormCoverOnChange}
               resetField={resetField}
             />
             <TextField
