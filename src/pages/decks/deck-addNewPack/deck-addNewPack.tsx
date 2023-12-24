@@ -69,7 +69,7 @@ export const DeckAddNewPack = () => {
     setNameValue(value)
   }
 
-  const handlerFormCoverOnChange = (event: FileList | undefined) => {
+  const handlerFormCoverOnChange = (event: FileList | undefined | string) => {
     coverFormOnChange(event)
   }
 
