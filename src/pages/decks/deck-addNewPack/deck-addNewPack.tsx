@@ -26,8 +26,6 @@ export const DeckAddNewPack = () => {
     register,
     setValue,
     reset,
-    resetField,
-    clearErrors,
     formState: { errors },
   } = useForm<NewPackSchema>({
     resolver: zodResolver(addNewPackSchema),
@@ -75,10 +73,6 @@ export const DeckAddNewPack = () => {
     coverFormOnChange(event)
   }
 
-  const handlerResetField = () => {
-    resetField('imageCover')
-  }
-
   return (
     <ModalAddOrEditPack
       open={open}
@@ -92,14 +86,12 @@ export const DeckAddNewPack = () => {
           imageCover?: FileList | undefined
         }>
       }
-      clearErrors={clearErrors}
       setValue={setValue}
       cover={cover}
       setCover={setCover}
       nameFieldCover={nameFieldCover}
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
-      resetField={handlerResetField}
       nameValue={nameValue}
       handlerNameChange={handlerNameChange}
       value={value}
