@@ -8,7 +8,7 @@ import { Typography } from '@/components/ui/typography'
 
 type imageUploaderProps = {
   valueForm: FileList | undefined
-  onChangeForm: (e: FileList | undefined) => void
+  onChangeForm: (e: FileList | undefined | string) => void
   nameFieldCover: string
   errorMessage?: string
   cover: string
@@ -42,7 +42,7 @@ export const ImageUploader = ({
     if (hiddenInputRef.current) {
       hiddenInputRef.current.value = ''
     }
-    onChangeForm(undefined)
+    onChangeForm('')
     setCover('')
   }
 
