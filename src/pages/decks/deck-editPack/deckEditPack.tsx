@@ -59,13 +59,16 @@ export const DeckEditPack = ({
   const {
     field: { value: coverFormValue, onChange: coverFormOnChange, name: nameFieldCover },
   } = useController({ name: 'imageCover', control })
+  // } = useController({ name: 'imageCover', control, defaultValue: coverPack })
 
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
     const formData = new FormData()
 
+    console.log(form.imageCover)
     if (form.imageCover?.[0] instanceof File) {
       formData.append('cover', form.imageCover[0])
-    } else if (form.imageCover === undefined) {
+      // } else if (form.imageCover === undefined) {
+    } else if (!form.imageCover) {
       formData.append('cover', '')
     }
     formData.append('name', form.namePack)
@@ -88,6 +91,7 @@ export const DeckEditPack = ({
     resetField('imageCover')
   }
 
+  // const handlerFormCoverOnChange = (event: FileList | undefined) => {
   const handlerFormCoverOnChange = (event: FileList | undefined) => {
     coverFormOnChange(event)
   }
