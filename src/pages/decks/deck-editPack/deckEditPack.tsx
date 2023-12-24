@@ -40,8 +40,6 @@ export const DeckEditPack = ({
     handleSubmit,
     register,
     setValue,
-    clearErrors,
-    resetField,
     formState: { errors },
   } = useForm<NewPackSchema>({
     resolver: zodResolver(addNewPackSchema),
@@ -59,17 +57,12 @@ export const DeckEditPack = ({
   const {
     field: { value: coverFormValue, onChange: coverFormOnChange, name: nameFieldCover },
   } = useController({ name: 'imageCover', control })
-  // } = useController({ name: 'imageCover', control, defaultValue: coverPack })
 
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
     const formData = new FormData()
 
-    console.log(form.imageCover)
     if (form.imageCover?.[0] instanceof File) {
       formData.append('cover', form.imageCover[0])
-      // } else if (form.imageCover === undefined) {
-    } else if (!form.imageCover) {
-      formData.append('cover', '')
     }
     formData.append('name', form.namePack)
     formData.append('isPrivate', JSON.stringify(form.privatePack))
@@ -87,11 +80,6 @@ export const DeckEditPack = ({
     setNameValue(value)
   }
 
-  const handlerResetField = () => {
-    resetField('imageCover')
-  }
-
-  // const handlerFormCoverOnChange = (event: FileList | undefined) => {
   const handlerFormCoverOnChange = (event: FileList | undefined) => {
     coverFormOnChange(event)
   }
@@ -109,16 +97,13 @@ export const DeckEditPack = ({
           imageCover?: FileList | undefined
         }>
       }
-      clearErrors={clearErrors}
       setValue={setValue}
       nameFieldCover={nameFieldCover}
-      // initialCover={coverPack}
       cover={cover}
       setCover={setCover}
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
       nameValue={nameValue}
-      resetField={handlerResetField}
       handlerNameChange={handlerNameChange}
       value={value}
       onChange={onChange}
