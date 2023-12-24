@@ -29,7 +29,7 @@ type ModalAddOREditPackProps = {
   cover: string
   setCover: Dispatch<SetStateAction<string>>
   coverFormValue: FileList
-  handlerFormCoverOnChange: (e: FileList | undefined) => void
+  handlerFormCoverOnChange: (e: FileList | undefined | string) => void
   nameValue: string
   handlerNameChange: (value: string) => void
   value: any
