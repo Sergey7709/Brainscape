@@ -9,9 +9,8 @@ import { Typography } from '@/components/ui/typography'
 type imageUploaderProps = {
   valueForm: FileList | undefined
   onChangeForm: (e: FileList | undefined) => void
-  resetField: (name: string) => void
   nameFieldCover: string
-  // initialCover: string
+  errorMessage?: string
   cover: string
   setCover: Dispatch<SetStateAction<string>>
 }
@@ -19,23 +18,13 @@ type imageUploaderProps = {
 export const ImageUploader = ({
   valueForm,
   onChangeForm,
-  // resetField,
-  // // initialCover,
-  // nameFieldCover,
-  // cover,
+  errorMessage,
+  cover,
   setCover,
 }: imageUploaderProps) => {
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
 
-  // const initialValue = (value && URL.createObjectURL(value?.[0])) ?? initialCover
-
-  // const [cover, setCover] = useState<string | undefined>(initialValue)
-
-  // const initialValue = (valueForm && URL.createObjectURL(valueForm?.[0])) ?? cover
-  const initialValue =
-    valueForm instanceof FileList ? URL.createObjectURL(valueForm?.[0]) : valueForm
-
-  console.log(valueForm)
+  const valueCover = (valueForm && URL.createObjectURL(valueForm?.[0])) ?? cover
 
   const handleUploadedFile = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
@@ -50,13 +39,12 @@ export const ImageUploader = ({
   }
 
   const handleDeletedFile = () => {
+    if (hiddenInputRef.current) {
+      hiddenInputRef.current.value = ''
+    }
     onChangeForm(undefined)
-    // resetField(nameFieldCover)
-
     setCover('')
   }
-
-  console.log('image')
 
   return (
     <>
@@ -68,30 +56,34 @@ export const ImageUploader = ({
           className={s.modalAddInputCover}
           onChange={handleUploadedFile}
         />
-        <Button
-          as={'button'}
-          type={'button'}
-          variant="secondary"
-          className={s.modalAddButtonCover}
-          onClick={onUpload}
-        >
-          {/*{cover ? (*/}
-          {initialValue ? (
-            <>
-              <img className={s.modalAddImageCover} src={initialValue} />
-              <Typography variant={'subtitle2'} className={s.textCoverPreview}>
-                This preview in cover, click to change.
-              </Typography>
-            </>
-          ) : (
-            <>
-              <ChangePhoto onClick={() => {}} />
-              Click to add a cover, max size 1MB.
-            </>
-          )}
-        </Button>
-        {/*{cover && (*/}
-        {initialValue && (
+        <div>
+          <Button
+            as={'button'}
+            type={'button'}
+            variant="secondary"
+            className={s.modalAddButtonCover}
+            onClick={onUpload}
+            fullWidth
+          >
+            {valueCover ? (
+              <>
+                <img className={s.modalAddImageCover} src={valueCover} />
+                <Typography variant={'subtitle2'} className={s.textCoverPreview}>
+                  This preview in cover, click to change.
+                </Typography>
+              </>
+            ) : (
+              <>
+                <ChangePhoto onClick={() => {}} />
+                Click to add a cover, max size 1MB.
+              </>
+            )}
+          </Button>
+          <div className={s.coverErrorWrapper}>
+            {errorMessage ? <Typography variant={'error'}>{errorMessage} </Typography> : ''}
+          </div>
+        </div>
+        {valueCover && (
           <Typography variant={'caption'} className={s.deleteCover} onClick={handleDeletedFile}>
             ❌
           </Typography>
