@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 
 import s from './imageUploader.module.scss'
 
@@ -7,31 +7,41 @@ import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 
 type imageUploaderProps = {
-  value: FileList | undefined
-  onChange: (e: FileList | undefined) => void
+  valueForm: FileList | undefined
+  onChangeForm: (e: FileList | undefined) => void
   resetField: (name: string) => void
   nameFieldCover: string
-  initialCover: string
+  // initialCover: string
+  cover: string
+  setCover: Dispatch<SetStateAction<string>>
 }
 
 export const ImageUploader = ({
-  value,
-  onChange,
-  resetField,
-  initialCover,
-  nameFieldCover,
+  valueForm,
+  onChangeForm,
+  // resetField,
+  // // initialCover,
+  // nameFieldCover,
+  // cover,
+  setCover,
 }: imageUploaderProps) => {
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
 
-  const initialValue = (value && URL.createObjectURL(value?.[0])) ?? initialCover
+  // const initialValue = (value && URL.createObjectURL(value?.[0])) ?? initialCover
 
-  const [cover, setCover] = useState<string | undefined>(initialValue)
+  // const [cover, setCover] = useState<string | undefined>(initialValue)
+
+  // const initialValue = (valueForm && URL.createObjectURL(valueForm?.[0])) ?? cover
+  const initialValue =
+    valueForm instanceof FileList ? URL.createObjectURL(valueForm?.[0]) : valueForm
+
+  console.log(valueForm)
 
   const handleUploadedFile = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
 
     if (!files) return
-    onChange(files)
+    onChangeForm(files)
     setCover(URL.createObjectURL(files?.[0]))
   }
 
@@ -40,10 +50,13 @@ export const ImageUploader = ({
   }
 
   const handleDeletedFile = () => {
-    onChange(undefined)
-    resetField(nameFieldCover)
+    onChangeForm(undefined)
+    // resetField(nameFieldCover)
+
     setCover('')
   }
+
+  console.log('image')
 
   return (
     <>
@@ -62,9 +75,10 @@ export const ImageUploader = ({
           className={s.modalAddButtonCover}
           onClick={onUpload}
         >
-          {cover ? (
+          {/*{cover ? (*/}
+          {initialValue ? (
             <>
-              <img className={s.modalAddImageCover} src={cover} alt="Not Image" />
+              <img className={s.modalAddImageCover} src={initialValue} />
               <Typography variant={'subtitle2'} className={s.textCoverPreview}>
                 This preview in cover, click to change.
               </Typography>
@@ -76,7 +90,8 @@ export const ImageUploader = ({
             </>
           )}
         </Button>
-        {cover && (
+        {/*{cover && (*/}
+        {initialValue && (
           <Typography variant={'caption'} className={s.deleteCover} onClick={handleDeletedFile}>
             ❌
           </Typography>
