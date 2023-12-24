@@ -1,13 +1,13 @@
 import { BaseSyntheticEvent, Dispatch, ReactElement, SetStateAction } from 'react'
 
-import { FieldErrors, UseFormClearErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
+import { ImageUploader } from '@/components/ui/imageUploader'
 import { Modal, ModalConstructor } from '@/components/ui/modal'
 import { JustifyContent } from '@/components/ui/modal/typeForModal.ts'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
-import { PackImageCardUploader } from '@/pages/pack/pack-imageCardUploader/packImageCardUploader.tsx'
 
 type FormCard = {
   question: string
@@ -24,8 +24,10 @@ type ModalAddOrEditCardProps = {
   justifyContentHeader?: JustifyContent | undefined
   register: UseFormRegister<FormCard>
   errors: FieldErrors<FormCard>
-  clearErrors: UseFormClearErrors<FormCard>
-  setValue: UseFormSetValue<FormCard>
+  imageQuestionFormValue: FileList
+  onChangeImageQuestionForm: (e: FileList | undefined | string) => void
+  imageAnswerFormValue: FileList
+  onChangeImageAnswerForm: (e: FileList | undefined | string) => void
   coverQuestionImage: string
   setCoverQuestionImage: Dispatch<SetStateAction<string>>
   coverAnswerImage: string
@@ -46,12 +48,14 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
     onHandleSubmitForm,
     register,
     errors,
-    clearErrors,
+    imageAnswerFormValue,
+    onChangeImageQuestionForm,
+    imageQuestionFormValue,
+    onChangeImageAnswerForm,
     coverQuestionImage,
     setCoverQuestionImage,
     coverAnswerImage,
     setCoverAnswerImage,
-    setValue,
     questionValue,
     handlerQuestionChange,
     answerValue,
@@ -83,14 +87,12 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
               {...register('question')}
               errorMessage={errors.question?.message}
             />
-            <PackImageCardUploader
-              register={register}
-              setValue={setValue}
+            <ImageUploader
               cover={coverQuestionImage}
               setCover={setCoverQuestionImage}
-              errorMessage={errors.imageQuestion?.message?.toString()}
-              clearErrors={clearErrors}
-              fieldName={'imageQuestion'}
+              valueForm={imageQuestionFormValue}
+              errorMessage={errors.imageQuestion?.message}
+              onChangeForm={onChangeImageQuestionForm}
             />
             <TextField
               value={answerValue}
@@ -99,14 +101,12 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
               {...register('answer')}
               errorMessage={errors.answer?.message}
             />
-            <PackImageCardUploader
-              register={register}
-              setValue={setValue}
+            <ImageUploader
               cover={coverAnswerImage}
               setCover={setCoverAnswerImage}
-              errorMessage={errors.imageAnswer?.message?.toString()}
-              clearErrors={clearErrors}
-              fieldName={'imageAnswer'}
+              valueForm={imageAnswerFormValue}
+              errorMessage={errors.imageAnswer?.message}
+              onChangeForm={onChangeImageAnswerForm}
             />
           </ModalConstructor.Body>
           <ModalConstructor.Footer>
