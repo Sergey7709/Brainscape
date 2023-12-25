@@ -20,8 +20,8 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   const { utilityAddNewCard } = useAddNewCard()
 
   const [open, setOpen] = useState(false)
-  const [questionValue, setQuestionValue] = useState('')
-  const [answerValue, setAnswerValue] = useState('')
+  // const [questionValue, setQuestionValue] = useState('')
+  // const [answerValue, setAnswerValue] = useState('')
   const [coverQuestionImage, setCoverQuestionImage] = useState<string>('')
   const [coverAnswerImage, setCoverAnswerImage] = useState<string>('')
 
@@ -37,20 +37,20 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   })
 
   const {
-    field: {
-      value: imageQuestionFormValue,
-      onChange: onChangeImageQuestionForm,
-      // name: nameFieldImageQuestion,
-    },
+    field: { value: imageQuestionFormValue, onChange: onChangeImageQuestionForm },
   } = useController({ name: 'imageQuestion', control })
 
   const {
-    field: {
-      value: imageAnswerFormValue,
-      onChange: onChangeImageAnswerForm,
-      // name: nameFieldImageAnswer,
-    },
+    field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
   } = useController({ name: 'imageAnswer', control })
+
+  const {
+    field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
+  } = useController({ name: 'question', control })
+
+  const {
+    field: { value: answerFormValue, onChange: onChangeAnswerFormValue },
+  } = useController({ name: 'answer', control })
 
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
@@ -63,11 +63,10 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
     formData.append('answer', form.answer)
 
     utilityAddNewCard(deckId, formData)
-    // console.log(form.question, form.answer, form.imageQuestion?.[0], form.imageAnswer[0])
 
     setOpen(!open)
-    setQuestionValue('')
-    setAnswerValue('')
+    // setQuestionValue('')
+    // setAnswerValue('')
     setCoverQuestionImage('')
     setCoverAnswerImage('')
     reset()
@@ -81,9 +80,9 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
     setQuestionValue(value)
   }
 
-  const handlerAnswerChange = (value: string) => {
-    setAnswerValue(value)
-  }
+  // const handlerAnswerChange = (value: string) => {
+  //   setAnswerValue(value)
+  // }
 
   return (
     <ModalAddOrEditCard
@@ -107,10 +106,15 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
       setCoverQuestionImage={setCoverQuestionImage}
       coverAnswerImage={coverAnswerImage}
       setCoverAnswerImage={setCoverAnswerImage}
-      questionValue={questionValue}
-      handlerQuestionChange={handlerQuestionChange}
-      answerValue={answerValue}
-      handlerAnswerChange={handlerAnswerChange}
+      // questionValue={questionValue}
+      // handlerQuestionChange={handlerQuestionChange}
+      // answerValue={answerValue}
+      // handlerAnswerChange={handlerAnswerChange}
+      control={control}
+      questionValue={questionFormValue}
+      handlerQuestionChange={onChangeQuestionFormValue}
+      answerValue={answerFormValue}
+      handlerAnswerChange={onChangeAnswerFormValue}
       handlerClosedModal={handlerClosedModal}
       headerTitle={'Add new card'}
       buttonTitle={'Add new card'}
