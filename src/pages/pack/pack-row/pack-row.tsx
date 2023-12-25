@@ -35,7 +35,7 @@ export const PackRow = (pack: extendPackRow) => {
       <Table.Cell>{updatedDateFormat}</Table.Cell>
       <Table.Cell>
         <div>
-          <Rating count={5} value={pack.grade} />
+          <Rating count={5} value={pack.grade} className={s.packRating} />
         </div>
       </Table.Cell>
       <Table.Cell>
