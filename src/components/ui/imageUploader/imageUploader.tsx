@@ -9,7 +9,7 @@ import { Typography } from '@/components/ui/typography'
 type imageUploaderProps = {
   valueForm: FileList | undefined
   onChangeForm: (e: FileList | undefined | string) => void
-  nameFieldCover: string
+  nameFieldCover?: string
   errorMessage?: string
   cover: string
   setCover: Dispatch<SetStateAction<string>>
@@ -56,7 +56,7 @@ export const ImageUploader = ({
           className={s.modalAddInputCover}
           onChange={handleUploadedFile}
         />
-        <div>
+        <div className={s.coverImageUploader}>
           <Button
             as={'button'}
             type={'button'}
@@ -81,13 +81,18 @@ export const ImageUploader = ({
           </Button>
           <div className={s.coverErrorWrapper}>
             {errorMessage ? <Typography variant={'error'}>{errorMessage} </Typography> : ''}
+            {valueCover && (
+              <Button variant={'secondary'} className={s.deleteCover} onClick={handleDeletedFile}>
+                <Typography variant={'body2'}> Delete cover</Typography>
+              </Button>
+            )}
           </div>
         </div>
-        {valueCover && (
-          <Typography variant={'caption'} className={s.deleteCover} onClick={handleDeletedFile}>
-            ❌
-          </Typography>
-        )}
+        {/*{valueCover && (*/}
+        {/*  <Typography variant={'caption'} className={s.deleteCover} onClick={handleDeletedFile}>*/}
+        {/*    ❌*/}
+        {/*  </Typography>*/}
+        {/*)}*/}
       </div>
     </>
   )
