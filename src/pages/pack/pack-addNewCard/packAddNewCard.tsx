@@ -5,6 +5,7 @@ import { FieldErrors, useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
+import { useAddNewCard } from '@/pages/decks/hooks-and-functions/useAddNewCard.ts'
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 
@@ -12,8 +13,11 @@ const { initialValues, addNewCardSchema } = utilityZodCardSchema()
 
 type NewCardSchema = z.infer<typeof addNewCardSchema>
 
-export const PackAddNewCard = () => {
-  // const { utilityAddNewPack } = useAddNewPack()
+type PackAddNewCardProps = {
+  deckId: string
+}
+export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
+  const { utilityAddNewCard } = useAddNewCard()
 
   const [open, setOpen] = useState(false)
   const [questionValue, setQuestionValue] = useState('')
@@ -52,14 +56,14 @@ export const PackAddNewCard = () => {
     const formData = new FormData()
 
     if (form.imageAnswer?.[0] instanceof File && form.imageQuestion?.[0] instanceof File) {
-      formData.append('imageQuestion', form.imageQuestion[0])
-      formData.append('imageAnswer', form.imageAnswer[0])
+      formData.append('questionImg', form.imageQuestion[0])
+      formData.append('answerImg', form.imageAnswer[0])
     }
     formData.append('question', form.question)
     formData.append('answer', form.answer)
 
-    // utilityAddNewPack(formData)
-    console.log(form.question, form.answer, form.imageQuestion?.[0], form.imageAnswer[0])
+    utilityAddNewCard(deckId, formData)
+    // console.log(form.question, form.answer, form.imageQuestion?.[0], form.imageAnswer[0])
 
     setOpen(!open)
     setQuestionValue('')
