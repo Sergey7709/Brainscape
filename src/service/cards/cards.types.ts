@@ -25,12 +25,7 @@ export type GetCardParams = {
 
 export type CreateCardRequest = {
   deckId: string
-  question: string
-  answer: string
-  questionImg: string
-  answerImg: string
-  questionVideo: string
-  answerVideo: string
+  body: FormData
 }
 
 export type GradeCardRequest = {
