@@ -1,20 +1,23 @@
 import { BaseSyntheticEvent, Dispatch, ReactElement, SetStateAction } from 'react'
 
-import { FieldErrors, UseFormRegister } from 'react-hook-form'
+import { Control, FieldErrors, UseFormRegister } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
+import { ControlledTextField } from '@/components/ui/controlled/controlled-textfiled'
 import { ImageUploader } from '@/components/ui/imageUploader'
 import { Modal, ModalConstructor } from '@/components/ui/modal'
 import { JustifyContent } from '@/components/ui/modal/typeForModal.ts'
-import { TextField } from '@/components/ui/textField'
+// import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 
-type FormCard = {
-  question: string
-  imageQuestion?: FileList | undefined
-  answer: string
-  imageAnswer?: FileList | undefined
-}
+// type FormCard = {
+//   question: string
+//   imageQuestion?: FileList | undefined
+//   answer: string
+//   imageAnswer?: FileList | undefined
+// }
+
+type FormCard = { question: string; answer: string; imageQuestion?: any; imageAnswer?: any }
 
 type ModalAddOrEditCardProps = {
   open: boolean
@@ -35,7 +38,9 @@ type ModalAddOrEditCardProps = {
   questionValue: string
   handlerQuestionChange: (value: string) => void
   answerValue: string
-  handlerAnswerChange: (value: string) => void
+  // handlerAnswerChange: (value: string) => void
+  control: Control<FormCard> //!!!
+  handlerAnswerChange: (event: string) => void
   handlerClosedModal: () => void
   children?: ReactElement
   headerTitle: string
@@ -46,7 +51,7 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
     open,
     setOpen,
     onHandleSubmitForm,
-    register,
+    // register,
     errors,
     imageAnswerFormValue,
     onChangeImageQuestionForm,
@@ -56,15 +61,16 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
     setCoverQuestionImage,
     coverAnswerImage,
     setCoverAnswerImage,
-    questionValue,
-    handlerQuestionChange,
-    answerValue,
-    handlerAnswerChange,
+    // questionValue,
+    // handlerQuestionChange,
+    // answerValue,
+    // handlerAnswerChange,
     handlerClosedModal,
     borderBottomHeader,
     justifyContentHeader,
     headerTitle,
     buttonTitle,
+    control,
   } = props
 
   return (
@@ -80,13 +86,14 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
             </Typography>
           </ModalConstructor.Head>
           <ModalConstructor.Body>
-            <TextField
-              value={questionValue}
-              onValueChange={handlerQuestionChange}
-              label={'Question'}
-              {...register('question')}
-              errorMessage={errors.question?.message}
-            />
+            {/*<TextField*/}
+            {/*  value={questionValue}*/}
+            {/*  onValueChange={handlerQuestionChange}*/}
+            {/*  label={'Question'}*/}
+            {/*  {...register('question')}*/}
+            {/*  errorMessage={errors.question?.message}*/}
+            {/*/>*/}
+            <ControlledTextField control={control} name={'question'} />
             <ImageUploader
               cover={coverQuestionImage}
               setCover={setCoverQuestionImage}
@@ -94,13 +101,14 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
               errorMessage={errors.imageQuestion?.message}
               onChangeForm={onChangeImageQuestionForm}
             />
-            <TextField
-              value={answerValue}
-              onValueChange={handlerAnswerChange}
-              label={'Answer'}
-              {...register('answer')}
-              errorMessage={errors.answer?.message}
-            />
+            {/*<TextField*/}
+            {/*  value={answerValue}*/}
+            {/*  onValueChange={handlerAnswerChange}*/}
+            {/*  label={'Answer'}*/}
+            {/*  {...register('answer')}*/}
+            {/*  errorMessage={errors.answer?.message}*/}
+            {/*/>*/}
+            <ControlledTextField control={control} name={'answer'} />
             <ImageUploader
               cover={coverAnswerImage}
               setCover={setCoverAnswerImage}
