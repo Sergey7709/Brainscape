@@ -65,7 +65,7 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
         </div>
         {mePackCards ? (
           // <Button className={s.packButton}>Add New Card</Button>
-          <PackAddNewCard />
+          <PackAddNewCard deckId={dataDeck.id} />
         ) : (
           <Button className={s.packButton} onClick={handlerNavigateLearn}>
             Learn to Pack
