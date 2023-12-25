@@ -17,12 +17,12 @@ export const cardsService = baseApi.injectEndpoints({
         providesTags: ['Cards'],
       }),
       createCard: builder.mutation<CardType, CreateCardRequest>({
-        query: ({ deckId, ...body }) => ({
+        query: ({ deckId, body }) => ({
           url: `v1/decks/${deckId}/cards`,
           method: 'POST',
           body,
         }),
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Deck'],
       }),
       getRandomCards: builder.query<CardType, string>({
         query: id => `v1/decks/${id}/learn`,
