@@ -12,7 +12,6 @@ type imageUploaderProps = {
   valueForm: FileList | undefined
   onChangeForm: (e: FileList | undefined | string) => void
   nameFieldCover?: string
-  // errorMessage?: string
   errorMessage?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
   cover: string
   setCover: Dispatch<SetStateAction<string>>
@@ -91,11 +90,6 @@ export const ImageUploader = ({
             )}
           </div>
         </div>
-        {/*{valueCover && (*/}
-        {/*  <Typography variant={'caption'} className={s.deleteCover} onClick={handleDeletedFile}>*/}
-        {/*    ❌*/}
-        {/*  </Typography>*/}
-        {/*)}*/}
       </div>
     </>
   )
