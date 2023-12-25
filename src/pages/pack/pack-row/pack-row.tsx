@@ -4,12 +4,16 @@ import { Delete, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Rating } from '@/components/ui/rating'
 import { Table } from '@/components/ui/tables'
+import { useDeleteCard } from '@/pages/pack/hooks'
 import { PackEditCard } from '@/pages/pack/pack-editCard/packEditCard.tsx'
+import { ModalDeleteCard } from '@/pages/pack/pack-modal-delete-card/modalDeleteCard.tsx'
 import s from '@/pages/pack/pack-row/pack-row.module.scss'
 import { PackCards } from '@/service/decks/decks.types.ts'
 
 type extendPackRow = { mePackCards: boolean } & PackCards
 export const PackRow = (pack: extendPackRow) => {
+  const { utilityDeleteCard } = useDeleteCard()
+
   const [openEditModal, setOpenEditModal] = useState(false)
 
   const [openModalDelete, setOpenModalDelete] = useState(false)
@@ -23,6 +27,15 @@ export const PackRow = (pack: extendPackRow) => {
 
   const handlerOpenModalEdit = () => {
     setOpenEditModal(!openEditModal)
+  }
+
+  const handlerOpenModal = () => {
+    setOpenModalDelete(!openModalDelete)
+  }
+
+  const handlerDeletePack = () => {
+    utilityDeleteCard(pack.id)
+    setOpenModalDelete(!openModalDelete)
   }
 
   return (
@@ -56,7 +69,7 @@ export const PackRow = (pack: extendPackRow) => {
               <Button variant="link" className={s.editButtonPackRow} onClick={handlerOpenModalEdit}>
                 <Redactor />
               </Button>
-              <Button variant="link" className={s.editButtonPackRow}>
+              <Button variant="link" className={s.editButtonPackRow} onClick={handlerOpenModal}>
                 <Delete />
               </Button>
             </div>
@@ -73,6 +86,12 @@ export const PackRow = (pack: extendPackRow) => {
             setOpen={setOpenEditModal}
             question={pack.question}
             answer={pack.answer}
+          />
+          <ModalDeleteCard
+            open={openModalDelete}
+            setOpen={setOpenModalDelete}
+            handlerClosedModal={handlerOpenModal}
+            handlerDeletePack={handlerDeletePack}
           />
         </td>
       </tr>
