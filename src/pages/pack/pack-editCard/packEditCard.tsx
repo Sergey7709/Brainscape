@@ -4,12 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-// import { useAddNewCard } from '@/pages/decks/hooks-and-functions/useAddNewCard.ts'
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
 import { useAddNewCard } from '@/pages/pack/hooks/useEditCard.ts'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 
-const { initialValues, addNewCardSchema } = utilityZodCardSchema()
+const { addNewCardSchema } = utilityZodCardSchema()
 
 type NewCardSchema = z.infer<typeof addNewCardSchema>
 
@@ -31,8 +30,6 @@ export const PackEditCard = ({
   open,
   setOpen,
 }: PackEditCardProps) => {
-  // const { utilityAddNewCard } = useAddNewCard()
-  // const [open, setOpen] = useState(false)
   const { utilityEditCard } = useAddNewCard()
 
   const [coverQuestionImage, setCoverQuestionImage] = useState<string>(questionImage)
@@ -41,12 +38,10 @@ export const PackEditCard = ({
   const {
     handleSubmit,
     register,
-    // reset,
     control,
     formState: { errors },
   } = useForm<NewCardSchema>({
     resolver: zodResolver(addNewCardSchema),
-    // defaultValues: initialValues,
   })
 
   const {
@@ -68,21 +63,6 @@ export const PackEditCard = ({
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
 
-    // if (form.imageAnswer?.[0] instanceof File && form.imageQuestion?.[0] instanceof File) {
-    //   formData.append('questionImg', form.imageQuestion[0])
-    //   formData.append('answerImg', form.imageAnswer[0])
-    // }
-    // if (form.imageAnswer?.[0] instanceof File && form.imageQuestion?.[0] instanceof File) {
-    //   formData.append('questionImg', form.imageQuestion[0])
-    //   formData.append('answerImg', form.imageAnswer[0])
-    // }
-    // if (form.imageQuestion === '') {
-    //   formData.append('questionImg', '')
-    // }
-    // if (form.imageAnswer === '') {
-    //   formData.append('answerImg', '')
-    // }
-
     if (form.imageQuestion?.[0] instanceof File) {
       formData.append('questionImg', form.imageQuestion[0])
     } else if (form.imageQuestion === '') {
@@ -98,21 +78,14 @@ export const PackEditCard = ({
     formData.append('question', form.question)
     formData.append('answer', form.answer)
 
-    console.log(cardId, form.question, form.answer, form.imageQuestion?.[0], form.imageAnswer?.[0])
-
     utilityEditCard(cardId, formData)
 
     setOpen(!open)
-    // setCoverQuestionImage('')
-    // setCoverAnswerImage('')
-    // reset()
   })
 
   const handlerClosedModal = () => {
     setOpen(!open)
   }
-
-  // console.log('packNewCard')
 
   return (
     <ModalAddOrEditCard
