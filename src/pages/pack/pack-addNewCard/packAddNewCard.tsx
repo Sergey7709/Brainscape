@@ -53,10 +53,18 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
 
-    if (form.imageAnswer?.[0] instanceof File && form.imageQuestion?.[0] instanceof File) {
+    if (form.imageQuestion?.[0] instanceof File) {
       formData.append('questionImg', form.imageQuestion[0])
-      formData.append('answerImg', form.imageAnswer[0])
+    } else if (form.imageQuestion === '') {
+      formData.append('questionImg', '')
     }
+
+    if (form.imageAnswer?.[0] instanceof File) {
+      formData.append('answerImg', form.imageAnswer[0])
+    } else if (form.imageAnswer === '') {
+      formData.append('answerImg', '')
+    }
+
     formData.append('question', form.question)
     formData.append('answer', form.answer)
 
