@@ -36,9 +36,13 @@
 }
 
 .deleteCover {
+  padding: 0.3rem 0.8rem;
+  background-color: var(--color-danger-500);
+
  &:hover {
-    cursor: pointer;
-    scale: 110%;
+    //cursor: pointer;
+    //scale: 110%;
+   background-color: var(--color-danger-300)!important;//!!!
   }
 }
 
@@ -46,7 +50,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-left: 5px;
+
+  margin-top: 5px;
+  padding-left: 1px;
  }
 
-
+.coverImageUploader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
