@@ -1,5 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 
+import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
+
 import s from './imageUploader.module.scss'
 
 import { ChangePhoto } from '@/assets/icons'
@@ -10,7 +12,8 @@ type imageUploaderProps = {
   valueForm: FileList | undefined
   onChangeForm: (e: FileList | undefined | string) => void
   nameFieldCover?: string
-  errorMessage?: string
+  // errorMessage?: string
+  errorMessage?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
   cover: string
   setCover: Dispatch<SetStateAction<string>>
 }
