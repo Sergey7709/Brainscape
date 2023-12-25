@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FieldErrors, useController, useForm } from 'react-hook-form'
+import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -20,8 +20,6 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   const { utilityAddNewCard } = useAddNewCard()
 
   const [open, setOpen] = useState(false)
-  // const [questionValue, setQuestionValue] = useState('')
-  // const [answerValue, setAnswerValue] = useState('')
   const [coverQuestionImage, setCoverQuestionImage] = useState<string>('')
   const [coverAnswerImage, setCoverAnswerImage] = useState<string>('')
 
@@ -65,8 +63,6 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
     utilityAddNewCard(deckId, formData)
 
     setOpen(!open)
-    // setQuestionValue('')
-    // setAnswerValue('')
     setCoverQuestionImage('')
     setCoverAnswerImage('')
     reset()
@@ -76,28 +72,13 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
     setOpen(!open)
   }
 
-  const handlerQuestionChange = (value: string) => {
-    setQuestionValue(value)
-  }
-
-  // const handlerAnswerChange = (value: string) => {
-  //   setAnswerValue(value)
-  // }
-
   return (
     <ModalAddOrEditCard
       open={open}
       setOpen={setOpen}
       onHandleSubmitForm={onHandleSubmitForm}
       register={register}
-      errors={
-        errors as FieldErrors<{
-          question: string
-          imageQuestion?: FileList | undefined
-          answer: string
-          imageAnswer?: FileList | undefined
-        }>
-      }
+      errors={errors}
       imageQuestionFormValue={imageQuestionFormValue}
       onChangeImageQuestionForm={onChangeImageQuestionForm}
       imageAnswerFormValue={imageAnswerFormValue}
@@ -106,10 +87,6 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
       setCoverQuestionImage={setCoverQuestionImage}
       coverAnswerImage={coverAnswerImage}
       setCoverAnswerImage={setCoverAnswerImage}
-      // questionValue={questionValue}
-      // handlerQuestionChange={handlerQuestionChange}
-      // answerValue={answerValue}
-      // handlerAnswerChange={handlerAnswerChange}
       control={control}
       questionValue={questionFormValue}
       handlerQuestionChange={onChangeQuestionFormValue}
