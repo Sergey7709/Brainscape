@@ -4,7 +4,10 @@ import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
 
 export const utilityZodCardSchema = () => {
   const fileSchema = z.any().refine((fileList: FileList | string) => {
-    return fileList === '' || (fileList instanceof FileList && fileList[0]?.size <= FILE_SIZE_LIMIT)
+    return (
+      typeof fileList === 'string' ||
+      (fileList instanceof FileList && fileList[0]?.size <= FILE_SIZE_LIMIT)
+    )
   }, `Error, max file size is 1MB.`)
 
   const addNewCardSchema = z.object({
