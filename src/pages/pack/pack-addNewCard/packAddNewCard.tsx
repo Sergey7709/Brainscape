@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
@@ -20,8 +20,11 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   const { utilityAddNewCard } = useAddNewCard()
 
   const [open, setOpen] = useState(false)
-  const [coverQuestionImage, setCoverQuestionImage] = useState<string>('')
-  const [coverAnswerImage, setCoverAnswerImage] = useState<string>('')
+  // const [coverQuestionImage, setCoverQuestionImage] = useState<string>('')
+  // const [coverAnswerImage, setCoverAnswerImage] = useState<string>('')
+
+  const hiddenInputRefQuestion = useRef<HTMLInputElement | null>(null)
+  const hiddenInputRefAnswer = useRef<HTMLInputElement | null>(null)
 
   const {
     handleSubmit,
@@ -71,9 +74,20 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
     utilityAddNewCard(deckId, formData)
 
     setOpen(!open)
-    setCoverQuestionImage('')
-    setCoverAnswerImage('')
-    reset()
+    // setCoverQuestionImage('')
+    // setCoverAnswerImage('')
+
+    reset() ///????????????????????????????????!!!!!!!
+
+    if (hiddenInputRefQuestion.current) {
+      hiddenInputRefQuestion.current.value = ''
+    } //!!!!
+    if (hiddenInputRefAnswer.current) {
+      hiddenInputRefAnswer.current.value = ''
+    } //!!!!
+
+    // onChangeImageQuestionForm('')
+    // onChangeImageAnswerForm('')
   })
 
   const handlerClosedModal = () => {
@@ -91,10 +105,14 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
       onChangeImageQuestionForm={onChangeImageQuestionForm}
       imageAnswerFormValue={imageAnswerFormValue}
       onChangeImageAnswerForm={onChangeImageAnswerForm}
-      coverQuestionImage={coverQuestionImage}
-      setCoverQuestionImage={setCoverQuestionImage}
-      coverAnswerImage={coverAnswerImage}
-      setCoverAnswerImage={setCoverAnswerImage}
+      // coverQuestionImage={coverQuestionImage}
+      // coverQuestionImage={imageQuestionFormValue} ///!!!!
+      hiddenInputRefQuestion={hiddenInputRefQuestion} ///!!!!
+      // setCoverQuestionImage={setCoverQuestionImage}
+      // coverAnswerImage={coverAnswerImage}
+      // coverAnswerImage={imageAnswerFormValue} ///!!!!
+      hiddenInputRefAnswer={hiddenInputRefAnswer} ///!!!!
+      // setCoverAnswerImage={setCoverAnswerImage}
       control={control}
       questionValue={questionFormValue}
       handlerQuestionChange={onChangeQuestionFormValue}
