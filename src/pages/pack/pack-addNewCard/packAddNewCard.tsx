@@ -20,8 +20,6 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   const { utilityAddNewCard } = useAddNewCard()
 
   const [open, setOpen] = useState(false)
-  // const [coverQuestionImage, setCoverQuestionImage] = useState<string>('')
-  // const [coverAnswerImage, setCoverAnswerImage] = useState<string>('')
 
   const hiddenInputRefQuestion = useRef<HTMLInputElement | null>(null)
   const hiddenInputRefAnswer = useRef<HTMLInputElement | null>(null)
@@ -74,20 +72,15 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
     utilityAddNewCard(deckId, formData)
 
     setOpen(!open)
-    // setCoverQuestionImage('')
-    // setCoverAnswerImage('')
 
-    reset() ///????????????????????????????????!!!!!!!
+    reset()
 
     if (hiddenInputRefQuestion.current) {
       hiddenInputRefQuestion.current.value = ''
-    } //!!!!
+    }
     if (hiddenInputRefAnswer.current) {
       hiddenInputRefAnswer.current.value = ''
-    } //!!!!
-
-    // onChangeImageQuestionForm('')
-    // onChangeImageAnswerForm('')
+    }
   })
 
   const handlerClosedModal = () => {
@@ -105,14 +98,8 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
       onChangeImageQuestionForm={onChangeImageQuestionForm}
       imageAnswerFormValue={imageAnswerFormValue}
       onChangeImageAnswerForm={onChangeImageAnswerForm}
-      // coverQuestionImage={coverQuestionImage}
-      // coverQuestionImage={imageQuestionFormValue} ///!!!!
-      hiddenInputRefQuestion={hiddenInputRefQuestion} ///!!!!
-      // setCoverQuestionImage={setCoverQuestionImage}
-      // coverAnswerImage={coverAnswerImage}
-      // coverAnswerImage={imageAnswerFormValue} ///!!!!
-      hiddenInputRefAnswer={hiddenInputRefAnswer} ///!!!!
-      // setCoverAnswerImage={setCoverAnswerImage}
+      hiddenInputRefQuestion={hiddenInputRefQuestion}
+      hiddenInputRefAnswer={hiddenInputRefAnswer}
       control={control}
       questionValue={questionFormValue}
       handlerQuestionChange={onChangeQuestionFormValue}
