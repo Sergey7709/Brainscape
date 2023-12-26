@@ -35,8 +35,6 @@ export const DeckEditPack = ({
 
   const hiddenInputRefCover = useRef<HTMLInputElement | null>(null)
 
-  // const [cover, setCover] = useState<string>(coverPack)
-
   const {
     control,
     handleSubmit,
@@ -104,9 +102,7 @@ export const DeckEditPack = ({
       }
       setValue={setValue}
       nameFieldCover={nameFieldCover}
-      // cover={cover}
-      // setCover={setCover}
-      hiddenInputRefCover={hiddenInputRefCover} //!!!
+      hiddenInputRefCover={hiddenInputRefCover}
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
       nameValue={nameValue}
