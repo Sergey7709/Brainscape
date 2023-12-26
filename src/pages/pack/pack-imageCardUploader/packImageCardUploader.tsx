@@ -17,6 +17,7 @@ import { ChangePhoto } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 
+///!!!!!!!!! УДАЛИТЬ КОМПОНЕНТ
 type CardForm = {
   question: string
   imageQuestion?: FileList
