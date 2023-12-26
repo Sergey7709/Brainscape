@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useRef } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FieldErrors, useController, useForm } from 'react-hook-form'
+import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
@@ -31,8 +31,6 @@ export const DeckEditPack = ({
 
   type NewPackSchema = z.infer<typeof addNewPackSchema>
 
-  const [nameValue, setNameValue] = useState(titlePack)
-
   const hiddenInputRefCover = useRef<HTMLInputElement | null>(null)
 
   const {
@@ -55,7 +53,11 @@ export const DeckEditPack = ({
   })
 
   const {
-    field: { value: coverFormValue, onChange: coverFormOnChange, name: nameFieldCover },
+    field: { value: nameFormValue, onChange: nameFormOnChange },
+  } = useController({ name: 'namePack', control })
+
+  const {
+    field: { value: coverFormValue, onChange: coverFormOnChange },
   } = useController({ name: 'imageCover', control, defaultValue: coverPack })
 
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
@@ -79,10 +81,6 @@ export const DeckEditPack = ({
     setOpen(!open)
   }
 
-  const handlerNameChange = (value: string) => {
-    setNameValue(value)
-  }
-
   const handlerFormCoverOnChange = (event: FileList | undefined | string) => {
     coverFormOnChange(event)
   }
@@ -93,20 +91,13 @@ export const DeckEditPack = ({
       setOpen={setOpen}
       onHandleSubmitForm={onHandleSubmitForm}
       register={register}
-      errors={
-        errors as FieldErrors<{
-          namePack: string
-          privatePack?: boolean | undefined
-          imageCover?: FileList | undefined
-        }>
-      }
+      errors={errors}
       setValue={setValue}
-      nameFieldCover={nameFieldCover}
       hiddenInputRefCover={hiddenInputRefCover}
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
-      nameValue={nameValue}
-      handlerNameChange={handlerNameChange}
+      nameValue={nameFormValue}
+      handlerNameChange={nameFormOnChange}
       value={value}
       onChange={onChange}
       handlerClosedModal={handlerClosedModal}
