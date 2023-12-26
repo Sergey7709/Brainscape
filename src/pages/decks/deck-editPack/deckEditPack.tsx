@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useRef, useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FieldErrors, useController, useForm } from 'react-hook-form'
@@ -33,7 +33,9 @@ export const DeckEditPack = ({
 
   const [nameValue, setNameValue] = useState(titlePack)
 
-  const [cover, setCover] = useState<string>(coverPack)
+  const hiddenInputRefCover = useRef<HTMLInputElement | null>(null)
+
+  // const [cover, setCover] = useState<string>(coverPack)
 
   const {
     control,
@@ -56,7 +58,7 @@ export const DeckEditPack = ({
 
   const {
     field: { value: coverFormValue, onChange: coverFormOnChange, name: nameFieldCover },
-  } = useController({ name: 'imageCover', control })
+  } = useController({ name: 'imageCover', control, defaultValue: coverPack })
 
   const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
     const formData = new FormData()
@@ -102,8 +104,9 @@ export const DeckEditPack = ({
       }
       setValue={setValue}
       nameFieldCover={nameFieldCover}
-      cover={cover}
-      setCover={setCover}
+      // cover={cover}
+      // setCover={setCover}
+      hiddenInputRefCover={hiddenInputRefCover} //!!!
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
       nameValue={nameValue}
