@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FieldErrors, useController, useForm } from 'react-hook-form'
@@ -18,7 +18,8 @@ export const DeckAddNewPack = () => {
 
   const [open, setOpen] = useState(false)
   const [nameValue, setNameValue] = useState('')
-  const [cover, setCover] = useState<string>('')
+  // const [cover, setCover] = useState<string>('')
+  const hiddenInputRefCover = useRef<HTMLInputElement | null>(null)
 
   const {
     control,
@@ -57,8 +58,12 @@ export const DeckAddNewPack = () => {
 
     setOpen(!open)
     setNameValue('')
-    setCover('')
+    // setCover('')
     reset()
+
+    if (hiddenInputRefCover.current) {
+      hiddenInputRefCover.current.value = ''
+    } //!!!!
   })
 
   const handlerClosedModal = () => {
@@ -87,8 +92,9 @@ export const DeckAddNewPack = () => {
         }>
       }
       setValue={setValue}
-      cover={cover}
-      setCover={setCover}
+      // cover={cover}
+      // setCover={setCover}
+      hiddenInputRefCover={hiddenInputRefCover} //!!!
       nameFieldCover={nameFieldCover}
       coverFormValue={coverFormValue}
       handlerFormCoverOnChange={handlerFormCoverOnChange}
