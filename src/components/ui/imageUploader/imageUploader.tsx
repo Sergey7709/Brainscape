@@ -11,7 +11,6 @@ import { Typography } from '@/components/ui/typography'
 type imageUploaderProps = {
   valueForm: FileList | undefined | string
   onChangeForm: (e: FileList | undefined | string) => void
-  nameFieldCover?: string
   errorMessage?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
   hiddenInputRef: RefObject<HTMLInputElement>
 }
