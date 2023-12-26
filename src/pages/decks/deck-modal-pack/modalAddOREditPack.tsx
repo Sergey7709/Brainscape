@@ -13,7 +13,7 @@ import { Typography } from '@/components/ui/typography'
 type FormPack = {
   namePack: string
   privatePack?: boolean | undefined
-  imageCover?: FileList | undefined
+  imageCover?: any
 }
 
 type ModalAddOREditPackProps = {
@@ -25,7 +25,6 @@ type ModalAddOREditPackProps = {
   register: UseFormRegister<FormPack>
   errors: FieldErrors<FormPack>
   setValue: UseFormSetValue<FormPack>
-  nameFieldCover: string
   coverFormValue: FileList
   handlerFormCoverOnChange: (e: FileList | undefined | string) => void
   nameValue: string
@@ -45,7 +44,6 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     onHandleSubmitForm,
     register,
     errors,
-    nameFieldCover,
     coverFormValue,
     handlerFormCoverOnChange,
     nameValue,
@@ -76,7 +74,6 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
             <ImageUploader
               hiddenInputRef={hiddenInputRefCover}
               valueForm={coverFormValue}
-              nameFieldCover={nameFieldCover}
               errorMessage={errors.imageCover?.message}
               onChangeForm={handlerFormCoverOnChange}
             />
