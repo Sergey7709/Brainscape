@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, Dispatch, ReactElement, SetStateAction } from 'react'
+import { BaseSyntheticEvent, Dispatch, ReactElement, RefObject, SetStateAction } from 'react'
 
 import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
@@ -26,19 +26,17 @@ type ModalAddOREditPackProps = {
   errors: FieldErrors<FormPack>
   setValue: UseFormSetValue<FormPack>
   nameFieldCover: string
-  // cover: string
-  // setCover: Dispatch<SetStateAction<string>>
   coverFormValue: FileList
   handlerFormCoverOnChange: (e: FileList | undefined | string) => void
   nameValue: string
   handlerNameChange: (value: string) => void
-  value: any ///!!! Исправить тип
+  value: boolean | undefined
   onChange: (...event: any[]) => void
   handlerClosedModal: () => void
   children?: ReactElement
   headerTitle: string
   buttonTitle: string
-  hiddenInputRefCover: React.RefObject<HTMLInputElement> //!!!!
+  hiddenInputRefCover: RefObject<HTMLInputElement>
 }
 export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
   const {
@@ -48,8 +46,6 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     register,
     errors,
     nameFieldCover,
-    // cover,
-    // setCover,
     coverFormValue,
     handlerFormCoverOnChange,
     nameValue,
@@ -61,7 +57,7 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
     justifyContentHeader,
     headerTitle,
     buttonTitle,
-    hiddenInputRefCover, //!!!
+    hiddenInputRefCover,
   } = props
 
   return (
@@ -79,8 +75,6 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
           <ModalConstructor.Body>
             <ImageUploader
               hiddenInputRef={hiddenInputRefCover}
-              // cover={cover}
-              // setCover={setCover}
               valueForm={coverFormValue}
               nameFieldCover={nameFieldCover}
               errorMessage={errors.imageCover?.message}
