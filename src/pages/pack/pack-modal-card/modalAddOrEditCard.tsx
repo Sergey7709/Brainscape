@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, Dispatch, ReactElement, SetStateAction } from 'react'
+import { BaseSyntheticEvent, Dispatch, ReactElement, RefObject, SetStateAction } from 'react'
 
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form'
 
@@ -23,9 +23,7 @@ type ModalAddOrEditCardProps = {
   onChangeImageQuestionForm: (e: FileList | undefined | string) => void
   imageAnswerFormValue: FileList
   onChangeImageAnswerForm: (e: FileList | undefined | string) => void
-  // coverQuestionImage: string
   setCoverQuestionImage?: Dispatch<SetStateAction<string>>
-  // coverAnswerImage: string
   setCoverAnswerImage?: Dispatch<SetStateAction<string>>
   questionValue: string
   handlerQuestionChange: (value: string) => void
@@ -36,8 +34,8 @@ type ModalAddOrEditCardProps = {
   children?: ReactElement
   headerTitle: string
   buttonTitle: string
-  hiddenInputRefQuestion: React.RefObject<HTMLInputElement> //!!!!
-  hiddenInputRefAnswer: React.RefObject<HTMLInputElement> //!!!!
+  hiddenInputRefQuestion: RefObject<HTMLInputElement>
+  hiddenInputRefAnswer: RefObject<HTMLInputElement>
 }
 export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
   const {
@@ -49,18 +47,14 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
     onChangeImageQuestionForm,
     imageQuestionFormValue,
     onChangeImageAnswerForm,
-    // coverQuestionImage,
-    // setCoverQuestionImage,
-    // coverAnswerImage,
-    // setCoverAnswerImage,
     handlerClosedModal,
     borderBottomHeader,
     justifyContentHeader,
     headerTitle,
     buttonTitle,
     control,
-    hiddenInputRefQuestion, //!!!!
-    hiddenInputRefAnswer, //!!!!
+    hiddenInputRefQuestion,
+    hiddenInputRefAnswer,
   } = props
 
   return (
@@ -78,18 +72,14 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
           <ModalConstructor.Body>
             <ControlledTextField control={control} name={'question'} />
             <ImageUploader
-              hiddenInputRef={hiddenInputRefQuestion} //!!!!
-              // cover={coverQuestionImage}
-              // setCover={setCoverQuestionImage}
+              hiddenInputRef={hiddenInputRefQuestion}
               valueForm={imageQuestionFormValue}
               errorMessage={errors.imageQuestion?.message}
               onChangeForm={onChangeImageQuestionForm}
             />
             <ControlledTextField control={control} name={'answer'} />
             <ImageUploader
-              hiddenInputRef={hiddenInputRefAnswer} //!!!!
-              // cover={coverAnswerImage}
-              // setCover={setCoverAnswerImage}
+              hiddenInputRef={hiddenInputRefAnswer}
               valueForm={imageAnswerFormValue}
               errorMessage={errors.imageAnswer?.message}
               onChangeForm={onChangeImageAnswerForm}
