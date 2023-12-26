@@ -32,9 +32,6 @@ export const PackEditCard = ({
 }: PackEditCardProps) => {
   const { utilityEditCard } = useAddNewCard()
 
-  // const [coverQuestionImage, setCoverQuestionImage] = useState<string>(questionImage)
-  // const [coverAnswerImage, setCoverAnswerImage] = useState<string>(answerImage)
-
   const hiddenInputRefQuestion = useRef<HTMLInputElement | null>(null)
   const hiddenInputRefAnswer = useRef<HTMLInputElement | null>(null)
 
@@ -101,12 +98,8 @@ export const PackEditCard = ({
       onChangeImageQuestionForm={onChangeImageQuestionForm}
       imageAnswerFormValue={imageAnswerFormValue}
       onChangeImageAnswerForm={onChangeImageAnswerForm}
-      // coverQuestionImage={coverQuestionImage}
-      // setCoverQuestionImage={setCoverQuestionImage}
-      // coverAnswerImage={coverAnswerImage}
-      // setCoverAnswerImage={setCoverAnswerImage}
-      hiddenInputRefQuestion={hiddenInputRefQuestion} ///!!!!
-      hiddenInputRefAnswer={hiddenInputRefAnswer} ///!!!!
+      hiddenInputRefQuestion={hiddenInputRefQuestion}
+      hiddenInputRefAnswer={hiddenInputRefAnswer}
       control={control}
       questionValue={questionFormValue}
       handlerQuestionChange={onChangeQuestionFormValue}
