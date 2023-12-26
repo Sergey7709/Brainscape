@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useRef } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
@@ -32,8 +32,11 @@ export const PackEditCard = ({
 }: PackEditCardProps) => {
   const { utilityEditCard } = useAddNewCard()
 
-  const [coverQuestionImage, setCoverQuestionImage] = useState<string>(questionImage)
-  const [coverAnswerImage, setCoverAnswerImage] = useState<string>(answerImage)
+  // const [coverQuestionImage, setCoverQuestionImage] = useState<string>(questionImage)
+  // const [coverAnswerImage, setCoverAnswerImage] = useState<string>(answerImage)
+
+  const hiddenInputRefQuestion = useRef<HTMLInputElement | null>(null)
+  const hiddenInputRefAnswer = useRef<HTMLInputElement | null>(null)
 
   const {
     handleSubmit,
@@ -46,11 +49,11 @@ export const PackEditCard = ({
 
   const {
     field: { value: imageQuestionFormValue, onChange: onChangeImageQuestionForm },
-  } = useController({ name: 'imageQuestion', control })
+  } = useController({ name: 'imageQuestion', control, defaultValue: questionImage })
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
-  } = useController({ name: 'imageAnswer', control })
+  } = useController({ name: 'imageAnswer', control, defaultValue: answerImage })
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
@@ -98,10 +101,12 @@ export const PackEditCard = ({
       onChangeImageQuestionForm={onChangeImageQuestionForm}
       imageAnswerFormValue={imageAnswerFormValue}
       onChangeImageAnswerForm={onChangeImageAnswerForm}
-      coverQuestionImage={coverQuestionImage}
-      setCoverQuestionImage={setCoverQuestionImage}
-      coverAnswerImage={coverAnswerImage}
-      setCoverAnswerImage={setCoverAnswerImage}
+      // coverQuestionImage={coverQuestionImage}
+      // setCoverQuestionImage={setCoverQuestionImage}
+      // coverAnswerImage={coverAnswerImage}
+      // setCoverAnswerImage={setCoverAnswerImage}
+      hiddenInputRefQuestion={hiddenInputRefQuestion} ///!!!!
+      hiddenInputRefAnswer={hiddenInputRefAnswer} ///!!!!
       control={control}
       questionValue={questionFormValue}
       handlerQuestionChange={onChangeQuestionFormValue}
