@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
+import { ChangeEvent } from 'react'
 
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
 
@@ -9,32 +9,63 @@ import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 
 type imageUploaderProps = {
-  valueForm: FileList | undefined
+  valueForm: FileList | undefined | string
   onChangeForm: (e: FileList | undefined | string) => void
   nameFieldCover?: string
   errorMessage?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
-  cover: string
-  setCover: Dispatch<SetStateAction<string>>
+  // cover: string
+  // setCover?: Dispatch<SetStateAction<string>>
+  hiddenInputRef: React.RefObject<HTMLInputElement> //!!!!
 }
 
 export const ImageUploader = ({
   valueForm,
   onChangeForm,
   errorMessage,
-  cover,
-  setCover,
+  // cover,
+  // setCover,
+  hiddenInputRef, //!!!!
 }: imageUploaderProps) => {
-  const hiddenInputRef = useRef<HTMLInputElement | null>(null)
+  // const hiddenInputRef = useRef<HTMLInputElement | null>(null)
+  // console.log('valueForm', valueForm)
+  // const valueCover = (valueForm && URL.createObjectURL(valueForm?.[0])) ?? cover
+  const valueCover =
+    valueForm === undefined || typeof valueForm === 'string'
+      ? valueForm
+      : URL.createObjectURL(valueForm?.[0]) ///!!!!
 
-  const valueCover = (valueForm && URL.createObjectURL(valueForm?.[0])) ?? cover
+  // console.log('valueCover', valueCover)
+  // console.log('valueForm', valueForm && URL.createObjectURL(valueForm?.[0]), 'cover', cover)
+  // console.log('hiddenInputRef', hiddenInputRef?.current?.value)
 
   const handleUploadedFile = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
 
-    if (!files) return
-    onChangeForm(files)
-    setCover(URL.createObjectURL(files?.[0]))
-  }
+    // console.log('files', files)
+
+    // if (!files || files.length === 0) return ///!!!!!
+    // const file = files[0] ///!!!!!
+    //
+    // onChangeForm(files) ///!!!!!
+    // const objectUrl = URL.createObjectURL(file) ///!!!!!
+    //
+    // setCover && setCover(objectUrl) ///!!!!!
+    if (!files || files.length === 0) {
+      onChangeForm('')
+      console.log('empty string')
+    } else {
+      // const file = files[0] ///!!!!!
+
+      onChangeForm(files) ///!!!!!
+      // const objectUrl = URL.createObjectURL(file) ///!!!!!
+
+      // setCover && setCover(objectUrl) ///!!!!!
+    }
+
+    // if (!files) return
+    // onChangeForm(files)
+    // setCover(URL.createObjectURL(files?.[0]))
+  } //!!! После загрузки и повторного выбора не отображается этот же файл в packAddCard
 
   const onUpload = () => {
     hiddenInputRef.current?.click()
@@ -45,7 +76,7 @@ export const ImageUploader = ({
       hiddenInputRef.current.value = ''
     }
     onChangeForm('')
-    setCover('')
+    // setCover && setCover('')
   }
 
   return (
