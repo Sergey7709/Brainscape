@@ -4,7 +4,6 @@ import { FILE_SIZE_LIMIT } from '@/pages/decks/constantsDeck.ts'
 
 export const utilityZodPackSchema = (isPrivate?: boolean, titlePack?: string) => {
   const fileSchema = z.any().refine((fileList: FileList | string) => {
-    // return fileList === '' || (fileList instanceof FileList && fileList[0]?.size <= FILE_SIZE_LIMIT)
     return (
       typeof fileList === 'string' ||
       (fileList instanceof FileList && fileList[0]?.size <= FILE_SIZE_LIMIT)
