@@ -2,9 +2,10 @@ import { useState } from 'react'
 
 import { Delete, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
+import { Loader } from '@/components/ui/loader'
 import { Rating } from '@/components/ui/rating'
 import { Table } from '@/components/ui/tables'
-import { useDeleteCard } from '@/pages/pack/hooks'
+import { useDeleteCard, useEditCard } from '@/pages/pack/hooks'
 import { PackEditCard } from '@/pages/pack/pack-editCard/packEditCard.tsx'
 import { ModalDeleteCard } from '@/pages/pack/pack-modal-delete-card/modalDeleteCard.tsx'
 import s from '@/pages/pack/pack-row/pack-row.module.scss'
@@ -12,7 +13,9 @@ import { PackCards } from '@/service/decks/decks.types.ts'
 
 type extendPackRow = { mePackCards: boolean } & PackCards
 export const PackRow = (pack: extendPackRow) => {
-  const { utilityDeleteCard } = useDeleteCard()
+  const { utilityDeleteCard, isLoading: isLoadingDelete } = useDeleteCard()
+
+  const { utilityEditCard, isLoading: isLoadingEdit } = useEditCard() ///!!!!
 
   const [openEditModal, setOpenEditModal] = useState(false)
 
@@ -40,11 +43,20 @@ export const PackRow = (pack: extendPackRow) => {
 
   return (
     <>
+      <tr>
+        <td>{(isLoadingDelete || isLoadingEdit) && <Loader />}</td>
+      </tr>
       <Table.Row key={pack.id} className={s.packRowStyle}>
         <Table.Cell>
           <div className={s.nameContainerPackRow}>
             {pack.questionImg && (
-              <img className={s.imgPackRow} alt={'Not image'} src={pack.questionImg} />
+              // <img className={s.imgPackRow} alt={'Not image'} src={pack.questionImg} />
+              <img
+                key={pack.questionImg}
+                className={s.imgPackRow}
+                alt={'Not image'}
+                src={pack.questionImg}
+              />
             )}
             <p className={s.textForNamePackRow}> {pack.question}</p>
           </div>
@@ -52,7 +64,13 @@ export const PackRow = (pack: extendPackRow) => {
         <Table.Cell>
           <div className={s.nameContainerPackRow}>
             {pack.answerImg && (
-              <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />
+              // <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />
+              <img
+                key={pack.answerImg}
+                className={s.imgPackRow}
+                alt={'Not image'}
+                src={pack.answerImg}
+              />
             )}
             <p className={s.packAnswerStyle}> {pack.answer}</p>
           </div>
@@ -86,6 +104,7 @@ export const PackRow = (pack: extendPackRow) => {
             setOpen={setOpenEditModal}
             question={pack.question}
             answer={pack.answer}
+            utilityEditCard={utilityEditCard} ///!!!!
           />
           <ModalDeleteCard
             open={openModalDelete}
