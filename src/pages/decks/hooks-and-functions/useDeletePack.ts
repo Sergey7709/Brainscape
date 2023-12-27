@@ -4,7 +4,7 @@ import { useNavigateBackToDeck } from '@/pages/decks/hooks-and-functions/useNavi
 import { useDeleteDeckMutation } from '@/service'
 
 export const useDeletePack = (name: string) => {
-  const [deletePack, isLoading] = useDeleteDeckMutation()
+  const [deletePack, { isLoading }] = useDeleteDeckMutation()
 
   const { navigateBackToDeck } = useNavigateBackToDeck()
 
