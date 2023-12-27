@@ -4,12 +4,14 @@ import { NavLink } from 'react-router-dom'
 
 import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
+import { Loader } from '@/components/ui/loader'
 import { Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
 import { DeckEditPack } from '@/pages/decks/deck-editPack/deckEditPack.tsx'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import s from '@/pages/decks/decks.module.scss'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
+import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { useSaveUrlDeck } from '@/pages/pack/hooks'
 import { useGetAuthUserMeDataQuery } from '@/service'
 import { DeckType } from '@/service/decks/decks.types.ts'
@@ -21,7 +23,9 @@ export const DeckRow = (deck: DeckType) => {
 
   const [openEditModal, setOpenEditModal] = useState(false)
 
-  const { utilityDeletePack } = useDeletePack(deck.name)
+  const { utilityDeletePack, isLoading: isLoadingDelete } = useDeletePack(deck.name)
+
+  const { utilityEditPack, isLoading: isLoadingEdit } = useEditPack()
 
   const saveUrlDeck = useSaveUrlDeck()
 
@@ -47,8 +51,13 @@ export const DeckRow = (deck: DeckType) => {
     setOpenEditModal(!openEditModal)
   }
 
+  // console.log('cover', deck.cover, 'isFetching', isFetching)
+
   return (
     <>
+      <tr>
+        <td>{(isLoadingDelete || isLoadingEdit) && <Loader />}</td>
+      </tr>
       {deck && (
         <Table.Row key={deck.id}>
           <Table.Cell>
@@ -61,7 +70,10 @@ export const DeckRow = (deck: DeckType) => {
               fullWidth
             >
               <div className={s.nameContainer}>
-                {<img className={s.imgCover} src={deck.cover} />}
+                {/*{deck.cover && <img className={s.imgCover} src={deck.cover} />}*/}
+                {deck.cover && <img key={deck.cover} className={s.imgCover} src={deck.cover} />}
+                {/*{<img className={s.imgCover} src={deck.cover} />}*/}
+                {/*<img className={s.imgCover} src={`${deck.cover}?${new Date().getTime()}`} />*/}
                 <p className={s.textForName}> {deck.name}</p>
               </div>
             </Button>
@@ -111,6 +123,7 @@ export const DeckRow = (deck: DeckType) => {
             open={openEditModal}
             setOpen={setOpenEditModal}
             isPrivate={deck.isPrivate}
+            utilityEditPack={utilityEditPack}
           />
         </td>
       </tr>
