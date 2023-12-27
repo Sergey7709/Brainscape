@@ -5,6 +5,7 @@ import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
+import { Loader } from '@/components/ui/loader'
 import { useAddNewCard } from '@/pages/decks/hooks-and-functions/useAddNewCard.ts'
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
@@ -17,7 +18,7 @@ type PackAddNewCardProps = {
   deckId: string
 }
 export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
-  const { utilityAddNewCard } = useAddNewCard()
+  const { utilityAddNewCard, isLoading } = useAddNewCard()
 
   const [open, setOpen] = useState(false)
 
@@ -87,31 +88,36 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
     setOpen(!open)
   }
 
+  // console.log('load', isLoading)
+
   return (
-    <ModalAddOrEditCard
-      open={open}
-      setOpen={setOpen}
-      onHandleSubmitForm={onHandleSubmitForm}
-      register={register}
-      errors={errors}
-      imageQuestionFormValue={imageQuestionFormValue}
-      onChangeImageQuestionForm={onChangeImageQuestionForm}
-      imageAnswerFormValue={imageAnswerFormValue}
-      onChangeImageAnswerForm={onChangeImageAnswerForm}
-      hiddenInputRefQuestion={hiddenInputRefQuestion}
-      hiddenInputRefAnswer={hiddenInputRefAnswer}
-      control={control}
-      questionValue={questionFormValue}
-      handlerQuestionChange={onChangeQuestionFormValue}
-      answerValue={answerFormValue}
-      handlerAnswerChange={onChangeAnswerFormValue}
-      handlerClosedModal={handlerClosedModal}
-      headerTitle={'Add new card'}
-      buttonTitle={'Add new card'}
-    >
-      <Button as={'button'} variant={'primary'}>
-        Add New Card
-      </Button>
-    </ModalAddOrEditCard>
+    <>
+      {isLoading && <Loader />}
+      <ModalAddOrEditCard
+        open={open}
+        setOpen={setOpen}
+        onHandleSubmitForm={onHandleSubmitForm}
+        register={register}
+        errors={errors}
+        imageQuestionFormValue={imageQuestionFormValue}
+        onChangeImageQuestionForm={onChangeImageQuestionForm}
+        imageAnswerFormValue={imageAnswerFormValue}
+        onChangeImageAnswerForm={onChangeImageAnswerForm}
+        hiddenInputRefQuestion={hiddenInputRefQuestion}
+        hiddenInputRefAnswer={hiddenInputRefAnswer}
+        control={control}
+        questionValue={questionFormValue}
+        handlerQuestionChange={onChangeQuestionFormValue}
+        answerValue={answerFormValue}
+        handlerAnswerChange={onChangeAnswerFormValue}
+        handlerClosedModal={handlerClosedModal}
+        headerTitle={'Add new card'}
+        buttonTitle={'Add new card'}
+      >
+        <Button as={'button'} variant={'primary'}>
+          Add New Card
+        </Button>
+      </ModalAddOrEditCard>
+    </>
   )
 }
