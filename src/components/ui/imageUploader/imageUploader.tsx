@@ -84,7 +84,12 @@ export const ImageUploader = ({
           <div className={s.coverErrorWrapper}>
             {errorMessage ? <Typography variant={'error'}>{errorMessage} </Typography> : ''}
             {valueCover && (
-              <Button variant={'secondary'} className={s.deleteCover} onClick={handleDeletedFile}>
+              <Button
+                variant={'secondary'}
+                className={s.deleteCover}
+                onClick={handleDeletedFile}
+                fullWidth
+              >
                 <Typography variant={'body2'}> Delete cover</Typography>
               </Button>
             )}
