@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import s from './../decks.module.scss'
 
+import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort, Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
@@ -24,7 +25,7 @@ export const DeckComposition = memo(() => {
 
   const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
 
-  const { sort, isSuccess, isFetching, data } = useGetDataSort()
+  const { sort, isSuccess, isFetching, isLoading, data } = useGetDataSort()
 
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
 
@@ -63,37 +64,46 @@ export const DeckComposition = memo(() => {
     />
   )
 
+  // if (isFetching || isLoading) {
+  //   return <Loader />
+  // }
+
   return (
-    <div className={classNames.container}>
-      <div className={classNames.deck}>
-        <div className={classNames.head}>
-          <Typography variant={'large'}>Packs list</Typography>
-          <DeckAddNewPack />
+    <>
+      {(isFetching || isLoading) && <Loader />}
+      {data && sort && (
+        <div className={classNames.container}>
+          <div className={classNames.deck}>
+            <div className={classNames.head}>
+              <Typography variant={'large'}>Packs list</Typography>
+              <DeckAddNewPack />
+            </div>
+            <DecksPanel />
+            <div className={classNames.tableWrapper}>
+              <Table.Root>
+                <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue} />
+                {
+                  <Table.Body>
+                    {data?.items.length ? (
+                      <SortedDataDeck />
+                    ) : (
+                      data?.items !== undefined && <RenderNoDataDeck />
+                    )}
+                  </Table.Body>
+                }
+              </Table.Root>
+            </div>
+          </div>
+          <div className={classNames.pagination}>
+            {!!totalPages && (
+              <>
+                {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
+                <DeckItemsPerPage />
+              </>
+            )}
+          </div>
         </div>
-        <DecksPanel />
-        <div className={classNames.tableWrapper}>
-          <Table.Root>
-            <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue} />
-            {
-              <Table.Body>
-                {data?.items.length ? (
-                  <SortedDataDeck />
-                ) : (
-                  data?.items !== undefined && <RenderNoDataDeck />
-                )}
-              </Table.Body>
-            }
-          </Table.Root>
-        </div>
-      </div>
-      <div className={classNames.pagination}>
-        {!!totalPages && (
-          <>
-            {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
-            <DeckItemsPerPage />
-          </>
-        )}
-      </div>
-    </div>
+      )}
+    </>
   )
 })
