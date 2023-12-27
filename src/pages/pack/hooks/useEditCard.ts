@@ -2,8 +2,8 @@ import { toast } from 'react-toastify'
 
 import { useUpdateCardMutation } from '@/service'
 
-export const useAddNewCard = () => {
-  const [handlerEditCardSubmit, isLoading] = useUpdateCardMutation()
+export const useEditCard = () => {
+  const [handlerEditCardSubmit, { isLoading }] = useUpdateCardMutation()
 
   const utilityEditCard = (id: string, body: FormData) => {
     handlerEditCardSubmit({ id, body })
