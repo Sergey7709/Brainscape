@@ -5,7 +5,6 @@ import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
-import { useAddNewCard } from '@/pages/pack/hooks/useEditCard.ts'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 
 const { addNewCardSchema } = utilityZodCardSchema()
@@ -20,6 +19,7 @@ type PackEditCardProps = {
   answerImage: string
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
+  utilityEditCard: (id: string, body: FormData) => void ///!!!!
 }
 export const PackEditCard = ({
   cardId,
@@ -29,8 +29,9 @@ export const PackEditCard = ({
   answerImage,
   open,
   setOpen,
+  utilityEditCard,
 }: PackEditCardProps) => {
-  const { utilityEditCard } = useAddNewCard()
+  // const { utilityEditCard, isLoading } = useEditCard()
 
   const hiddenInputRefQuestion = useRef<HTMLInputElement | null>(null)
   const hiddenInputRefAnswer = useRef<HTMLInputElement | null>(null)
@@ -87,27 +88,31 @@ export const PackEditCard = ({
     setOpen(!open)
   }
 
+  // console.log('load', isLoading)
+
   return (
-    <ModalAddOrEditCard
-      open={open}
-      setOpen={setOpen}
-      onHandleSubmitForm={onHandleSubmitForm}
-      register={register}
-      errors={errors}
-      imageQuestionFormValue={imageQuestionFormValue}
-      onChangeImageQuestionForm={onChangeImageQuestionForm}
-      imageAnswerFormValue={imageAnswerFormValue}
-      onChangeImageAnswerForm={onChangeImageAnswerForm}
-      hiddenInputRefQuestion={hiddenInputRefQuestion}
-      hiddenInputRefAnswer={hiddenInputRefAnswer}
-      control={control}
-      questionValue={questionFormValue}
-      handlerQuestionChange={onChangeQuestionFormValue}
-      answerValue={answerFormValue}
-      handlerAnswerChange={onChangeAnswerFormValue}
-      handlerClosedModal={handlerClosedModal}
-      headerTitle={'Edit card'}
-      buttonTitle={'Save Changes'}
-    />
+    <div>
+      <ModalAddOrEditCard
+        open={open}
+        setOpen={setOpen}
+        onHandleSubmitForm={onHandleSubmitForm}
+        register={register}
+        errors={errors}
+        imageQuestionFormValue={imageQuestionFormValue}
+        onChangeImageQuestionForm={onChangeImageQuestionForm}
+        imageAnswerFormValue={imageAnswerFormValue}
+        onChangeImageAnswerForm={onChangeImageAnswerForm}
+        hiddenInputRefQuestion={hiddenInputRefQuestion}
+        hiddenInputRefAnswer={hiddenInputRefAnswer}
+        control={control}
+        questionValue={questionFormValue}
+        handlerQuestionChange={onChangeQuestionFormValue}
+        answerValue={answerFormValue}
+        handlerAnswerChange={onChangeAnswerFormValue}
+        handlerClosedModal={handlerClosedModal}
+        headerTitle={'Edit card'}
+        buttonTitle={'Save Changes'}
+      />
+    </div>
   )
 }
