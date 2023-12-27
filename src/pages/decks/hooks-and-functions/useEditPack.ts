@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import { useUpdateDeckMutation } from '@/service'
 
 export const useEditPack = () => {
-  const [handlerEditPackSubmit, isLoading] = useUpdateDeckMutation()
+  const [handlerEditPackSubmit, { isLoading }] = useUpdateDeckMutation()
 
   const utilityEditPack = (id: string, body: FormData) => {
     handlerEditPackSubmit({ id, body })
