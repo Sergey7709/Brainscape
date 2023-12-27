@@ -5,7 +5,6 @@ import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
-import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { utilityZodPackSchema } from '@/pages/decks/hooks-and-functions/utilityZodPackSchema.ts'
 
 type DeckEditPackProps = {
@@ -15,6 +14,7 @@ type DeckEditPackProps = {
   coverPack: string
   titlePack: string
   isPrivate: boolean
+  utilityEditPack: (id: string, body: FormData) => void //!!!
 }
 
 export const DeckEditPack = ({
@@ -24,8 +24,9 @@ export const DeckEditPack = ({
   titlePack,
   coverPack,
   isPrivate,
+  utilityEditPack,
 }: DeckEditPackProps) => {
-  const { utilityEditPack } = useEditPack()
+  // const { utilityEditPack } = useEditPack()
 
   const { initialValues, addNewPackSchema } = utilityZodPackSchema(isPrivate, titlePack)
 
