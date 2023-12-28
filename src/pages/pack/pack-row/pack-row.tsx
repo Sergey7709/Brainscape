@@ -50,13 +50,7 @@ export const PackRow = (pack: extendPackRow) => {
         <Table.Cell>
           <div className={s.nameContainerPackRow}>
             {pack.questionImg && (
-              // <img className={s.imgPackRow} alt={'Not image'} src={pack.questionImg} />
-              <img
-                key={pack.questionImg}
-                className={s.imgPackRow}
-                alt={'Not image'}
-                src={pack.questionImg}
-              />
+              <img className={s.imgPackRow} alt={'Not image'} src={pack.questionImg} />
             )}
             <p className={s.textForNamePackRow}> {pack.question}</p>
           </div>
@@ -64,13 +58,7 @@ export const PackRow = (pack: extendPackRow) => {
         <Table.Cell>
           <div className={s.nameContainerPackRow}>
             {pack.answerImg && (
-              // <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />
-              <img
-                key={pack.answerImg}
-                className={s.imgPackRow}
-                alt={'Not image'}
-                src={pack.answerImg}
-              />
+              <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />
             )}
             <p className={s.packAnswerStyle}> {pack.answer}</p>
           </div>
@@ -104,7 +92,7 @@ export const PackRow = (pack: extendPackRow) => {
             setOpen={setOpenEditModal}
             question={pack.question}
             answer={pack.answer}
-            utilityEditCard={utilityEditCard} ///!!!!
+            utilityEditCard={utilityEditCard}
           />
           <ModalDeleteCard
             open={openModalDelete}
