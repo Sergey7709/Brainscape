@@ -25,7 +25,7 @@ export const DeckComposition = memo(() => {
 
   const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
 
-  const { sort, isSuccess, isFetching, isLoading, data } = useGetDataSort()
+  const { sort, isFetching, isLoading, data } = useGetDataSort()
 
   const { itemsPerPage, totalItems, totalPages } = data?.pagination ?? {}
 
@@ -55,14 +55,14 @@ export const DeckComposition = memo(() => {
     })
   }
 
-  const pagination = (
-    <Pagination
-      currentPage={paginationValueInURL}
-      pageSize={itemsPerPage ?? 0}
-      totalCount={totalItems ?? 0}
-      onPageChange={page => handlerPagination(page)}
-    />
-  )
+  // const pagination = (
+  //   <Pagination
+  //     currentPage={paginationValueInURL}
+  //     pageSize={itemsPerPage ?? 0}
+  //     totalCount={totalItems ?? 0}
+  //     onPageChange={page => handlerPagination(page)}
+  //   />
+  // )
 
   // if (isFetching || isLoading) {
   //   return <Loader />
@@ -95,10 +95,23 @@ export const DeckComposition = memo(() => {
             </div>
           </div>
           <div className={classNames.pagination}>
-            {!!totalPages && (
+            {/*{!!totalPages && (*/}
+            {/*  <>*/}
+            {/*    {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}*/}
+            {/*    {!isFetching && isSuccess && <DeckItemsPerPage />}*/}
+            {/*  </>*/}
+            {/*)}*/}
+            {/*{!!totalPages && (totalPages || 1) >= 1 && (*/}
+            {(totalPages || 1) && (
               <>
-                {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}
-                <DeckItemsPerPage />
+                {/*{pagination}*/}
+                <Pagination
+                  currentPage={paginationValueInURL}
+                  pageSize={itemsPerPage ?? 0}
+                  totalCount={totalItems ?? 0}
+                  onPageChange={page => handlerPagination(page)}
+                />
+                {<DeckItemsPerPage />}
               </>
             )}
           </div>
