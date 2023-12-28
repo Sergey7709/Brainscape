@@ -4,6 +4,7 @@ import s from './pack.module.scss'
 
 import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
+import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
 import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackPanel } from '@/pages/pack/packPanel'
 import { PackSearch } from '@/pages/pack/packSearch'
@@ -17,7 +18,7 @@ export const Pack = () => {
     isFetchingDeck,
     isLoadingCards,
     isFetchingCards,
-    isSuccessCards,
+    // isSuccessCards,
     itemsPerPage,
     totalItems,
     totalPages,
@@ -37,8 +38,9 @@ export const Pack = () => {
     })
   }
 
-  const paginationReady =
-    !isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && !!totalPages
+  // const paginationReady =
+  //   !isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && !!totalPages
+  const paginationReady = totalPages || 1
 
   if (dataDeck === null) {
     return <Navigate to="/deck" />
@@ -64,6 +66,7 @@ export const Pack = () => {
                   onPageChange={page => handlerPagination(page)}
                 />
               )}
+              <DeckItemsPerPage />
             </div>
           </div>
         </div>
