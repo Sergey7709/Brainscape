@@ -55,19 +55,6 @@ export const DeckComposition = memo(() => {
     })
   }
 
-  // const pagination = (
-  //   <Pagination
-  //     currentPage={paginationValueInURL}
-  //     pageSize={itemsPerPage ?? 0}
-  //     totalCount={totalItems ?? 0}
-  //     onPageChange={page => handlerPagination(page)}
-  //   />
-  // )
-
-  // if (isFetching || isLoading) {
-  //   return <Loader />
-  // }
-
   return (
     <>
       {(isFetching || isLoading) && <Loader />}
@@ -95,16 +82,8 @@ export const DeckComposition = memo(() => {
             </div>
           </div>
           <div className={classNames.pagination}>
-            {/*{!!totalPages && (*/}
-            {/*  <>*/}
-            {/*    {!isFetching && isSuccess && (totalPages || 1) >= 1 && pagination}*/}
-            {/*    {!isFetching && isSuccess && <DeckItemsPerPage />}*/}
-            {/*  </>*/}
-            {/*)}*/}
-            {/*{!!totalPages && (totalPages || 1) >= 1 && (*/}
             {(totalPages || 1) && (
               <>
-                {/*{pagination}*/}
                 <Pagination
                   currentPage={paginationValueInURL}
                   pageSize={itemsPerPage ?? 0}
