@@ -51,8 +51,6 @@ export const DeckRow = (deck: DeckType) => {
     setOpenEditModal(!openEditModal)
   }
 
-  // console.log('cover', deck.cover, 'isFetching', isFetching)
-
   return (
     <>
       <tr>
@@ -70,10 +68,7 @@ export const DeckRow = (deck: DeckType) => {
               fullWidth
             >
               <div className={s.nameContainer}>
-                {/*{deck.cover && <img className={s.imgCover} src={deck.cover} />}*/}
-                {deck.cover && <img key={deck.cover} className={s.imgCover} src={deck.cover} />}
-                {/*{<img className={s.imgCover} src={deck.cover} />}*/}
-                {/*<img className={s.imgCover} src={`${deck.cover}?${new Date().getTime()}`} />*/}
+                {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
                 <p className={s.textForName}> {deck.name}</p>
               </div>
             </Button>
