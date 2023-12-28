@@ -29,6 +29,7 @@
   gap: 24px;
   justify-content: start;
   width: 1006px;
+
 } ///!!!!!!!! исправить для адаптива
 
 .textNoData {
@@ -81,18 +82,71 @@
 
 }
 
-.linkCell {
+a.linkCell {
   display: flex;
   align-items: center;
   justify-content: flex-start ;
 
-  width: 285px;
+  width: 287px;
   height: 48px;
-  padding: 0;
+
+  //padding: 0;
+  padding-left: 5px ;
 
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-regular);
-  color: var(--color-light-100)!important;///!!!! Исправить !important
+  color: var(--color-light-100);
+
+  &:visited {
+    color: var(--color-light-100);
+  }
+
+  &:hover:not(:disabled)  {
+    color: var(--color-light-100);
+
+    //animation: flip-horizontal-top 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    //animation: shadow-pop-tr 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    animation: shadow-pop-tl 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  }
+
+  @keyframes shadow-pop-tl {
+    0% {
+      transform: translateX(0) translateY(0);
+      box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
+
+    }
+
+    100% {
+      transform: translateX(4px) translateY(4px);
+      box-shadow: -1px -1px #3e3e3e, -2px -2px #3e3e3e, -3px -3px #3e3e3e, -4px -4px #3e3e3e
+
+    }
+  }
+
+  //@keyframes shadow-pop-tr {
+  //  0% {
+  //    transform: translateX(0) translateY(0);
+  //    box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
+  //
+  //  }
+  //
+  //  100% {
+  //    transform: translateX(-5px) translateY(5px);
+  //
+  //    //box-shadow: 1px -1px #3e3e3e, 2px -2px #3e3e3e, 3px -3px #3e3e3e, 4px -4px #3e3e3e, 5px -5px #3e3e3e, 6px -6px #3e3e3e, 7px -7px #3e3e3e, 8px -8px #3e3e3e;
+  //    box-shadow: 1px -1px #3e3e3e, 2px -2px #3e3e3e, 3px -3px #3e3e3e, 4px -4px #3e3e3e, 5px -5px #3e3e3e,
+  //  }
+  //}
+
+  //@keyframes flip-horizontal-top {
+  //  0% {
+  //    transform: rotateX(0);
+  //  }
+  //
+  //  100% {
+  //    transform: rotateX(360deg);
+  //  }
+  //}
 
 }
 
