@@ -28,3 +28,5 @@ export const columnsDecks: Column[] = [
 ]
 
 export const optionsForDeckItemsPerPage = ['5', '10', '20', '30', '50', '100']
+
+export const FILE_SIZE_LIMIT = 1000 * 1000

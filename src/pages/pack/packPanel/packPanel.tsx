@@ -1,33 +1,101 @@
-import { Elipse } from '@/assets/icons/elipse.tsx'
-import { MoreVerticalOutline } from '@/assets/icons/more-vertical-outline.tsx'
+import { useState } from 'react'
+
+import { useNavigate } from 'react-router-dom'
+
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
+import { DeckEditPack } from '@/pages/decks/deck-editPack'
+import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
+import { useDeletePack } from '@/pages/decks/hooks-and-functions'
+import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
-import { useGetDataForPack } from '@/pages/pack/hooks'
+import { PackAddNewCard } from '@/pages/pack/pack-addNewCard'
 import s from '@/pages/pack/pack.module.scss'
+import { PackDropDown } from '@/pages/pack/packDropDown'
+import { DeckType } from '@/service/decks/decks.types.ts'
 
-export const PackPanel = () => {
-  const { dataDeck, mePackCards } = useGetDataForPack()
+type PackPanelProps = {
+  dataDeck: DeckType
+  mePackCards: boolean
+}
+export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
+  const { utilityDeletePack } = useDeletePack(dataDeck?.name || '')
+
+  const { utilityEditPack } = useEditPack()
+
+  const navigate = useNavigate()
+
+  const [openModalDelete, setOpenModalDelete] = useState(false)
+
+  const [openEditModal, setOpenEditModal] = useState(false)
+
+  const handlerDeletePack = () => {
+    utilityDeletePack(dataDeck?.id || '')
+    setOpenModalDelete(!openModalDelete)
+  }
+
+  const handlerOpenModal = () => {
+    setOpenModalDelete(!openModalDelete)
+  }
+
+  const handlerEditModal = () => {
+    setOpenEditModal(!openEditModal)
+  }
+
+  const title = mePackCards ? `My Pack: "${dataDeck?.name}"` : `Friend’s Pack: "${dataDeck?.name}"`
+
+  const dropdown =
+    mePackCards && dataDeck ? (
+      <PackDropDown
+        id={dataDeck?.id}
+        handlerEditModal={handlerEditModal}
+        handlerOpenModal={handlerOpenModal}
+        cardsCount={dataDeck?.cardsCount}
+      />
+    ) : null
+
+  const handlerNavigateLearn = () => {
+    navigate(`/learn/${dataDeck.id}`)
+  }
 
   return (
     <>
       <BackToDeckLink className={s.linkPackList} />
       <div className={s.containerTitleAndButton}>
         <div className={s.containerTitle}>
-          {mePackCards ? (
-            <>
-              <Typography variant={'large'}>{`My Pack: "${dataDeck?.name || ''}"`}</Typography>
-              <Elipse className={s.packDropDown}>
-                <MoreVerticalOutline />
-              </Elipse>
-            </>
-          ) : (
-            <Typography variant={'large'}>{`Friend’s Pack: "${dataDeck?.name || ''}"`}</Typography>
-          )}
+          {dataDeck && <Typography variant={'large'}>{title}</Typography>}
+          {dropdown}
         </div>
-        <Button className={s.packButton}>Add New Card</Button>
+        {mePackCards ? (
+          <PackAddNewCard deckId={dataDeck.id} />
+        ) : (
+          <Button className={s.packButton} onClick={handlerNavigateLearn}>
+            Learn to Pack
+          </Button>
+        )}
       </div>
-      <img src={dataDeck?.cover} alt={'Not found'} className={s.packImg} />
+      {dataDeck?.cover ? (
+        <img src={dataDeck?.cover} alt={'Not found'} className={s.packImg} />
+      ) : (
+        <div className={s.packImgNone} />
+      )}
+      <ModalDeletePack
+        open={openModalDelete}
+        setOpen={setOpenModalDelete}
+        handlerClosedModal={handlerOpenModal}
+        handlerDeletePack={handlerDeletePack}
+      />
+      {dataDeck && (
+        <DeckEditPack
+          id={dataDeck.id}
+          coverPack={dataDeck.cover}
+          titlePack={dataDeck.name}
+          open={openEditModal}
+          setOpen={setOpenEditModal}
+          isPrivate={dataDeck.isPrivate}
+          utilityEditPack={utilityEditPack}
+        />
+      )}
     </>
   )
 }

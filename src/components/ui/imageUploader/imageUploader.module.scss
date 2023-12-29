@@ -1,0 +1,64 @@
+
+.modalAddWrapper {
+  display: flex;
+  justify-content: start;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modalAddButtonCover {
+  position: relative;
+
+  flex-shrink: 0;
+  align-self: flex-start;
+  justify-content: flex-start;
+
+  height:  65px;
+  margin: 0;
+  padding:  6px 10px;
+
+  background-color: transparent;
+
+}
+
+.modalAddInputCover {
+  cursor: pointer;
+  display: none;
+}
+
+.modalAddImageCover {
+  max-width: 118.265px;
+  max-height: 48px;
+  border-radius: 2px;
+
+}
+
+.deleteCover {
+  margin-top:24px;
+
+  //padding: 0.3rem 0.8rem;
+  //background-color: var(--color-danger-300);
+
+ &:hover {
+    //cursor: pointer;
+    //scale: 110%;
+   background-color: var(--color-danger-300)!important;//!!!
+  }
+}
+
+.coverErrorWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  margin-top: 5px;
+  padding-left: 1px;
+ }
+
+.coverImageUploader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

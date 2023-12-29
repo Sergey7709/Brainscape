@@ -11,7 +11,7 @@ export function App() {
         theme="colored"
         hideProgressBar
         newestOnTop
-        autoClose={3000}
+        autoClose={2000}
         position={'bottom-center'}
       />
     </>
