@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
+import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions'
 import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 
@@ -46,11 +46,11 @@ export const PackEditCard = ({
 
   const {
     field: { value: imageQuestionFormValue, onChange: onChangeImageQuestionForm },
-  } = useController({ name: 'questionImg', control, defaultValue: questionImage })
+  } = useController({ name: 'questionImg', control, defaultValue: questionImage || '' })
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
-  } = useController({ name: 'answerImg', control, defaultValue: answerImage })
+  } = useController({ name: 'answerImg', control, defaultValue: answerImage || '' })
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
