@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { useAddNewCard } from '@/pages/decks/hooks-and-functions/useAddNewCard.ts'
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
+import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 
 const { initialValues, addNewCardSchema } = utilityZodCardSchema()
@@ -38,11 +39,11 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
 
   const {
     field: { value: imageQuestionFormValue, onChange: onChangeImageQuestionForm },
-  } = useController({ name: 'imageQuestion', control })
+  } = useController({ name: 'questionImg', control })
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
-  } = useController({ name: 'imageAnswer', control })
+  } = useController({ name: 'answerImg', control })
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
@@ -55,20 +56,35 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
 
-    if (form.imageQuestion?.[0] instanceof File) {
-      formData.append('questionImg', form.imageQuestion[0])
-    } else if (form.imageQuestion === '') {
-      formData.append('questionImg', '')
-    }
+    // if (form.questionImg?.[0] instanceof File) {
+    //   formData.append('questionImg', form.questionImg[0])
+    // } else if (form.questionImg === '') {
+    //   formData.append('questionImg', '')
+    // }
+    //
+    // if (form.answerImg?.[0] instanceof File) {
+    //   formData.append('answerImg', form.answerImg[0])
+    // } else if (form.answerImg === '') {
+    //   formData.append('answerImg', '')
+    // }
+    //
+    // formData.append('question', form.question)
+    // formData.append('answer', form.answer)
 
-    if (form.imageAnswer?.[0] instanceof File) {
-      formData.append('answerImg', form.imageAnswer[0])
-    } else if (form.imageAnswer === '') {
-      formData.append('answerImg', '')
-    }
+    // Object.entries(form).forEach(([key, value]) => {
+    //   const isString = typeof value === 'string'
+    //   const isNotURL = isString && !value.startsWith('https://')
+    //
+    //   if (value instanceof FileList && value.length > 0) {
+    //     formData.append(key, value[0])
+    //   } else if (isString && isNotURL) {
+    //     formData.append(key, value)
+    //   } else if (value === null || value === undefined) {
+    //     formData.append(key, '')
+    //   }
+    // })
 
-    formData.append('question', form.question)
-    formData.append('answer', form.answer)
+    utilityAddFormDataCard({ form, formData })
 
     utilityAddNewCard(deckId, formData)
 
@@ -87,8 +103,6 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
   const handlerClosedModal = () => {
     setOpen(!open)
   }
-
-  // console.log('load', isLoading)
 
   return (
     <>
