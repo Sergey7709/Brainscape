@@ -28,17 +28,17 @@ export const utilityZodCardSchema = () => {
       .min(3, 'Answer must be at least 3 characters')
       .max(30),
 
-    imageQuestion: fileSchema.optional(),
-    imageAnswer: fileSchema.optional(),
+    questionImg: fileSchema.optional(),
+    answerImg: fileSchema.optional(),
   })
 
   type NewCardSchema = z.infer<typeof addNewCardSchema>
 
   const initialValues: NewCardSchema = {
     question: '',
-    imageQuestion: undefined,
+    questionImg: undefined,
     answer: '',
-    imageAnswer: undefined,
+    answerImg: undefined,
   }
 
   return { initialValues, addNewCardSchema }
