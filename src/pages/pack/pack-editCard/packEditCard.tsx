@@ -5,6 +5,7 @@ import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
+import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 
 const { addNewCardSchema } = utilityZodCardSchema()
@@ -19,7 +20,7 @@ type PackEditCardProps = {
   answerImage: string
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
-  utilityEditCard: (id: string, body: FormData) => void ///!!!!
+  utilityEditCard: (id: string, body: FormData) => void
 }
 export const PackEditCard = ({
   cardId,
@@ -31,8 +32,6 @@ export const PackEditCard = ({
   setOpen,
   utilityEditCard,
 }: PackEditCardProps) => {
-  // const { utilityEditCard, isLoading } = useEditCard()
-
   const hiddenInputRefQuestion = useRef<HTMLInputElement | null>(null)
   const hiddenInputRefAnswer = useRef<HTMLInputElement | null>(null)
 
@@ -47,11 +46,11 @@ export const PackEditCard = ({
 
   const {
     field: { value: imageQuestionFormValue, onChange: onChangeImageQuestionForm },
-  } = useController({ name: 'imageQuestion', control, defaultValue: questionImage })
+  } = useController({ name: 'questionImg', control, defaultValue: questionImage })
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
-  } = useController({ name: 'imageAnswer', control, defaultValue: answerImage })
+  } = useController({ name: 'answerImg', control, defaultValue: answerImage })
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
@@ -64,20 +63,35 @@ export const PackEditCard = ({
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
 
-    if (form.imageQuestion?.[0] instanceof File) {
-      formData.append('questionImg', form.imageQuestion[0])
-    } else if (form.imageQuestion === '') {
-      formData.append('questionImg', '')
-    }
+    // if (form.questionImg?.[0] instanceof File) {
+    //   console.log(form.questionImg[0])
+    //   formData.append('questionImg', form.questionImg[0])
+    // } else if (form.questionImg === '') {
+    //   console.log(form.questionImg)
+    //   formData.append('questionImg', '')
+    // }
+    // if (form.answerImg?.[0] instanceof File) {
+    //   formData.append('answerImg', form.answerImg[0])
+    // } else if (form.answerImg === '') {
+    //   formData.append('answerImg', '')
+    // }
+    // formData.append('question', form.question)
+    // formData.append('answer', form.answer)
 
-    if (form.imageAnswer?.[0] instanceof File) {
-      formData.append('answerImg', form.imageAnswer[0])
-    } else if (form.imageAnswer === '') {
-      formData.append('answerImg', '')
-    }
+    // Object.entries(form).forEach(([key, value]) => {
+    //   const isString = typeof value === 'string'
+    //   const isNotURL = isString && !value.startsWith('https://')
+    //
+    //   if (value instanceof FileList && value.length > 0) {
+    //     formData.append(key, value[0])
+    //   } else if (isString && isNotURL) {
+    //     formData.append(key, value)
+    //   } else if (value === null || value === undefined) {
+    //     formData.append(key, '')
+    //   }
+    // })
 
-    formData.append('question', form.question)
-    formData.append('answer', form.answer)
+    utilityAddFormDataCard({ form, formData })
 
     utilityEditCard(cardId, formData)
 
@@ -87,8 +101,6 @@ export const PackEditCard = ({
   const handlerClosedModal = () => {
     setOpen(!open)
   }
-
-  // console.log('load', isLoading)
 
   return (
     <div>
