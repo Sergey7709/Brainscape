@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
+import { useSaveUrlDeck } from '../../pack/hooks-and-function'
+
 import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
@@ -12,7 +14,6 @@ import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import s from '@/pages/decks/decks.module.scss'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
-import { useSaveUrlDeck } from '@/pages/pack/hooks'
 import { useGetAuthUserMeDataQuery } from '@/service'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
