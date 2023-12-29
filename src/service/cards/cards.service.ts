@@ -1,5 +1,6 @@
 import {
   CardType,
+  CardTypeFormData,
   CreateCardRequest,
   GetCardParams,
   GradeCardRequest,
@@ -41,7 +42,7 @@ export const cardsService = baseApi.injectEndpoints({
         query: id => `v1/cards/${id}`,
         providesTags: ['Cards'],
       }),
-      updateCard: builder.mutation<CardType, Partial<CardType>>({
+      updateCard: builder.mutation<Partial<CardType>, CardTypeFormData>({
         query: ({ id, body }) => ({
           url: `v1/cards/${id}`,
           method: 'PATCH',
