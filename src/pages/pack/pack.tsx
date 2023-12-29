@@ -1,11 +1,11 @@
 import { Navigate } from 'react-router-dom'
 
+import { useGetDataForPack } from './hooks-and-function'
 import s from './pack.module.scss'
 
 import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
 import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
-import { useGetDataForPack } from '@/pages/pack/hooks'
 import { PackPanel } from '@/pages/pack/packPanel'
 import { PackSearch } from '@/pages/pack/packSearch'
 import { TablePack } from '@/pages/pack/tablePack'
@@ -18,7 +18,6 @@ export const Pack = () => {
     isFetchingDeck,
     isLoadingCards,
     isFetchingCards,
-    // isSuccessCards,
     itemsPerPage,
     totalItems,
     totalPages,
@@ -38,8 +37,6 @@ export const Pack = () => {
     })
   }
 
-  // const paginationReady =
-  //   !isFetchingCards && isSuccessCards && (totalPages || 1) >= 1 && !!totalPages
   const paginationReady = totalPages || 1
 
   if (dataDeck === null) {
