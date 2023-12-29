@@ -1,11 +1,12 @@
 import { useState } from 'react'
 
+import { useDeleteCard, useEditCard } from '../hooks-and-function'
+
 import { Delete, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { Rating } from '@/components/ui/rating'
 import { Table } from '@/components/ui/tables'
-import { useDeleteCard, useEditCard } from '@/pages/pack/hooks'
 import { PackEditCard } from '@/pages/pack/pack-editCard/packEditCard.tsx'
 import { ModalDeleteCard } from '@/pages/pack/pack-modal-delete-card/modalDeleteCard.tsx'
 import s from '@/pages/pack/pack-row/pack-row.module.scss'
