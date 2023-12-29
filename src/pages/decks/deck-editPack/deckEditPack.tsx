@@ -14,7 +14,7 @@ type DeckEditPackProps = {
   coverPack: string
   titlePack: string
   isPrivate: boolean
-  utilityEditPack: (id: string, body: FormData) => void //!!!
+  utilityEditPack: (id: string, body: FormData) => void
 }
 
 export const DeckEditPack = ({
@@ -26,8 +26,6 @@ export const DeckEditPack = ({
   isPrivate,
   utilityEditPack,
 }: DeckEditPackProps) => {
-  // const { utilityEditPack } = useEditPack()
-
   const { initialValues, addNewPackSchema } = utilityZodPackSchema(isPrivate, titlePack)
 
   type NewPackSchema = z.infer<typeof addNewPackSchema>
