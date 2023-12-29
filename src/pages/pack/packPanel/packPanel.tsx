@@ -7,6 +7,7 @@ import { Typography } from '@/components/ui/typography'
 import { DeckEditPack } from '@/pages/decks/deck-editPack'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
+import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
 import { PackAddNewCard } from '@/pages/pack/pack-addNewCard'
 import s from '@/pages/pack/pack.module.scss'
@@ -19,6 +20,8 @@ type PackPanelProps = {
 }
 export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
   const { utilityDeletePack } = useDeletePack(dataDeck?.name || '')
+
+  const { utilityEditPack } = useEditPack()
 
   const navigate = useNavigate()
 
@@ -64,7 +67,6 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
           {dropdown}
         </div>
         {mePackCards ? (
-          // <Button className={s.packButton}>Add New Card</Button>
           <PackAddNewCard deckId={dataDeck.id} />
         ) : (
           <Button className={s.packButton} onClick={handlerNavigateLearn}>
@@ -91,6 +93,7 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
           open={openEditModal}
           setOpen={setOpenEditModal}
           isPrivate={dataDeck.isPrivate}
+          utilityEditPack={utilityEditPack}
         />
       )}
     </>
