@@ -9,7 +9,7 @@ import { Modal, ModalConstructor } from '@/components/ui/modal'
 import { JustifyContent } from '@/components/ui/modal/typeForModal.ts'
 import { Typography } from '@/components/ui/typography'
 
-type FormCard = { question: string; answer: string; imageQuestion?: any; imageAnswer?: any }
+type FormCard = { question: string; answer: string; questionImg?: any; answerImg?: any }
 
 type ModalAddOrEditCardProps = {
   open: boolean
@@ -74,14 +74,14 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
             <ImageUploader
               hiddenInputRef={hiddenInputRefQuestion}
               valueForm={imageQuestionFormValue}
-              errorMessage={errors.imageQuestion?.message}
+              errorMessage={errors.questionImg?.message}
               onChangeForm={onChangeImageQuestionForm}
             />
             <ControlledTextField control={control} name={'answer'} />
             <ImageUploader
               hiddenInputRef={hiddenInputRefAnswer}
               valueForm={imageAnswerFormValue}
-              errorMessage={errors.imageAnswer?.message}
+              errorMessage={errors.answerImg?.message}
               onChangeForm={onChangeImageAnswerForm}
             />
           </ModalConstructor.Body>
