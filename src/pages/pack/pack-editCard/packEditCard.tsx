@@ -63,34 +63,6 @@ export const PackEditCard = ({
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
 
-    // if (form.questionImg?.[0] instanceof File) {
-    //   console.log(form.questionImg[0])
-    //   formData.append('questionImg', form.questionImg[0])
-    // } else if (form.questionImg === '') {
-    //   console.log(form.questionImg)
-    //   formData.append('questionImg', '')
-    // }
-    // if (form.answerImg?.[0] instanceof File) {
-    //   formData.append('answerImg', form.answerImg[0])
-    // } else if (form.answerImg === '') {
-    //   formData.append('answerImg', '')
-    // }
-    // formData.append('question', form.question)
-    // formData.append('answer', form.answer)
-
-    // Object.entries(form).forEach(([key, value]) => {
-    //   const isString = typeof value === 'string'
-    //   const isNotURL = isString && !value.startsWith('https://')
-    //
-    //   if (value instanceof FileList && value.length > 0) {
-    //     formData.append(key, value[0])
-    //   } else if (isString && isNotURL) {
-    //     formData.append(key, value)
-    //   } else if (value === null || value === undefined) {
-    //     formData.append(key, '')
-    //   }
-    // })
-
     utilityAddFormDataCard({ form, formData })
 
     utilityEditCard(cardId, formData)
