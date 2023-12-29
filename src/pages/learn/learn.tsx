@@ -9,13 +9,13 @@ import { Loader } from '@/components/ui/loader'
 import { Answer } from '@/pages/learn/answer/answer.tsx'
 import { Question } from '@/pages/learn/question'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
-import { useGetDataForPack } from '@/pages/pack/hooks/useGetDataForPack.ts'
+import { useGetDataForPack } from '@/pages/pack/hooks-and-function/useGetDataForPack.ts'
 import { useGetRandomCardsQuery } from '@/service'
 import { useIsFirstRender } from '@/utils'
 
 export const Learn = () => {
   const packId = useParams()
-  const { data, isLoading, isFetching, isSuccess } = useGetRandomCardsQuery(packId.id ?? '')
+  const { data, isLoading, isFetching } = useGetRandomCardsQuery(packId.id ?? '')
   const { dataDeck, isLoadingDeck, isFetchingDeck } = useGetDataForPack()
 
   const [openAnswer, setOpenAnswer] = useState(false)
@@ -30,13 +30,13 @@ export const Learn = () => {
           <BackToDeckLink className={s.linkBackToDeck} />
         </div>
         <Card className={s.learnCards}>
-          {!openAnswer && !isFetching && !isLoading && isSuccess ? (
+          {!openAnswer && dataDeck && data ? (
             <>
               <Question
-                nameCard={dataDeck?.name || ''}
-                imageQuestion={data?.questionImg || ''}
-                question={data?.question || ''}
-                shots={data?.shots || 0}
+                nameCard={dataDeck?.name}
+                imageQuestion={data?.questionImg}
+                question={data?.question}
+                shots={data?.shots}
                 handlerLearn={setOpenAnswer}
                 isLoading={isLoading}
                 isFetching={isFetching}
@@ -44,16 +44,17 @@ export const Learn = () => {
             </>
           ) : (
             !isFirstRender &&
-            !isLoading && (
+            dataDeck &&
+            data && (
               <>
                 <Answer
-                  nameCard={dataDeck?.name || ''}
-                  imageAnswer={data?.answerImg || ''}
-                  answer={data?.answer || ''}
-                  shots={data?.shots || 0}
+                  nameCard={dataDeck?.name}
+                  imageAnswer={data?.answerImg}
+                  answer={data?.answer}
+                  shots={data?.shots}
                   handlerLearn={setOpenAnswer}
-                  cardID={data?.id || ''}
-                  deckID={dataDeck?.id || ''}
+                  cardID={data?.id}
+                  deckID={dataDeck?.id}
                   isLoading={isLoading}
                   isFetching={isFetching}
                 />

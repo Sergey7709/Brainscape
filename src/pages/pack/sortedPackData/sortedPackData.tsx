@@ -1,4 +1,5 @@
-import { useGetDataForPack } from '@/pages/pack/hooks'
+import { useGetDataForPack } from '../hooks-and-function'
+
 import { PackRow } from '@/pages/pack/pack-row/pack-row.tsx'
 
 export const SortedPackData = () => {

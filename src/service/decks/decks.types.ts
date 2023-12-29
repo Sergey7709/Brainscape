@@ -1,3 +1,5 @@
+import { ModalProps } from '@/components/ui/modal/typeForModal.ts'
+
 export type DeckType = {
   author: Author
   id: string
@@ -17,13 +19,7 @@ export type Author = {
   name: string
 }
 
-export type CreateDeckRequest = {
-  name: string
-  cover?: string
-  isPrivate?: boolean
-}
-
-export type UpdateDeckRequest = CreateDeckRequest & { id: string }
+export type UpdateDeckRequest = { id: string; body: FormData }
 
 export type GetDeckParams = {
   minCardsCount?: string
@@ -50,3 +46,5 @@ export type PackCards = {
   updated: string
   grade: number
 } ///!!!!!!!!!
+
+export type DeckAddNewPackProp = Omit<ModalProps, 'open' | 'setOpen'>

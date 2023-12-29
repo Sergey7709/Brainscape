@@ -1,6 +1,6 @@
 import { Loader } from '@/components/ui/loader'
-import { DeckComposition } from '@/pages/decks/deck-composition/deck-composition.tsx'
-import { utilitySearchParams } from '@/pages/decks/hooks-and-functions/utilitySearchParams.ts'
+import { DeckComposition } from '@/pages/decks/deck-composition'
+import { utilitySearchParams } from '@/pages/decks/hooks-and-functions'
 import { useGetDecksQuery } from '@/service'
 
 export const Decks = () => {

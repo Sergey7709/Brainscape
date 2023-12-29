@@ -1,5 +1,6 @@
 import {
   CardType,
+  CardTypeFormData,
   CreateCardRequest,
   GetCardParams,
   GradeCardRequest,
@@ -17,12 +18,12 @@ export const cardsService = baseApi.injectEndpoints({
         providesTags: ['Cards'],
       }),
       createCard: builder.mutation<CardType, CreateCardRequest>({
-        query: ({ deckId, ...body }) => ({
+        query: ({ deckId, body }) => ({
           url: `v1/decks/${deckId}/cards`,
           method: 'POST',
           body,
         }),
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Deck'],
       }),
       getRandomCards: builder.query<CardType, string>({
         query: id => `v1/decks/${id}/learn`,
@@ -41,20 +42,20 @@ export const cardsService = baseApi.injectEndpoints({
         query: id => `v1/cards/${id}`,
         providesTags: ['Cards'],
       }),
-      updateCard: builder.mutation<CardType, Partial<CardType>>({
-        query: ({ deckId, ...body }) => ({
-          url: `v1/cards/${deckId}`,
+      updateCard: builder.mutation<Partial<CardType>, CardTypeFormData>({
+        query: ({ id, body }) => ({
+          url: `v1/cards/${id}`,
           method: 'PATCH',
           body,
         }),
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Deck'],
       }),
       deleteCard: builder.mutation<void, string>({
         query: id => ({
           url: `v1/cards/${id}`,
           method: 'DELETE',
         }),
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Deck'],
       }),
     }
   },

@@ -1,11 +1,6 @@
 import { baseApi } from '@/service/common/base-api.ts'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
-import {
-  CreateDeckRequest,
-  DeckType,
-  PackCards,
-  UpdateDeckRequest,
-} from '@/service/decks/decks.types.ts'
+import { DeckType, PackCards, UpdateDeckRequest } from '@/service/decks/decks.types.ts'
 
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -14,7 +9,7 @@ export const decksService = baseApi.injectEndpoints({
         query: arg => `v1/decks?${arg}`,
         providesTags: ['Deck'],
       }),
-      createDeck: builder.mutation<DeckType, CreateDeckRequest>({
+      createDeck: builder.mutation<DeckType, FormData>({
         query: body => ({
           url: `v1/decks/`,
           method: 'POST',
@@ -34,7 +29,7 @@ export const decksService = baseApi.injectEndpoints({
         providesTags: ['Deck'],
       }),
       updateDeck: builder.mutation<DeckType, UpdateDeckRequest>({
-        query: ({ id, ...body }) => ({
+        query: ({ id, body }) => ({
           url: `v1/decks/${id}`,
           method: 'PATCH',
           body,

@@ -1,3 +1,15 @@
+// export type CardType<T extends 'req' | 'res' = 'res'> = T extends 'req'
+//   ? {
+//       id: string
+//       body: FormData
+//     }
+//   : CardProps
+
+export type CardTypeFormData = {
+  id: string
+  body: FormData
+}
+
 export type CardType = {
   id: string
   deckId: string
@@ -13,7 +25,6 @@ export type CardType = {
   created: string
   updated: string
 }
-
 export type GetCardParams = {
   id: string
   question: string
@@ -25,12 +36,7 @@ export type GetCardParams = {
 
 export type CreateCardRequest = {
   deckId: string
-  question: string
-  answer: string
-  questionImg: string
-  answerImg: string
-  questionVideo: string
-  answerVideo: string
+  body: FormData
 }
 
 export type GradeCardRequest = {

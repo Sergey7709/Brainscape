@@ -1,23 +1,12 @@
-import { useNavigate } from 'react-router-dom'
-
 import { ArrowLeftFull } from '@/assets/icons/arrow-left-full.tsx'
 import { Button } from '@/components/ui/button'
+import { useNavigateBackToDeck } from '@/pages/decks/hooks-and-functions'
 
 type BackToDeckLinkProps = {
   className: string
 }
 export const BackToDeckLink = ({ className }: BackToDeckLinkProps) => {
-  const navigate = useNavigate()
-
-  const navigateBackToDeck = () => {
-    const urlDeck = sessionStorage.getItem('previousPath')
-
-    if (urlDeck) {
-      navigate(`/deck${urlDeck}`)
-    } else {
-      navigate('/deck')
-    }
-  }
+  const { navigateBackToDeck } = useNavigateBackToDeck()
 
   return (
     <Button variant={'link'} className={className} onClick={navigateBackToDeck}>
