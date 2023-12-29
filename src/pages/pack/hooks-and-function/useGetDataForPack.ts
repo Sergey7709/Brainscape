@@ -10,7 +10,7 @@ import {
 } from '@/service'
 
 export const useGetDataForPack = () => {
-  const packId = useParams() ///!!!!??????
+  const packId = useParams()
 
   const {
     isSuccess: isAuthenticated,
