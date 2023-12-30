@@ -38,10 +38,6 @@ export const DecksPanel = memo(() => {
 
   const findText = searchParams.get('name') || ''
 
-  // console.log('isFirstRender ', isFirstRender)
-  // console.log('findText ', findText)
-  // console.log('searchValue ', searchValue)
-
   const minMaxCardsUrlValue = [
     Number(searchParams.get('minCardsCount') || valueForSlider[0]),
     Number(searchParams.get('maxCardsCount') || valueForSlider[1]),
