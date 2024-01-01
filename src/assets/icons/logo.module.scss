@@ -1,0 +1,16 @@
+.svgLogo {
+  width: 157px;
+  height: 36px;
+}
+
+@media (width <= 1006px) {
+  .svgLogo {
+    width: 90px;
+  }
+}
+
+//@media (width >= 1000px) {
+//  .svgLogo {
+//    width: 30%;
+//  }
+//}
