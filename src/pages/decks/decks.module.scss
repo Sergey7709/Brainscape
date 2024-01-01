@@ -10,13 +10,32 @@
 }
 
 .deck {
-  width: 1006px; ///!!!!!!!! исправить для адаптива
+  width: 1006px;
+
+  @media (width <= 1006px) {
+    width: 100%; //!!!!
+  }
+
+  @media (width <= 440px) {
+    padding: 5px
+  }// !!!!
+
  }
 
 .head {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  @media (width <= 1006px) {
+   margin-bottom: 2rem;
+  }//!!!!
+
+  @media (width <= 440px) {
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 20px;
+  }// !!!!
 
 }
 
@@ -30,7 +49,13 @@
   justify-content: start;
   width: 1006px;
 
-} ///!!!!!!!! исправить для адаптива
+  @media (width <= 1006px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; // !!!!
+  }
+}
 
 .textNoData {
   font-weight: 700;
@@ -58,6 +83,9 @@
 
   width: 285px;
 
+  @media (width <= 440px) {
+    width: 100px;
+  }// !!!!
 }
 
 .imgCover {
@@ -75,10 +103,21 @@
 
   max-width: 100%;
   margin: 0;
+  padding: 4px 10px;
 
+  font-size: var(--font-size-xs);
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  @media (width <= 1006px) {
+    font-size: var(--font-size-xs);
+  }// !!!!
+
+  @media (width <= 440px) {
+    max-width: 100%;
+    font-size: 8px;
+    word-wrap: break-word;
+      }// !!!!
 }
 
 a.linkCell {
@@ -98,56 +137,17 @@ a.linkCell {
     color: var(--color-light-100);
   }
 
-  //&:hover:not(:disabled)  {
-  //  color: var(--color-light-100);
-  //  animation: shadow-pop-tl 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-  //}
-  //
-  //@keyframes shadow-pop-tl {
-  //  0% {
-  //    transform: translateX(0) translateY(0);
-  //    box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
-  //
-  //  }
-  //
-  //  100% {
-  //    transform: translateX(4px) translateY(4px);
-  //    box-shadow: -1px -1px #3e3e3e, -2px -2px #3e3e3e, -3px -3px #3e3e3e, -4px -4px #3e3e3e
-  //
-  //  }
-  //}
-
-  //&:hover:not(:disabled)  {
-  //  color: var(--color-light-100);
-  //  animation: text-blur-out 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-  //}
-  //
-  //@keyframes text-blur-out {
-  //  0% {
-  //    filter: blur(0.5);
-  //  }
-  //
-  //  50% {
-  //    filter: blur(12px) opacity(50%);
-  //  }
-  //
-  //  100% {
-  //    filter: blur(0.01);
-  //  }
-  //}
 
   &:hover:not(:disabled)  {
     color: var(--color-light-100);
-
-    //background: rgba(241 241 242);
     border-radius: 10px;
     box-shadow: 2px 2px 20px #262626, -2px -2px 20px  #fff;
-
-    //box-shadow: 6px 6px 6px #262626, -6px -6px 6px #fff;
-
   }
 
-
+  @media (width <= 440px) {
+  width: 100%;
+    padding: 0 5px;
+  }// !!!!
 }
 
 .buttonContainer {
@@ -183,3 +183,20 @@ a.linkCell {
   display: none;
 }
 
+.headCellDeck {
+  @media (width <= 1006px) {
+   font-size: var(--font-size-xs);
+  }//!!!
+
+}
+
+.title {
+  font-size: var(--font-size-xxl);
+  line-height: 36px;
+
+  @media (width <= 440px) {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+
+  }// !!!!
+}
