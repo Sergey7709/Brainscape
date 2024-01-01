@@ -67,14 +67,14 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
     <DropdownMenu
       align={'end'}
       trigger={<img className={classNames.avatar} src={avatar || defaultAvatar} alt={'avatar'} />}
+      className={s.dropdownMenu}
     >
       <DropDownItem className={classNames.profileInfo}>
         <img src={avatar || defaultAvatar} alt={'icon'} className={s.image} />
         <div className={s.info}>
-          <Typography>{name}</Typography>
-          <Typography variant={'caption'} className={s.email}>
-            {email}
-          </Typography>
+          <Typography className={s.name}>{name}</Typography>
+          {/*<Typography variant={'caption'} className={s.email}>*/}
+          <Typography className={s.email}>{email}</Typography>
         </div>
       </DropDownItem>
       <DropDownItemWithIcon
