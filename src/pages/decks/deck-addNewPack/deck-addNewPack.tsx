@@ -4,7 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import s from './deck-addNewPack.module.scss'
+
 import { Button } from '@/components/ui/button'
+import { Typography } from '@/components/ui/typography'
 import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
 import { useAddNewPack } from '@/pages/decks/hooks-and-functions/useAddNewPack.ts'
 import { utilityZodPackSchema } from '@/pages/decks/hooks-and-functions/utilityZodPackSchema.ts'
@@ -94,8 +97,8 @@ export const DeckAddNewPack = () => {
       headerTitle={'Add new pack'}
       buttonTitle={'Add new pack'}
     >
-      <Button as={'button'} variant={'primary'}>
-        Add new pack
+      <Button as={'button'} variant={'primary'} className={s.buttonAddNewPack}>
+        <Typography className={s.textButtonAddNewPack}>Add new pack</Typography>
       </Button>
     </ModalAddOrEditPack>
   )
