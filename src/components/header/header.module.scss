@@ -10,6 +10,17 @@ div .wrapper {
   width: 100%;
   height: 60px;
   padding: 12px 136px;
+
+  @media (width <= 1006px) {
+    width: 100%;
+    padding: 5%;
+
+  }// !!!!
+
+  @media (width <= 440px) {
+   width: 100%;
+    padding: 5%;
+  }// !!!!
 }
 
 .profile {
@@ -36,6 +47,10 @@ div .wrapper {
     background-position: 0 0;
     background-size: 7px 1px;
   }
+
+  @media (width <= 1006px) {
+    font-size: var(--font-size-xs);
+  }// !!!!
 }
 
 .avatar {
@@ -55,11 +70,43 @@ div .profileInfo:hover {
   height: 96px;
   object-fit: cover;
   border-radius: 50%;
+
+  @media (width <= 440px) {
+    width: 36px;
+    height: 36px;
+
+  }// !!!!
 }
 
 .info { display: flex;
 flex-direction: column  }
 
 .email {
-color: #808080
+color: #808080;
+
+@media (width <= 440px) {
+  font-size: 8px!important;
+  word-wrap: break-word!important;
+  overflow-wrap: break-word!important;
+}// !!!!
+}
+
+.name{
+    @media (width <= 440px) {
+    font-size: 10px!important;
+    word-wrap: break-word!important;
+    overflow-wrap: break-word!important;
+  }// !!!!
+}
+
+.dropdownMenu {
+  @media (width <= 1006px) {
+    width: 100%
+
+  }// !!!!
+
+  //@media (width <= 440px) {
+  //  width: 90%;
+  //
+  //}// !!!!
 }
