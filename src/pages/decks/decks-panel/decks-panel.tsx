@@ -134,7 +134,12 @@ export const DecksPanel = memo(() => {
           value={actualValueSlider}
           onValueChange={handlerValueChangeSlider}
         />
-        <Button variant={'secondary'} onClick={handlerClearFilter} className={s.decksPanelButton}>
+        <Button
+          variant={'secondary'}
+          onClick={handlerClearFilter}
+          className={s.decksPanelButton}
+          fullWidth
+        >
           <Delete /> <Typography className={s.decksPanelClearFilter}>Clear Filter</Typography>
         </Button>
       </div>
