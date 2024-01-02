@@ -56,5 +56,9 @@
         cursor: default;
       }
     }
+
+    @media (width <= 440px) {
+      font-size: var(--font-size-xs);
+    }// !!!!
   }
 }
