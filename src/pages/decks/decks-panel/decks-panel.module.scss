@@ -32,8 +32,10 @@
     align-items: start;
     justify-content: start;
 
-    padding-right: 5px;
-    padding-left: 20px;
+    //padding-right: 5px;
+    //padding-left: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
   }// !!!!
 }
 
@@ -42,7 +44,8 @@
 
 
   @media (width <= 440px) {
-    width: 360px;
+    //width: 360px;
+    width: 346px;
     height: 30px;
   }// !!!!
 }
