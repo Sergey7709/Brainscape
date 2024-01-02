@@ -223,4 +223,8 @@ a.linkCell {
   @media (width <= 1006px) {
     font-size: var(--font-size-s);
   }//!!!
+
+  @media (width <= 440px) {
+    font-size: var(--font-size-xs);
+  }//!!!
 }
