@@ -36,7 +36,7 @@
    margin-bottom: 2rem;
   }//!!!!
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
     align-items: center;
     padding-right: 20px;
     padding-left: 20px;
@@ -67,7 +67,7 @@
     width: 100%; // !!!!
   }
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
     gap:10px
   }// !!!!
 }
@@ -98,8 +98,16 @@
 
   width: 285px;
 
-  @media (width <= 440px) {
-    gap:0;
+  @media (width <= 1006px) {
+    //gap:5px;
+    width: 100%
+
+    //width: 270px
+
+  }// !!!!
+
+  @media (width <= 540px) {
+    gap:5px;
     width: 80px
   }// !!!!
 }
@@ -113,7 +121,12 @@
   object-fit: cover;
   border-radius: 3px;
 
-  @media (width <= 440px) {
+  @media (width <= 1006px) {
+    width: 90px;
+    font-size: var(--font-size-xs);
+  }// !!!!
+
+  @media (width <= 540px) {
     width: 30px;
   }// !!!!
 }
@@ -123,17 +136,19 @@
 
   max-width: 100%;
   margin: 0;
-  padding: 4px 10px;
+
+  //padding: 4px 10px;
 
   font-size: var(--font-size-xs);
   text-overflow: ellipsis;
   white-space: nowrap;
 
   @media (width <= 1006px) {
+    width: 90px;
     font-size: var(--font-size-xs);
   }// !!!!
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
     max-width: 100%;
 
     //font-size: 8px;
@@ -171,7 +186,7 @@ a.linkCell {
     padding: 0 5px;
   }// !!!!
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
   //width: 100%;
     width: 90px;
     padding: 0 5px;
@@ -181,6 +196,12 @@ a.linkCell {
 .buttonContainer {
   display: flex;
   justify-content: flex-start;
+
+  @media (width <= 540px) {
+    //width: 100%;
+    width: 50px;
+    padding: 0 5px;
+  }// !!!!
 }
 
 .buttonRow {
@@ -191,6 +212,10 @@ a.linkCell {
     scale: 130%;
     transition: 0.3s;
   }
+
+  @media (width <= 540px) {
+    padding: 0
+  }// !!!!
 }
 
 .disabledButtonRow {
@@ -224,7 +249,7 @@ a.linkCell {
   font-size: var(--font-size-xxl);
   line-height: 36px;
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
     font-size: var(--font-size-xl);
     font-weight: bold;
 
@@ -238,7 +263,7 @@ a.linkCell {
     font-size: var(--font-size-s);
   }//!!!
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
     font-size: var(--font-size-xs);
   }//!!!
 }
