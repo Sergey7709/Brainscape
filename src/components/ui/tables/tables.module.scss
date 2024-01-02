@@ -51,6 +51,9 @@
       //grid-template-columns: repeat(auto-fit, minmax(50px, 0.5fr));
       grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
 
+      //font-size: var(--font-size-xs);
+      font-size: 10px;
+
       //display: flex;
     }// !!!!
 
@@ -111,7 +114,8 @@
 
   @media (width <= 440px) {
     padding: 2px 6px;
-    font-size: 8px;
+
+    //font-size: 8px;
   }// !!!!
 }
 
