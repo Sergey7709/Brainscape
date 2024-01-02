@@ -33,7 +33,7 @@
 
   @media (width <= 440px) {
     align-items: center;
-    padding-right: 10px;
+    padding-right: 20px;
     padding-left: 20px;
   }// !!!!
 
@@ -191,7 +191,7 @@ a.linkCell {
   align-items: center;
   justify-content: flex-start;
 
-  margin-left: 16px;//!!!
+  margin-left: 10px;//!!!
 
 }
 
@@ -215,4 +215,12 @@ a.linkCell {
     font-weight: bold;
 
   }// !!!!
+}
+
+.deckItemTypography{
+  font-size: var(--font-size-m);
+
+  @media (width <= 1006px) {
+    font-size: var(--font-size-s);
+  }//!!!
 }
