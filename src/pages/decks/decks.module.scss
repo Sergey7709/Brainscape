@@ -47,14 +47,24 @@
   display: flex;
   gap: 24px;
   justify-content: start;
+
   width: 1006px;
+  padding-top: 5px;
+  padding-left: 16px;
 
   @media (width <= 1006px) {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+    //align-items: center;
+    //justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     width: 100%; // !!!!
   }
+
+  @media (width <= 440px) {
+    gap:10px
+  }// !!!!
 }
 
 .textNoData {
@@ -96,6 +106,10 @@
 
   object-fit: cover;
   border-radius: 3px;
+
+  @media (width <= 440px) {
+    width: 30px;
+  }// !!!!
 }
 
 .textForName {
@@ -176,6 +190,8 @@ a.linkCell {
   gap: 12px;
   align-items: center;
   justify-content: flex-start;
+
+  margin-left: 16px;//!!!
 
 }
 
