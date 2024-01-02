@@ -51,7 +51,12 @@
 }
 
 .decksPanelButton {
-padding: 3px 6px;
+
+
+  @media (width <= 440px) {
+    width: 100%;
+    padding: 3px 6px;
+  }// !!!!
 }
 
 .decksPanelClearFilter {
