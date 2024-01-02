@@ -7,6 +7,11 @@
   height: 100%;
   margin-bottom: 30px;
   padding-top: 96px;
+
+  @media (width <= 1006px) { //!!!!
+    padding-right: 5px;
+    padding-left: 5px;
+  }
 }
 
 .deck {
@@ -94,7 +99,8 @@
   width: 285px;
 
   @media (width <= 440px) {
-    width: 100px;
+    gap:0;
+    width: 80px
   }// !!!!
 }
 
@@ -129,7 +135,8 @@
 
   @media (width <= 440px) {
     max-width: 100%;
-    font-size: 8px;
+
+    //font-size: 8px;
     word-wrap: break-word;
       }// !!!!
 }
@@ -158,8 +165,15 @@ a.linkCell {
     box-shadow: 2px 2px 20px #262626, -2px -2px 20px  #fff;
   }
 
+  @media (width <= 1006px) {
+    //width: 100%;
+    width: 90px;
+    padding: 0 5px;
+  }// !!!!
+
   @media (width <= 440px) {
-  width: 100%;
+  //width: 100%;
+    width: 90px;
     padding: 0 5px;
   }// !!!!
 }
