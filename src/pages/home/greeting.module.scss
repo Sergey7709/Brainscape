@@ -24,6 +24,10 @@
   justify-content: center;
   width: 100%;
   text-align: justify;
+
+  @media (width <= 540px) {
+  font-size: var(--font-size-s);
+  }// !!!!
 }
 
 
