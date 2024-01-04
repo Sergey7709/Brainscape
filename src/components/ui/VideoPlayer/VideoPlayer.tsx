@@ -5,15 +5,6 @@ import s from './VideoPlayer.module.scss'
 type VideoProps = {
   url: string
 }
-
-// export const VideoComponent = ({ url }: VideoProps) => {
-//   return (
-//     <div>
-//       <iframe className={s.videoFrame} src={url}></iframe>
-//     </div>
-//   )
-// }
-
 export const VideoComponent = ({ url }: VideoProps) => {
   const [loaded, setLoaded] = useState(false)
 
