@@ -110,21 +110,23 @@ export const DecksPanel = memo(() => {
             className={classNames.textField}
           />
         </div>
-        <TabSwitcher
-          label={'Show packs cards'}
-          value={myOrAllAuthorCards === 'allCards' ? 'allCards' : 'myCards'}
-          tabData={[
-            {
-              title: 'My cards',
-              value: 'myCards',
-            },
-            {
-              title: 'All cards',
-              value: 'allCards',
-            },
-          ]}
-          onValueChange={value => handlerTabSwitchChangeValue(value === 'myCards' ? meID : [])}
-        />
+        <div className={s.decksPanelTabSwitcherWrapper}>
+          <TabSwitcher
+            label={'Show packs cards'}
+            value={myOrAllAuthorCards === 'allCards' ? 'allCards' : 'myCards'}
+            tabData={[
+              {
+                title: 'My cards',
+                value: 'myCards',
+              },
+              {
+                title: 'All cards',
+                value: 'allCards',
+              },
+            ]}
+            onValueChange={value => handlerTabSwitchChangeValue(value === 'myCards' ? meID : [])}
+          />
+        </div>
         <Slider
           className={classNames.slider}
           label={'Number of cards'}
@@ -134,9 +136,11 @@ export const DecksPanel = memo(() => {
           value={actualValueSlider}
           onValueChange={handlerValueChangeSlider}
         />
-        <Button variant={'secondary'} onClick={handlerClearFilter} className={s.decksPanelButton}>
-          <Delete /> <Typography className={s.decksPanelClearFilter}>Clear Filter</Typography>
-        </Button>
+        <div className={s.decksPanelButtonWrapper}>
+          <Button variant={'secondary'} onClick={handlerClearFilter} className={s.decksPanelButton}>
+            <Delete /> <Typography className={s.decksPanelClearFilter}>Clear Filter</Typography>
+          </Button>
+        </div>
       </div>
     </>
   )
