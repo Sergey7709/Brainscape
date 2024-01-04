@@ -3,18 +3,14 @@ import { NavLink } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-// import { VideoComponent } from '@/components/ui/VideoPlayer'
 import { VideoComponent } from '@/components/ui/VideoPlayer'
 import s from '@/pages/home/greeting.module.scss'
 
 export const GreetingNonAuthorized = () => {
-  console.log('greeting')
-
   return (
     <div className={s.container}>
       <Card id="cardHome" className={s.cardHome}>
         <Typography
-          // variant="large"
           className={s.signInTypographyTitle}
         >{`Welcome to the exciting and educational portal "Learning Cards"!`}</Typography>
         <Typography
