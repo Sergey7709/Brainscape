@@ -36,7 +36,7 @@
     padding-left: 8px;
   }// !!!!
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
     padding-left: 0;
 
     //flex-direction: column;
@@ -63,8 +63,6 @@
 }
 
 .decksPanelButton {
-
-
   @media (width <= 540px) {
     width: 95vw;
     padding: 3px 6px;
