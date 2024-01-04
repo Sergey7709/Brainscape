@@ -14,18 +14,24 @@ export const GreetingNonAuthorized = () => {
     <div className={s.container}>
       <Card id="cardHome" className={s.cardHome}>
         <Typography
-          variant="large"
-          className={s.signInTypography}
+          // variant="large"
+          className={s.signInTypographyTitle}
         >{`Welcome to the exciting and educational portal "Learning Cards"!`}</Typography>
         <Typography
           variant="h3"
-          className={s.signInTypography}
+          className={s.signInTypographyBody}
         >{`Our website provides a unique opportunity to learn and develop by playing exciting educational cards with questions.
 Our cards cover a wide range of topics, from general education questions to advanced subject topics. Thanks to the variety of content, there is something for everyone.
 Join the "Learning Cards" community and discover the fascinating world of knowledge through play! Learning becomes a pleasure. 🥇`}</Typography>
         <VideoComponent url={'https://fast.wistia.net/embed/iframe/gusdx64r2r?videoFoam=true'} />
-        <div className={s.signInButton}>
-          <Button variant={'tertiary'} as={NavLink} to={'/Login'} fullWidth>
+        <div className={s.signInButtonWrapper}>
+          <Button
+            variant={'tertiary'}
+            className={s.signInButton}
+            as={NavLink}
+            to={'/Login'}
+            fullWidth
+          >
             <Typography
               variant="h1"
               className={s.signInTypography}
