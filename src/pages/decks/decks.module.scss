@@ -131,6 +131,10 @@
     font-size: var(--font-size-xs);
   }// !!!!
 
+  @media (width <= 695px) {
+    width: 50px;
+  }// !!!!
+
   @media (width <= 540px) {
     width: 30px;
   }// !!!!
@@ -144,7 +148,7 @@
 
   //padding: 4px 10px;
 
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-s);
   text-overflow: ellipsis;
   white-space: nowrap;
 
