@@ -46,9 +46,13 @@
 //}
 
 .buttonAddNewPack {
-padding: 2px 10px;
+  @media (width <= 540px) {
+    padding: 2px 10px;
+  }// !!!!
 }
 
 .textButtonAddNewPack {
-  font-size: var(--font-size-xs);
+    @media (width <= 540px) {
+      font-size: var(--font-size-xs);
+  }// !!!!
 }
