@@ -1,21 +1,25 @@
 
-.TabsRoot {
+.tabsRoot {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
 
-  @media (width <= 540px) {
-   width: 95vw;
-  }// !!!!
+  //@media (width <= 1040px) {
+  //  width: 95vw;
+  //}// !!!!
+  //
+  //@media (width <= 540px) {
+  // width: 95vw;
+  //}// !!!!
 
 }
 
-.TabsList {
+.tabsList {
   display: flex;
   flex-shrink: 0;
 }
 
-.TabsTrigger {
+.tabsTrigger {
   cursor: pointer;
 
   display: inline-flex;
@@ -64,8 +68,14 @@
     border-left: 1px solid var(--color-dark-300);
   }
 
+  @media (width <= 1040px) {
+    width: 100%;
+
+  }// !!!!
+
   @media (width <= 540px) {
     width: 100%;
+
     //padding: 3px 10px;
     //padding: 2px 60px;
     padding: 2px 5px;
