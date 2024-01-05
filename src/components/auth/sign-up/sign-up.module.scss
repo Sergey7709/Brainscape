@@ -1,6 +1,14 @@
 .wrapper {
   max-width: 420px;
   padding: 30px 36px 29px;
+
+  @media (width <= 540px) {
+    width: 340px;
+  }// !!!!
+
+  @media (width <= 280px) {
+    width: 270px;
+  }// !!!!
 }
 
 .form {
