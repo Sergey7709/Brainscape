@@ -282,3 +282,9 @@ a.linkCell {
     font-size: var(--font-size-xs);
   }//!!!
 }
+
+.deckEditPackSave {
+  @media (width <= 540px) {
+    padding: 6px 10px;
+  }// !!!!
+}
