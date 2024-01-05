@@ -17,10 +17,27 @@
 .learnBackToDeckWrapper {
   margin-bottom: 36px;
   margin-left: 136px;
+
+  @media (width <= 540px) {
+    margin-left: 20px;
+  }// !!!!
+
+  //@media (width <= 280px) {
+  //  width: 270px;
+  //}// !!!!
 }
 
 .learnCards {
-padding: 33px 36px 48px
+padding: 33px 36px 48px;
+
+@media (width <= 540px) {
+  width: 340px;
+  padding: 33px 15px 48px;
+}// !!!!
+
+  @media (width <= 280px) {
+    width: 270px;
+  }// !!!!
 }
 
 .learnNamePack {
