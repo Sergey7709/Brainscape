@@ -1,3 +1,13 @@
+.signInCard {
+  @media (width <= 540px) {
+    width: 340px;
+  }// !!!!
+
+  @media (width <= 280px) {
+    width: 270px;
+  }// !!!!
+}
+
 .signInTypography {
   display: flex;
   justify-content: center;
@@ -29,6 +39,10 @@
   margin-bottom: 6px;
   padding-right: 253px;
   padding-left: 27px;
+
+  @media (width <= 540px) {
+   padding-right: 0;
+  }// !!!!
 }
 
 .signInForgotPasswordContainer {
@@ -73,6 +87,10 @@ a.signInLink {
   &:hover {
     color: var(--color-accent-300);
   }
+}
+
+.signInForm {
+  width: 100%;
 }
 
 
