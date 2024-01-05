@@ -2,6 +2,8 @@ import { BaseSyntheticEvent, Dispatch, ReactElement, RefObject, SetStateAction }
 
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form'
 
+import s from '.././pack.module.scss'
+
 import { Button } from '@/components/ui/button'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textfiled'
 import { ImageUploader } from '@/components/ui/imageUploader'
@@ -91,7 +93,7 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
                 Cancel
               </Typography>
             </Button>
-            <Button variant={'primary'} fullWidth>
+            <Button variant={'primary'} className={s.packModalButtonEditSave} fullWidth>
               <Typography as={'span'} variant={'body2'}>
                 {buttonTitle}
               </Typography>
