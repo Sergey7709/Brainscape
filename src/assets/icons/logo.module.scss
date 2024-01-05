@@ -3,10 +3,18 @@
   height: 36px;
 }
 
-@media (width <= 1006px) {
+@media (width <= 1040px) {
   .svgLogo {
-    width: 90px;
+    //width: 90px;
+    width: 140px;
   }
+}
+
+  @media (width <= 540px) {
+    .svgLogo {
+      //width: 90px;
+      width: 110px;
+    }
 }
 
 //@media (width >= 1000px) {
