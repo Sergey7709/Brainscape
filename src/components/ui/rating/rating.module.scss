@@ -1,8 +1,19 @@
 .wrapper {
   display: flex;
   gap: 10px;
+
+  @media (width <= 540px) {
+    gap: 1px;
+
+  }// !!!!
 }
 
-.star {
+//.star {
+//  cursor: pointer;
+//}
+
+.spanRating {
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
