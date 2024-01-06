@@ -6,6 +6,10 @@
   &:hover:not(:disabled) {
     background: var(--color-danger-500);
   }
+
+  @media (width <= 540px) {
+    padding: 6px 10px;
+  }// !!!!
 }
 
 .buttonCancel {
