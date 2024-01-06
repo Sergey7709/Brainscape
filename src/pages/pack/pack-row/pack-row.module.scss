@@ -35,6 +35,7 @@
   white-space: nowrap;
 
   @media (width <= 540px) {
+    margin: 0;
   font-size: 10px;
   }// !!!!
 }
@@ -59,7 +60,8 @@
   @media (width <= 540px) {
     gap:5px;
     width: 30px;
-    height: 10px
+
+    //height: 20px
   }// !!!!
 }
 
@@ -93,6 +95,7 @@
   overflow-wrap: break-word;
 
   @media (width <= 540px) {
+    margin: 0;
     font-size: 10px;
   }// !!!!
 }
