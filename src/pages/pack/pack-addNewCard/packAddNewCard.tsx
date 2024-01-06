@@ -4,8 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import s from '.././pack.module.scss'
+
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
+import { Typography } from '@/components/ui/typography'
 import { useAddNewCard } from '@/pages/decks/hooks-and-functions/useAddNewCard.ts'
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
 import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
@@ -100,8 +103,10 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
         headerTitle={'Add new card'}
         buttonTitle={'Add new card'}
       >
-        <Button as={'button'} variant={'primary'}>
-          Add New Card
+        <Button as={'button'} variant={'primary'} className={s.packButtonAddNewCard}>
+          <Typography variant={'body1'} className={s.packButtonAddNewCardText}>
+            Add New Card
+          </Typography>
         </Button>
       </ModalAddOrEditCard>
     </>
