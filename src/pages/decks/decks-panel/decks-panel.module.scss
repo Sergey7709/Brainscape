@@ -5,15 +5,17 @@
 }
 
 .slider {
-  width: 100%;
-  max-width: 250px;
+  //width: 100%;
+
+  //max-width: 250px;
+  width: 251px;
 
   @media (width <= 1040px) {
-    max-width: 95vw;
+    width: 100%;
   }// !!!!
 
   @media (width <= 540px) {
-   max-width: 95vw;
+    width: 100%;
   }// !!!!
 }
 
@@ -25,11 +27,7 @@
 
   width: 100%;
 
-  //@media (width <= 1006px) {
-  //  flex-flow: row wrap;
-  //  align-items:end;
-  //  justify-content: flex-start;
-  //}// !!!!
+
   @media (width <= 1040px) {
     flex-direction: column;
     align-items: start;
@@ -59,8 +57,10 @@
 }
 
 .decksPanelTextField {
+  width: 299px;
+
   @media (width <= 1040px) {
-    //width: 95vw;
+    width: 100%
   }// !!!!
 
 
@@ -73,7 +73,12 @@
 }
 
 .decksPanelButtonWrapper{
-  width:100%
+  width:100%;
+
+  @media (width >= 1040px) {
+  //margin-left: 11px;
+}// !!!!
+
 }
 
 .decksPanelButton {
@@ -89,6 +94,7 @@
 
 .decksPanelClearFilter {
   font-size: var(--font-size-s);
+  font-weight: 700;
 
   @media (width <= 540px) {
     font-size: small;
@@ -96,6 +102,15 @@
 
 }
 
-.decksPanelTabSwitcherWrapper {
-  width: 100%;
+div.decksPanelTabSwitcherWrapper {
+width:229px;
+
+  //width: 100%;
+  @media (width <= 1040px) {
+    width: 100%;}
+
+  //@media (width <= 540px) {
+  //  width: 100%;
+  //}// !!!!
+
 }
