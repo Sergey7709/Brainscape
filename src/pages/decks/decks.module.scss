@@ -8,7 +8,7 @@
   margin-bottom: 30px;
   padding-top: 96px;
 
-  @media (width <= 1040px) { //!!!!
+  @media (width <= 1040px) {
     padding-right: 15px;
     padding-left: 15px;
   }
@@ -16,20 +16,20 @@
   @media (width <= 540px) {
     padding-right: 5px;
     padding-left: 5px;
-  }// !!!!
+  }
 }
 
 .deck {
   width: 1006px;
 
   @media (width <= 1040px) {
-    width: 100%; //!!!!
+    width: 100%;
     padding: 5px
   }
 
   @media (width <= 540px) {
     padding: 5px
-  }// !!!!
+  }
 
  }
 
@@ -38,20 +38,14 @@
   justify-content: space-between;
   width: 100%;
 
-  //@media (width <= 1006px) {
-  // margin-bottom: 2rem;
-  //}//!!!!
-
   @media (width <= 1040px) {
     margin-bottom: 2rem;
-  }//!!!!
+  }
 
   @media (width <= 540px) {
     align-items: center;
 
-    //padding-right: 20px;
-    //padding-left: 20px;
-  }// !!!!
+  }
 
 }
 
@@ -70,17 +64,14 @@
 
   @media (width <= 1006px) {
     flex-direction: column;
-
-    //align-items: center;
-    //justify-content: center;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 100%; // !!!!
+    width: 100%;
   }
 
   @media (width <= 540px) {
     gap:10px
-  }// !!!!
+  }
 }
 
 .textNoData {
@@ -110,17 +101,13 @@
   width: 285px;
 
   @media (width <= 1006px) {
-    //gap:5px;
-    width: 100%
-
-    //width: 270px
-
-  }// !!!!
+      width: 100%
+  }
 
   @media (width <= 540px) {
     gap:5px;
     width: 80px
-  }// !!!!
+  }
 }
 
 .imgCover {
@@ -135,15 +122,15 @@
   @media (width <= 1006px) {
     width: 90px;
     font-size: var(--font-size-xs);
-  }// !!!!
+  }
 
   @media (width <= 695px) {
     width: 50px;
-  }// !!!!
+  }
 
   @media (width <= 540px) {
     width: 30px;
-  }// !!!!
+  }
 }
 
 .textForName {
@@ -152,8 +139,6 @@
   max-width: 100%;
   margin: 0;
 
-  //padding: 4px 10px;
-
   font-size: var(--font-size-s);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -161,14 +146,12 @@
   @media (width <= 1006px) {
     width: 90px;
     font-size: var(--font-size-xs);
-  }// !!!!
+  }
 
   @media (width <= 540px) {
     max-width: 100%;
-
-    //font-size: 8px;
     word-wrap: break-word;
-      }// !!!!
+      }
 }
 
 a.linkCell {
@@ -196,16 +179,14 @@ a.linkCell {
   }
 
   @media (width <= 1006px) {
-    //width: 100%;
     width: 90px;
     padding: 0 5px;
-  }// !!!!
+  }
 
   @media (width <= 540px) {
-  //width: 100%;
     width: 90px;
     padding: 0 5px;
-  }// !!!!
+  }
 }
 
 .buttonContainer {
@@ -213,10 +194,9 @@ a.linkCell {
   justify-content: flex-start;
 
   @media (width <= 540px) {
-    //width: 100%;
     width: 50px;
     padding: 0 5px;
-  }// !!!!
+  }
 }
 
 .buttonRow {
@@ -230,7 +210,7 @@ a.linkCell {
 
   @media (width <= 540px) {
     padding: 0
-  }// !!!!
+  }
 }
 
 .disabledButtonRow {
@@ -245,7 +225,7 @@ a.linkCell {
   align-items: center;
   justify-content: flex-start;
 
-  margin-left: 10px;//!!!
+  margin-left: 10px;
 
 }
 
@@ -256,7 +236,7 @@ a.linkCell {
 .headCellDeck {
   @media (width <= 1006px) {
    font-size: var(--font-size-xs);
-  }//!!!
+  }
 
 }
 
@@ -268,7 +248,7 @@ a.linkCell {
     font-size: var(--font-size-xl);
     font-weight: bold;
 
-  }// !!!!
+  }
 }
 
 .deckItemTypography{
@@ -276,15 +256,15 @@ a.linkCell {
 
   @media (width <= 1006px) {
     font-size: var(--font-size-s);
-  }//!!!
+  }
 
   @media (width <= 540px) {
     font-size: var(--font-size-xs);
-  }//!!!
+  }
 }
 
 .deckEditPackSave {
   @media (width <= 540px) {
     padding: 6px 10px;
-  }// !!!!
+  }
 }

@@ -62,7 +62,6 @@ export const DeckComposition = memo(() => {
         <div className={classNames.container}>
           <div className={classNames.deck}>
             <div className={classNames.head}>
-              {/*<Typography variant={'large'}>Packs list</Typography>*/}
               <Typography className={s.title}>Packs list</Typography>
               <DeckAddNewPack />
             </div>

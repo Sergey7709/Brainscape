@@ -1,54 +1,9 @@
-//
-//.cover {
-//  display: flex;
-//  justify-content: space-between;
-//  width: 100%;
-//
-//
-//  .imgCoverWrapper {
-//    display: flex;
-//    justify-content: flex-start;
-//    width: 50%;
-//  }
-//
-//  .buttonCoverWrapper {
-//    display: flex;
-//    justify-content: flex-end;
-//    width: 50%;
-//  }
-//
-//  .imageCover {
-//    max-width: 118.265px;
-//    max-height: 48px;
-//    border-radius: 2px;
-//  }
-//
-//  .modalAddButtonCover {
-//    flex-shrink: 0;
-//    align-self: flex-start;
-//
-//    width: 145px;
-//    height: 28px;
-//    padding: 6px;
-//
-//  }
-//
-//  .modalAddInputCover {
-//    cursor: pointer;
-//    display: none;
-//
-//  }
-//
-//}
-//
-//.formAddPack {
-//  width: 100%;
-//}
+
 
 .buttonAddNewPack {
   @media (width <= 540px) {
     padding: 2px 10px;
-  }// !!!!
+  }
 }
 
 .textButtonAddNewPack {
@@ -57,5 +12,5 @@
 
     @media (width <= 540px) {
       font-size: var(--font-size-xs);
-  }// !!!!
+  }
 }
