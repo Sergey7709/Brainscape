@@ -52,6 +52,9 @@
 }
 
 .textButtonAddNewPack {
+  font-size: var(--font-size-s);
+  font-weight: 700;
+
     @media (width <= 540px) {
       font-size: var(--font-size-xs);
   }// !!!!
