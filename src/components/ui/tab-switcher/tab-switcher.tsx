@@ -83,7 +83,6 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
         </Typography>
       )}
       <Tabs.Root
-        // className={s.tabsRoot}
         className={clsx(s.tabsRoot, className)}
         defaultValue={defaultValue}
         value={value}

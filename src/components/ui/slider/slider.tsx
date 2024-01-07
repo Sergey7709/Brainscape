@@ -17,14 +17,12 @@ export const Slider = (props: Props & Omit<RadixSlider.SliderProps, keyof Props>
   const { min = 0, max = 100, label, className, value = [0, 100], style, ...restProps } = props
 
   return (
-    // <div className={className} style={style}>
     <div className={className} style={style}>
       {label && (
         <Typography variant="body1" className={s.label}>
           {label}
         </Typography>
       )}
-      {/*<div className={s.slider}>*/}
       <div className={clsx(s.slider, className)}>
         <input type="number" className={s.input} value={value[0] ?? min} readOnly />
         <RadixSlider.Root className={s.root} value={value} min={min} max={max} {...restProps}>

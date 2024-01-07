@@ -7,8 +7,6 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     ref={ref}
     xmlns="http://www.w3.org/2000/svg"
     className={s.starOutlined}
-    // width="16"
-    // height="16"
     viewBox="0 0 16 16"
     fill="none"
     {...props}

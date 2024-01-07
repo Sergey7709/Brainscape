@@ -5,8 +5,6 @@ import s from './logo.module.scss'
 const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    // width="157"
-    // height="36"
     className={s.svgLogo}
     viewBox="0 0 157 36"
     fill="none"

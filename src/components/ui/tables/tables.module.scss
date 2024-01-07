@@ -11,9 +11,6 @@
 
   border: 1px solid var(--color-dark-500);
 
-  //@media (width <= 1006px) {
-  //  flex-flow: row wrap;
-  //}//!!!
 }
 
 .headCell {
@@ -38,24 +35,15 @@
     font-style: normal;
     line-height: 1.5rem;
 
-    //@media (width <= 1006px)
-    //{font-size: var(--font-size-xs);
-    //}//!!!
 
     @media (width <= 1006px) {
-      //grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       font-size: var(--font-size-xs);
-    }//!!!
+    }
 
     @media (width <= 540px) {
-      //grid-template-columns: repeat(auto-fit, minmax(50px, 0.5fr));
-      //grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
-
-      //font-size: var(--font-size-xs);
       font-size: 10px;
 
-      //display: flex;
-    }// !!!!
+    }
 
   }
 
@@ -70,7 +58,7 @@
   @media (width <= 1006px) {
     padding: 4px 10px;
     font-size: var(--font-size-xs);
-  }//!!!
+  }
 }
 
 .trStyle {
@@ -78,15 +66,13 @@
   grid-template-columns: 2.7fr 1fr 1.5fr 2fr 1fr;
 
   @media (width <= 1006px) {
-    //grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }//!!!
+
+  }
 
   @media (width <= 540px) {
-    //grid-template-columns: repeat(auto-fit, minmax(50px, 0.5fr));
     grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
 
-    //display: flex;
-  }// !!!!
+  }
 
 
 }
@@ -108,19 +94,18 @@
 
     @media (width <= 540px) {
       padding: 0
-    }// !!!!
+    }
   }
 
   @media (width <= 1006px) {
     padding: 4px 10px;
     font-size: var(--font-size-xs);
-  }//!!!
+  }
 
   @media (width <= 540px) {
     padding: 2px 6px;
 
-    //font-size: 8px;
-  }// !!!!
+  }
 }
 
 .chevronDown {

@@ -7,8 +7,6 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     xmlns="http://www.w3.org/2000/svg"
     className={s.starFulfilled}
     ref={ref}
-    // width="16"
-    // height="16"
     viewBox="0 0 16 16"
     fill="none"
     {...props}
