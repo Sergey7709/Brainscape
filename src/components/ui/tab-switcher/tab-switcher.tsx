@@ -47,6 +47,7 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
     activationMode = 'automatic',
     loop = true,
     label,
+    className,
     ...restProps
   } = props
 
@@ -82,7 +83,8 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
         </Typography>
       )}
       <Tabs.Root
-        className={s.tabsRoot}
+        // className={s.tabsRoot}
+        className={clsx(s.tabsRoot, className)}
         defaultValue={defaultValue}
         value={value}
         onValueChange={onValueChange}
