@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { Rating } from '@/components/ui/rating'
 import { Table } from '@/components/ui/tables'
+import { Typography } from '@/components/ui/typography'
 import { PackEditCard } from '@/pages/pack/pack-editCard/packEditCard.tsx'
 import { ModalDeleteCard } from '@/pages/pack/pack-modal-delete-card/modalDeleteCard.tsx'
 import s from '@/pages/pack/pack-row/pack-row.module.scss'
@@ -64,7 +65,9 @@ export const PackRow = (pack: extendPackRow) => {
             <p className={s.packAnswerStyle}> {pack.answer}</p>
           </div>
         </Table.Cell>
-        <Table.Cell>{updatedDateFormat}</Table.Cell>
+        <Table.Cell>
+          <Typography className={s.packRowDate}>{updatedDateFormat}</Typography>
+        </Table.Cell>
         <Table.Cell>
           <div>
             <Rating count={5} value={pack.grade} className={s.packRating} />

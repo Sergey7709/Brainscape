@@ -1,6 +1,14 @@
 .card {
   max-width: 413px;
   padding: 35px 33px 48px;
+
+  @media (width <= 540px) {
+    width: 340px;
+  }
+
+  @media (width <= 280px) {
+    width: 270px;
+  }
 }
 
 .title {

@@ -31,9 +31,6 @@ const deckParamsSlice = createSlice({
   name: 'deckParams',
   initialState,
   reducers: {
-    // currentPageReducer: (state, action: PayloadAction<InitialState>) => {
-    //   state.currentPage = action.payload.currentPage ?? currentPageValue
-    // },
     findNameReducer: (state, action: PayloadAction<InitialState>) => {
       state.findName = action.payload.findName ?? findNameValue
     },
@@ -46,20 +43,16 @@ const deckParamsSlice = createSlice({
     selectItemsPerPageReducer: (state, action: PayloadAction<InitialState>) => {
       state.selectItemsPerPage = action.payload.selectItemsPerPage ?? selectItemsPerPageValue
     },
-    // sortTableReducer: (state, action: PayloadAction<InitialState>) => {
-    //   state.sortTable = action.payload.sortTable ?? null
-    // },
+
     clearFilterReducer: () => initialState,
   },
 })
 
 export const {
-  // currentPageReducer,
   findNameReducer,
   clearFilterReducer,
   minMaxCardsCountReducer,
   packFindNameReducer,
   selectItemsPerPageReducer,
-  // sortTableReducer,
 } = deckParamsSlice.actions
 export default deckParamsSlice.reducer

@@ -23,8 +23,6 @@ export const Layout = () => {
     navigate('/greeting')
   }
 
-  // console.log('layout', isAuthenticated, 'isLoading', isLoading, 'data', data)
-
   return (
     <>
       <div className={classNames.container}>

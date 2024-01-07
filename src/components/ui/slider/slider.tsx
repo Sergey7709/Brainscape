@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react'
 
 import * as RadixSlider from '@radix-ui/react-slider'
+import { clsx } from 'clsx'
 
 import s from './slider.module.scss'
 
@@ -22,7 +23,7 @@ export const Slider = (props: Props & Omit<RadixSlider.SliderProps, keyof Props>
           {label}
         </Typography>
       )}
-      <div className={s.slider}>
+      <div className={clsx(s.slider, className)}>
         <input type="number" className={s.input} value={value[0] ?? min} readOnly />
         <RadixSlider.Root className={s.root} value={value} min={min} max={max} {...restProps}>
           <RadixSlider.Track className={s.track}>

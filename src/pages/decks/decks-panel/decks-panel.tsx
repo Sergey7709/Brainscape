@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
 import { TextField } from '@/components/ui/textField'
+import { Typography } from '@/components/ui/typography'
 import { milliSecondsValue, useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
 import {
   clearFilterReducer,
@@ -66,6 +67,7 @@ export const DecksPanel = memo(() => {
     decksPanel: s.decksPanel,
     searchInput: s.searchInput,
     slider: s.slider,
+    textField: s.decksPanelTextField,
   }
 
   const handlerSliderCommitValue = (value: number[]) => {
@@ -105,23 +107,27 @@ export const DecksPanel = memo(() => {
             placeholder={'Input search'}
             onValueChange={handlerTextFieldChangeValue}
             value={isFirstRender ? findText : searchValue}
+            className={classNames.textField}
           />
         </div>
-        <TabSwitcher
-          label={'Show packs cards'}
-          value={myOrAllAuthorCards === 'allCards' ? 'allCards' : 'myCards'}
-          tabData={[
-            {
-              title: 'My cards',
-              value: 'myCards',
-            },
-            {
-              title: 'All cards',
-              value: 'allCards',
-            },
-          ]}
-          onValueChange={value => handlerTabSwitchChangeValue(value === 'myCards' ? meID : [])}
-        />
+        <div className={s.decksPanelTabSwitcherWrapper}>
+          <TabSwitcher
+            label={'Show packs cards'}
+            value={myOrAllAuthorCards === 'allCards' ? 'allCards' : 'myCards'}
+            tabData={[
+              {
+                title: 'My cards',
+                value: 'myCards',
+              },
+              {
+                title: 'All cards',
+                value: 'allCards',
+              },
+            ]}
+            onValueChange={value => handlerTabSwitchChangeValue(value === 'myCards' ? meID : [])}
+            className={s.decksPanelTabSwitcherWrapper}
+          />
+        </div>
         <Slider
           className={classNames.slider}
           label={'Number of cards'}
@@ -131,9 +137,11 @@ export const DecksPanel = memo(() => {
           value={actualValueSlider}
           onValueChange={handlerValueChangeSlider}
         />
-        <Button variant={'secondary'} onClick={handlerClearFilter}>
-          <Delete /> Clear Filter
-        </Button>
+        <div className={s.decksPanelButtonWrapper}>
+          <Button variant={'secondary'} onClick={handlerClearFilter} className={s.decksPanelButton}>
+            <Delete /> <Typography className={s.decksPanelClearFilter}>Clear Filter</Typography>
+          </Button>
+        </div>
       </div>
     </>
   )

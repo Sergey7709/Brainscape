@@ -2,6 +2,8 @@ import { BaseSyntheticEvent, Dispatch, ReactElement, RefObject, SetStateAction }
 
 import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
+import s from '../decks.module.scss'
+
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
 import { ImageUploader } from '@/components/ui/imageUploader/imageUploader.tsx'
@@ -92,7 +94,7 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
                 Cancel
               </Typography>
             </Button>
-            <Button variant={'primary'} fullWidth>
+            <Button variant={'primary'} className={s.deckEditPackSave} fullWidth>
               <Typography as={'span'} variant={'body2'}>
                 {buttonTitle}
               </Typography>

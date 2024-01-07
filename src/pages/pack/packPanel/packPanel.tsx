@@ -63,7 +63,11 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
       <BackToDeckLink className={s.linkPackList} />
       <div className={s.containerTitleAndButton}>
         <div className={s.containerTitle}>
-          {dataDeck && <Typography variant={'large'}>{title}</Typography>}
+          {dataDeck && (
+            <Typography variant={'large'} className={s.packTitle}>
+              {title}
+            </Typography>
+          )}
           {dropdown}
         </div>
         {mePackCards ? (

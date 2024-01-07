@@ -41,6 +41,7 @@ export const PackSearch = () => {
         placeholder={'Input search'}
         onValueChange={handlerTextFieldChangeValue}
         value={isFirstRender ? findText : packSearchValue}
+        className={s.packSearch}
       />
     </div>
   )

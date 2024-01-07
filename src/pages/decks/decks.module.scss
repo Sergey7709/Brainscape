@@ -7,16 +7,45 @@
   height: 100%;
   margin-bottom: 30px;
   padding-top: 96px;
+
+  @media (width <= 1040px) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  @media (width <= 540px) {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
 }
 
 .deck {
-  width: 1006px; ///!!!!!!!! исправить для адаптива
+  width: 1006px;
+
+  @media (width <= 1040px) {
+    width: 100%;
+    padding: 5px
+  }
+
+  @media (width <= 540px) {
+    padding: 5px
+  }
+
  }
 
 .head {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  @media (width <= 1040px) {
+    margin-bottom: 2rem;
+  }
+
+  @media (width <= 540px) {
+    align-items: center;
+
+  }
 
 }
 
@@ -28,9 +57,22 @@
   display: flex;
   gap: 24px;
   justify-content: start;
-  width: 1006px;
 
-} ///!!!!!!!! исправить для адаптива
+  width: 1006px;
+  padding-top: 5px;
+  padding-left: 16px;
+
+  @media (width <= 1006px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  @media (width <= 540px) {
+    gap:10px
+  }
+}
 
 .textNoData {
   font-weight: 700;
@@ -58,6 +100,14 @@
 
   width: 285px;
 
+  @media (width <= 1006px) {
+      width: 100%
+  }
+
+  @media (width <= 540px) {
+    gap:5px;
+    width: 80px
+  }
 }
 
 .imgCover {
@@ -68,6 +118,19 @@
 
   object-fit: cover;
   border-radius: 3px;
+
+  @media (width <= 1006px) {
+    width: 90px;
+    font-size: var(--font-size-xs);
+  }
+
+  @media (width <= 695px) {
+    width: 50px;
+  }
+
+  @media (width <= 540px) {
+    width: 30px;
+  }
 }
 
 .textForName {
@@ -76,9 +139,19 @@
   max-width: 100%;
   margin: 0;
 
+  font-size: var(--font-size-s);
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  @media (width <= 1006px) {
+    width: 90px;
+    font-size: var(--font-size-xs);
+  }
+
+  @media (width <= 540px) {
+    max-width: 100%;
+    word-wrap: break-word;
+      }
 }
 
 a.linkCell {
@@ -98,61 +171,32 @@ a.linkCell {
     color: var(--color-light-100);
   }
 
-  //&:hover:not(:disabled)  {
-  //  color: var(--color-light-100);
-  //  animation: shadow-pop-tl 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-  //}
-  //
-  //@keyframes shadow-pop-tl {
-  //  0% {
-  //    transform: translateX(0) translateY(0);
-  //    box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
-  //
-  //  }
-  //
-  //  100% {
-  //    transform: translateX(4px) translateY(4px);
-  //    box-shadow: -1px -1px #3e3e3e, -2px -2px #3e3e3e, -3px -3px #3e3e3e, -4px -4px #3e3e3e
-  //
-  //  }
-  //}
-
-  //&:hover:not(:disabled)  {
-  //  color: var(--color-light-100);
-  //  animation: text-blur-out 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-  //}
-  //
-  //@keyframes text-blur-out {
-  //  0% {
-  //    filter: blur(0.5);
-  //  }
-  //
-  //  50% {
-  //    filter: blur(12px) opacity(50%);
-  //  }
-  //
-  //  100% {
-  //    filter: blur(0.01);
-  //  }
-  //}
 
   &:hover:not(:disabled)  {
     color: var(--color-light-100);
-
-    //background: rgba(241 241 242);
     border-radius: 10px;
     box-shadow: 2px 2px 20px #262626, -2px -2px 20px  #fff;
-
-    //box-shadow: 6px 6px 6px #262626, -6px -6px 6px #fff;
-
   }
 
+  @media (width <= 1006px) {
+    width: 90px;
+    padding: 0 5px;
+  }
 
+  @media (width <= 540px) {
+    width: 90px;
+    padding: 0 5px;
+  }
 }
 
 .buttonContainer {
   display: flex;
   justify-content: flex-start;
+
+  @media (width <= 540px) {
+    width: 50px;
+    padding: 0 5px;
+  }
 }
 
 .buttonRow {
@@ -162,6 +206,10 @@ a.linkCell {
     cursor: pointer;
     scale: 130%;
     transition: 0.3s;
+  }
+
+  @media (width <= 540px) {
+    padding: 0
   }
 }
 
@@ -177,9 +225,46 @@ a.linkCell {
   align-items: center;
   justify-content: flex-start;
 
+  margin-left: 10px;
+
 }
 
 .modalRow {
   display: none;
 }
 
+.headCellDeck {
+  @media (width <= 1006px) {
+   font-size: var(--font-size-xs);
+  }
+
+}
+
+.title {
+  font-size: var(--font-size-xxl);
+  line-height: 36px;
+
+  @media (width <= 540px) {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+
+  }
+}
+
+.deckItemTypography{
+  font-size: var(--font-size-m);
+
+  @media (width <= 1006px) {
+    font-size: var(--font-size-s);
+  }
+
+  @media (width <= 540px) {
+    font-size: var(--font-size-xs);
+  }
+}
+
+.deckEditPackSave {
+  @media (width <= 540px) {
+    padding: 6px 10px;
+  }
+}

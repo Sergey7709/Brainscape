@@ -47,6 +47,7 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
     activationMode = 'automatic',
     loop = true,
     label,
+    className,
     ...restProps
   } = props
 
@@ -54,7 +55,7 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
     <TabsTrigger
       key={el.value}
       className={clsx(
-        s.TabsTrigger,
+        s.tabsTrigger,
         el.disabled && s.disabled,
         fullWidth && s.fullWidth,
         index !== 0 && s.nextTab,
@@ -82,7 +83,7 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
         </Typography>
       )}
       <Tabs.Root
-        className={s.TabsRoot}
+        className={clsx(s.tabsRoot, className)}
         defaultValue={defaultValue}
         value={value}
         onValueChange={onValueChange}
@@ -91,7 +92,7 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
         dir={dir}
         asChild={restProps.asChild}
       >
-        <Tabs.List className={s.TabsList} loop={loop}>
+        <Tabs.List className={s.tabsList} loop={loop}>
           {renderTabsForTrigger}
         </Tabs.List>
         {renderChildrenOrTabContent}
