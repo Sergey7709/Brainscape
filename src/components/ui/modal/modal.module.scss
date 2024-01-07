@@ -46,6 +46,7 @@
     &.md,
     &.lg {
       width: calc(100% - 32px);
+
     }
   }
 }
@@ -112,6 +113,15 @@
 
   &.lg {
     gap: 470px;
+  }
+
+  @media screen and (width <= 768px) {
+    &,
+    &.sm,
+    &.md,
+    &.lg {
+      gap: calc(100% - 210px);
+    }
   }
 }
 

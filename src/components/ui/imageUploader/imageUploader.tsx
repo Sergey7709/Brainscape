@@ -31,7 +31,6 @@ export const ImageUploader = ({
 
     if (!files || files.length === 0) {
       onChangeForm('')
-      console.log('empty string')
     } else {
       onChangeForm(files)
     }

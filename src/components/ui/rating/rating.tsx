@@ -56,7 +56,8 @@ export const Rating: FC<RatingProps> = ({
     stars.push(
       <span
         key={i}
-        style={{ cursor: 'pointer' }}
+        className={s.spanRating}
+        // style={{ cursor: 'pointer' }}
         onMouseMove={() => handleMouseMove(i)}
         onMouseLeave={handleMouseLeave}
         onClick={() => handleClick(i)}

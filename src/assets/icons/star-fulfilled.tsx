@@ -1,11 +1,12 @@
 import { forwardRef, memo, Ref, SVGProps } from 'react'
 
+import s from '@/assets/icons/star-fulfilled.module.scss'
+
 const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
+    className={s.starFulfilled}
     ref={ref}
-    height="16"
     viewBox="0 0 16 16"
     fill="none"
     {...props}

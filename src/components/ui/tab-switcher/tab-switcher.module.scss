@@ -1,23 +1,28 @@
 
-.TabsRoot {
+.tabsRoot {
   display: flex;
   flex-direction: column;
+
+  width: 100%;
   margin-top: 5px;
 
+
 }
 
-.TabsList {
+.tabsList {
   display: flex;
   flex-shrink: 0;
+
 }
 
-.TabsTrigger {
+.tabsTrigger {
   cursor: pointer;
 
   display: inline-flex;
   gap: 10px;
   align-items: center;
   justify-content: center;
+
 
   padding: 6px 24px;
 
@@ -60,8 +65,18 @@
     border-left: 1px solid var(--color-dark-300);
   }
 
+  @media (width <= 1040px) {
+  width: 100%;
+
+}
+
 }
 
 .fullWidth {
   width: 100%;
 }
+
+.label {
+  @media (width <= 540px) {
+  font-size: small;
+}}

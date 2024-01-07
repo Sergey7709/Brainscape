@@ -1,15 +1,53 @@
-div .wrapper {
+.containerHeader {
   position: fixed;
-  z-index: 9998;//!!! Проверить и поправить
+  z-index: 9998;
   top: 0;
   left: 0;
+
+  align-content: center;
+  align-items: center;
+
+  width: 100%;//!!! Проверить и поправить
+  height: 60px;
+}
+
+div.wrapper {
+  //position: fixed;
+  //z-index: 9998;//!!! Проверить и поправить
+  //top: 0;
+  //left: 0;
 
   flex-direction: row;
   justify-content: space-between;
 
   width: 100%;
+
+  //width: 1006px;
   height: 60px;
   padding: 12px 136px;
+
+
+  @media (width <= 1040px) {
+    width: 100%;
+
+    //padding: 5%;
+    padding: 12px 15px;
+
+    //padding: 137px;
+
+
+  }// !!!!
+
+  @media (width <= 540px) {
+   width: 100%;
+
+    //padding: 10px;
+    padding: 12px 20px;
+  }// !!!!
+
+  @media (width <= 280px) {
+    padding: 12px 40px;
+  }// !!!!
 }
 
 .profile {
@@ -36,6 +74,10 @@ div .wrapper {
     background-position: 0 0;
     background-size: 7px 1px;
   }
+
+  @media (width <= 1006px) {
+    font-size: var(--font-size-xs);
+  }// !!!!
 }
 
 .avatar {
@@ -55,11 +97,51 @@ div .profileInfo:hover {
   height: 96px;
   object-fit: cover;
   border-radius: 50%;
+
+  @media (width <= 540px) {
+    width: 36px;
+    height: 36px;
+
+  }// !!!!
 }
 
 .info { display: flex;
 flex-direction: column  }
 
-.email {
-color: #808080
+span.email {
+color: #808080;
+
+@media (width <= 540px) {
+  font-size: 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}// !!!!
+}
+
+span.name{
+    @media (width <= 540px) {
+    font-size: var(--font-size-xs);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }// !!!!
+}
+
+.dropdownMenu {
+  @media (width <= 1006px) {
+    width: 100%
+
+  }// !!!!
+
+  //@media (width <= 440px) {
+  //  width: 90%;
+  //
+  //}// !!!!
+}
+
+button.buttonHeader {
+
+  @media (width <= 540px) {
+    padding: 1px 10px;
+    font-size: var(--font-size-xs);
+  }// !!!!
 }

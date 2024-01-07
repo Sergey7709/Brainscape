@@ -11,15 +11,18 @@ export const GreetingAuthorized = () => {
       <Card id="cardHome" className={s.cardHome}>
         <Typography
           variant="h3"
-          className={s.signInTypography}
+          className={s.signInTypographyBody}
         >{`Обучающие карточки - это интерактивный способ изучения нового материала или повторения уже изученного. Каждая карточка содержит вопрос и ответ. Вы можете создавать свои собственные наборы карточек или использовать готовые наборы, созданные другими пользователями.`}</Typography>
 
-        <div className={s.signInButton}>
-          <Button variant={'tertiary'} as={NavLink} to={'/deck'} fullWidth>
-            <Typography
-              variant="h1"
-              className={s.signInTypography}
-            >{`Начать обучение!`}</Typography>
+        <div className={s.signInButtonWrapper}>
+          <Button
+            variant={'tertiary'}
+            className={s.signInButton}
+            as={NavLink}
+            to={'/deck'}
+            fullWidth
+          >
+            <Typography variant="h1">{`Начать обучение!`}</Typography>
           </Button>
         </div>
       </Card>

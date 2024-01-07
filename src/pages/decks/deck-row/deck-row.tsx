@@ -8,7 +8,6 @@ import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { Table } from '@/components/ui/tables'
-import { Typography } from '@/components/ui/typography'
 import { DeckEditPack } from '@/pages/decks/deck-editPack/deckEditPack.tsx'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import s from '@/pages/decks/decks.module.scss'
@@ -76,9 +75,7 @@ export const DeckRow = (deck: DeckType) => {
           </Table.Cell>
           <Table.Cell>{deck.cardsCount}</Table.Cell>
           <Table.Cell>{updatedDateFormat}</Table.Cell>
-          <Table.Cell>
-            <Typography>{deck.author.name}</Typography>
-          </Table.Cell>
+          <Table.Cell>{deck.author.name}</Table.Cell>
           <Table.Cell>
             <div className={s.buttonContainer}>
               <Button

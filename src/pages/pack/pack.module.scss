@@ -9,12 +9,19 @@
   margin-bottom: 30px;
   padding-top: 84px;
 
-
 }
 
 .pack{
-  width: 1006px; ///!!!!!!!! исправить для адаптива
+  width: 1006px;
 
+  @media (width <= 1040px) {
+    width: 100%;
+    padding: 5px
+  }
+
+  @media (width <= 540px) {
+    padding: 5px
+  }
 }
 
 .containerTitleAndButton {
@@ -31,6 +38,25 @@
     align-items: center;
   }
 
+}
+
+.packTitle {
+  @media (width <= 540px) {
+    font-size: var(--font-size-l);
+  }
+}
+
+.packButtonAddNewCard {
+  @media (width <= 540px) {
+    padding: 1px 10px;
+  }
+}
+
+.packButtonAddNewCardText {
+
+    @media (width <= 540px) {
+      font-size: var(--font-size-xs);
+    }
 }
 
   .packButton {
@@ -55,6 +81,11 @@
   margin-top: 15px;
   margin-bottom: 25px;
 
+  @media (width <= 540px) {
+    width: 100px;
+    height: 54px;
+  }
+
 }
 
 .packImgNone {
@@ -69,6 +100,16 @@
   grid-template-columns:  1.8fr 1.8fr 0.9fr 1fr 0.6fr;
   width: 100%;
 
+  @media (width <= 540px) {
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.6fr;
+  }
+
+}
+
+.packSearch {
+  @media (width <= 540px) {
+    height: 30px;
+  }
 }
 
 .inputPackRowWrapper {
@@ -78,8 +119,25 @@
 .paginationWrapperPack {
   display: flex;
   justify-content: start;
+
   width: 1006px;
-} ///!!!!!!!! исправить для адаптива
+  padding-top: 5px;
+  padding-left: 16px;
+
+  @media (width <= 1006px) {
+    flex-direction: column;
+
+    //align-items: center;
+    //justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  @media (width <= 540px) {
+    gap:10px
+  }
+}
 
 .packHeadCellListStyle{
   width: 100%;
@@ -121,3 +179,12 @@
   margin: 0;
   padding: 0;
 }
+
+.packModalButtonEditSave {
+
+  @media (width <= 540px) {
+    padding: 6px 10px;
+  }
+}
+
+

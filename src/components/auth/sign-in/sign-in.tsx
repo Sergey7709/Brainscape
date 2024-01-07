@@ -63,11 +63,11 @@ export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: Si
   })
 
   return (
-    <Card>
+    <Card className={s.signInCard}>
       <Typography variant={'large'} className={s.signInTypography}>
         Sign In
       </Typography>
-      <form onSubmit={onHandleSubmitForm}>
+      <form onSubmit={onHandleSubmitForm} className={s.signInForm}>
         <div className={s.signInTextField}>
           <TextField
             label={'Email'}

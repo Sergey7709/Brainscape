@@ -10,7 +10,7 @@ export const PrivateRoutes = memo(() => {
 
   if (isLoading) {
     return <Loader />
-  } //!!!!!!!!!!
+  }
 
   console.log('privatRouter JSX')
 

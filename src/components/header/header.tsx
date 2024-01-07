@@ -30,28 +30,30 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
   }
 
   return (
-    <Card className={classNames.wrapper}>
-      <Link to={'/'}>
-        <Logo />
-      </Link>
-      {isAuth && user ? (
-        <div className={classNames.profile}>
-          <Typography className={classNames.name} variant={'body1'}>
-            {user.name}
-          </Typography>
-          <UserMenu
-            avatar={user.avatar}
-            name={user.name}
-            email={user.email}
-            onSignOut={onSignOut}
-          />
-        </div>
-      ) : (
-        <Link to={'/login'}>
-          <Button>Sing in</Button>
+    <div className={s.containerHeader}>
+      <Card className={classNames.wrapper}>
+        <Link to={'/'}>
+          <Logo />
         </Link>
-      )}
-    </Card>
+        {isAuth && user ? (
+          <div className={classNames.profile}>
+            <Typography className={classNames.name} variant={'body1'}>
+              {user.name}
+            </Typography>
+            <UserMenu
+              avatar={user.avatar}
+              name={user.name}
+              email={user.email}
+              onSignOut={onSignOut}
+            />
+          </div>
+        ) : (
+          <Link to={'/login'}>
+            <Button className={s.buttonHeader}>Sing in</Button>
+          </Link>
+        )}
+      </Card>
+    </div>
   )
 }
 
@@ -67,14 +69,14 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
     <DropdownMenu
       align={'end'}
       trigger={<img className={classNames.avatar} src={avatar || defaultAvatar} alt={'avatar'} />}
+      className={s.dropdownMenu}
     >
       <DropDownItem className={classNames.profileInfo}>
         <img src={avatar || defaultAvatar} alt={'icon'} className={s.image} />
         <div className={s.info}>
-          <Typography>{name}</Typography>
-          <Typography variant={'caption'} className={s.email}>
-            {email}
-          </Typography>
+          <Typography className={s.name}>{name}</Typography>
+          {/*<Typography variant={'caption'} className={s.email}>*/}
+          <Typography className={s.email}>{email}</Typography>
         </div>
       </DropDownItem>
       <DropDownItemWithIcon
