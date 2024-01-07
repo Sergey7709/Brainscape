@@ -1,22 +1,17 @@
 .searchInput {
   width: 100%;
-
-  //max-width: 300px;
 }
 
 .slider {
-  //width: 100%;
-
-  //max-width: 250px;
-  width: 251px;
+    width: 251px;
 
   @media (width <= 1040px) {
     width: 100%;
-  }// !!!!
+  }
 
   @media (width <= 540px) {
     width: 100%;
-  }// !!!!
+  }
 }
 
 .decksPanel {
@@ -33,27 +28,18 @@
     align-items: start;
     justify-content: start;
     padding-left: 8px;
-  }// !!!!
+  }
 
   @media (width <= 540px) {
     flex-direction: column;
     align-items: start;
     justify-content: start;
     padding-left: 8px;
-  }// !!!!
+  }
 
   @media (width <= 540px) {
     padding-left: 0;
-
-    //flex-direction: column;
-    //align-items: start;
-    //justify-content: start;
-
-    //padding-right: 5px;
-    //padding-left: 20px;
-    //padding-right: 15px;
-    //padding-left: 15px;
-  }// !!!!
+  }
 }
 
 .decksPanelTextField {
@@ -61,35 +47,33 @@
 
   @media (width <= 1040px) {
     width: 100%
-  }// !!!!
+  }
 
 
   @media (width <= 540px) {
-    //width: 360px;
-    //width: 346px;
-    width: 95vw;
+        width: 95vw;
     height: 30px;
-  }// !!!!
+  }
 }
 
 .decksPanelButtonWrapper{
   width:100%;
 
   @media (width >= 1040px) {
-  //margin-left: 11px;
-}// !!!!
+
+}
 
 }
 
 .decksPanelButton {
   @media (width <= 1040px) {
     width: 100%;
-  }// !!!!
+  }
 
   @media (width <= 540px) {
     width: 100%;
     padding: 3px 6px;
-  }// !!!!
+  }
 }
 
 .decksPanelClearFilter {
@@ -98,19 +82,13 @@
 
   @media (width <= 540px) {
     font-size: small;
-  }// !!!!
+  }
 
 }
 
 div.decksPanelTabSwitcherWrapper {
 width:229px;
 
-  //width: 100%;
   @media (width <= 1040px) {
     width: 100%;}
-
-  //@media (width <= 540px) {
-  //  width: 100%;
-  //}// !!!!
-
 }
