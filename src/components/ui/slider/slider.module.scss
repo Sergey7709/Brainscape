@@ -3,7 +3,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  @media (width <= 440px) {
+  @media (width <= 540px) {
     font-size: small;
   }// !!!!
 }
@@ -11,7 +11,9 @@
 .slider {
   display: flex;
   align-items: center;
-  margin-top: 5px;
+
+  //width: 100%;
+  margin-top: 5px;///!!!!
 
 }
 
