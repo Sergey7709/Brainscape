@@ -45,6 +45,6 @@ export type PackCards = {
   created: string
   updated: string
   grade: number
-} ///!!!!!!!!!
+}
 
 export type DeckAddNewPackProp = Omit<ModalProps, 'open' | 'setOpen'>
