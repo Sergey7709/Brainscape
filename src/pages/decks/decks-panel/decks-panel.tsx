@@ -125,6 +125,7 @@ export const DecksPanel = memo(() => {
               },
             ]}
             onValueChange={value => handlerTabSwitchChangeValue(value === 'myCards' ? meID : [])}
+            className={s.decksPanelTabSwitcherWrapper}
           />
         </div>
         <Slider
