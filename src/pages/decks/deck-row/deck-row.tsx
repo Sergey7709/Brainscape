@@ -75,7 +75,12 @@ export const DeckRow = (deck: DeckType) => {
           </Table.Cell>
           <Table.Cell>{deck.cardsCount}</Table.Cell>
           <Table.Cell>{updatedDateFormat}</Table.Cell>
-          <Table.Cell>{deck.author.name}</Table.Cell>
+          {/*<Table.Cell>{deck.author.name}</Table.Cell>*/}
+          <Table.Cell>
+            <div className={s.nameAuthorContainer}>
+              <p className={s.authorNameDeckRow}>{deck.author.name}</p>
+            </div>
+          </Table.Cell>
           <Table.Cell>
             <div className={s.buttonContainer}>
               <Button
