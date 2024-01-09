@@ -123,16 +123,30 @@
 //  display: flex;
 //  justify-content: flex-end;
 //}
+
 ///!!!!!!!!!!!!!!
+.trStyle {
+  display: grid;
+
+  //grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr;
+
+  @media (width <= 1040px) {
+    grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+  }
+}
+
+////!!!!!!!!!!!!
 .table {
+  //table-layout: fixed;//!!!!
   border-collapse: collapse;
-  width: 100%;///!!!!
+  width: 100%;
   color: var(--color-text-primary);
-  border: 1px solid var(--color-dark-500);
+  border: 1px solid var(--color-dark-500);///!!!!///!!!!
 }
 
 .headCell {
-  padding: 6px 24px;
+   padding: 6px 24px;
 
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-medium);
@@ -142,9 +156,12 @@
 
   > span {
     user-select: none;
+
+    position: relative;
+
     display: flex;
     gap: 4px;
-    align-items: center;//!!!
+    align-items: center;//!!!//!!!
   }
 
   &.sortable > span {
@@ -155,30 +172,48 @@
     transition: transform 0.2s ease-in-out;
   }
 
+  .chevronSpan {
+    //position: absolute;
+    //top:0;
+    //right:1%;
+  }
+
   @media (width <= 540px) {
-    padding: 6px 7px;
+    //padding: 6px 7px;
+    padding: 6px 2px;
           font-size: 10px;
+
+    &:nth-child(1) {
+      padding-left: 5px;
+    }
         }//!!!
 }
 
 .tableCell {
-  padding: 6px 24px;
+    //max-width: 261px;
+ // width: 261px;//!!!
+ padding: 6px 24px;
 
   font-size: var(--font-size-s);
   line-height: var(--line-height-m);
 
   background-color: var(--color-bg-table);
-  border-bottom: 1px solid var(--color-dark-500);
+  border-bottom: 1px solid var(--color-dark-500);//!!!!//!!!//!!!//!!!!//!!!
 
   @media (width <= 540px) {
-    padding: 6px 7px;
+    //padding: 6px 7px;
+    padding: 6px 2px;
     font-size: 10px;
   }//!!!
 }
 
-.chevronDown {
+.chevron {
   transform: rotate(180deg);
 }
+
+//.chevronDownNone {
+//  color: transparent;
+//}
 
 .empty {
   display: flex;
