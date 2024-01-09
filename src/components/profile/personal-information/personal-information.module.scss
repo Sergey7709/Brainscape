@@ -3,6 +3,10 @@
   flex-direction: column;
   justify-content: center;
   padding: 33px 33px 41px;
+
+  @media (width <= 540px) {
+      width: 100%;
+  }//!!!
 }
 
 .photoContainer {
