@@ -50,6 +50,7 @@
 }
 
 .tableWrapper {
+  width: 100%;
   margin-top: 36px;
 }
 
@@ -78,6 +79,54 @@
   font-weight: 700;
   color: var(--color-danger-500);
 }
+
+//.deckHeadCellListStyle{
+//  width: 100%;
+//
+//  //padding-left: 2px;
+//
+//
+//
+//  @media (width <= 1040px) {
+//    &:nth-child(2) {
+//      padding-left: 1px;
+//    }
+//
+//    &:nth-last-child(2) {
+//      padding-left: 0
+//    }
+//
+//    &:nth-last-child(3) {
+//      padding-right: 2px;
+//      padding-left: 0;
+//    }
+//  }//!!!
+//}
+//
+//.deckHeaderStyle {
+//  display: grid;
+//
+//  //grid-template-columns: 2fr 1fr 1.8fr 2.4fr 0fr;
+//  grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+//
+//  //grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+//  //grid-template-columns: 2fr 1fr 2.5fr 2fr 0fr;
+//  width: 100%;
+//
+//  @media (width <= 540px) {
+//    //grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.6fr;
+//    //grid-template-columns: 102px 40px 80px 80px 52px;
+//    //grid-template-columns: 102px 40px 82px 80px 49px;
+//  //  grid-template-columns:
+//  //  minmax(102px, 102px)
+//  //  minmax(40px , 45px)
+//  //  minmax(82px, 91px)
+//  //  minmax(80px, 91px)
+//  //  minmax(49px, 63px);
+//  //
+//  }
+//
+//}
 
 .td {
   display: flex;
@@ -154,6 +203,7 @@
       }
 }
 
+
 a.linkCell {
   display: flex;
   align-items: center;
@@ -189,6 +239,48 @@ a.linkCell {
   }
 }
 
+.authorNameDeckRow {
+  overflow: hidden;
+
+  max-width: 100%;
+  margin: 0;
+
+  font-size: var(--font-size-s);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @media (width <= 1006px) {
+      font-size: var(--font-size-xs);
+  }
+
+  @media (width <= 540px) {
+    max-width: 60px;
+    padding-left: 5px;
+    word-wrap: break-word;
+  }
+}
+
+//.nameAuthorContainer {
+//  overflow: hidden;
+//  display: flex;
+//  flex-direction: row;
+//  align-items: center;
+//  justify-content: flex-start;
+//
+//  //width: 285px;
+//
+//  @media (width <= 1006px) {
+//    width: 100%
+//  }
+//
+//  @media (width <= 540px) {
+//    gap:5px;
+//
+//    //width: 70px
+//    width: 60px
+//  }
+//}
+
 .buttonContainer {
   display: flex;
   justify-content: flex-start;
@@ -196,6 +288,8 @@ a.linkCell {
   @media (width <= 540px) {
     width: 50px;
     padding: 0 5px;
+
+    //padding: 0 ;
   }
 }
 
@@ -216,7 +310,11 @@ a.linkCell {
 .disabledButtonRow {
   pointer-events: none;
   padding: 0 5px;
-  opacity: 0.3
+  opacity: 0.3;
+
+  @media (width <= 540px) {
+    padding: 0
+  }
   }
 
 .selectWrapper {
