@@ -1,20 +1,137 @@
+//.table {
+//  display: flex;
+//  border-collapse: collapse;
+//  flex-direction: column;
+//  justify-content: space-between;
+//
+//  width: 100%;
+//  margin: 0 auto;
+//
+//  color: var(--color-light-100);
+//
+//  border: 1px solid var(--color-dark-500);
+//
+//}
+//
+//.headCell {
+//  width: 100%;
+//  padding: 6px 24px;
+//
+//  font-size: var(--font-size-s);
+//  font-weight: var(--font-weight-medium);
+//  line-height: var(--line-height-m);
+//
+//  background-color: var(--color-dark-500);
+//
+//  > span {
+//    user-select: none;
+//
+//    display: flex;
+//    gap: 4px;
+//    align-items: center;
+//
+//    font-size: 0.875rem;
+//    font-weight: 700;
+//    font-style: normal;
+//    line-height: 1.5rem;
+//
+//
+//    @media (width <= 1006px) {
+//      font-size: var(--font-size-xs);
+//    }
+//
+//    @media (width <= 540px) {
+//      font-size: 10px;
+//
+//    }
+//
+//  }
+//
+//  &.sortable > span {
+//    cursor: pointer;
+//  }
+//
+//  svg {
+//    transition: transform 0.2s ease-in-out;
+//  }
+//
+//  @media (width <= 1006px) {
+//    padding: 4px 10px;
+//    font-size: var(--font-size-xs);
+//  }
+//}
+//
+//.trStyle {
+//  display: grid;
+//  grid-template-columns: 2.7fr 1fr 1.5fr 2fr 1fr;
+//
+//  @media (width <= 1006px) {
+//
+//  }
+//
+//  @media (width <= 540px) {
+//    grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+//
+//  }
+//
+//
+//}
+//
+//.tableCell {
+//  display: flex;
+//  align-items: center;
+//
+//  padding: 6px 24px;
+//
+//  font-size: var(--font-size-s);
+//  line-height: var(--line-height-m);
+//  overflow-wrap: break-word;
+//
+//  border-bottom: 1px solid var(--color-dark-500);
+//
+//  button {
+//    padding: 20px 5px;
+//
+//    @media (width <= 540px) {
+//      padding: 0
+//    }
+//  }
+//
+//  @media (width <= 1006px) {
+//    padding: 4px 10px;
+//    font-size: var(--font-size-xs);
+//  }
+//
+//  @media (width <= 540px) {
+//    padding: 2px 6px;
+//
+//  }
+//}
+//
+//.chevronDown {
+//  transform: rotate(180deg);
+//}
+//
+//.empty {
+//  display: flex;
+//  justify-content: center;
+//  width: 100%;
+//  font-size: var(--font-size-xxl);
+//}
+//
+//.buttonContainer {
+//  display: flex;
+//  justify-content: flex-end;
+//}
+///!!!!!!!!!!!!!!
 .table {
-  display: flex;
   border-collapse: collapse;
-  flex-direction: column;
-  justify-content: space-between;
-
-  width: 100%;
-  margin: 0 auto;
-
-  color: var(--color-light-100);
-
+  width: 100%;///!!!!
+  color: var(--color-text-primary);
   border: 1px solid var(--color-dark-500);
-
 }
 
 .headCell {
-  width: 100%;
   padding: 6px 24px;
 
   font-size: var(--font-size-s);
@@ -25,26 +142,9 @@
 
   > span {
     user-select: none;
-
     display: flex;
     gap: 4px;
-    align-items: center;
-
-    font-size: 0.875rem;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 1.5rem;
-
-
-    @media (width <= 1006px) {
-      font-size: var(--font-size-xs);
-    }
-
-    @media (width <= 540px) {
-      font-size: 10px;
-
-    }
-
+    align-items: center;//!!!
   }
 
   &.sortable > span {
@@ -55,57 +155,25 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  @media (width <= 1006px) {
-    padding: 4px 10px;
-    font-size: var(--font-size-xs);
-  }
-}
-
-.trStyle {
-  display: grid;
-  grid-template-columns: 2.7fr 1fr 1.5fr 2fr 1fr;
-
-  @media (width <= 1006px) {
-
-  }
-
   @media (width <= 540px) {
-    grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
-
-  }
-
-
+    padding: 6px 7px;
+          font-size: 10px;
+        }//!!!
 }
 
 .tableCell {
-  display: flex;
-  align-items: center;
-
   padding: 6px 24px;
 
   font-size: var(--font-size-s);
   line-height: var(--line-height-m);
-  overflow-wrap: break-word;
 
+  background-color: var(--color-bg-table);
   border-bottom: 1px solid var(--color-dark-500);
 
-  button {
-    padding: 20px 5px;
-
-    @media (width <= 540px) {
-      padding: 0
-    }
-  }
-
-  @media (width <= 1006px) {
-    padding: 4px 10px;
-    font-size: var(--font-size-xs);
-  }
-
   @media (width <= 540px) {
-    padding: 2px 6px;
-
-  }
+    padding: 6px 7px;
+    font-size: 10px;
+  }//!!!
 }
 
 .chevronDown {
@@ -116,10 +184,5 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  font-size: var(--font-size-xxl);
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: flex-end;
-}
