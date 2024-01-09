@@ -2,7 +2,9 @@
   position: fixed;
   z-index: 9000;
   right: 10%;
-  bottom: 10vh;
+
+  //bottom: 10vh;
+  bottom: 4vh;
 
   margin: 0;
   padding: 0;
@@ -21,8 +23,8 @@
 
   }
 
-  @media (width <= 440px) {
-    bottom: 20vh;
+  @media (width <= 540px) {
+    bottom: 3vh;
     font-size: 1rem;
   }
 }
