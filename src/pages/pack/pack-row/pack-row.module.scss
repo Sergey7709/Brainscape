@@ -9,16 +9,17 @@
   width: 250px;
   height: 50px;
 
-  @media (width <= 1006px) {
-    width: 100%
-
+  @media (width <= 1040x) {
+      width: 100%;
 
   }
 
   @media (width <= 540px) {
     gap:5px;
     width: 75px;
-    height: 10px
+
+    //height: 10px
+    height: 100%
   }
 
 
@@ -45,7 +46,7 @@
   object-fit: cover;
   border-radius: 3px;
 
-  @media (width <= 1006px) {
+  @media (width <= 1040px) {
     width: 100%
 
 
@@ -65,11 +66,21 @@
 }
 
 .editButtonPackRow  {
+  padding: 2px 5px;//!!!
+
  &:hover {
     cursor: pointer;
     scale: 130%;
    transition: 0.3s;
   }
+
+  //@media (width <= 1040px) {
+  //     padding: 2px 5px;
+  //}//!!!
+
+  @media (width <= 540px) {
+    padding: 2px;
+  }//!!!
 }
 
 .packRowStyle {
@@ -95,6 +106,13 @@
 
 .packRating{
   pointer-events: none;
+  align-items: center;
+  height: 100%;
+
+  @media (width <= 540px) {
+    align-items: center;
+    height: 100%;
+  }
 }
 
 .modalRow {
@@ -102,5 +120,8 @@
 }
 
 .packRowDate {
-  font-size: smaller;
+  display: flex;
+  align-items: center;
+  height: 100%;
+ font-size: smaller;
 }
