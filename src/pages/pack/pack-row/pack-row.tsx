@@ -69,9 +69,7 @@ export const PackRow = (pack: extendPackRow) => {
           <Typography className={s.packRowDate}>{updatedDateFormat}</Typography>
         </Table.Cell>
         <Table.Cell>
-          <div>
-            <Rating count={5} value={pack.grade} className={s.packRating} />
-          </div>
+          <Rating count={5} value={pack.grade} className={s.packRating} />
         </Table.Cell>
         <Table.Cell>
           {pack.mePackCards && (
