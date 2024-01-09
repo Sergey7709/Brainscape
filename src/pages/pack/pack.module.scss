@@ -94,6 +94,18 @@
   width: 0;
 }
 
+.packHeadCellListStyle{
+  width: 100%;
+  padding-left: 5px;//!!!
+
+  &:nth-last-child(4) {
+    padding-left: 35px;
+  }
+
+  &:nth-last-child(3) {
+    padding-left: 10px;
+  }
+}
 
 .packHeaderStyle {
   display: grid;
@@ -101,7 +113,11 @@
   width: 100%;
 
   @media (width <= 540px) {
-    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.6fr;
+    //grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.6fr;
+    //grid-template-columns: 99px 90px 80px 57px 37px;//!!!
+    //grid-template-columns: 1.75fr 1.75fr 0.8fr 1fr 0.5fr;
+    //grid-template-columns: 1fr 1fr 1.4fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1.6fr 1.4fr 1fr 0fr;
   }
 
 }
@@ -114,6 +130,7 @@
 
 .inputPackRowWrapper {
  margin-bottom: 24px;
+
 }
 
 .paginationWrapperPack {
@@ -137,10 +154,6 @@
   @media (width <= 540px) {
     gap:10px
   }
-}
-
-.packHeadCellListStyle{
-  width: 100%;
 }
 
 .textPackNoData {
