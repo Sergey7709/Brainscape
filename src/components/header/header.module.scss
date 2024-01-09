@@ -20,11 +20,12 @@ div.wrapper {
   flex-direction: row;
   justify-content: space-between;
 
-  width: 100%;
+  //width: 100%;
 
-  //width: 1006px;
+  width: 1006px;
   height: 60px;
-  padding: 12px 136px;
+
+  //padding: 12px 136px;
 
 
   @media (width <= 1040px) {
