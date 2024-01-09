@@ -35,7 +35,7 @@ export const HeadCellList: FC<
   }
 > = ({ columns, sort, onSort, className, ...restProps }) => {
   const classNames = {
-    chevron: sort?.direction === 'asc' ? '' : s.chevronDown,
+    chevron: sort?.direction === 'asc' ? '' : s.chevron,
   }
   const handleSort = (key: string, sortable?: boolean) => () => {
     if (!onSort || !sortable) return
