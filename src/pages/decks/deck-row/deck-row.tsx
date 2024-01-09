@@ -58,7 +58,7 @@ export const DeckRow = (deck: DeckType) => {
       </tr>
       {deck && (
         <Table.Row key={deck.id}>
-          <Table.Cell>
+          <Table.Cell className={s.deckTableCell}>
             <Button
               as={NavLink}
               variant={'link'}
@@ -73,11 +73,15 @@ export const DeckRow = (deck: DeckType) => {
               </div>
             </Button>
           </Table.Cell>
-          <Table.Cell>{deck.cardsCount}</Table.Cell>
-          <Table.Cell>{updatedDateFormat}</Table.Cell>
+          <Table.Cell>
+            <div className={s.tableCellContainerDeck}>{deck.cardsCount}</div>
+          </Table.Cell>
+          <Table.Cell>
+            <div className={s.tableCellContainerDeck}>{updatedDateFormat}</div>
+          </Table.Cell>
           {/*<Table.Cell>{deck.author.name}</Table.Cell>*/}
           <Table.Cell>
-            <div className={s.nameAuthorContainer}>
+            <div className={s.tableCellContainerDeck}>
               <p className={s.authorNameDeckRow}>{deck.author.name}</p>
             </div>
           </Table.Cell>
