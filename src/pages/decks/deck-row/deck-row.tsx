@@ -79,7 +79,6 @@ export const DeckRow = (deck: DeckType) => {
           <Table.Cell>
             <div className={s.tableCellContainerDeck}>{updatedDateFormat}</div>
           </Table.Cell>
-          {/*<Table.Cell>{deck.author.name}</Table.Cell>*/}
           <Table.Cell>
             <div className={s.tableCellContainerDeck}>
               <p className={s.authorNameDeckRow}>{deck.author.name}</p>
