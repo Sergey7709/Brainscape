@@ -49,7 +49,7 @@ export const PackRow = (pack: extendPackRow) => {
         <td>{(isLoadingDelete || isLoadingEdit) && <Loader />}</td>
       </tr>
       <Table.Row key={pack.id} className={s.packRowStyle}>
-        <Table.Cell>
+        <Table.Cell className={s.packTableCell}>
           <div className={s.nameContainerPackRow}>
             {pack.questionImg && (
               <img className={s.imgPackRow} alt={'Not image'} src={pack.questionImg} />
@@ -57,7 +57,7 @@ export const PackRow = (pack: extendPackRow) => {
             <p className={s.textForNamePackRow}> {pack.question}</p>
           </div>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className={s.packTableCell}>
           <div className={s.nameContainerPackRow}>
             {pack.answerImg && (
               <img className={s.imgPackRow} alt={'Not image'} src={pack.answerImg} />
@@ -65,13 +65,13 @@ export const PackRow = (pack: extendPackRow) => {
             <p className={s.packAnswerStyle}> {pack.answer}</p>
           </div>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className={s.packTableCell}>
           <Typography className={s.packRowDate}>{updatedDateFormat}</Typography>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className={s.packTableCell}>
           <Rating count={5} value={pack.grade} className={s.packRating} />
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className={s.packTableCell}>
           {pack.mePackCards && (
             <div className={s.buttonContainerPackRow}>
               <Button variant="link" className={s.editButtonPackRow} onClick={handlerOpenModalEdit}>
