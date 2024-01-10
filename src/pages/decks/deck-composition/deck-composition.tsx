@@ -70,8 +70,9 @@ export const DeckComposition = memo(() => {
               <Table.Root>
                 <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue}>
                   <Table.Head>
-                    <Table.Row>
+                    <Table.Row className={s.deckHeaderRow}>
                       <Table.HeadCellList
+                        className={s.deckTableCell}
                         columns={columnsDecks}
                         sort={sort}
                         onSort={handlerSortValue}
