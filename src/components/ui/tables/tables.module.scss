@@ -54,6 +54,8 @@
 }
 
 .tableCell {
+  overflow: hidden;//!!!
+
  padding: 6px 24px;
 
   font-size: var(--font-size-s);
