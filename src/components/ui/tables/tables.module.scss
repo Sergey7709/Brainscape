@@ -64,10 +64,10 @@
   background-color: var(--color-bg-table);
   border-bottom: 1px solid var(--color-dark-500);
 
-  @media (width <= 540px) {
-    padding: 6px 2px;
-    font-size: 10px;
-  }
+  //@media (width <= 540px) {
+  //  padding: 6px 2px;
+  //  font-size: 10px;
+  //}
 }
 
 .chevron {
