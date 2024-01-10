@@ -75,6 +75,13 @@
   }
 }
 
+.deckHeaderRow {
+  @media (width <= 540px) {
+    grid-template-columns: 2fr 1.2fr 2fr 2fr 1.3fr;
+  }
+
+}
+
 .textNoData {
   font-weight: 700;
   color: var(--color-danger-500);
@@ -91,6 +98,24 @@
 
 }
 
+.deckTableCell {
+  @media (width <= 1040px) {
+    overflow: hidden;
+    padding: 6px 10px;
+  }
+
+  //
+  //@media (width <= 1040px) {
+  //  overflow: hidden;
+  //  padding: 6px 10px;
+  //}
+
+  @media (width <= 540px) {
+    overflow: hidden;
+    padding: 6px 2px;
+  }
+}//!!!!
+
 .nameContainer {
   overflow: hidden;
   display: flex;
@@ -102,7 +127,10 @@
   width: 213px;
   height: 48px;
 
-  @media (width <= 1006px) {
+  text-overflow: ellipsis;///!!!!
+  white-space: nowrap;//!!!
+
+  @media (width <= 1040px) {
       width: 100%
   }
 
@@ -119,7 +147,8 @@
   border-radius: 3px;
 
   @media (width <= 1006px) {
-    width: 90px;
+    //width: 90px;
+    width: 40%;
     font-size: var(--font-size-xs);
   }
 
@@ -135,14 +164,16 @@
 .textForName {
   overflow: hidden;
 
+  width: 100%;
   margin: 0;
 
   font-size: var(--font-size-s);
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap;//!!!
 
   @media (width <= 1006px) {
-     font-size: var(--font-size-xs);
+    width: 98%;//!!!
+    font-size: var(--font-size-xs);
   }
 
   @media (width <= 540px) {
@@ -174,7 +205,8 @@ a.linkCell {
   }
 
   @media (width <= 1006px) {
-    width: 90px;
+    //width: 90px;
+    width: 100%;//!!!
     padding: 0 5px;
   }
 
@@ -195,12 +227,14 @@ a.linkCell {
   white-space: nowrap;
 
   @media (width <= 1006px) {
-      font-size: var(--font-size-xs);
+      //font-size: var(--font-size-xs);
   }
 
   @media (width <= 540px) {
-    max-width: 60px;
+    //max-width: 60px;
+    max-width: 87px;
     padding-left: 5px;
+    font-size: var(--font-size-xs);
     word-wrap: break-word;
   }
 }
@@ -213,6 +247,8 @@ a.linkCell {
   justify-content: flex-start;
 
  height: 48px;
+
+font-size: var(--font-size-xs);
 }
 
 .buttonContainer {
