@@ -110,7 +110,7 @@ export const HeadCell: FC<
 
 export const Cell: FC<ComponentProps<'td'>> = ({ className, ...rest }) => {
   const classNames = {
-    cell: clsx(className, s.tableCell),
+    cell: clsx(s.tableCell, className),
   }
 
   return <td className={classNames.cell} {...rest} />
