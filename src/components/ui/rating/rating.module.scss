@@ -2,9 +2,12 @@
   display: flex;
   gap: 10px;
 
+  @media (width <= 1040px) {
+    gap: 3px;
+  }
+
   @media (width <= 540px) {
     gap: 1px;
-
   }
 }
 

@@ -12,4 +12,10 @@
     width: 8px;
     margin: 0;
     padding: 0;
-  }}
+  }
+
+  @media (width <= 280px)
+  {
+    width: 5px;
+  }
+}

@@ -35,7 +35,7 @@ export const HeadCellList: FC<
   }
 > = ({ columns, sort, onSort, className, ...restProps }) => {
   const classNames = {
-    chevron: sort?.direction === 'asc' ? '' : s.chevronDown,
+    chevron: sort?.direction === 'asc' ? '' : s.chevron,
   }
   const handleSort = (key: string, sortable?: boolean) => () => {
     if (!onSort || !sortable) return
@@ -110,7 +110,7 @@ export const HeadCell: FC<
 
 export const Cell: FC<ComponentProps<'td'>> = ({ className, ...rest }) => {
   const classNames = {
-    cell: clsx(className, s.tableCell),
+    cell: clsx(s.tableCell, className),
   }
 
   return <td className={classNames.cell} {...rest} />
