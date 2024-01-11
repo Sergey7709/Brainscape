@@ -11,11 +11,16 @@
   height: 60px;
 }
 
-div.wrapper {
+div.cardHeader {
+  display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 1006px;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
   height: 60px;
+
+  border-radius: 0;
 
   @media (width <= 1040px) {
     width: 100%;
@@ -30,6 +35,16 @@ div.wrapper {
   @media (width <= 280px) {
     padding: 12px 10px;
   }
+}
+
+.wrapperHeaderInCard {
+  display: flex;
+  justify-content: space-between;
+  width: 1006px;
+
+  @media (width <= 1040px) {
+    width: 100%;
+   }
 }
 
 .profile {
@@ -121,4 +136,9 @@ button.buttonHeader {
     padding: 1px 10px;
     font-size: var(--font-size-xs);
   }
+}
+
+a.linkHeader {
+  margin: 0;
+  padding: 0;
 }
