@@ -61,4 +61,8 @@
       font-size: var(--font-size-xs);
     }
   }
+
+  @media (width <= 280px) {
+    gap: 4px;
+  }
 }
