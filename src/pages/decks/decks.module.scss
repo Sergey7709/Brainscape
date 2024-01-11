@@ -73,12 +73,26 @@
   @media (width <= 540px) {
     gap:10px
   }
-}
+
+ }
 
 .deckHeaderRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr;
+
+    @media (width <= 1040px) {
+      grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+    }
+
+
   @media (width <= 540px) {
     grid-template-columns: 2fr 1.2fr 2fr 2fr 1.3fr;
   }
+
+  @media (width <= 280px)
+ {
+  grid-template-columns: 2fr 1.5fr 2fr 1.65fr 1fr;
+}
 
 }
 
@@ -101,20 +115,25 @@
 .deckTableCell {
   @media (width <= 1040px) {
     overflow: hidden;
+    display: flex;
     padding: 6px 10px;
-  }
-
-  //
-  //@media (width <= 1040px) {
-  //  overflow: hidden;
-  //  padding: 6px 10px;
-  //}
+    font-weight: 700;
+    }
 
   @media (width <= 540px) {
-    overflow: hidden;
     padding: 6px 2px;
+    font-size: 10px;
+    font-weight: 700;
+
+    &:nth-child(1) {
+      padding-left: 5px;
+    }
+        }
+
+  @media (width <= 280px) {
+    line-height: var(--line-height-s);;
   }
-}//!!!!
+}
 
 .nameContainer {
   overflow: hidden;
@@ -127,57 +146,57 @@
   width: 213px;
   height: 48px;
 
-  text-overflow: ellipsis;///!!!!
-  white-space: nowrap;//!!!
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @media (width <= 1040px) {
-      width: 100%
+      width: 220px
+  }
+
+  @media (width <= 820px) {
+     width: 160px
   }
 
   @media (width <= 540px) {
-    gap:5px;
-    width: 80px
+    gap:2px;
+    width: 65px
+  }
+
+  @media (width <= 280px) {
+    gap:2px;
+    width: 40px
   }
 }
 
 .imgCover {
-  flex-shrink: 0;
+   flex-shrink: 0;
   width: 118.265px;
   object-fit: cover;
   border-radius: 3px;
 
-  @media (width <= 1006px) {
-    //width: 90px;
+  @media (width <= 1040px) {
     width: 40%;
+    height: 80%;
     font-size: var(--font-size-xs);
   }
 
-  @media (width <= 695px) {
-    width: 50px;
-  }
-
   @media (width <= 540px) {
-    width: 30px;
+    width: 20px;
+    height: 20px;
   }
 }
 
 .textForName {
   overflow: hidden;
-
   width: 100%;
   margin: 0;
 
   font-size: var(--font-size-s);
   text-overflow: ellipsis;
-  white-space: nowrap;//!!!
-
-  @media (width <= 1006px) {
-    width: 98%;//!!!
-    font-size: var(--font-size-xs);
-  }
+  white-space: nowrap;
 
   @media (width <= 540px) {
-     word-wrap: break-word;
+      font-size: 10px;
       }
 }
 
@@ -185,8 +204,7 @@ a.linkCell {
   display: flex;
   align-items: center;
   justify-content: flex-start ;
-
-  max-width: 213px;
+  max-width: 100%;
   padding: 0 0 0 5px;
 
   font-size: var(--font-size-m);
@@ -201,12 +219,11 @@ a.linkCell {
   &:hover:not(:disabled)  {
     color: var(--color-light-100);
     border-radius: 10px;
-    box-shadow: 2px 2px 20px #262626, -2px -2px 20px  #fff;
+    box-shadow: 2px 2px 8px #262626, -2px -2px 8px  #fff;
   }
 
   @media (width <= 1006px) {
-    //width: 90px;
-    width: 100%;//!!!
+    width: 100%;
     padding: 0 5px;
   }
 
@@ -226,15 +243,10 @@ a.linkCell {
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  @media (width <= 1006px) {
-      //font-size: var(--font-size-xs);
-  }
-
-  @media (width <= 540px) {
-    //max-width: 60px;
-    max-width: 87px;
+   @media (width <= 540px) {
+    max-width: 70px;
     padding-left: 5px;
-    font-size: var(--font-size-xs);
+    font-size: 10px;
     word-wrap: break-word;
   }
 }
@@ -248,7 +260,9 @@ a.linkCell {
 
  height: 48px;
 
-font-size: var(--font-size-xs);
+  @media (width <= 540px) {
+    font-size: 10px;
+  }
 }
 
 .buttonContainer {
@@ -258,6 +272,15 @@ font-size: var(--font-size-xs);
 
 
   @media (width <= 540px) {
+    width: 50px;
+    padding: 0 ;
+  }
+
+  @media (width <= 280px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     width: 50px;
     padding: 0 ;
   }
@@ -334,5 +357,9 @@ font-size: var(--font-size-xs);
 .deckEditPackSave {
   @media (width <= 540px) {
     padding: 6px 10px;
+  }
+
+  @media (width <= 280px) {
+    padding: 6px 4px;
   }
 }
