@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import s from './header.module.scss'
 
@@ -24,34 +24,37 @@ type HeaderProps = {
 }
 export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
   const classNames = {
-    wrapper: s.wrapper,
+    cardHeader: s.cardHeader,
     profile: s.profile,
     name: s.name,
   }
 
   return (
     <div className={s.containerHeader}>
-      <Card className={classNames.wrapper}>
-        <Link to={'/'}>
-          <Logo />
-        </Link>
-        {isAuth && user ? (
-          <div className={classNames.profile}>
-            <Typography className={classNames.name} variant={'body1'}>
-              {user.name}
-            </Typography>
-            <UserMenu
-              avatar={user.avatar}
-              name={user.name}
-              email={user.email}
-              onSignOut={onSignOut}
-            />
-          </div>
-        ) : (
-          <Link to={'/login'}>
-            <Button className={s.buttonHeader}>Sing in</Button>
-          </Link>
-        )}
+      <Card className={classNames.cardHeader}>
+        <div className={s.wrapperHeaderInCard}>
+          <Button as={NavLink} to={'/'} variant={'link'} className={s.linkHeader}>
+            <Logo />
+          </Button>
+
+          {isAuth && user ? (
+            <div className={classNames.profile}>
+              <Typography className={classNames.name} variant={'body1'}>
+                {user.name}
+              </Typography>
+              <UserMenu
+                avatar={user.avatar}
+                name={user.name}
+                email={user.email}
+                onSignOut={onSignOut}
+              />
+            </div>
+          ) : (
+            <Link to={'/login'}>
+              <Button className={s.buttonHeader}>Sing in</Button>
+            </Link>
+          )}
+        </div>
       </Card>
     </div>
   )
