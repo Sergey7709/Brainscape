@@ -123,6 +123,16 @@
       gap: calc(100% - 210px);
     }
   }
+
+  @media screen and (width <= 280px)  {
+    &,
+    &.sm,
+    &.md,
+    &.lg {
+      gap: 10px;
+    }
+  }
+
 }
 
 
