@@ -1,12 +1,36 @@
 .firstSection {
   display: flex;
   gap: 100px;
-  align-items: start;
+  align-items: center;
+  justify-content: center;
+
   margin-bottom: 50px;
+  padding: 10px;
+
+  @media (width <= 1040px) {
+    gap: 10px;
+  }
+
+  @media (width <= 540px) {
+    flex-direction: column;
+  }
 }
 
 .wrapper {
   width: 100%;
   max-width: 1006px;
   margin: 100px auto;
+  padding: 10px;
+}
+
+.linkPackList {
+  margin-bottom: 2rem;
+  padding-left:0;
+  color: var(--color-light-100);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-accent-300);
+    transition: 0.5s;
+  }
 }
