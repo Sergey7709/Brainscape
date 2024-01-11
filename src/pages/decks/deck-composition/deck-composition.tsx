@@ -68,7 +68,18 @@ export const DeckComposition = memo(() => {
             <DecksPanel />
             <div className={classNames.tableWrapper}>
               <Table.Root>
-                <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue} />
+                <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue}>
+                  <Table.Head>
+                    <Table.Row className={s.deckHeaderRow}>
+                      <Table.HeadCellList
+                        className={s.deckTableCell}
+                        columns={columnsDecks}
+                        sort={sort}
+                        onSort={handlerSortValue}
+                      />
+                    </Table.Row>
+                  </Table.Head>
+                </Table.Header>
                 {
                   <Table.Body>
                     {data?.items.length ? (

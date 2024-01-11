@@ -16,16 +16,17 @@
 
   @media (width <= 1040px) {
     width: 100%;
-    padding: 5px
+    padding: 10px
   }
 
   @media (width <= 540px) {
-    padding: 5px
+    padding: 10px
   }
 }
 
 .containerTitleAndButton {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 
@@ -41,8 +42,11 @@
 }
 
 .packTitle {
+
   @media (width <= 540px) {
     font-size: var(--font-size-l);
+    word-wrap: break-word;
+    white-space: normal;
   }
 }
 
@@ -94,14 +98,41 @@
   width: 0;
 }
 
+.packHeadCellListStyle{
+  width: 100%;
+
+  @media (width <= 1040px) {
+ padding: 6px 10px;
+  }
+
+  @media (width <= 768px) {
+    padding: 6px 10px;
+  }
+  @media (width <= 540px) {
+    padding: 6px 10px;
+    font-size: 10px;
+
+    &:nth-child(1) {
+      padding-left: 5px;
+    }
+        }
+
+  @media (width <= 280px)
+  {
+    padding: 6px 4px;
+  }
+}
 
 .packHeaderStyle {
   display: grid;
-  grid-template-columns:  1.8fr 1.8fr 0.9fr 1fr 0.6fr;
+  grid-template-columns: 1.75fr 1.75fr 1fr 1fr 0.8fr;
   width: 100%;
 
+  @media (width <= 1040px) {
+   grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 0.8fr;
+  }
   @media (width <= 540px) {
-    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.6fr;
+    grid-template-columns:  1.4fr 1.4fr 1.8fr 1fr 1fr;
   }
 
 }
@@ -114,6 +145,7 @@
 
 .inputPackRowWrapper {
  margin-bottom: 24px;
+
 }
 
 .paginationWrapperPack {
@@ -124,11 +156,8 @@
   padding-top: 5px;
   padding-left: 16px;
 
-  @media (width <= 1006px) {
+  @media (width <= 1040px) {
     flex-direction: column;
-
-    //align-items: center;
-    //justify-content: center;
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
@@ -137,10 +166,6 @@
   @media (width <= 540px) {
     gap:10px
   }
-}
-
-.packHeadCellListStyle{
-  width: 100%;
 }
 
 .textPackNoData {
@@ -185,6 +210,14 @@
   @media (width <= 540px) {
     padding: 6px 10px;
   }
+
+  @media (width <= 280px) {
+    padding: 6px;
+  }
 }
 
+
+.packTextModalButtonEditSave {
+  font-size: var(--font-size-xs);
+}
 

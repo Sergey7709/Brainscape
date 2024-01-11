@@ -4,9 +4,21 @@
   gap: 2rem;
   align-items: center;
   justify-content: center;
+
   padding-top: 6rem;
+
+
+  @media (width <= 540px) {
+    width: 100%;
+    padding: 6rem 2rem;
+  }//!!!
 }
 
 .button {
   width: 26.25rem;
+
+  @media (width <= 540px) {
+    width: 100%;
+    }//!!!
+
 }

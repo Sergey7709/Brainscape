@@ -6,6 +6,7 @@ import { Loader } from '@/components/ui/loader'
 import { AmountOfCards } from '@/pages/charts/graphics/amount-of-cards/amount-of-cards.tsx'
 import { DeckCreators } from '@/pages/charts/graphics/deck-creators/deck-creators.tsx'
 import { WeekStatistic } from '@/pages/charts/graphics/week-statistic/week-statistic.tsx'
+import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
 import { useGetDecksQuery } from '@/service'
 
 Chart.register(...registerables)
@@ -24,6 +25,8 @@ export const Charts = () => {
 
   return (
     <div className={classNames.wrapper}>
+      <BackToDeckLink className={s.linkPackList} />
+
       <div className={classNames.firstSection}>
         <AmountOfCards items={data!.items} />
         <DeckCreators items={data!.items} />

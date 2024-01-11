@@ -57,8 +57,9 @@ export const DeckRow = (deck: DeckType) => {
         <td>{(isLoadingDelete || isLoadingEdit) && <Loader />}</td>
       </tr>
       {deck && (
-        <Table.Row key={deck.id}>
-          <Table.Cell>
+        <Table.Row key={deck.id} className={s.deckHeaderRow}>
+          <Table.Cell className={s.deckTableCell}>
+            {/*<div className={s.tableCellContainerDeck}>*/}
             <Button
               as={NavLink}
               variant={'link'}
@@ -72,11 +73,20 @@ export const DeckRow = (deck: DeckType) => {
                 <p className={s.textForName}> {deck.name}</p>
               </div>
             </Button>
+            {/*</div>*/}
           </Table.Cell>
-          <Table.Cell>{deck.cardsCount}</Table.Cell>
-          <Table.Cell>{updatedDateFormat}</Table.Cell>
-          <Table.Cell>{deck.author.name}</Table.Cell>
-          <Table.Cell>
+          <Table.Cell className={s.deckTableCell}>
+            <div className={s.tableCellContainerDeck}>{deck.cardsCount}</div>
+          </Table.Cell>
+          <Table.Cell className={s.deckTableCell}>
+            <div className={s.tableCellContainerDeck}>{updatedDateFormat}</div>
+          </Table.Cell>
+          <Table.Cell className={s.deckTableCell}>
+            <div className={s.tableCellContainerDeck}>
+              <p className={s.authorNameDeckRow}>{deck.author.name}</p>
+            </div>
+          </Table.Cell>
+          <Table.Cell className={s.deckTableCell}>
             <div className={s.buttonContainer}>
               <Button
                 variant={'link'}

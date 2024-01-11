@@ -1,6 +1,14 @@
 .wrapper {
-  width: 50%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  width:50%;
   margin: 0 auto;
+
+  @media (width <= 540px) {
+    width:100%;
+  }
 }
 
 .title {
@@ -11,10 +19,10 @@
 
 .table {
   th {
-    width: 150px;
+      padding: 6px 4px;
   }
 
   td {
-    width: 150px;
+      padding: 6px 4px;
   }
 }

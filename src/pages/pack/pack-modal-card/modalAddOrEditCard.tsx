@@ -94,7 +94,7 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
               </Typography>
             </Button>
             <Button variant={'primary'} className={s.packModalButtonEditSave} fullWidth>
-              <Typography as={'span'} variant={'body2'}>
+              <Typography as={'span'} variant={'body2'} className={s.packTextModalButtonEditSave}>
                 {buttonTitle}
               </Typography>
             </Button>
