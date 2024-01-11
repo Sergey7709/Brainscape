@@ -7,15 +7,6 @@
   border: 1px solid var(--color-dark-500);
 }
 
-.trStyle {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr;
-
-  @media (width <= 1040px) {
-    grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
-  }
-}
-
 .headCell {
    padding: 6px 24px;
 
@@ -42,19 +33,10 @@
   svg {
     transition: transform 0.2s ease-in-out;
   }
-
-  @media (width <= 540px) {
-    padding: 6px 2px;
-    font-size: 10px;
-
-    &:nth-child(1) {
-      padding-left: 5px;
-    }
-        }
 }
 
 .tableCell {
-  overflow: hidden;//!!!
+  overflow: hidden;
 
  padding: 6px 24px;
 
@@ -63,11 +45,6 @@
 
   background-color: var(--color-bg-table);
   border-bottom: 1px solid var(--color-dark-500);
-
-  //@media (width <= 540px) {
-  //  padding: 6px 2px;
-  //  font-size: 10px;
-  //}
 }
 
 .chevron {
