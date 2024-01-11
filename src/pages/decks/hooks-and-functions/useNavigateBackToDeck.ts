@@ -10,11 +10,7 @@ export const useNavigateBackToDeck = () => {
 
     if (location.pathname.includes('deck')) {
       return
-    }
-    // else if (location.pathname.includes('learn')) {
-    //   navigate(`/pack/${id}`)
-    // }
-    else if (urlDeck) {
+    } else if (urlDeck) {
       navigate(`/deck${urlDeck}`)
     } else {
       navigate(`/deck`)
