@@ -1,14 +1,18 @@
 .containerHeader {
   position: fixed;
-  z-index: 9998;
+  z-index: 99;
   top: 0;
   left: 0;
 
+  display: flex;
   align-content: center;
   align-items: center;
 
-  width: 100%;
+  width: 100vw;
   height: 60px;
+
+  //width: 100%;
+  margin-right: 0;//!!!
 }
 
 div.cardHeader {
@@ -20,7 +24,7 @@ div.cardHeader {
   width: 100%;
   height: 60px;
 
-  border-radius: 0;
+   border-radius: 0;
 
   @media (width <= 1040px) {
     width: 100%;
@@ -44,8 +48,41 @@ div.cardHeader {
 
   @media (width <= 1040px) {
     width: 100%;
+    margin-right: 0;//!!!
    }
 }
+
+.spanHeaderInLogo {
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  border: none;
+  border-radius: 5px;
+  outline: none;
+
+
+  &::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 0;
+    height: 1.5px;
+
+    background-color: #f51a51;
+
+    transition: all .42s cubic-bezier(.25,.8,.25,1);
+  }
+
+  &:hover::before {
+    width: 2rem;
+    background-color: #f51a51;
+  }
+}
+
 
 .profile {
   display: flex;
@@ -79,9 +116,22 @@ div.cardHeader {
 
 .avatar {
   cursor: pointer;
+
   width: 36px;
   height: 36px;
+
   border-radius: 100%;
+  box-shadow: 0 0 5px rgb(28 173 64),
+  0 0 5px rgb(28 173 64),   0 0 5px rgb(28 173 64),   0 0 5px rgb(28 173 64),   0 0 5px rgb(28 173 64);
+
+
+&:hover{
+  transform: scale(1.05);
+  background-color: #fa725a;
+    box-shadow: 0 0 5px rgb(160 125 255),
+    0 0 5px rgb(160 125 255), 0 0 5px rgb(160 125 255),0 0 5px rgb(160 125 255), 0 0 5px rgb(160 125 255), 0 0 5px rgb(160 125 255);
+  transition: all .3s;
+}
 }
 
 div .profileInfo:hover {
@@ -124,9 +174,10 @@ span.name{
 }
 
 .dropdownMenu {
+  z-index: 100;
+
   @media (width <= 1006px) {
     width: 100%
-
   }
 }
 
@@ -141,4 +192,28 @@ button.buttonHeader {
 a.linkHeader {
   margin: 0;
   padding: 0;
+ }
+
+a.buttonNavLinkHeader {
+  display: flex;
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  &:visited {
+    color: var(--color-light-100);
+  }
+
+  &:not(:visited) {
+    color: var(--color-light-100);
+  }
+
+  &:focus-visible {
+       border: none;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-light-100);
+  }
 }
+
+
