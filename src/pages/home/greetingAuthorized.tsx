@@ -9,10 +9,11 @@ export const GreetingAuthorized = () => {
   return (
     <div className={s.container}>
       <Card id="cardHome" className={s.cardHome}>
-        <Typography
-          variant="h3"
-          className={s.signInTypographyBody}
-        >{`Обучающие карточки - это интерактивный способ изучения нового материала или повторения уже изученного. Каждая карточка содержит вопрос и ответ. Вы можете создавать свои собственные наборы карточек или использовать готовые наборы, созданные другими пользователями.`}</Typography>
+        <Typography variant="h3" className={s.signInTypographyBody}>
+          {
+            'Learning Cards are an interactive way to learn new material or repeat what you have already learned. Each card contains a question and an answer. You can create your own sets of cards or use ready-made sets created by other users.'
+          }
+        </Typography>
 
         <div className={s.signInButtonWrapper}>
           <Button
