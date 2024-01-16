@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import s from './header.module.scss'
 
@@ -34,7 +34,9 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
       <Card className={classNames.cardHeader}>
         <div className={s.wrapperHeaderInCard}>
           <Button as={NavLink} to={'/'} variant={'link'} className={s.linkHeader}>
-            <Logo />
+            <span className={s.spanHeaderInLogo}>
+              <Logo />
+            </span>
           </Button>
 
           {isAuth && user ? (
@@ -61,8 +63,6 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
 }
 
 const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, 'onSignOut'>) => {
-  const navigate = useNavigate()
-
   const classNames = {
     avatar: s.avatar,
     profileInfo: s.profileInfo,
@@ -78,20 +78,21 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
         <img src={avatar || defaultAvatar} alt={'icon'} className={s.image} />
         <div className={s.info}>
           <Typography className={s.name}>{name}</Typography>
-          {/*<Typography variant={'caption'} className={s.email}>*/}
           <Typography className={s.email}>{email}</Typography>
         </div>
       </DropDownItem>
-      <DropDownItemWithIcon
-        onSelect={() => navigate('/profile')}
-        textValue={'My Profile'}
-        icon={<ProfileOutline />}
-      />
-      <DropDownItemWithIcon
-        onSelect={() => navigate('/charts')}
-        textValue={'Analytics'}
-        icon={<SlicesOutlined />}
-      />
+      <DropDownItem>
+        <Link to={'/profile'} className={s.buttonNavLinkHeader}>
+          <ProfileOutline />
+          <Typography className={s.linkHeaderProfile}>My Profile</Typography>
+        </Link>
+      </DropDownItem>
+      <DropDownItem>
+        <Link to={'/charts'} className={s.buttonNavLinkHeader}>
+          <SlicesOutlined />
+          <Typography className={s.linkHeaderProfile}>Analytics</Typography>
+        </Link>
+      </DropDownItem>
       <DropDownItemWithIcon onSelect={onSignOut} textValue={'Sign out'} icon={<Logout />} />
     </DropdownMenu>
   )
