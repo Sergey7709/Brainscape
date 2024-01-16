@@ -98,16 +98,45 @@
 
 
 .deckHeaderCell {
+  cursor: pointer;
   position: relative;
-font-weight: 700;
+  overflow: hidden;
+  font-weight: 700;
 
-  &:hover {
-    background-color: var(--color-dark-100);
-    transition: background-color 0.4s;
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 7%;
+    left: 0;
+    transform: skewX(-20deg);
+
+    display: block;
+
+    width: 0;
+    height: 86%;
+
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-light-100);
+    background: rgb(127 129 133);
+
+    //box-shadow: 0 0 3px 3px inset rgb(115 116 117/ 81.5%);
+    transition: all 0.2s ease-out;
 
     &:last-child {
-      background-color: var(--color-dark-500)}
+      pointer-events: none;
+    }
   }
+
+  &:hover::before {
+    animation: sh02 0.5s 0s linear;
+  }
+
 
   @media (width <= 1040px) {
     overflow: hidden;
@@ -204,10 +233,8 @@ font-weight: 700;
 }
 
 .imgCover {
-   //flex-shrink: 0;
-
   width: 118.265px;
-  height: 45px;//!!
+  height: 45px;
   object-fit: cover;
   border-radius: 3px;
 
@@ -255,49 +282,54 @@ a.linkCell {
 
   transition: all 0.3s ease-in-out;
 
-  &::after {
-    content: "";
+  &::before {
+    content: '';
 
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 7%;
+    left: 0;
+    transform: skewX(-20deg);
 
-    width: 5px;
-    height: 5px;
+    display: block;
 
-    color: var(--color-light-100);
+    width: 0;
+    height: 86%;
 
     opacity: 0;
-    background-color: rgb(223 187 240 / 30%);
-    border-radius: 50%;
-  }
-
- &:hover::after {
-   color: var(--color-light-100);
-    animation: ripple_401 0.9s ease-out;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
   }
 
   &:hover:not(:disabled) {
     color: var(--color-light-100);
+    background: rgb(127 129 133);
+
+    //box-shadow: 0 0 3px 3px rgb(127 129 133/ 81.5%);
+    transition: all 0.2s ease-out;
+  }
+
+ &:hover::before {
+    animation: sh02 0.5s 0s linear;
+  }
+
+  &:visited:not(:disabled) {
+    color: var(--color-light-100);
+  }
+
+  @keyframes sh02 {
+    0% {
+      left: 0;
+      opacity: 0;
     }
 
-  @keyframes ripple_401 {
-    0% {
-      width: 5px;
-      height: 5px;
+    50% {
       opacity: 1;
     }
 
     100% {
-      width: 400px;
-      height: 200px;
+      left: 100%;
       opacity: 0;
     }
-  }
-
-  &:visited {
-    color: var(--color-light-100);
   }
 
 
@@ -334,6 +366,7 @@ a.linkCell {
     font-size: 10px;
   }
 }
+
 
 .buttonContainer {
   display: flex;
