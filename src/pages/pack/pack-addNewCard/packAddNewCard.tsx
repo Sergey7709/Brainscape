@@ -102,13 +102,17 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
         handlerClosedModal={handlerClosedModal}
         headerTitle={'Add new card'}
         buttonTitle={'Add new card'}
+      />
+      <Button
+        as={'button'}
+        variant={'primary'}
+        className={s.packButtonAddNewCard}
+        onClick={() => setOpen(!open)}
       >
-        <Button as={'button'} variant={'primary'} className={s.packButtonAddNewCard}>
-          <Typography variant={'body1'} className={s.packButtonAddNewCardText}>
-            Add New Card
-          </Typography>
-        </Button>
-      </ModalAddOrEditCard>
+        <Typography variant={'body1'} className={s.packButtonAddNewCardText}>
+          Add New Card
+        </Typography>
+      </Button>
     </>
   )
 }

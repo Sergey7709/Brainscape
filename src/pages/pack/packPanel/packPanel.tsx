@@ -73,9 +73,11 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
         {mePackCards ? (
           <PackAddNewCard deckId={dataDeck.id} />
         ) : (
-          <Button className={s.packButton} onClick={handlerNavigateLearn}>
-            Learn to Pack
-          </Button>
+          dataDeck.cardsCount > 0 && (
+            <Button className={s.packButton} onClick={handlerNavigateLearn}>
+              Learn to Pack
+            </Button>
+          )
         )}
       </div>
       {dataDeck?.cover ? (
@@ -83,12 +85,14 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
       ) : (
         <div className={s.packImgNone} />
       )}
-      <ModalDeletePack
-        open={openModalDelete}
-        setOpen={setOpenModalDelete}
-        handlerClosedModal={handlerOpenModal}
-        handlerDeletePack={handlerDeletePack}
-      />
+      {openModalDelete && (
+        <ModalDeletePack
+          open={openModalDelete}
+          setOpen={setOpenModalDelete}
+          handlerClosedModal={handlerOpenModal}
+          handlerDeletePack={handlerDeletePack}
+        />
+      )}
       {dataDeck && (
         <DeckEditPack
           id={dataDeck.id}

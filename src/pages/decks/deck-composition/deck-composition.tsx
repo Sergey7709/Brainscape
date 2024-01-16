@@ -65,14 +65,14 @@ export const DeckComposition = memo(() => {
               <Typography className={s.title}>Packs list</Typography>
               <DeckAddNewPack />
             </div>
-            <DecksPanel />
+            <DecksPanel maxCardsCount={data.maxCardsCount} />
             <div className={classNames.tableWrapper}>
               <Table.Root>
                 <Table.Header columns={columnsDecks} sort={sort} onSort={handlerSortValue}>
                   <Table.Head>
                     <Table.Row className={s.deckHeaderRow}>
                       <Table.HeadCellList
-                        className={s.deckTableCell}
+                        className={s.deckHeaderCell}
                         columns={columnsDecks}
                         sort={sort}
                         onSort={handlerSortValue}

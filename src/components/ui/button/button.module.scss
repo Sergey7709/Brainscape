@@ -64,6 +64,7 @@
 
   &:hover:not(:disabled) {
     background: var(--color-accent-300);
+    transition: background-color 0.4s;
   }
 
   &:active:not(:disabled) {
@@ -92,6 +93,7 @@
   &:hover:not(:disabled) {
     background: var(--color-dark-100);
     box-shadow: 0 0.25rem 0.25rem 0 rgb(77 86 96 / 13%);
+    transition: background-color 0.4s;
   }
 
   &:active:not(:disabled) {
@@ -120,6 +122,7 @@
 
   &:hover:not(:disabled) {
     background: var(--color-dark-500);
+    transition: background-color 0.4s;
   }
 
   &:active:not(:disabled) {
@@ -149,6 +152,7 @@
 
   &:hover:not(:disabled) {
     color: var(--color-accent-300);
+    transition: color 0.4s;
   }
 
   &:active:not(:disabled) {

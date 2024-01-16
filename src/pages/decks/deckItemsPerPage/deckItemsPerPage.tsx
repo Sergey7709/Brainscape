@@ -25,14 +25,14 @@ export const DeckItemsPerPage = () => {
 
   return (
     <div className={s.selectWrapper}>
-      <Typography className={s.deckItemTypography}>Показать</Typography>
+      <Typography className={s.deckItemTypography}>Show</Typography>
       <Select
         options={optionsForDeckItemsPerPage}
         variant={'pagination'}
         onValueChange={handlerSelectPagination}
         value={paginationSelectValueInURL}
       />
-      <Typography className={s.deckItemTypography}>на странице</Typography>
+      <Typography className={s.deckItemTypography}>on page</Typography>
     </div>
   )
 }

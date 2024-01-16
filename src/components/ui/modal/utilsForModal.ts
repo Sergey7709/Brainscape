@@ -8,7 +8,11 @@ export const useCreatePortal = () => {
 
     document.body.appendChild(portal.current)
 
-    return () => void document.body.removeChild(currentElementDiv)
+    return () => {
+      document.body.removeChild(currentElementDiv)
+      document.body.removeAttribute('style')
+      document.getElementById('root')?.removeAttribute('aria-hidden')
+    }
   }, [])
 
   return portal

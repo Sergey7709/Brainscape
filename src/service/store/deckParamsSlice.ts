@@ -44,7 +44,13 @@ const deckParamsSlice = createSlice({
       state.selectItemsPerPage = action.payload.selectItemsPerPage ?? selectItemsPerPageValue
     },
 
-    clearFilterReducer: () => initialState,
+    // clearFilterReducer: () => initialState,
+    clearFilterReducer: state => {
+      return {
+        ...initialState,
+        minMaxCardsCount: [initialState.minMaxCardsCount[0], state.minMaxCardsCount[1]],
+      }
+    }, ///!!!!
   },
 })
 

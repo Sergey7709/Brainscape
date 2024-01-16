@@ -51,12 +51,18 @@
 }
 
 .packButtonAddNewCard {
+  &:hover {
+    scale: 1.01;
+    transition: all .4s ease-in-out;
+  }
+
   @media (width <= 540px) {
     padding: 1px 10px;
   }
 }
 
 .packButtonAddNewCardText {
+font-size: var(--font-size-s);
 
     @media (width <= 540px) {
       font-size: var(--font-size-xs);
@@ -99,7 +105,60 @@
 }
 
 .packHeadCellListStyle{
-  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  //width: 100%;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 7%;
+    left: 0;
+    transform: skewX(-20deg);
+
+    display: block;
+
+    width: 0;
+    height: 86%;
+
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-light-100);
+    background: rgb(127 129 133);
+
+    //box-shadow: 0 0 3px 3px rgb(127 129 133/ 81.5%);
+    transition: all 0.2s ease-out;
+
+    &:last-child {
+      pointer-events: none;
+    }
+  }
+
+  &:hover::before {
+    animation: sh02 0.5s 0s linear;
+  }
+
+  @keyframes sh02 {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
 
   @media (width <= 1040px) {
  padding: 6px 10px;
@@ -108,6 +167,7 @@
   @media (width <= 768px) {
     padding: 6px 10px;
   }
+
   @media (width <= 540px) {
     padding: 6px 10px;
     font-size: 10px;
@@ -126,13 +186,15 @@
 .packHeaderStyle {
   display: grid;
   grid-template-columns: 1.75fr 1.75fr 1fr 1fr 0.8fr;
-  width: 100%;
+
+  //width: 100%;
 
   @media (width <= 1040px) {
    grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 0.8fr;
   }
+
   @media (width <= 540px) {
-    grid-template-columns:  1.4fr 1.4fr 1.8fr 1fr 1fr;
+    grid-template-columns:  1.4fr 1.4fr 2fr 1fr 1fr;
   }
 
 }

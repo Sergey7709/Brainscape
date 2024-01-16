@@ -96,6 +96,67 @@
 
 }
 
+
+.deckHeaderCell {
+  position: relative;
+  overflow: hidden;
+  font-weight: 700;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 7%;
+    left: 0;
+    transform: skewX(-20deg);
+
+    display: block;
+
+    width: 0;
+    height: 86%;
+
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-light-100);
+    background: rgb(127 129 133);
+    transition: all 0.2s ease-out;
+
+    &:last-child {
+      pointer-events: none;
+    }
+  }
+
+  &:hover::before {
+    animation: sh02 0.5s 0s linear;
+  }
+
+
+  @media (width <= 1040px) {
+    overflow: hidden;
+    display: flex;
+    padding: 6px 10px;
+    font-weight: 700;
+  }
+
+  @media (width <= 540px) {
+    padding: 4px 2px;
+    font-size: 10px;
+    font-weight: 700;
+
+    &:nth-child(1) {
+      padding-left: 5px;
+    }
+  }
+
+  @media (width <= 280px) {
+    line-height: var(--line-height-s);;
+  }
+}
+
 .textNoData {
   font-weight: 700;
   color: var(--color-danger-500);
@@ -169,8 +230,8 @@
 }
 
 .imgCover {
-   flex-shrink: 0;
   width: 118.265px;
+  height: 45px;
   object-fit: cover;
   border-radius: 3px;
 
@@ -188,6 +249,7 @@
 
 .textForName {
   overflow: hidden;
+
   width: 100%;
   margin: 0;
 
@@ -201,9 +263,13 @@
 }
 
 a.linkCell {
+  position: relative;
+
+  overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: flex-start ;
+  justify-content: flex-start;
+
   max-width: 100%;
   padding: 0 0 0 5px;
 
@@ -211,26 +277,57 @@ a.linkCell {
   font-weight: var(--font-weight-regular);
   color: var(--color-light-100);
 
-  &:visited {
+  transition: all 0.3s ease-in-out;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 7%;
+    left: 0;
+    transform: skewX(-20deg);
+
+    display: block;
+
+    width: 0;
+    height: 86%;
+
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-light-100);
+    background: rgb(127 129 133);
+    transition: all 0.2s ease-out;
+  }
+
+ &:hover::before {
+    animation: sh02 0.5s 0s linear;
+  }
+
+  &:visited:not(:disabled) {
     color: var(--color-light-100);
   }
 
+  @keyframes sh02 {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
 
-  &:hover:not(:disabled)  {
-    color: var(--color-light-100);
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px #262626, -2px -2px 8px  #fff;
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
   }
 
-  @media (width <= 1006px) {
-    width: 100%;
-    padding: 0 5px;
-  }
 
-  @media (width <= 540px) {
-    width: 90px;
-    padding: 0 5px;
-  }
 }
 
 .authorNameDeckRow {
@@ -264,6 +361,7 @@ a.linkCell {
     font-size: 10px;
   }
 }
+
 
 .buttonContainer {
   display: flex;

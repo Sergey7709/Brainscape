@@ -5,17 +5,28 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  background-color: rgb(0 0 0 / 70%);
-  backdrop-filter: blur(1px);
+  animation-name: bg-color;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+
+  @keyframes  bg-color{
+    0% {
+      background-color: rgb(0 0 0 / 0%);
+    }
+
+    100% {
+      background-color: rgb(0 0 0 / 85%);
+    }
+  }
 }
 
 .visible {
   visibility: visible;
-}
+  }
 
 .invisible {
   visibility: hidden;
-}
+ }
 
 .childrenContainer{
   position: relative;
@@ -26,6 +37,42 @@
   width: 100%;
 
   background-color: var(--color-dark-700);
+
+  &.fadeInDown {
+    animation-name: fade-in-down;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+
+    @keyframes fade-in-down {
+      0% {
+        transform: translate3d(-50%, -100%, 0);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+    }
+  }
+
+  &.fadeOut {
+    animation-name: fade-out-up;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+
+    @keyframes fade-out-up {
+      0% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate3d(-50%, -100%, 0);
+        opacity: 0;
+      }
+    }
+  }
 
   &.sm {
    width: 420px;
@@ -56,11 +103,9 @@
   flex-direction: column;
   justify-content: center;
 
-
   border: 1px solid var(--color-dark-500);
   border-radius: 0.25rem;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
-
 }
 
 .childrenHead {
