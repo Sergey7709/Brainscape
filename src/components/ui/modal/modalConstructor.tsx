@@ -56,7 +56,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
       switch (e.key) {
         case 'Escape': {
           setOpen(false)
-          document.body.style.overflow = '' ///!!!
+          document.body.removeAttribute('style') ///!!!
           break
         }
 
