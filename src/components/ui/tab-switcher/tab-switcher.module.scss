@@ -1,17 +1,20 @@
 
 .tabsRoot {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-
   width: 100%;
-  margin-top: 5px;
 
-
+  //margin-top: 5px;
 }
 
 .tabsList {
-  display: flex;
-  flex-shrink: 0;
+  display: inline-flex;
+
+  @media (width <= 1040px) {
+    width: 100%;
+  }
+
+  //flex-shrink: 0;
 
 }
 
@@ -40,13 +43,13 @@
   &:hover {
     color: var(--color-light-100);
     background: var(--color-dark-300);
-    transition: 0.2s;
+    transition: 0.4s;
   }
 
   &[data-state='active'] {
     color: var(--color-light-100);
     background: var(--primary-500, #8c61ff);
-    transition: 0.2s;
+    transition: 0.4s;
   }
 
   &.disabled {
@@ -67,7 +70,6 @@
 
   @media (width <= 1040px) {
   width: 100%;
-
 }
 
 }

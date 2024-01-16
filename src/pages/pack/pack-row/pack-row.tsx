@@ -86,22 +86,26 @@ export const PackRow = (pack: extendPackRow) => {
       </Table.Row>
       <tr className={s.modalRow}>
         <td>
-          <PackEditCard
-            cardId={pack.id}
-            questionImage={pack.questionImg}
-            answerImage={pack.answerImg}
-            open={openEditModal}
-            setOpen={setOpenEditModal}
-            question={pack.question}
-            answer={pack.answer}
-            utilityEditCard={utilityEditCard}
-          />
-          <ModalDeleteCard
-            open={openModalDelete}
-            setOpen={setOpenModalDelete}
-            handlerClosedModal={handlerOpenModal}
-            handlerDeletePack={handlerDeletePack}
-          />
+          {openEditModal && (
+            <PackEditCard
+              cardId={pack.id}
+              questionImage={pack.questionImg}
+              answerImage={pack.answerImg}
+              open={openEditModal}
+              setOpen={setOpenEditModal}
+              question={pack.question}
+              answer={pack.answer}
+              utilityEditCard={utilityEditCard}
+            />
+          )}
+          {openModalDelete && (
+            <ModalDeleteCard
+              open={openModalDelete}
+              setOpen={setOpenModalDelete}
+              handlerClosedModal={handlerOpenModal}
+              handlerDeletePack={handlerDeletePack}
+            />
+          )}
         </td>
       </tr>
     </>

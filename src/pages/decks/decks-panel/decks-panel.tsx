@@ -12,7 +12,7 @@ import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { milliSecondsValue, useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
 import {
-  clearFilterReducer,
+  // clearFilterReducer,
   findNameReducer,
   minMaxCardsCountReducer,
 } from '@/service/store/deckParamsSlice.ts'
@@ -20,7 +20,10 @@ import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit 
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
 import { useDebounce } from '@/utils/hooks/useDebounce.ts'
 
-export const DecksPanel = memo(() => {
+type MaxCardsInDecks = {
+  maxCardsCount: number
+}
+export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
   const dispatch = useAppDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -39,10 +42,14 @@ export const DecksPanel = memo(() => {
 
   const findText = searchParams.get('name') || ''
 
+  // const minMaxCardsUrlValue = [
+  //   Number(searchParams.get('minCardsCount') || valueForSlider[0]),
+  //   Number(searchParams.get('maxCardsCount') || valueForSlider[1]),
+  // ]
   const minMaxCardsUrlValue = [
     Number(searchParams.get('minCardsCount') || valueForSlider[0]),
-    Number(searchParams.get('maxCardsCount') || valueForSlider[1]),
-  ]
+    Number(searchParams.get('maxCardsCount') || maxCardsCount || valueForSlider[1]),
+  ] //!!!!
 
   useEffect(() => {
     if (isFirstRender) {
@@ -50,7 +57,8 @@ export const DecksPanel = memo(() => {
     }
   }, [isFirstRender])
 
-  const actualValueSlider = isFirstRender ? minMaxCardsUrlValue : valueForSlider
+  // const actualValueSlider = isFirstRender ? minMaxCardsUrlValue : valueForSlider
+  const actualValueSlider = isFirstRender ? minMaxCardsUrlValue : valueForSlider //!!!
 
   const debounce = useDebounce({ value: searchValue, milliSeconds: milliSecondsValue })
 
@@ -75,7 +83,8 @@ export const DecksPanel = memo(() => {
       param: 'minCardsCount',
       param2: 'maxCardsCount',
       valueForNewParam: value[0] === minCardsValue ? [] : value[0].toString(),
-      valueForNewParam2: value[1] === maxCardsValue ? [] : value[1].toString(),
+      // valueForNewParam2: value[1] === maxCardsValue ? [] : value[1].toString(),
+      valueForNewParam2: value[1] === (maxCardsCount || maxCardsValue) ? [] : value[1].toString(), //!!!
     })
   }
   const handlerValueChangeSlider = (value: number[]) => {
@@ -86,7 +95,8 @@ export const DecksPanel = memo(() => {
     dispatch(findNameReducer({ findName: value }))
   }
   const handlerClearFilter = () => {
-    dispatch(clearFilterReducer())
+    // dispatch(clearFilterReducer())
+    dispatch(minMaxCardsCountReducer({ minMaxCardsCount: [minCardsValue, maxCardsCount] })) //!!!
     setSearchParams('')
   }
   const handlerTabSwitchChangeValue = (value: string | string[]) => {
@@ -97,6 +107,8 @@ export const DecksPanel = memo(() => {
   }
 
   console.log('deck panel JSX')
+  console.log(maxCardsCount)
+  console.log(valueForSlider)
 
   return (
     <>
@@ -132,7 +144,7 @@ export const DecksPanel = memo(() => {
           className={classNames.slider}
           label={'Number of cards'}
           min={minCardsValue}
-          max={maxCardsValue}
+          max={maxCardsCount}
           onValueCommit={handlerSliderCommitValue}
           value={actualValueSlider}
           onValueChange={handlerValueChangeSlider}

@@ -61,46 +61,48 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
 
   return (
     <Modal open={open} setOpen={setOpen}>
-      <ModalConstructor.PortalAndOverlay>
-        <form onSubmit={onHandleSubmitForm}>
-          <ModalConstructor.Head
-            borderBottomHeader={borderBottomHeader}
-            justifyContentHeader={justifyContentHeader}
-          >
-            <Typography as={'span'} variant={'large'}>
-              {headerTitle}
-            </Typography>
-          </ModalConstructor.Head>
-          <ModalConstructor.Body>
-            <ControlledTextField control={control} name={'question'} />
-            <ImageUploader
-              hiddenInputRef={hiddenInputRefQuestion}
-              valueForm={imageQuestionFormValue}
-              errorMessage={errors.questionImg?.message}
-              onChangeForm={onChangeImageQuestionForm}
-            />
-            <ControlledTextField control={control} name={'answer'} />
-            <ImageUploader
-              hiddenInputRef={hiddenInputRefAnswer}
-              valueForm={imageAnswerFormValue}
-              errorMessage={errors.answerImg?.message}
-              onChangeForm={onChangeImageAnswerForm}
-            />
-          </ModalConstructor.Body>
-          <ModalConstructor.Footer>
-            <Button type={'button'} variant={'secondary'} onClick={handlerClosedModal}>
-              <Typography as={'span'} variant={'body2'}>
-                Cancel
+      {open && (
+        <ModalConstructor.PortalAndOverlay>
+          <form onSubmit={onHandleSubmitForm}>
+            <ModalConstructor.Head
+              borderBottomHeader={borderBottomHeader}
+              justifyContentHeader={justifyContentHeader}
+            >
+              <Typography as={'span'} variant={'large'}>
+                {headerTitle}
               </Typography>
-            </Button>
-            <Button variant={'primary'} className={s.packModalButtonEditSave} fullWidth>
-              <Typography as={'span'} variant={'body2'} className={s.packTextModalButtonEditSave}>
-                {buttonTitle}
-              </Typography>
-            </Button>
-          </ModalConstructor.Footer>
-        </form>
-      </ModalConstructor.PortalAndOverlay>
+            </ModalConstructor.Head>
+            <ModalConstructor.Body>
+              <ControlledTextField control={control} name={'question'} />
+              <ImageUploader
+                hiddenInputRef={hiddenInputRefQuestion}
+                valueForm={imageQuestionFormValue}
+                errorMessage={errors.questionImg?.message}
+                onChangeForm={onChangeImageQuestionForm}
+              />
+              <ControlledTextField control={control} name={'answer'} />
+              <ImageUploader
+                hiddenInputRef={hiddenInputRefAnswer}
+                valueForm={imageAnswerFormValue}
+                errorMessage={errors.answerImg?.message}
+                onChangeForm={onChangeImageAnswerForm}
+              />
+            </ModalConstructor.Body>
+            <ModalConstructor.Footer>
+              <Button type={'button'} variant={'secondary'} onClick={handlerClosedModal}>
+                <Typography as={'span'} variant={'body2'}>
+                  Cancel
+                </Typography>
+              </Button>
+              <Button variant={'primary'} className={s.packModalButtonEditSave} fullWidth>
+                <Typography as={'span'} variant={'body2'} className={s.packTextModalButtonEditSave}>
+                  {buttonTitle}
+                </Typography>
+              </Button>
+            </ModalConstructor.Footer>
+          </form>
+        </ModalConstructor.PortalAndOverlay>
+      )}
       <ModalConstructor.Trigger>{props.children}</ModalConstructor.Trigger>
     </Modal>
   )

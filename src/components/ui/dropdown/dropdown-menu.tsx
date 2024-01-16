@@ -1,6 +1,7 @@
 import { CSSProperties, ReactNode } from 'react'
 
 import * as Dropdown from '@radix-ui/react-dropdown-menu'
+import { DropdownMenuItemProps } from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
 
 import s from './dropdown-menu.module.scss'
@@ -65,7 +66,7 @@ type DropDownItemProps = {
   onSelect?: (event: Event) => void
   className?: string
   style?: CSSProperties
-}
+} & DropdownMenuItemProps //!!!!!!!!
 
 export const DropDownItem = ({
   children,
@@ -73,6 +74,7 @@ export const DropDownItem = ({
   onSelect,
   className,
   style,
+  ...rest
 }: DropDownItemProps) => {
   const classNames = {
     item: clsx(s.item, disabled && s.disabled, className),
@@ -84,6 +86,7 @@ export const DropDownItem = ({
       disabled={disabled}
       onSelect={onSelect}
       style={style}
+      {...rest}
     >
       {children}
     </Dropdown.Item>

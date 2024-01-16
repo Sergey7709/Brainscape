@@ -24,7 +24,7 @@ export type TabDataProps = {
   content?: ReactNode | ReactNode[]
 }
 
-export type TabsTriggerProps = { fullWidth?: boolean; tabData: TabDataProps[] }
+export type TabsTriggerProps = { fullWidth?: boolean }
 
 export type TabsContentProps = { forceMount?: boolean }
 
@@ -32,7 +32,7 @@ export type CombinedTabsProps = TabsAsChildProps &
   TabsListProps &
   TabsTriggerProps &
   TabsContentProps &
-  TabsProps & { children?: ReactNode; label?: string }
+  TabsProps & { children?: ReactNode; label?: string; tabData: TabDataProps[] }
 
 export const TabSwitcher: FC<CombinedTabsProps> = props => {
   const {
@@ -58,10 +58,11 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
         s.tabsTrigger,
         el.disabled && s.disabled,
         fullWidth && s.fullWidth,
-        index !== 0 && s.nextTab,
+        index > 0 && s.nextTab,
         index === 0 && s.firstTab
       )}
       value={el.disabled ? 'disabled' : el.value}
+      disabled={!!el.disabled}
     >
       {el.title}
     </TabsTrigger>
@@ -76,27 +77,36 @@ export const TabSwitcher: FC<CombinedTabsProps> = props => {
     ))
 
   return (
-    <RadixLabel.Root>
-      {label && (
-        <Typography variant={'body1'} as={'label'} className={s.label}>
-          {label}
-        </Typography>
-      )}
-      <Tabs.Root
-        className={clsx(s.tabsRoot, className)}
-        defaultValue={defaultValue}
-        value={value}
-        onValueChange={onValueChange}
-        orientation={orientation}
-        activationMode={activationMode}
-        dir={dir}
-        asChild={restProps.asChild}
-      >
+    // <RadixLabel.Root>
+    //   {label && (
+    //     <Typography variant={'body1'} as={'label'} className={s.label}>
+    //       {label}
+    //     </Typography>
+    //   )}
+    <Tabs.Root
+      className={clsx(s.tabsRoot, className)}
+      defaultValue={defaultValue}
+      value={value}
+      onValueChange={onValueChange}
+      orientation={orientation}
+      activationMode={activationMode}
+      dir={dir}
+      asChild={restProps.asChild}
+    >
+      <RadixLabel.Root>
+        {label && (
+          <Typography variant={'body1'} as={'label'} className={s.label}>
+            {label}
+          </Typography>
+        )}
+      </RadixLabel.Root>
+      <div>
         <Tabs.List className={s.tabsList} loop={loop}>
           {renderTabsForTrigger}
         </Tabs.List>
         {renderChildrenOrTabContent}
-      </Tabs.Root>
-    </RadixLabel.Root>
+      </div>
+    </Tabs.Root>
+    // </RadixLabel.Root>
   )
 }

@@ -98,7 +98,7 @@ export const DeckAddNewPack = () => {
       buttonTitle={'Add new pack'}
     >
       <Button as={'button'} variant={'primary'} className={s.buttonAddNewPack}>
-        <Typography className={s.textButtonAddNewPack}>Add new pack</Typography>
+        <Typography className={s.textButtonAddNewPack}>Add New Pack</Typography>
       </Button>
     </ModalAddOrEditPack>
   )
