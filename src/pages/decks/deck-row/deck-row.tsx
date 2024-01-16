@@ -59,7 +59,6 @@ export const DeckRow = (deck: DeckType) => {
       {deck && (
         <Table.Row key={deck.id} className={s.deckHeaderRow}>
           <Table.Cell className={s.deckTableCell}>
-            {/*<div className={s.tableCellContainerDeck}>*/}
             <Button
               as={NavLink}
               variant={'link'}
@@ -70,10 +69,11 @@ export const DeckRow = (deck: DeckType) => {
             >
               <div className={s.nameContainer}>
                 {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
+                {/*<span className={s.linkSpanDeck}>*/}
                 <p className={s.textForName}> {deck.name}</p>
+                {/*</span>*/}
               </div>
             </Button>
-            {/*</div>*/}
           </Table.Cell>
           <Table.Cell className={s.deckTableCell}>
             <div className={s.tableCellContainerDeck}>{deck.cardsCount}</div>
@@ -88,15 +88,26 @@ export const DeckRow = (deck: DeckType) => {
           </Table.Cell>
           <Table.Cell className={s.deckTableCell}>
             <div className={s.buttonContainer}>
-              <Button
-                variant={'link'}
-                as={NavLink}
-                to={`/learn/${deck.id}`}
-                className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}
-                onClick={saveUrlDeck}
-              >
-                <Play />
-              </Button>
+              {deck.cardsCount > 0 && (
+                <Button
+                  variant={'link'}
+                  as={NavLink}
+                  to={`/learn/${deck.id}`}
+                  className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}
+                  onClick={saveUrlDeck}
+                >
+                  <Play />
+                </Button>
+              )}
+              {/*<Button*/}
+              {/*  variant={'link'}*/}
+              {/*  as={NavLink}*/}
+              {/*  to={`/learn/${deck.id}`}*/}
+              {/*  className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}*/}
+              {/*  onClick={saveUrlDeck}*/}
+              {/*>*/}
+              {/*  <Play />*/}
+              {/*</Button>*/}
               {meDeck && (
                 <>
                   <Button variant="link" className={s.buttonRow} onClick={handlerEditModal}>
@@ -113,21 +124,25 @@ export const DeckRow = (deck: DeckType) => {
       )}
       <tr className={s.modalRow}>
         <td>
-          <ModalDeletePack
-            open={openModalDelete}
-            setOpen={setOpenModalDelete}
-            handlerClosedModal={handlerOpenModal}
-            handlerDeletePack={handlerDeletePack}
-          />
-          <DeckEditPack
-            id={deck.id}
-            coverPack={deck.cover}
-            titlePack={deck.name}
-            open={openEditModal}
-            setOpen={setOpenEditModal}
-            isPrivate={deck.isPrivate}
-            utilityEditPack={utilityEditPack}
-          />
+          {openModalDelete && (
+            <ModalDeletePack
+              open={openModalDelete}
+              setOpen={setOpenModalDelete}
+              handlerClosedModal={handlerOpenModal}
+              handlerDeletePack={handlerDeletePack}
+            />
+          )}
+          {openEditModal && (
+            <DeckEditPack
+              id={deck.id}
+              coverPack={deck.cover}
+              titlePack={deck.name}
+              open={openEditModal}
+              setOpen={setOpenEditModal}
+              isPrivate={deck.isPrivate}
+              utilityEditPack={utilityEditPack}
+            />
+          )}
         </td>
       </tr>
     </>
