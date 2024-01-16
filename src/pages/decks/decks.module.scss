@@ -98,7 +98,6 @@
 
 
 .deckHeaderCell {
-  cursor: pointer;
   position: relative;
   overflow: hidden;
   font-weight: 700;
@@ -124,8 +123,6 @@
   &:hover:not(:disabled) {
     color: var(--color-light-100);
     background: rgb(127 129 133);
-
-    //box-shadow: 0 0 3px 3px inset rgb(115 116 117/ 81.5%);
     transition: all 0.2s ease-out;
 
     &:last-child {
@@ -303,8 +300,6 @@ a.linkCell {
   &:hover:not(:disabled) {
     color: var(--color-light-100);
     background: rgb(127 129 133);
-
-    //box-shadow: 0 0 3px 3px rgb(127 129 133/ 81.5%);
     transition: all 0.2s ease-out;
   }
 
