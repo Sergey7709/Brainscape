@@ -25,11 +25,9 @@ export const Question = ({
       {(isLoading || isFetching) && !imageQuestion && nameCard ? null : (
         <>
           <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
-          <div className={s.learnQuestionWrapper}>
-            {imageQuestion && (
-              <img className={s.learnQuestionImg} src={imageQuestion} alt={'Not Image'} />
-            )}
-            <Typography className={s.learnQuestionText}>{`Question: ${question}`}</Typography>
+          <div className={s.learnWrapper}>
+            {imageQuestion && <img className={s.learnImg} src={imageQuestion} alt={'Not Image'} />}
+            <Typography className={s.learnText}>{`Question: ${question}`}</Typography>
             <Typography className={s.learnCount}>
               {`Количество попыток ответов на вопрос: ${shots}`}
             </Typography>
