@@ -29,7 +29,7 @@ export const Question = ({
             {imageQuestion && <img className={s.learnImg} src={imageQuestion} alt={'Not Image'} />}
             <Typography className={s.learnText}>{`Question: ${question}`}</Typography>
             <Typography className={s.learnCount}>
-              {`Количество попыток ответов на вопрос: ${shots}`}
+              {`Number of attempts to answer the question: ${shots}`}
             </Typography>
           </div>
           <Button onClick={() => handlerLearn(true)} fullWidth>
