@@ -40,7 +40,7 @@
 
   &.fadeInDown {
     animation-name: fade-in-down;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-fill-mode: both;
 
     @keyframes fade-in-down {
@@ -58,7 +58,7 @@
 
   &.fadeOut {
     animation-name: fade-out-up;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-fill-mode: both;
 
     @keyframes fade-out-up {
