@@ -62,11 +62,9 @@ export const Answer = ({
       {isLoading || isFetching ? null : (
         <>
           <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
-          <div className={s.learnQuestionWrapper}>
-            {imageAnswer && (
-              <img className={s.learnQuestionImg} src={imageAnswer} alt={'Not Image'} />
-            )}
-            <Typography className={s.learnQuestionText}>{`Answer:  ${answer}`}</Typography>
+          <div className={s.learnWrapper}>
+            {imageAnswer && <img className={s.learnImg} src={imageAnswer} alt={'Not Image'} />}
+            <Typography className={s.learnText}>{`Answer:  ${answer}`}</Typography>
             <Typography className={s.learnCount}>
               {`Количество попыток ответов на вопрос: ${shots}`}
             </Typography>
