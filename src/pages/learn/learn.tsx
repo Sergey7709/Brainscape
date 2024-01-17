@@ -15,8 +15,8 @@ import { useIsFirstRender } from '@/utils'
 
 export const Learn = () => {
   const packId = useParams()
-  const { data, isLoading, isFetching } = useGetRandomCardsQuery(packId.id ?? '')
-  const { dataDeck, isLoadingDeck, isFetchingDeck } = useGetDataForPack()
+  const { data, isLoading, isFetching, isSuccess } = useGetRandomCardsQuery(packId.id ?? '')
+  const { dataDeck, isLoadingDeck, isFetchingDeck, isSuccessDeck } = useGetDataForPack()
 
   const [openAnswer, setOpenAnswer] = useState(false)
 
@@ -29,39 +29,39 @@ export const Learn = () => {
         <div className={s.learnBackToDeckWrapper}>
           <BackToDeckLink className={s.linkBackToDeck} />
         </div>
-        <Card className={s.learnCards}>
-          {!openAnswer && dataDeck && data ? (
-            <>
-              <Question
-                nameCard={dataDeck?.name}
-                imageQuestion={data?.questionImg}
-                question={data?.question}
-                shots={data?.shots}
-                handlerLearn={setOpenAnswer}
-                isLoading={isLoading}
-                isFetching={isFetching}
-              />
-            </>
-          ) : (
-            !isFirstRender &&
-            dataDeck &&
-            data && (
+        {isSuccess && isSuccessDeck && dataDeck && (
+          <Card className={openAnswer ? s.learnTransitionRotate : s.learnCards}>
+            {!openAnswer ? (
               <>
-                <Answer
+                <Question
                   nameCard={dataDeck?.name}
-                  imageAnswer={data?.answerImg}
-                  answer={data?.answer}
+                  imageQuestion={data?.questionImg}
+                  question={data?.question}
                   shots={data?.shots}
                   handlerLearn={setOpenAnswer}
-                  cardID={data?.id}
-                  deckID={dataDeck?.id}
                   isLoading={isLoading}
                   isFetching={isFetching}
                 />
               </>
-            )
-          )}
-        </Card>
+            ) : (
+              !isFirstRender && (
+                <>
+                  <Answer
+                    nameCard={dataDeck?.name}
+                    imageAnswer={data?.answerImg}
+                    answer={data?.answer}
+                    shots={data?.shots}
+                    handlerLearn={setOpenAnswer}
+                    cardID={data?.id}
+                    deckID={dataDeck?.id}
+                    isLoading={isLoading}
+                    isFetching={isFetching}
+                  />
+                </>
+              )
+            )}
+          </Card>
+        )}
       </div>
     </>
   )
