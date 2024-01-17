@@ -25,12 +25,73 @@
 }
 
 .learnCards {
-padding: 33px 36px 48px;
+  margin-bottom: 5%;
+  padding: 33px 36px 48px;
+
+  animation-name: vanishIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+
+  @keyframes vanishIn {
+    0%,50% {
+      transform-origin: 50% 50%;
+      transform: scale(2, 2);
+      opacity: 0;
+      filter: blur(90px);
+    }
+
+      100% {
+      transform-origin: 50% 50%;
+      transform: scale(1, 1);
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
 
 @media (width <= 540px) {
   width: 340px;
   padding: 33px 15px 48px;
 }
+
+  @media (width <= 280px) {
+    width: 270px;
+  }
+}
+
+.learnTransitionRotate {
+  margin-bottom: 5%;
+  padding: 33px 36px 48px;
+
+  animation-name: holeOut;
+  animation-duration: .8s;
+  animation-fill-mode: both;
+
+  @keyframes holeOut {
+    0%,100% {
+      transform-origin: 50% 50%;
+      transform: scale(1, 1) rotateY(0deg);
+      opacity: 1;
+
+    }
+
+    50% {
+      transform-origin: 50% 50%;
+      transform: scale(0.7, 0.7) rotateY(180deg);
+
+      color: transparent;
+
+      opacity: 0.5;
+      background-image: none;
+      filter: blur(10px);
+      box-shadow:  0 0 5px 10px #a280ff;
+    }
+
+  }
+
+  @media (width <= 540px) {
+    width: 340px;
+    padding: 33px 15px 48px;
+  }
 
   @media (width <= 280px) {
     width: 270px;
@@ -46,7 +107,7 @@ padding: 33px 36px 48px;
   line-height: 36px;
 }
 
-.learnQuestionWrapper {
+.learnWrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -56,13 +117,17 @@ padding: 33px 36px 48px;
   margin-bottom: 41px;
 }
 
-.learnQuestionText {
+.learnText {
+  overflow: hidden;
+
   font-size: 16px;
   font-weight: 700;
   font-style: normal;
-  line-height: 24px}
+  line-height: 24px;
+  word-wrap: break-word;
+}
 
-.learnQuestionImg {
+.learnImg {
   width: 100%;
   max-height: 250px;
 }

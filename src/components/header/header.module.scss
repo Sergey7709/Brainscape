@@ -175,6 +175,20 @@ span.name{
 
 .dropdownMenu {
   z-index: 100;
+  animation-name: fade-in;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+
+  @keyframes fade-in {
+    0% {
+      transform: scale3d(.3, .3, .3);
+           opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
 
   @media (width <= 1006px) {
     width: 100%
