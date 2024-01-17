@@ -66,7 +66,7 @@ export const Answer = ({
             {imageAnswer && <img className={s.learnImg} src={imageAnswer} alt={'Not Image'} />}
             <Typography className={s.learnText}>{`Answer:  ${answer}`}</Typography>
             <Typography className={s.learnCount}>
-              {`Количество попыток ответов на вопрос: ${shots}`}
+              {`Number of attempts to answer the question: ${shots}`}
             </Typography>
           </div>
           <div className={s.learnRadioGroupAnswer}>
