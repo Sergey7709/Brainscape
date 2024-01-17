@@ -56,7 +56,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   const overlayStyle = clsx(s.overlay, `${open ? s.visible : s.invisible}`)
   const handlerCloseModal = () => {
     setIsClosing(!isClosing) //!!!
-    setTimeout(() => setOpen(false), 300)
+    setTimeout(() => setOpen(false), 200)
   }
 
   // close on esc
