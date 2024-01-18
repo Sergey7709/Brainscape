@@ -1,3 +1,5 @@
+import { clsx } from 'clsx'
+
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
@@ -9,7 +11,6 @@ type QuestionProps = {
   question: string
   shots: number
   handlerLearn: (value: boolean) => void
-  openAnswer: boolean
 }
 export const Question = ({
   nameCard,
@@ -17,11 +18,12 @@ export const Question = ({
   question,
   shots,
   handlerLearn,
-  openAnswer,
 }: QuestionProps) => {
+  const classNameQuestion = clsx(s.learnCards, s.animateQuestion)
+
   return (
     <>
-      <Card className={openAnswer ? s.learnTransitionRotate : s.learnCards}>
+      <Card className={classNameQuestion}>
         <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
         <div className={s.learnWrapper}>
           {imageQuestion && <img className={s.learnImg} src={imageQuestion} alt={'Not Image'} />}
