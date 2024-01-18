@@ -53,7 +53,7 @@ export const Pack = () => {
           <div className={s.pack}>
             <PackPanel dataDeck={dataDeck} mePackCards={mePackCards} />
             <PackSearch />
-            <TablePack dataCards={dataCards} sort={sort} />
+            <TablePack dataCards={dataCards} sort={sort} mePackCards={mePackCards} />
             <div className={s.paginationWrapperPack}>
               {paginationReady && (
                 <Pagination
