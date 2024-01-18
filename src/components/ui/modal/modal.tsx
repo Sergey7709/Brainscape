@@ -31,9 +31,7 @@ export const Modal: FC<ModalProps> = props => {
   return (
     <>
       <ModalContext.Provider value={{ open, setOpen, size, showCloseButton, ...restProps }}>
-        <div className={className} {...restProps}>
-          {children}
-        </div>
+        <div {...restProps}>{children}</div>
       </ModalContext.Provider>
     </>
   )
