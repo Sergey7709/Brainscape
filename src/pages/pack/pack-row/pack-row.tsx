@@ -48,7 +48,10 @@ export const PackRow = (pack: extendPackRow) => {
       <tr>
         <td>{(isLoadingDelete || isLoadingEdit) && <Loader />}</td>
       </tr>
-      <Table.Row key={pack.id} className={s.packRowStyle}>
+      <Table.Row
+        key={pack.id}
+        className={pack.mePackCards ? s.packRowMeStyle : s.packRowStyleFriend}
+      >
         <Table.Cell className={s.packTableCell}>
           <div className={s.nameContainerPackRow}>
             {pack.questionImg && (

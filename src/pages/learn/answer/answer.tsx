@@ -1,6 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
+import { clsx } from 'clsx'
 
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Loader } from '@/components/ui/loader'
 import { Typography } from '@/components/ui/typography'
 import { RadioGroupAnswer } from '@/pages/learn/answer/radioGroupAnswer.tsx'
 import { isGrade } from '@/pages/learn/constants-learn'
@@ -12,30 +16,13 @@ type AnswerProps = {
   imageAnswer: string
   answer: string
   shots: number
-  handlerLearn: (value: boolean) => void
   cardID: string
   deckID: string
-  isLoading: boolean
-  isFetching: boolean
 }
 
-export const Answer = ({
-  nameCard,
-  imageAnswer,
-  shots,
-  answer,
-  cardID,
-  deckID,
-  handlerLearn,
-  isLoading,
-  isFetching,
-}: AnswerProps) => {
+export const Answer = ({ nameCard, imageAnswer, shots, answer, cardID, deckID }: AnswerProps) => {
   const [gradeAnswer, setGradeAnswer] = useState('')
-  const [postGradeAnswer, { isLoading: isLoadingPost, isSuccess }] = useGradeCardMutation()
-
-  useEffect(() => {
-    isSuccess && handlerLearn(false)
-  }, [isLoadingPost])
+  const [postGradeAnswer, { isLoading: isLoadingPost }] = useGradeCardMutation()
 
   const handlerValueAnswer = (value: string) => {
     setGradeAnswer(value)
@@ -57,27 +44,28 @@ export const Answer = ({
     }
   }
 
+  const classNameQuestion = clsx(s.learnCards, s.animateAnswer)
+
   return (
     <>
-      {isLoading || isFetching ? null : (
-        <>
-          <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
-          <div className={s.learnWrapper}>
-            {imageAnswer && <img className={s.learnImg} src={imageAnswer} alt={'Not Image'} />}
-            <Typography className={s.learnText}>{`Answer:  ${answer}`}</Typography>
-            <Typography className={s.learnCount}>
-              {`Number of attempts to answer the question: ${shots}`}
-            </Typography>
-          </div>
-          <div className={s.learnRadioGroupAnswer}>
-            <Typography>{`Rate yourself:`}</Typography>
-            <RadioGroupAnswer handlerValueAnswer={handlerValueAnswer} />
-          </div>
-          <Button onClick={handlerPostAnswer} fullWidth>
-            <Typography className={s.learnButtonText}>Next Question</Typography>
-          </Button>
-        </>
-      )}
+      {isLoadingPost && <Loader />}
+      <Card className={classNameQuestion}>
+        <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
+        <div className={s.learnWrapper}>
+          {imageAnswer && <img className={s.learnImg} src={imageAnswer} alt={'Not Image'} />}
+          <Typography className={s.learnText}>{`Answer:  ${answer}`}</Typography>
+          <Typography className={s.learnCount}>
+            {`Количество попыток ответов на вопрос: ${shots}`}
+          </Typography>
+        </div>
+        <div className={s.learnRadioGroupAnswer}>
+          <Typography>{`Rate yourself:`}</Typography>
+          <RadioGroupAnswer handlerValueAnswer={handlerValueAnswer} />
+        </div>
+        <Button onClick={handlerPostAnswer} fullWidth>
+          <Typography className={s.learnButtonText}>Next Question</Typography>
+        </Button>
+      </Card>
     </>
   )
 }

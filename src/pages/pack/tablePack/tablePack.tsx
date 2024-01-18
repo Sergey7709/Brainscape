@@ -10,8 +10,9 @@ import { useUtilityForSearchParamsEdit } from '@/utils'
 type TablePackProps = {
   dataCards: GetEntitiesResponse<PackCards>
   sort: Sort
+  mePackCards: boolean
 }
-export const TablePack = ({ dataCards, sort }: TablePackProps) => {
+export const TablePack = ({ dataCards, sort, mePackCards }: TablePackProps) => {
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
   const handlerSortValuePack = (sort: Sort) => {
@@ -26,7 +27,7 @@ export const TablePack = ({ dataCards, sort }: TablePackProps) => {
     <Table.Root>
       <Table.Header columns={columnsPack} sort={sort} onSort={handlerSortValuePack}>
         <Table.Head>
-          <Table.Row className={s.packHeaderStyle}>
+          <Table.Row className={mePackCards ? s.packHeaderMeStyle : s.packHeaderStyleFriend}>
             <Table.HeadCellList
               className={s.packHeadCellListStyle}
               columns={columnsPack}

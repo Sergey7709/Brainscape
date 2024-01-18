@@ -8,7 +8,7 @@
 }
 
 .headCell {
-   padding: 6px 24px;
+  padding: 6px 24px;
 
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-medium);
@@ -24,14 +24,18 @@
     display: flex;
     gap: 4px;
     align-items: center;
+
+    @media (width <= 360px) {
+      gap:0;
+    }
   }
 
   &.sortable > span {
     cursor: pointer;
-  }
+   }
 
   svg {
-    transition: transform 0.2s ease-in-out;
+      transition: transform 0.2s ease-in-out;
   }
 }
 
