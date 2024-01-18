@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { clsx } from 'clsx'
+
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Loader } from '@/components/ui/loader'
@@ -16,18 +18,9 @@ type AnswerProps = {
   shots: number
   cardID: string
   deckID: string
-  openAnswer: boolean
 }
 
-export const Answer = ({
-  nameCard,
-  imageAnswer,
-  shots,
-  answer,
-  cardID,
-  deckID,
-  openAnswer,
-}: AnswerProps) => {
+export const Answer = ({ nameCard, imageAnswer, shots, answer, cardID, deckID }: AnswerProps) => {
   const [gradeAnswer, setGradeAnswer] = useState('')
   const [postGradeAnswer, { isLoading: isLoadingPost }] = useGradeCardMutation()
 
@@ -51,10 +44,12 @@ export const Answer = ({
     }
   }
 
+  const classNameQuestion = clsx(s.learnCards, s.animateAnswer)
+
   return (
     <>
       {isLoadingPost && <Loader />}
-      <Card className={openAnswer ? s.learnTransitionRotate : s.learnCards}>
+      <Card className={classNameQuestion}>
         <Typography className={s.learnNamePack}>{`Learn "${nameCard}"`}</Typography>
         <div className={s.learnWrapper}>
           {imageAnswer && <img className={s.learnImg} src={imageAnswer} alt={'Not Image'} />}
