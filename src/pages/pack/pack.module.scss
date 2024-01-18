@@ -190,7 +190,7 @@ font-size: var(--font-size-s);
 
 .packHeaderStyle {
   display: grid;
-  grid-template-columns: 1.75fr 1.75fr 1fr 1fr 0.8fr;
+  grid-template-columns: 301px 301px 131px 168px 105px;
 
   @media (width <= 1040px) {
    grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 0.8fr;
