@@ -48,7 +48,6 @@ export const Learn = () => {
                 shots={dataCard?.shots}
                 cardID={dataCard?.id}
                 deckID={dataDeck?.id}
-                openAnswer={openAnswer}
               />
             ) : (
               <Question
@@ -57,7 +56,6 @@ export const Learn = () => {
                 question={dataCard?.question}
                 shots={dataCard?.shots}
                 handlerLearn={setOpenAnswer}
-                openAnswer={openAnswer}
               />
             )}
           </>
