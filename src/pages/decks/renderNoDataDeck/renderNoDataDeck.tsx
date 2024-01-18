@@ -4,7 +4,7 @@ export const RenderNoDataDeck = () => {
   return (
     <tr className={s.td}>
       <td colSpan={5}>
-        <p className={s.textNoData}>Упс... данные отсутствуют</p>
+        <p className={s.textNoData}>Oops... data missing</p>
       </td>
     </tr>
   )

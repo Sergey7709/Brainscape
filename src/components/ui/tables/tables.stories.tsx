@@ -15,6 +15,17 @@ export default {
   title: 'Components/Table',
   component: Table.Root,
   tags: ['autodocs'],
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#313131',
+        },
+      ],
+    },
+  },
 } as Meta<typeof Table.Root>
 
 export const Default = {
@@ -47,13 +58,25 @@ export const Default = {
             </Table.Cell>
             <Table.Cell>
               <div className={s.buttonContainer}>
-                <Button variant="link" className={s.editAvatarButton}>
+                <Button
+                  variant="link"
+                  className={s.editAvatarButton}
+                  style={{ padding: '2px 4px' }}
+                >
                   <Play />
                 </Button>
-                <Button variant="link" className={s.editAvatarButton}>
+                <Button
+                  variant="link"
+                  className={s.editAvatarButton}
+                  style={{ padding: '2px 4px' }}
+                >
                   <Redactor />
                 </Button>
-                <Button variant="link" className={s.editAvatarButton}>
+                <Button
+                  variant="link"
+                  className={s.editAvatarButton}
+                  style={{ padding: '2px 4px' }}
+                >
                   <Delete />
                 </Button>
               </div>
@@ -66,13 +89,13 @@ export const Default = {
             <Table.Cell>it-incubator</Table.Cell>
             <Table.Cell>
               <div className={s.buttonContainer}>
-                <Button variant="link">
+                <Button variant="link" style={{ padding: '2px 4px' }}>
                   <Play />
                 </Button>
-                <Button variant="link">
+                <Button variant="link" style={{ padding: '2px 4px' }}>
                   <Redactor />
                 </Button>
-                <Button variant="link">
+                <Button variant="link" style={{ padding: '2px 4px' }}>
                   <Delete />
                 </Button>
               </div>
@@ -163,23 +186,35 @@ export const WithSort = {
 
     return (
       <Table.Root {...args}>
-        <Table.Header columns={columns} onSort={setSort} sort={sort} />
+        <Table.Header columns={columns} onSort={setSort} sort={sort} style={{ padding: 6 }} />
         <Table.Body>
           {sortedData.map(item => (
-            <Table.Row key={item.title}>
+            <Table.Row key={item.title} style={{ padding: 6 }}>
               <Table.Cell>{item.title}</Table.Cell>
               <Table.Cell>{item.cardsCount}</Table.Cell>
               <Table.Cell>{item.updated}</Table.Cell>
               <Table.Cell>{item.createdBy}</Table.Cell>
               <Table.Cell>
                 <div className={s.buttonContainer}>
-                  <Button variant="link" className={s.editAvatarButton}>
+                  <Button
+                    variant="link"
+                    className={s.editAvatarButton}
+                    style={{ padding: '2px 4px' }}
+                  >
                     <Play />
                   </Button>
-                  <Button variant="link" className={s.editAvatarButton}>
+                  <Button
+                    variant="link"
+                    className={s.editAvatarButton}
+                    style={{ padding: '2px 4px' }}
+                  >
                     <Redactor />
                   </Button>
-                  <Button variant="link" className={s.editAvatarButton}>
+                  <Button
+                    variant="link"
+                    className={s.editAvatarButton}
+                    style={{ padding: '2px 4px' }}
+                  >
                     <Delete />
                   </Button>
                 </div>

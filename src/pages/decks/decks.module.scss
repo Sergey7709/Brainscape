@@ -14,8 +14,8 @@
   }
 
   @media (width <= 540px) {
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }
 
@@ -24,13 +24,7 @@
 
   @media (width <= 1040px) {
     width: 100%;
-    padding: 5px
   }
-
-  @media (width <= 540px) {
-    padding: 5px
-  }
-
  }
 
 .head {
@@ -78,7 +72,7 @@
 
 .deckHeaderRow {
     display: grid;
-    grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr;
+    grid-template-columns:261px 141px 201px 286px 117px;
 
     @media (width <= 1040px) {
       grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
@@ -91,13 +85,13 @@
 
   @media (width <= 280px)
  {
-  grid-template-columns: 2fr 1.5fr 2fr 1.65fr 1fr;
+  grid-template-columns: 1.5fr 1.2fr 2.2fr 1.9fr 0.7fr;
 }
 
 }
-
 
 .deckHeaderCell {
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   font-weight: 700;
@@ -120,14 +114,15 @@
     box-shadow: 0 0 50px 30px #fff;
   }
 
+  &:last-child {
+    pointer-events: none;
+    cursor: none;
+  }
+
   &:hover:not(:disabled) {
     color: var(--color-light-100);
     background: rgb(127 129 133);
     transition: all 0.2s ease-out;
-
-    &:last-child {
-      pointer-events: none;
-    }
   }
 
   &:hover::before {
@@ -250,7 +245,7 @@
 .textForName {
   overflow: hidden;
 
-  width: 100%;
+  width: 99%;
   margin: 0;
 
   font-size: var(--font-size-s);
@@ -365,11 +360,15 @@ a.linkCell {
 
 .buttonContainer {
   display: flex;
+  gap: 10px;
   align-items: center;
+  justify-content: center;
+
+  width: 100%;
   height: 48px;
 
-
   @media (width <= 540px) {
+    gap: 0;
     width: 50px;
     padding: 0 ;
   }
@@ -385,7 +384,7 @@ a.linkCell {
 }
 
 .buttonRow {
-  padding: 0 5px;
+  padding: 0;
 
   &:hover {
     cursor: pointer;

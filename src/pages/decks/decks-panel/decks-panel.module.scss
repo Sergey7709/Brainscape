@@ -51,18 +51,21 @@
 
 
   @media (width <= 540px) {
-        width: 95vw;
-    height: 30px;
+      height: 30px;
   }
 }
 
 
 .decksPanelButtonWrapper{
+  display: flex;
+  justify-content: flex-end;
   width:100%;
 
 }
 
 .decksPanelButton {
+  padding: 6px 24.48439px;
+
   &:hover {
     scale: 1.01;
     transition: all .4s ease-in-out;

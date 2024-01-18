@@ -10,9 +10,7 @@
 
   width: 100vw;
   height: 60px;
-
-  //width: 100%;
-  margin-right: 0;//!!!
+  margin-right: 0;
 }
 
 div.cardHeader {
@@ -32,11 +30,6 @@ div.cardHeader {
   }
 
   @media (width <= 540px) {
-   width: 100%;
-    padding: 12px 20px;
-  }
-
-  @media (width <= 280px) {
     padding: 12px 10px;
   }
 }
@@ -48,7 +41,7 @@ div.cardHeader {
 
   @media (width <= 1040px) {
     width: 100%;
-    margin-right: 0;//!!!
+    margin-right: 0;
    }
 }
 
