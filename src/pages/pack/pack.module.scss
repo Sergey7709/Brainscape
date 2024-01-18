@@ -31,12 +31,15 @@
   justify-content: space-between;
 
 
-
   .containerTitle {
     display: flex;
     flex-shrink: 0;
     gap: 1rem;
     align-items: center;
+  }
+
+  @media (width <= 540px) {
+    gap:10px;
   }
 
 }
@@ -57,12 +60,14 @@
   }
 
   @media (width <= 540px) {
+    width: 100%;
     padding: 1px 10px;
   }
 }
 
 .packButtonAddNewCardText {
 font-size: var(--font-size-s);
+font-weight: 700;
 
     @media (width <= 540px) {
       font-size: var(--font-size-xs);
@@ -71,6 +76,13 @@ font-size: var(--font-size-s);
 
   .packButton {
     flex-shrink: 0;
+    font-size: var(--font-size-s);
+
+    @media (width <= 540px) {
+      width:100%;
+      padding: 1px 10px;
+      font-size: var(--font-size-xs);
+    }
   }
 
 .packDropDown {
@@ -150,7 +162,7 @@ font-size: var(--font-size-s);
   }
 
   @media (width <= 1040px) {
- padding: 6px 10px;
+   padding: 6px 10px;
   }
 
   @media (width <= 768px) {
@@ -160,6 +172,10 @@ font-size: var(--font-size-s);
   @media (width <= 540px) {
     padding: 6px 10px;
     font-size: 10px;
+
+    &:nth-last-child(2) {
+      padding-right: 1px;
+    }
 
     &:nth-child(1) {
       padding-left: 5px;
@@ -188,18 +204,32 @@ font-size: var(--font-size-s);
   }
 }
 
-.packHeaderStyle {
+@mixin pack-header {
+  @media (width <= 1040px) {
+    grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 0.8fr;
+  }
+}
+
+.packHeaderMeStyle {
+  @include pack-header ;
+
   display: grid;
   grid-template-columns: 301px 301px 131px 168px 105px;
 
-  @media (width <= 1040px) {
-   grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 0.8fr;
-  }
+  @media (width <= 540px) {
+    grid-template-columns:  1.4fr 1.4fr 2fr 1.2fr 1fr;
+  }}
+
+.packHeaderStyleFriend{
+  @include pack-header
+;
+
+  display: grid;
+  grid-template-columns: 301px 301px 201px 150px 53px;
 
   @media (width <= 540px) {
     grid-template-columns:  1.4fr 1.4fr 2fr 1fr 1fr;
-  }
-}
+  }}
 
 .packSearch {
   padding: 5px 12px;
