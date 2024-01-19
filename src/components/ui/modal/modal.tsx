@@ -30,7 +30,9 @@ export const Modal: FC<ModalProps> = props => {
 
   return (
     <>
-      <ModalContext.Provider value={{ open, setOpen, size, showCloseButton, ...restProps }}>
+      <ModalContext.Provider
+        value={{ open, setOpen, size, showCloseButton, className, ...restProps }}
+      >
         <div {...restProps}>{children}</div>
       </ModalContext.Provider>
     </>
