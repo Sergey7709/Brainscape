@@ -10,6 +10,17 @@ const meta = {
   tags: ['autodocs'],
   argTypes: { onPageChange: { action: 'page' } },
   args: { currentPage: 1, pageSize: 10, totalCount: 200 },
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#313131',
+        },
+      ],
+    },
+  },
 } satisfies Meta<typeof Pagination>
 
 export default meta
