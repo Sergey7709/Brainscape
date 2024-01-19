@@ -8,11 +8,6 @@ export const useAddNewCard = () => {
   const utilityAddNewCard = (deckId: string, body: FormData) => {
     handlerAddNewCardSubmit({ deckId, body })
       .unwrap()
-      // .then(response => {
-      //   if (response && response.id) {
-      //     toast.success('A new package has been added!')
-      //   }
-      // })
       .catch(error => {
         toast.error('Failed add new card!:', error)
       })

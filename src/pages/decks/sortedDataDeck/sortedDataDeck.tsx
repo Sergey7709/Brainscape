@@ -1,5 +1,5 @@
-import { DeckRow } from '@/pages/decks/deck-row/deck-row.tsx'
-import { useGetDataSort } from '@/pages/decks/hooks-and-functions/useGetDataSort.ts'
+import { DeckRow } from '@/pages/decks/deck-row'
+import { useGetDataSort } from '@/pages/decks/hooks-and-functions'
 
 export const SortedDataDeck = () => {
   const { data } = useGetDataSort()
