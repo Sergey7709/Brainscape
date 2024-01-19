@@ -13,7 +13,6 @@ export const useDeletePack = (name: string) => {
       .unwrap()
       .then(response => {
         if (response && response.id) {
-          // toast.success(`The pack ${name} has been successfully deleted!`)
           navigateBackToDeck()
         }
       })
