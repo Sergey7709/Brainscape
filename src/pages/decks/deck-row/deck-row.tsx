@@ -69,9 +69,7 @@ export const DeckRow = (deck: DeckType) => {
             >
               <div className={s.nameContainer}>
                 {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
-                {/*<span className={s.linkSpanDeck}>*/}
                 <p className={s.textForName}> {deck.name}</p>
-                {/*</span>*/}
               </div>
             </Button>
           </Table.Cell>
@@ -99,15 +97,6 @@ export const DeckRow = (deck: DeckType) => {
                   <Play />
                 </Button>
               )}
-              {/*<Button*/}
-              {/*  variant={'link'}*/}
-              {/*  as={NavLink}*/}
-              {/*  to={`/learn/${deck.id}`}*/}
-              {/*  className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}*/}
-              {/*  onClick={saveUrlDeck}*/}
-              {/*>*/}
-              {/*  <Play />*/}
-              {/*</Button>*/}
               {meDeck && (
                 <>
                   <Button variant="link" className={s.buttonRow} onClick={handlerEditModal}>
