@@ -2,7 +2,7 @@ import { BaseSyntheticEvent, Dispatch, ReactElement, RefObject, SetStateAction }
 
 import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
-import s from '../decks.module.scss'
+import s from './modalAddOREditPack.module.scss'
 
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/check-box'
