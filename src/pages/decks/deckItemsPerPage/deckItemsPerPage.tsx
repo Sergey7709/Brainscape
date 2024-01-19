@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 
-import s from './../decks.module.scss'
+import s from './deckItemsPerPage.module.scss'
 
 import { Select } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'

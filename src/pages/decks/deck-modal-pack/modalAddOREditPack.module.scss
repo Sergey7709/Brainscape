@@ -1,0 +1,9 @@
+.deckEditPackSave {
+  @media (width <= 540px) {
+    padding: 6px 10px;
+  }
+
+  @media (width <= 280px) {
+    padding: 6px 4px;
+  }
+}

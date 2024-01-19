@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom'
 
 import { useSaveUrlDeck } from '../../pack/hooks-and-function'
 
+import s from './deck-row.module.scss'
+
 import { Delete, Play, Redactor } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { Table } from '@/components/ui/tables'
 import { DeckEditPack } from '@/pages/decks/deck-editPack/deckEditPack.tsx'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
-import s from '@/pages/decks/decks.module.scss'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { useGetAuthUserMeDataQuery } from '@/service'
@@ -57,7 +58,7 @@ export const DeckRow = (deck: DeckType) => {
         <td>{(isLoadingDelete || isLoadingEdit) && <Loader />}</td>
       </tr>
       {deck && (
-        <Table.Row key={deck.id} className={s.deckHeaderRow}>
+        <Table.Row key={deck.id} className={s.deckTableRow}>
           <Table.Cell className={s.deckTableCell}>
             <Button
               as={NavLink}
@@ -69,9 +70,7 @@ export const DeckRow = (deck: DeckType) => {
             >
               <div className={s.nameContainer}>
                 {deck.cover && <img className={s.imgCover} alt={'Not image'} src={deck.cover} />}
-                {/*<span className={s.linkSpanDeck}>*/}
                 <p className={s.textForName}> {deck.name}</p>
-                {/*</span>*/}
               </div>
             </Button>
           </Table.Cell>
@@ -99,15 +98,6 @@ export const DeckRow = (deck: DeckType) => {
                   <Play />
                 </Button>
               )}
-              {/*<Button*/}
-              {/*  variant={'link'}*/}
-              {/*  as={NavLink}*/}
-              {/*  to={`/learn/${deck.id}`}*/}
-              {/*  className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}*/}
-              {/*  onClick={saveUrlDeck}*/}
-              {/*>*/}
-              {/*  <Play />*/}
-              {/*</Button>*/}
               {meDeck && (
                 <>
                   <Button variant="link" className={s.buttonRow} onClick={handlerEditModal}>
