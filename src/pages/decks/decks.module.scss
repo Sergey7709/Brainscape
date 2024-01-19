@@ -206,11 +206,15 @@
   white-space: nowrap;
 
   @media (width <= 1040px) {
-      width: 220px
+      width: 200px
   }
 
-  @media (width <= 820px) {
+  @media (width <= 930px) {
      width: 160px
+  }
+
+  @media (width <= 780px) {
+    width: 105px
   }
 
   @media (width <= 540px) {
@@ -225,8 +229,11 @@
 }
 
 .imgCover {
+  flex: 1;
+
   width: 118.265px;
   height: 45px;
+
   object-fit: cover;
   border-radius: 3px;
 
