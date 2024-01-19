@@ -1,0 +1,20 @@
+.selectWrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin-left: 10px;
+}
+
+.deckItemTypography{
+  font-size: var(--font-size-m);
+
+  @media (width <= 1006px) {
+    font-size: var(--font-size-s);
+  }
+
+  @media (width <= 540px) {
+    font-size: var(--font-size-xs);
+  }
+}
