@@ -30,9 +30,6 @@ export const Decks = () => {
 
   const classNames = {
     container: s.container,
-    decksPanel: s.decksPanel,
-    searchInput: s.searchInput,
-    slider: s.slider,
     tableWrapper: s.tableWrapper,
     head: s.head,
     deck: s.deck,
@@ -79,15 +76,13 @@ export const Decks = () => {
                     </Table.Row>
                   </Table.Head>
                 </Table.Header>
-                {
-                  <Table.Body>
-                    {data?.items.length ? (
-                      <SortedDataDeck />
-                    ) : (
-                      data?.items !== undefined && <RenderNoDataDeck />
-                    )}
-                  </Table.Body>
-                }
+                <Table.Body>
+                  {data?.items.length ? (
+                    <SortedDataDeck />
+                  ) : (
+                    data?.items !== undefined && <RenderNoDataDeck />
+                  )}
+                </Table.Body>
               </Table.Root>
             </div>
           </div>
