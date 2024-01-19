@@ -32,7 +32,7 @@ import {
  * @returns {ReactNode} The rendered modal overlay and container.
  */
 const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): ReactNode => {
-  const { open, setOpen, size, showCloseButton, ...restProps } = useContext(ModalContext)
+  const { open, setOpen, size, showCloseButton, className, ...restProps } = useContext(ModalContext)
 
   const [isClosing, setIsClosing] = useState(false)
 
