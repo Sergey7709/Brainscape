@@ -12,27 +12,6 @@ const meta = {
   title: 'Components/Modal',
   component: Modal,
   tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Is a controlled component\n' +
-          '\n' +
-          'The Modal component includes child components using children props:\n' +
-          '\n' +
-          '<ModalConstructor.PortalAndOverlay> * Required for displays modal overlay and container\n' +
-          '\n' +
-          '<ModalConstructor.Head> * Optional to display text or header\n' +
-          '\n' +
-          '<ModalConstructor.Body> * Optional for any content\n' +
-          '\n' +
-          '<ModalConstructor.Footer> * Optional for bottom content with buttons\n' +
-          '\n' +
-          '<ModalConstructor.Trigger> * Optional for modal window call button\n',
-      },
-    },
-  },
-
   argTypes: {
     open: {
       control: { type: '-' },
@@ -65,6 +44,35 @@ const meta = {
         'Adds text positioning options for the Header component.\n' +
         '\n' +
         'This property is only specified in the <b>ModalConstructor.Head</b> child component!',
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Is a controlled component\n' +
+          '\n' +
+          'The Modal component includes child components using children props:\n' +
+          '\n' +
+          '<ModalConstructor.PortalAndOverlay> * Required for displays modal overlay and container\n' +
+          '\n' +
+          '<ModalConstructor.Head> * Optional to display text or header\n' +
+          '\n' +
+          '<ModalConstructor.Body> * Optional for any content\n' +
+          '\n' +
+          '<ModalConstructor.Footer> * Optional for bottom content with buttons\n' +
+          '\n' +
+          '<ModalConstructor.Trigger> * Optional for modal window call button\n',
+      },
+    },
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#313131',
+        },
+      ],
     },
   },
 } satisfies Meta<typeof Modal>
