@@ -124,9 +124,24 @@
   }
 
   &:hover::before {
-    animation: sh02 0.5s 0s linear;
+    animation: shine 0.5s 0s linear;
   }
 
+  @keyframes shine {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
 
   @media (width <= 1040px) {
     overflow: hidden;
