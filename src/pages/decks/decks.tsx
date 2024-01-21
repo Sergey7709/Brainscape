@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { useSearchParams } from 'react-router-dom'
 
 import { Loader } from '@/components/ui/loader'
@@ -28,7 +29,7 @@ export const Decks = () => {
   window.scrollTo(0, 0)
 
   const classNames = {
-    container: s.container,
+    container: clsx(s.container, (isLoading || isFetching) && s.containerDisabled),
     tableWrapper: s.tableWrapper,
     head: s.head,
     deck: s.deck,
@@ -50,10 +51,14 @@ export const Decks = () => {
     })
   }
 
+  const conditionalRenderLoaderDeck = isFetching || isLoading
+
+  const conditionalRenderDeck = data && sort
+
   return (
     <>
-      {(isFetching || isLoading) && <Loader />}
-      {data && sort && (
+      {conditionalRenderLoaderDeck && <Loader />}
+      {conditionalRenderDeck && (
         <div className={classNames.container}>
           <div className={classNames.deck}>
             <div className={classNames.head}>
