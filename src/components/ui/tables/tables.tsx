@@ -89,7 +89,7 @@ export const Body: FC<ComponentProps<'tbody'>> = props => {
 }
 
 export const Row: FC<ComponentProps<'tr'>> = props => {
-  return <tr {...props} className={clsx(s.trStyle, props.className)} /> //!!!!
+  return <tr {...props} className={clsx(s.trStyle, props.className)} />
 }
 
 export const HeadCell: FC<
@@ -116,21 +116,13 @@ export const Cell: FC<ComponentProps<'td'>> = ({ className, ...rest }) => {
   return <td className={classNames.cell} {...rest} />
 }
 
-export const Empty: FC<ComponentProps<'div'> & { mt?: string; mb?: string }> = ({
-  className,
-  mt = '89px',
-  mb,
-}) => {
+export const Empty: FC<ComponentProps<'div'> & { mt?: string; mb?: string }> = ({ className }) => {
   const classNames = {
     empty: clsx(className, s.empty),
   }
 
   return (
-    <Typography
-      variant={'h2'}
-      className={classNames.empty}
-      style={{ marginTop: mt, marginBottom: mb }}
-    >
+    <Typography variant={'h3'} className={classNames.empty}>
       No data yet!
     </Typography>
   )
