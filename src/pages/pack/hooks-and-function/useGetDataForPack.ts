@@ -42,8 +42,6 @@ export const useGetDataForPack = () => {
 
   const mePackCards = dataMeId?.id === dataDeck?.userId
 
-  // console.log('dataMeId', dataMeId, 'dataDeck', dataDeck, 'dataCards', dataCards)
-
   return {
     isAuthenticated,
     isLoadingAuth,
