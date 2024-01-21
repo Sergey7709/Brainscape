@@ -36,13 +36,7 @@ export const TablePack = ({ dataCards, sort, mePackCards }: TablePackProps) => {
           </Table.Row>
         </Table.Head>
       </Table.Header>
-      <Table.Body>
-        {dataCards?.items.length ? (
-          <SortedPackData />
-        ) : (
-          dataCards?.items !== undefined && <Table.Empty />
-        )}
-      </Table.Body>
+      <Table.Body>{dataCards?.items.length ? <SortedPackData /> : <Table.Empty />}</Table.Body>
     </Table.Root>
   )
 }
