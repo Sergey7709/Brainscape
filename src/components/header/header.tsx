@@ -75,10 +75,12 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
       className={s.dropdownMenu}
     >
       <DropDownItem className={classNames.profileInfo}>
-        <img src={avatar || defaultAvatar} alt={'icon'} className={s.image} />
-        <div className={s.info}>
-          <Typography className={s.name}>{name}</Typography>
-          <Typography className={s.email}>{email}</Typography>
+        <div>
+          <img src={avatar || defaultAvatar} alt={'icon'} className={s.image} />
+          <div className={s.info}>
+            <Typography className={s.name}>{name}</Typography>
+            <Typography className={s.email}>{email}</Typography>
+          </div>
         </div>
       </DropDownItem>
       <DropDownItem>
