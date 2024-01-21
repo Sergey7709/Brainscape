@@ -1,7 +1,6 @@
 import { Sort, Table } from '@/components/ui/tables'
 import { columnsPack } from '@/pages/pack/constantsPack.ts'
 import s from '@/pages/pack/pack.module.scss'
-import { RenderNoData } from '@/pages/pack/renderNoData'
 import { SortedPackData } from '@/pages/pack/sortedPackData'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { PackCards } from '@/service/decks/decks.types.ts'
@@ -41,7 +40,7 @@ export const TablePack = ({ dataCards, sort, mePackCards }: TablePackProps) => {
         {dataCards?.items.length ? (
           <SortedPackData />
         ) : (
-          dataCards?.items !== undefined && <RenderNoData />
+          dataCards?.items !== undefined && <Table.Empty />
         )}
       </Table.Body>
     </Table.Root>
