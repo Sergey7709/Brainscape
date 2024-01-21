@@ -15,11 +15,10 @@ type Props = {
   onLogout: () => void
   onAvatarChange: (newAvatar: File) => void
   onNameChange: (newName: string) => void
-  onEmailChange: (newEmail: string) => void
 }
 
 export const PersonalInformation = memo(
-  ({ avatar, email, name, onAvatarChange, onNameChange, onEmailChange, onLogout }: Props) => {
+  ({ avatar, email, name, onAvatarChange, onNameChange, onLogout }: Props) => {
     const handleNameChanged = useCallback(
       (newName: string) => onNameChange(newName),
       [onNameChange]
@@ -28,13 +27,6 @@ export const PersonalInformation = memo(
     const handleAvatarChange = useCallback(
       (newAvatar: File) => onAvatarChange(newAvatar),
       [onAvatarChange]
-    )
-
-    const handleEmailChange = useCallback(
-      (newEmail: string) => {
-        onEmailChange(newEmail)
-      },
-      [onEmailChange]
     )
     const handleLogout = () => onLogout()
 
@@ -54,7 +46,6 @@ export const PersonalInformation = memo(
           email={email!}
           handleLogout={handleLogout}
           onNameChange={handleNameChanged}
-          onEmailChange={handleEmailChange}
         />
       </Card>
     )
