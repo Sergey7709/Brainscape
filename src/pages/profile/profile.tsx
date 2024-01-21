@@ -31,13 +31,6 @@ export const Profile = memo(() => {
     [data]
   )
 
-  const handlerOnEmailChange = useCallback(
-    (newEmail: string) => {
-      utilityFormData('email', newEmail)
-    },
-    [data]
-  )
-
   return (
     <div className={s.profile}>
       {isLoading.isLoading && <Loader />}
@@ -49,7 +42,6 @@ export const Profile = memo(() => {
           onLogout={logOut}
           onAvatarChange={handlerOnAvatarChange}
           onNameChange={handlerOnNameChange}
-          onEmailChange={handlerOnEmailChange}
         />
       )}
       <div className={s.button}>
