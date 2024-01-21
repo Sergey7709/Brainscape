@@ -75,13 +75,7 @@ export const Decks = () => {
                     </Table.Row>
                   </Table.Head>
                 </Table.Header>
-                <Table.Body>
-                  {data?.items.length ? (
-                    <SortedDataDeck />
-                  ) : (
-                    data?.items !== undefined && <Table.Empty />
-                  )}
-                </Table.Body>
+                <Table.Body>{data?.items.length ? <SortedDataDeck /> : <Table.Empty />}</Table.Body>
               </Table.Root>
             </div>
           </div>
