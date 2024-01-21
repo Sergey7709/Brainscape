@@ -8,9 +8,7 @@ export const useDeleteCard = () => {
   const utilityDeleteCard = (id: string) => {
     deleteCard(id)
       .unwrap()
-      .then(() => {
-        // toast.success(`The card  has been successfully deleted!`)
-      })
+      .then(() => {})
       .catch(error => {
         toast.error(`Failed to delete card`, error)
       })
