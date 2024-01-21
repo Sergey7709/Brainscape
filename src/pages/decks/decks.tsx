@@ -10,7 +10,6 @@ import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
 import { DecksPanel } from '@/pages/decks/decks-panel'
 import s from '@/pages/decks/decks.module.scss'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions'
-import { RenderNoDataDeck } from '@/pages/decks/renderNoDataDeck'
 import { SortedDataDeck } from '@/pages/decks/sortedDataDeck'
 import { currentPageValue } from '@/service'
 import { useUtilityForSearchParamsEdit } from '@/utils'
@@ -80,7 +79,7 @@ export const Decks = () => {
                   {data?.items.length ? (
                     <SortedDataDeck />
                   ) : (
-                    data?.items !== undefined && <RenderNoDataDeck />
+                    data?.items !== undefined && <Table.Empty />
                   )}
                 </Table.Body>
               </Table.Root>
