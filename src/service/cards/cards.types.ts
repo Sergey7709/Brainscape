@@ -1,10 +1,3 @@
-// export type CardType<T extends 'req' | 'res' = 'res'> = T extends 'req'
-//   ? {
-//       id: string
-//       body: FormData
-//     }
-//   : CardProps
-
 export type CardTypeFormData = {
   id: string
   body: FormData

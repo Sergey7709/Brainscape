@@ -18,9 +18,18 @@ type AnswerProps = {
   shots: number
   cardID: string
   deckID: string
+  conditionRenderLoader?: boolean
 }
 
-export const Answer = ({ nameCard, imageAnswer, shots, answer, cardID, deckID }: AnswerProps) => {
+export const Answer = ({
+  nameCard,
+  imageAnswer,
+  shots,
+  answer,
+  cardID,
+  deckID,
+  conditionRenderLoader,
+}: AnswerProps) => {
   const [gradeAnswer, setGradeAnswer] = useState('')
   const [postGradeAnswer, { isLoading: isLoadingPost }] = useGradeCardMutation()
 
@@ -60,7 +69,10 @@ export const Answer = ({ nameCard, imageAnswer, shots, answer, cardID, deckID }:
         </div>
         <div className={s.learnRadioGroupAnswer}>
           <Typography>{`Rate yourself:`}</Typography>
-          <RadioGroupAnswer handlerValueAnswer={handlerValueAnswer} />
+          <RadioGroupAnswer
+            handlerValueAnswer={handlerValueAnswer}
+            disabled={!!isLoadingPost || conditionRenderLoader}
+          />
         </div>
         <Button onClick={handlerPostAnswer} fullWidth>
           <Typography className={s.learnButtonText}>Next Question</Typography>

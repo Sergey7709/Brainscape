@@ -127,7 +127,8 @@ div.cardHeader {
 }
 }
 
-div .profileInfo:hover {
+div.profileInfo {
+  pointer-events: none;
   cursor: auto;
   opacity: 1;
 }
@@ -204,6 +205,9 @@ a.linkHeader {
 a.buttonNavLinkHeader {
   display: flex;
   gap: 6px;
+
+  width: 100%;
+
   color: var(--color-light-100);
   text-decoration: none;
 
@@ -215,13 +219,13 @@ a.buttonNavLinkHeader {
     color: var(--color-light-100);
   }
 
-  &:focus-visible {
-       border: none;
-  }
-
   &:hover:not(:disabled) {
     color: var(--color-light-100);
-  }
+   }
+
 }
 
+.linkHeaderProfile{
+  font-size: var(--font-size-xs);
+}
 

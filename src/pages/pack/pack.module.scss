@@ -9,6 +9,10 @@
   margin-bottom: 30px;
   padding-top: 84px;
 
+  &.containerPackDisabled {
+    pointer-events:none;
+    opacity: 0.8;
+  }
 }
 
 .pack{
@@ -158,7 +162,7 @@ font-weight: 700;
   }
 
   &:hover::before {
-    animation: sh02 0.5s 0s linear;
+    animation: shine 0.5s 0s linear;
   }
 
   @media (width <= 1040px) {
@@ -187,7 +191,7 @@ font-weight: 700;
     padding: 6px 4px;
   }
 
-  @keyframes sh02 {
+  @keyframes shine {
     0% {
       left: 0;
       opacity: 0;

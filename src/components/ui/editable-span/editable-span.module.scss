@@ -19,9 +19,16 @@
   margin-top: 6px;
   margin-bottom:5px;
 
+
   > button:focus {
     padding: 0;
     outline: none;
+  }
+
+  &:hover {
+    scale: 1.25;
+    transition: all .3s ease-in-out;
+
   }
 }
 

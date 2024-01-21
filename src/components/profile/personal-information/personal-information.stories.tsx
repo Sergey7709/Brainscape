@@ -19,7 +19,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => {
     const [name, setName] = useState('Ivan')
-    const [email, setEmail] = useState('1234567@goo.com')
     const [newAvatar, setNewAvatar] = useState<string>(defaultAva)
 
     const reader = new FileReader()
@@ -40,17 +39,11 @@ export const Default: Story = {
       }
     }
 
-    const handlerOnEmailChange = (newEmail: string) => {
-      setEmail(newEmail)
-    }
-
     return (
       <PersonalInformation
         onAvatarChange={handleAvatarChange}
-        email={email}
         name={name}
         onNameChange={handleNameChange}
-        onEmailChange={handlerOnEmailChange}
         avatar={newAvatar}
         onLogout={() => {}}
       />
