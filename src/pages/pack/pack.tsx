@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { Navigate } from 'react-router-dom'
 
 import { useGetDataForPack } from './hooks-and-function'
@@ -37,6 +38,11 @@ export const Pack = () => {
     })
   }
 
+  const conditionalRenderLoaderPack =
+    isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || isLoadingAuth
+
+  const conditionalRenderPack = !!dataDeck && !!dataCards && !!sort
+
   const paginationReady = totalPages || 1
 
   if (dataDeck === null) {
@@ -45,11 +51,11 @@ export const Pack = () => {
 
   return (
     <>
-      {(isLoadingDeck || isFetchingDeck || isLoadingCards || isFetchingCards || isLoadingAuth) && (
-        <Loader />
-      )}
-      {dataDeck && dataCards && sort && (
-        <div className={s.containerPack}>
+      {conditionalRenderLoaderPack && <Loader />}
+      {conditionalRenderPack && (
+        <div
+          className={clsx(s.containerPack, conditionalRenderLoaderPack && s.containerPackDisabled)}
+        >
           <div className={s.pack}>
             <PackPanel dataDeck={dataDeck} mePackCards={mePackCards} />
             <PackSearch />

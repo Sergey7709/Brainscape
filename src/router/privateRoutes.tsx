@@ -12,7 +12,5 @@ export const PrivateRoutes = memo(() => {
     return <Loader />
   }
 
-  console.log('privatRouter JSX')
-
   return isAuthenticated ? <Outlet /> : <Navigate to="/greeting" />
 })

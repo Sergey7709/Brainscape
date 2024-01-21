@@ -8,8 +8,8 @@ import { Loader } from '@/components/ui/loader'
 import { Rating } from '@/components/ui/rating'
 import { Table } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
-import { PackEditCard } from '@/pages/pack/pack-editCard/packEditCard.tsx'
-import { ModalDeleteCard } from '@/pages/pack/pack-modal-delete-card/modalDeleteCard.tsx'
+import { PackEditCard } from '@/pages/pack/pack-editCard'
+import { ModalDeleteCard } from '@/pages/pack/pack-modal-delete-card'
 import s from '@/pages/pack/pack-row/pack-row.module.scss'
 import { PackCards } from '@/service/decks/decks.types.ts'
 
@@ -17,7 +17,7 @@ type extendPackRow = { mePackCards: boolean } & PackCards
 export const PackRow = (pack: extendPackRow) => {
   const { utilityDeleteCard, isLoading: isLoadingDelete } = useDeleteCard()
 
-  const { utilityEditCard, isLoading: isLoadingEdit } = useEditCard() ///!!!!
+  const { utilityEditCard, isLoading: isLoadingEdit } = useEditCard()
 
   const [openEditModal, setOpenEditModal] = useState(false)
 

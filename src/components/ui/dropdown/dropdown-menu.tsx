@@ -10,16 +10,10 @@ import { Typography } from '@/components/ui/typography'
 
 type DropdownMenuProps = {
   align?: 'start' | 'center' | 'end'
-  /*
-  Custom components as trigger doesn`t work correctly without forwardRef, use wrapper for these elements
-   **/
   trigger?: ReactNode
   className?: string
   style?: CSSProperties
   children: ReactNode
-  /*
-  Margin top for dropdown content
-   **/
   sideOffset?: number
 }
 
@@ -66,7 +60,7 @@ type DropDownItemProps = {
   onSelect?: (event: Event) => void
   className?: string
   style?: CSSProperties
-} & DropdownMenuItemProps //!!!!!!!!
+} & DropdownMenuItemProps
 
 export const DropDownItem = ({
   children,
@@ -86,6 +80,7 @@ export const DropDownItem = ({
       disabled={disabled}
       onSelect={onSelect}
       style={style}
+      asChild
       {...rest}
     >
       {children}

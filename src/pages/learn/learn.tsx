@@ -48,6 +48,7 @@ export const Learn = () => {
                 shots={dataCard?.shots}
                 cardID={dataCard?.id}
                 deckID={dataDeck?.id}
+                conditionRenderLoader={conditionRenderLoader}
               />
             ) : (
               <Question

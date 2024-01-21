@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { useSearchParams } from 'react-router-dom'
 
 import { Loader } from '@/components/ui/loader'
@@ -10,7 +11,6 @@ import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
 import { DecksPanel } from '@/pages/decks/decks-panel'
 import s from '@/pages/decks/decks.module.scss'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions'
-import { RenderNoDataDeck } from '@/pages/decks/renderNoDataDeck'
 import { SortedDataDeck } from '@/pages/decks/sortedDataDeck'
 import { currentPageValue } from '@/service'
 import { useUtilityForSearchParamsEdit } from '@/utils'
@@ -29,7 +29,7 @@ export const Decks = () => {
   window.scrollTo(0, 0)
 
   const classNames = {
-    container: s.container,
+    container: clsx(s.container, (isLoading || isFetching) && s.containerDisabled),
     tableWrapper: s.tableWrapper,
     head: s.head,
     deck: s.deck,
@@ -51,10 +51,14 @@ export const Decks = () => {
     })
   }
 
+  const conditionalRenderLoaderDeck = isFetching || isLoading
+
+  const conditionalRenderDeck = data && sort
+
   return (
     <>
-      {(isFetching || isLoading) && <Loader />}
-      {data && sort && (
+      {conditionalRenderLoaderDeck && <Loader />}
+      {conditionalRenderDeck && (
         <div className={classNames.container}>
           <div className={classNames.deck}>
             <div className={classNames.head}>
@@ -76,13 +80,7 @@ export const Decks = () => {
                     </Table.Row>
                   </Table.Head>
                 </Table.Header>
-                <Table.Body>
-                  {data?.items.length ? (
-                    <SortedDataDeck />
-                  ) : (
-                    data?.items !== undefined && <RenderNoDataDeck />
-                  )}
-                </Table.Body>
+                <Table.Body>{data?.items.length ? <SortedDataDeck /> : <Table.Empty />}</Table.Body>
               </Table.Root>
             </div>
           </div>

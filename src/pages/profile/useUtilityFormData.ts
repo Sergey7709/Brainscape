@@ -15,7 +15,9 @@ export const useUtilityFormData = () => {
         .unwrap()
         .catch(error => {
           if (error.status === 400) {
-            toast.error(error.data.errorMessages[0].message)
+            toast.error('User not found')
+          } else if (error.status === 401) {
+            toast.error('Not logged in')
           } else if (error.status === 500) {
             toast.error(error.data.message)
           }

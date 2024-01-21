@@ -36,12 +36,14 @@ export const Default: Story = args => {
       trigger={<img style={{ display: 'block', margin: '0 auto' }} src={test} alt={'icon'} />}
     >
       <DropDownItem>
-        <img src={test} alt={'icon'} />
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography>Ivan</Typography>
-          <Typography variant={'caption'} style={{ color: '#808080' }}>
-            email@gmail.com
-          </Typography>
+        <div>
+          <img src={test} alt={'icon'} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography>Ivan</Typography>
+            <Typography variant={'caption'} style={{ color: '#808080' }}>
+              email@gmail.com
+            </Typography>
+          </div>
         </div>
       </DropDownItem>
       <DropDownItemWithIcon textValue={'Value one'} icon={<Eye />} />
@@ -62,12 +64,14 @@ export const WithDisabledItems: Story = args => {
       }
     >
       <DropDownItem disabled>
-        <img src={test} alt={'icon'} />
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography>Ivan</Typography>
-          <Typography variant={'caption'} style={{ color: '#808080' }}>
-            email@gmail.com
-          </Typography>
+        <div>
+          <img src={test} alt={'icon'} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography>Ivan</Typography>
+            <Typography variant={'caption'} style={{ color: '#808080' }}>
+              email@gmail.com
+            </Typography>
+          </div>
         </div>
       </DropDownItem>
       <DropDownItemWithIcon textValue={'Value'} icon={<Eye />} />
