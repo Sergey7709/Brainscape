@@ -36,3 +36,8 @@ export type GradeCardRequest = {
   id: string
   body: { cardId: string; grade: 1 | 2 | 3 | 4 | 5 }
 }
+
+export type GetRandomCards = {
+  id: string | undefined
+  previousCardId: string | null
+}
