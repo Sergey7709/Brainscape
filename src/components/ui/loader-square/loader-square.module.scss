@@ -1,40 +1,39 @@
+$primary-color: #8C61FF;
+$loader-dim: 3rem;
+$circle-dim: 1.2rem;
+
 .loader {
-  --dim: 3rem;
-
   position: relative;
-  width: var(--dim);
-  height: var(--dim);
+  width: $loader-dim;
+  height: $loader-dim;
   animation: spin988 2s linear infinite;
-}
 
-.loader .circle {
-  --color: #8C61FF;
-  --dim: 1.2rem;
+  .circle {
+    position: absolute;
+    width: $circle-dim;
+    height: $circle-dim;
+    background-color: $primary-color;
 
-  position: absolute;
-  width: var(--dim);
-  height: var(--dim);
-  background-color: var(--color);
-}
+    &:nth-child(1) {
+      top: 0;
+      left: 0;
+    }
 
-.loader .circle:nth-child(1) {
-  top: 0;
-  left: 0;
-}
+    &:nth-child(2) {
+      top: 0;
+      right: 0;
+    }
 
-.loader .circle:nth-child(2) {
-  top: 0;
-  right: 0;
-}
+    &:nth-child(3) {
+      bottom: 0;
+      left: 0;
+    }
 
-.loader .circle:nth-child(3) {
-  bottom: 0;
-  left: 0;
-}
-
-.loader .circle:nth-child(4) {
-  right: 0;
-  bottom: 0;
+    &:nth-child(4) {
+      right: 0;
+      bottom: 0;
+    }
+  }
 }
 
 @keyframes spin988 {
@@ -62,7 +61,6 @@
     transform: scale(1) rotate(360deg);
   }
 }
-
 
 .overlay {
   position: fixed;
