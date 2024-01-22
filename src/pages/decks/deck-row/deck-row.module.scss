@@ -192,6 +192,12 @@ a.linkCell {
   }
 }
 
+.emptyTableCellContainerDeck {
+  @extend .tableCellContainerDeck;
+
+  color: var(--color-danger-300);
+}
+
 .authorNameDeckRow {
   overflow: hidden;
 
