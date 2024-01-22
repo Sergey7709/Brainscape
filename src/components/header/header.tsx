@@ -29,7 +29,7 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
     profile: s.profile,
     name: s.name,
   }
-  const saveUrlDeck = useSaveUrlDeck() //!!!
+  const saveUrlDeck = useSaveUrlDeck()
 
   return (
     <div className={s.containerHeader}>
