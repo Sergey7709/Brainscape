@@ -3,6 +3,7 @@ import {
   CardTypeFormData,
   CreateCardRequest,
   GetCardParams,
+  GetRandomCards,
   GradeCardRequest,
 } from '@/service/cards/cards.types.ts'
 import { baseApi } from '@/service/common/base-api.ts'
@@ -25,11 +26,15 @@ export const cardsService = baseApi.injectEndpoints({
         }),
         invalidatesTags: ['Deck'],
       }),
-      getRandomCards: builder.query<CardType, string>({
-        query: id => `v1/decks/${id}/learn`,
+      // getRandomCards: builder.query<CardType, string>({
+      //   query: id => `v1/decks/${id}/learn`,
+      //   providesTags: ['Cards'],
+      // }),
+      getRandomCards: builder.query<CardType, GetRandomCards>({
+        query: ({ id, previousCardId }) =>
+          `v1/decks/${id}/learn?previousCardId=${previousCardId ?? ''}`,
         providesTags: ['Cards'],
-      }),
-
+      }), //!!!!!!!!!!!
       gradeCard: builder.mutation<void, GradeCardRequest>({
         query: ({ id, body }) => ({
           url: `v1/decks/${id}/learn`,
