@@ -5,7 +5,7 @@ import { useNavigateBackToDeck } from '@/pages/decks/hooks-and-functions'
 import s from '@/pages/home/greeting.module.scss'
 
 export const GreetingAuthorized = () => {
-  const { navigateBackToDeck } = useNavigateBackToDeck() //!!!
+  const { navigateBackToDeck } = useNavigateBackToDeck()
 
   return (
     <div className={s.container}>
@@ -20,8 +20,6 @@ export const GreetingAuthorized = () => {
           <Button
             variant={'tertiary'}
             className={s.signInButton}
-            // as={NavLink}
-            // to={'/deck'}
             onClick={navigateBackToDeck}
             fullWidth
           >
