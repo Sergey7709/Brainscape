@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 
 import { clsx } from 'clsx'
 
@@ -30,15 +30,16 @@ export const Answer = ({
   deckID,
   conditionRenderLoader,
 }: AnswerProps) => {
-  const [gradeAnswer, setGradeAnswer] = useState('')
+  const valueAnswer = useRef('')
+
   const [postGradeAnswer, { isLoading: isLoadingPost }] = useGradeCardMutation()
 
   const handlerValueAnswer = (value: string) => {
-    setGradeAnswer(value)
+    valueAnswer.current = value
   }
 
   const handlerPostAnswer = () => {
-    const grade = Number(gradeAnswer)
+    const grade = Number(valueAnswer.current)
 
     if (isGrade(grade)) {
       postGradeAnswer({
@@ -48,9 +49,7 @@ export const Answer = ({
           grade: grade,
         },
       })
-      sessionStorage.setItem('previousCardId', `${cardID}`) ///!!!!
-    } else {
-      console.error('Invalid gradeAnswer:', gradeAnswer)
+      sessionStorage.setItem('previousCardId', `${cardID}`)
     }
   }
 
