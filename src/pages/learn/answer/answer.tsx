@@ -48,6 +48,7 @@ export const Answer = ({
           grade: grade,
         },
       })
+      sessionStorage.setItem('previousCardId', `${cardID}`) ///!!!!
     } else {
       console.error('Invalid gradeAnswer:', gradeAnswer)
     }
