@@ -68,7 +68,7 @@ export const ImageUploader = ({
           >
             {valueCover ? (
               <>
-                <img className={s.modalAddImageCover} src={valueCover} />
+                <img className={s.modalAddImageCover} src={valueCover} alt={'Not Found'} />
                 <Typography variant={'subtitle2'} className={s.textCoverPreview}>
                   This preview in cover, click to change.
                 </Typography>

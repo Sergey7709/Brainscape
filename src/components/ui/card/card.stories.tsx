@@ -31,11 +31,9 @@ export const Cards: Story = {
       >
         <Typography variant={'h2'}>Цитата:</Typography>
         <Typography variant={'body1'}>
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          "Сначала определитесь со своим идеалом: поставьте цель. Потом запаситесь необходимыми
+          `Сначала определитесь со своим идеалом: поставьте цель. Потом запаситесь необходимыми
           средствами для её достижения: мудростью, деньгами, методами и материалами. И, наконец,
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          используйте все свои средства для достижения цели."
+          используйте все свои средства для достижения цели.`
         </Typography>
         <Typography variant={'body1'}>Аристотель.</Typography>
       </div>
