@@ -13,12 +13,17 @@ import { useGetRandomCardsQuery } from '@/service'
 
 export const Learn = () => {
   const packId = useParams()
+
+  const previousCardId = sessionStorage.getItem('previousCardId') ///!!!
+
   const {
     data: dataCard,
     isLoading,
     isFetching,
     isSuccess,
-  } = useGetRandomCardsQuery(packId.id ?? '')
+    // } = useGetRandomCardsQuery(packId.id ?? '')
+  } = useGetRandomCardsQuery({ id: packId.id, previousCardId }) //!!!!!!!!!!!!!!!!!
+
   const { dataDeck, isLoadingDeck, isFetchingDeck, isSuccessDeck } = useGetDataForPack()
 
   const [openAnswer, setOpenAnswer] = useState(false)
