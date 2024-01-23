@@ -6,7 +6,7 @@ import { clearFilterReducer, useAppDispatch } from '@/service'
 export const useNavigateBackToDeck = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const dispatch = useAppDispatch() //!!!!!!!
+  const dispatch = useAppDispatch()
 
   const navigateBackToDeck = () => {
     const urlDeck = sessionStorage.getItem('previousPath')

@@ -45,13 +45,7 @@ export const Profile = memo(() => {
         />
       )}
       <div className={s.button}>
-        <Button
-          variant={'tertiary'}
-          as={'button'}
-          onClick={() => navigate(-1)}
-          className={s.btn}
-          fullWidth
-        >
+        <Button variant={'tertiary'} as={'button'} onClick={() => navigate(-1)} fullWidth>
           Back to previous page
         </Button>
       </div>

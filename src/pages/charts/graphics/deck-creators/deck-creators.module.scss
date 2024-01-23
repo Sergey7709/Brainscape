@@ -3,11 +3,11 @@
   flex: 1;
   flex-direction: column;
 
-  width:50%;
+  width: 50%;
   margin: 0 auto;
 
   @media (width <= 540px) {
-    width:100%;
+    width: 100%;
   }
 }
 
@@ -19,10 +19,10 @@
 
 .table {
   th {
-      padding: 6px 4px;
+    padding: 6px 4px;
   }
 
   td {
-      padding: 6px 4px;
+    padding: 6px 4px;
   }
 }

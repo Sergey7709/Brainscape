@@ -6,7 +6,7 @@
 
   overflow: hidden;
 
-  width: 100%
+  width: 100%;
 }
 
 .loader {
@@ -17,7 +17,7 @@
   background-color: rgb(0 0 0 / 20%);
 
   &::before {
-    content: "****";
+    content: '****';
 
     position: absolute;
 
@@ -26,25 +26,18 @@
 
     background: $loader-color;
 
-
     animation: moving 1s ease-in-out infinite;
   }
 }
 
 @keyframes moving {
   50% {
-    width: 100%
+    width: 100%;
   }
 
- 100% {
+  100% {
     right: 0;
     left: unset;
     width: 0;
   }
 }
-
-
-
-
-
-

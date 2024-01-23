@@ -28,7 +28,6 @@
   margin-bottom: 12px;
   padding-right: 36px;
   padding-left: 36px;
-
 }
 
 .signInCheckboxWrapper {
@@ -41,7 +40,7 @@
   padding-left: 27px;
 
   @media (width <= 540px) {
-   padding-right: 0;
+    padding-right: 0;
   }
 }
 
@@ -79,7 +78,6 @@ a.signInLink {
   margin-top: 11px;
   margin-bottom: 29px;
 
-
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-bold);
   color: var(--color-accent-500);
@@ -92,5 +90,3 @@ a.signInLink {
 .signInForm {
   width: 100%;
 }
-
-

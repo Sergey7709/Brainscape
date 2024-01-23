@@ -1,6 +1,6 @@
 .deckTableRow {
   display: grid;
-  grid-template-columns:261px 141px 201px 286px 117px;
+  grid-template-columns: 261px 141px 201px 286px 117px;
 
   @media (width <= 1040px) {
     grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
@@ -10,8 +10,7 @@
     grid-template-columns: 2fr 1.2fr 2fr 2fr 1.3fr;
   }
 
-  @media (width <= 280px)
-  {
+  @media (width <= 280px) {
     grid-template-columns: 1.5fr 1.2fr 2.2fr 1.9fr 0.7fr;
   }
 }
@@ -35,7 +34,7 @@
   }
 
   @media (width <= 280px) {
-    line-height: var(--line-height-s);;
+    line-height: var(--line-height-s);
   }
 }
 
@@ -120,25 +119,25 @@ a.linkCell {
   white-space: nowrap;
 
   @media (width <= 1040px) {
-    width: 200px
+    width: 200px;
   }
 
   @media (width <= 930px) {
-    width: 160px
+    width: 160px;
   }
 
   @media (width <= 780px) {
-    width: 105px
+    width: 105px;
   }
 
   @media (width <= 540px) {
-    gap:2px;
-    width: 65px
+    gap: 2px;
+    width: 65px;
   }
 
   @media (width <= 280px) {
-    gap:2px;
-    width: 40px
+    gap: 2px;
+    width: 40px;
   }
 }
 
@@ -228,7 +227,7 @@ a.linkCell {
   @media (width <= 540px) {
     gap: 0;
     width: 50px;
-    padding: 0 ;
+    padding: 0;
   }
 
   @media (width <= 280px) {
@@ -237,7 +236,7 @@ a.linkCell {
     justify-content: center;
 
     width: 50px;
-    padding: 0 ;
+    padding: 0;
   }
 }
 
@@ -251,7 +250,7 @@ a.linkCell {
   }
 
   @media (width <= 540px) {
-    padding: 0
+    padding: 0;
   }
 }
 
@@ -261,7 +260,7 @@ a.linkCell {
   opacity: 0.3;
 
   @media (width <= 540px) {
-    padding: 0
+    padding: 0;
   }
 }
 

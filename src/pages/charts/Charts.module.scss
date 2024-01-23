@@ -19,13 +19,14 @@
 .wrapper {
   width: 100%;
   max-width: 1006px;
-  margin: 100px auto;
+  margin: 30px auto;
   padding: 10px;
 }
 
-.linkPackList {
+.buttonWrapper {
+  width: 26.25rem;
   margin-bottom: 2rem;
-  padding-left:0;
+  padding-left: 0;
   color: var(--color-light-100);
 
   &:hover {
@@ -33,4 +34,15 @@
     color: var(--color-accent-300);
     transition: 0.5s;
   }
+
+  @media (width <= 540px) {
+    width: 100%;
+  }
+}
+
+.btn {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+  color: #f4f2fa;
 }

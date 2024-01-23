@@ -52,11 +52,9 @@
     box-shadow: 0 0 0 10px var(--color-dark-500);
   }
 
-
   &:active {
     box-shadow: 0 0 0 10px var(--color-dark-500);
   }
-
 
   &:checked::after {
     content: '';

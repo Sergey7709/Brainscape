@@ -75,14 +75,7 @@ export const DropDownItem = ({
   }
 
   return (
-    <Dropdown.Item
-      className={classNames.item}
-      disabled={disabled}
-      onSelect={onSelect}
-      style={style}
-      asChild
-      {...rest}
-    >
+    <Dropdown.Item className={classNames.item} disabled={disabled} style={style} asChild {...rest}>
       {children}
     </Dropdown.Item>
   )

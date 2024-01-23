@@ -17,10 +17,9 @@
 
   transition: opacity 0.3s ease-in-out;
 
- &:hover {
-   cursor: pointer;
+  &:hover {
+    cursor: pointer;
     opacity: 1;
-
   }
 
   @media (width <= 540px) {
@@ -28,5 +27,3 @@
     font-size: 1rem;
   }
 }
-
-
