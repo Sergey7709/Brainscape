@@ -15,6 +15,7 @@ import { Profile } from '@/pages/profile'
 import { Registration } from '@/pages/registration'
 import { VerifyEmail } from '@/pages/verify-email'
 import {
+  createNewPasswordPath,
   greetingNonAuthorizedPath,
   loginPath,
   registrationPath,
@@ -40,7 +41,7 @@ const publicRoutes: RouteObject[] = [
     element: <VerifyEmail />,
   },
   {
-    path: '/confirm-email/:token',
+    path: createNewPasswordPath,
     element: <CreateNewPassword />,
   },
   {
