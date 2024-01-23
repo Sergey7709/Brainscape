@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import s from './password-recovery.module.scss'
 
 import { ForgotPassword } from '@/components/auth/forgot-password'
+import { verifyEmailPath } from '@/router'
 import { useRecoverPasswordEmailMutation } from '@/service'
 import { PasswordRecoveryEmailRequest } from '@/service/auth/auth.types.ts'
 
@@ -20,7 +21,7 @@ export const PasswordRecovery = () => {
     await recoverPasswordEmail(textRefRecovery)
       .unwrap()
       .then(() => {
-        navigate('/check-email', { state: data.email })
+        navigate(verifyEmailPath, { state: data.email })
       })
       .catch(error => {
         if (error.status === 404) {
