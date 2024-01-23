@@ -10,6 +10,7 @@ import { Card } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/check-box'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
+import { passwordRecoveryPath, registrationPath } from '@/router'
 
 export const signInSchema = z.object({
   email: z.string().trim().nonempty('Email is required').email('Please enter a valid email'),
@@ -87,7 +88,7 @@ export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: Si
         <div className={s.signInForgotPasswordContainer}>
           <Typography
             as={NavLink}
-            to={'/forgot-password'}
+            to={passwordRecoveryPath}
             variant={'body2'}
             className={s.signInForgotPassword}
           >
@@ -101,7 +102,7 @@ export const SignIn = ({ onHandleSubmit, loading = false, disabled = false }: Si
         </div>
       </form>
       <Typography>{`Don't have an account?`}</Typography>
-      <Typography as={NavLink} to={'/sign-up'} variant={'body1'} className={s.signInLink}>
+      <Typography as={NavLink} to={registrationPath} variant={'body1'} className={s.signInLink}>
         Sign Up
       </Typography>
     </Card>

@@ -10,6 +10,7 @@ import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
 import { PackPanel } from '@/pages/pack/packPanel'
 import { PackSearch } from '@/pages/pack/packSearch'
 import { TablePack } from '@/pages/pack/tablePack'
+import { decksPath } from '@/router'
 import { useUtilityForSearchParamsEdit } from '@/utils'
 
 export const Pack = () => {
@@ -46,7 +47,7 @@ export const Pack = () => {
   const paginationReady = totalPages || 1
 
   if (dataDeck === null) {
-    return <Navigate to="/deck" />
+    return <Navigate to={decksPath} />
   }
 
   return (
