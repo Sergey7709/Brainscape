@@ -16,6 +16,7 @@ import { Registration } from '@/pages/registration'
 import { VerifyEmail } from '@/pages/verify-email'
 import {
   createNewPasswordPath,
+  decksPath,
   greetingNonAuthorizedPath,
   loginPath,
   passwordRecoveryPath,
@@ -66,7 +67,7 @@ const privateRoutes: RouteObject[] = [
     element: <Profile />,
   },
   {
-    path: '/deck',
+    path: decksPath,
     element: <Decks />,
   },
   {
