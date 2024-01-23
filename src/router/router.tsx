@@ -18,6 +18,7 @@ import {
   chartsPath,
   createNewPasswordPath,
   decksPath,
+  error404Path,
   greetingNonAuthorizedPath,
   learnPath,
   loginPath,
@@ -25,6 +26,7 @@ import {
   passwordRecoveryPath,
   profilePath,
   registrationPath,
+  rootElementPath,
   verifyEmailPath,
 } from '@/router/constantsRouter.ts'
 import { PrivateRoutes } from '@/router/privateRoutes.tsx'
@@ -55,14 +57,14 @@ const publicRoutes: RouteObject[] = [
     element: <PasswordRecovery />,
   },
   {
-    path: '/*',
+    path: error404Path,
     element: <Error404 />,
   },
 ]
 
 const privateRoutes: RouteObject[] = [
   {
-    path: '/',
+    path: rootElementPath,
     element: <GreetingAuthorized />,
   },
   {
@@ -90,7 +92,7 @@ const privateRoutes: RouteObject[] = [
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: rootElementPath,
     element: <Layout />,
     children: [
       {
