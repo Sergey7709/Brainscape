@@ -18,6 +18,7 @@ import {
   createNewPasswordPath,
   greetingNonAuthorizedPath,
   loginPath,
+  passwordRecoveryPath,
   registrationPath,
   verifyEmailPath,
 } from '@/router/constantsRouter.ts'
@@ -45,7 +46,7 @@ const publicRoutes: RouteObject[] = [
     element: <CreateNewPassword />,
   },
   {
-    path: '/forgot-password',
+    path: passwordRecoveryPath,
     element: <PasswordRecovery />,
   },
   {
