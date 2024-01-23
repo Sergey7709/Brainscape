@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import s from './create-new-password.module.scss'
 
 import { CreatePassword } from '@/components/auth/create-password'
+import { rootElementPath } from '@/router/constantsRouter.ts'
 import { useResetUserPasswordMutation } from '@/service'
 
 export const CreateNewPassword = () => {
@@ -25,7 +26,7 @@ export const CreateNewPassword = () => {
     await resetUserPassword(dataForNewPassword)
       .unwrap()
       .then(() => {
-        navigate('/')
+        navigate(rootElementPath)
       })
       .catch(error => {
         if (error.status === 404) {
