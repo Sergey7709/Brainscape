@@ -19,6 +19,7 @@ import {
   createNewPasswordPath,
   decksPath,
   greetingNonAuthorizedPath,
+  learnPath,
   loginPath,
   packPath,
   passwordRecoveryPath,
@@ -82,7 +83,7 @@ const privateRoutes: RouteObject[] = [
     element: <Pack />,
   },
   {
-    path: '/learn/:id',
+    path: learnPath,
     element: <Learn />,
   },
 ]
