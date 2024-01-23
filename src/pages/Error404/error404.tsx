@@ -5,12 +5,13 @@ import s from './error404.module.scss'
 import error404 from '@/assets/images/error404.png'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
+import { rootElementPath } from '@/router'
 
 export const Error404 = () => {
   const navigate = useNavigate()
 
   const onClickHandler = () => {
-    navigate('/')
+    navigate(rootElementPath)
   }
 
   const classNames = {
