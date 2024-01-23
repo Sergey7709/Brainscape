@@ -11,6 +11,7 @@ import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
 import { useSaveUrlDeck } from '@/pages/pack/hooks-and-function'
+import { loginPath } from '@/router'
 
 type User = {
   avatar?: string
@@ -60,7 +61,7 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
               />
             </div>
           ) : (
-            <Link to={'/login'}>
+            <Link to={loginPath}>
               <Button className={s.buttonHeader}>Sing in</Button>
             </Link>
           )}
