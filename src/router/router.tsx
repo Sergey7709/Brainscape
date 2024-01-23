@@ -14,7 +14,12 @@ import { PasswordRecovery } from '@/pages/password-recovery'
 import { Profile } from '@/pages/profile'
 import { Registration } from '@/pages/registration'
 import { VerifyEmail } from '@/pages/verify-email'
-import { greetingNonAuthorizedPath, loginPath, registrationPath } from '@/router/constantsRouter.ts'
+import {
+  greetingNonAuthorizedPath,
+  loginPath,
+  registrationPath,
+  verifyEmailPath,
+} from '@/router/constantsRouter.ts'
 import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 
 const publicRoutes: RouteObject[] = [
@@ -31,7 +36,7 @@ const publicRoutes: RouteObject[] = [
     element: <Registration />,
   },
   {
-    path: '/check-email',
+    path: verifyEmailPath,
     element: <VerifyEmail />,
   },
   {
