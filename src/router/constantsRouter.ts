@@ -19,3 +19,7 @@ export const chartsPath = '/charts'
 export const packPath = '/pack/:id'
 
 export const learnPath = '/learn/:id'
+
+export const error404Path = '/*'
+
+export const rootElementPath = '/'
