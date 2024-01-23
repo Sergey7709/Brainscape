@@ -19,6 +19,7 @@ import {
   greetingNonAuthorizedPath,
   loginPath,
   passwordRecoveryPath,
+  profilePath,
   registrationPath,
   verifyEmailPath,
 } from '@/router/constantsRouter.ts'
@@ -61,7 +62,7 @@ const privateRoutes: RouteObject[] = [
     element: <GreetingAuthorized />,
   },
   {
-    path: '/profile',
+    path: profilePath,
     element: <Profile />,
   },
   {
