@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
 import { useSaveUrlDeck } from '@/pages/pack/hooks-and-function'
-import { chartsPath, loginPath, profilePath } from '@/router'
+import { chartsPath, loginPath, profilePath, rootElementPath } from '@/router'
 
 type User = {
   avatar?: string
@@ -38,7 +38,7 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
         <div className={s.wrapperHeaderInCard}>
           <Button
             as={NavLink}
-            to={'/'}
+            to={rootElementPath}
             variant={'link'}
             className={s.linkHeader}
             onClick={saveUrlDeck}
