@@ -1,6 +1,19 @@
 .learnContainer {
   gap:48px;
-  padding-top: 84px;
+  width: 1006px;
+  padding-top: 24px;
+
+  @media (width <= 1040px) {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  @media (width <= 540px)
+  {
+  padding-right: 10px;
+  padding-left: 10px;
+}
 }
 
 .linkBackToDeck {
@@ -16,7 +29,6 @@
 
 .learnBackToDeckWrapper {
   margin-bottom: 36px;
-  margin-left: 136px;
 
   @media (width <= 540px) {
     margin-left: 20px;
@@ -82,7 +94,7 @@
 }
 
   @media (width <= 280px) {
-    width: 270px;
+    width: 260px;
   }
 }
 
@@ -92,7 +104,7 @@
   }
 
   @media (width <= 280px) {
-    width: 270px;
+    width: 260px;
   }
 }
 
