@@ -15,6 +15,7 @@ import { Profile } from '@/pages/profile'
 import { Registration } from '@/pages/registration'
 import { VerifyEmail } from '@/pages/verify-email'
 import {
+  chartsPath,
   createNewPasswordPath,
   decksPath,
   greetingNonAuthorizedPath,
@@ -71,7 +72,7 @@ const privateRoutes: RouteObject[] = [
     element: <Decks />,
   },
   {
-    path: '/charts',
+    path: chartsPath,
     element: <Charts />,
   },
 
