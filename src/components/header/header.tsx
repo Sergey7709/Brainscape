@@ -30,19 +30,12 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
     profile: s.profile,
     name: s.name,
   }
-  const saveUrlDeck = useSaveUrlDeck()
 
   return (
     <div className={s.containerHeader}>
       <Card className={classNames.cardHeader}>
         <div className={s.wrapperHeaderInCard}>
-          <Button
-            as={NavLink}
-            to={rootElementPath}
-            variant={'link'}
-            className={s.linkHeader}
-            onClick={saveUrlDeck}
-          >
+          <Button as={NavLink} to={rootElementPath} variant={'link'} className={s.linkHeader}>
             <span className={s.spanHeaderInLogo}>
               <Logo />
             </span>
