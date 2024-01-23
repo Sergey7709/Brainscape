@@ -31,6 +31,8 @@ export const Learn = () => {
     setOpenAnswer(false)
   }, [dataCard])
 
+  window.scrollTo(0, 0)
+
   const conditionRenderLoader = isLoading || isFetching || isLoadingDeck || isFetchingDeck
 
   const conditionRenderCards = isSuccess && isSuccessDeck && dataDeck && dataCard
