@@ -1,9 +1,7 @@
-
 .buttonDelete {
   width: 131px;
- background-color: var(--color-danger-300);
+  background-color: var(--color-danger-300);
   box-shadow: 0 0.25rem 0.25rem 0 rgb(77 86 96 / 13%);
-
 
   &:hover:not(:disabled) {
     background: var(--color-danger-500);

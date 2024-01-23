@@ -4,7 +4,6 @@
   cursor: pointer;
   user-select: none;
 
-
   display: inline-flex;
   gap: 0.625rem;
   align-items: center;
@@ -45,7 +44,6 @@
   &:active:not(:disabled) {
     transform: translateY(-1px);
   }
-
 }
 
 .primary {
@@ -205,5 +203,3 @@
     color: #4c4c4c;
   }
 }
-
-

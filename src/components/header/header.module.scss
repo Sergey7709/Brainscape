@@ -22,7 +22,7 @@ div.cardHeader {
   width: 100%;
   height: 60px;
 
-   border-radius: 0;
+  border-radius: 0;
 
   @media (width <= 1040px) {
     width: 100%;
@@ -42,7 +42,7 @@ div.cardHeader {
   @media (width <= 1040px) {
     width: 100%;
     margin-right: 0;
-   }
+  }
 }
 
 .spanHeaderInLogo {
@@ -56,9 +56,8 @@ div.cardHeader {
   border-radius: 5px;
   outline: none;
 
-
   &::before {
-    content: "";
+    content: '';
 
     display: inline-block;
 
@@ -67,7 +66,7 @@ div.cardHeader {
 
     background-color: #f51a51;
 
-    transition: all .42s cubic-bezier(.25,.8,.25,1);
+    transition: all 0.42s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   &:hover::before {
@@ -75,7 +74,6 @@ div.cardHeader {
     background-color: #f51a51;
   }
 }
-
 
 .profile {
   display: flex;
@@ -115,16 +113,25 @@ div.cardHeader {
   height: 36px;
 
   border-radius: 100%;
-  box-shadow: 0 0 5px rgb(28 173 64),
-  0 0 5px rgb(28 173 64),   0 0 5px rgb(28 173 64),   0 0 5px rgb(28 173 64),   0 0 5px rgb(28 173 64);
+  box-shadow:
+    0 0 5px rgb(28 173 64),
+    0 0 5px rgb(28 173 64),
+    0 0 5px rgb(28 173 64),
+    0 0 5px rgb(28 173 64),
+    0 0 5px rgb(28 173 64);
 
-&:hover{
-  transform: scale(1.05);
-  background-color: #fa725a;
-    box-shadow: 0 0 5px rgb(160 125 255),
-    0 0 5px rgb(160 125 255), 0 0 5px rgb(160 125 255),0 0 5px rgb(160 125 255), 0 0 5px rgb(160 125 255), 0 0 5px rgb(160 125 255);
-  transition: all .3s;
-}
+  &:hover {
+    transform: scale(1.05);
+    background-color: #fa725a;
+    box-shadow:
+      0 0 5px rgb(160 125 255),
+      0 0 5px rgb(160 125 255),
+      0 0 5px rgb(160 125 255),
+      0 0 5px rgb(160 125 255),
+      0 0 5px rgb(160 125 255),
+      0 0 5px rgb(160 125 255);
+    transition: all 0.3s;
+  }
 }
 
 div.profileInfo {
@@ -142,25 +149,26 @@ div.profileInfo {
   @media (width <= 540px) {
     width: 36px;
     height: 36px;
-
   }
 }
 
-.info { display: flex;
-flex-direction: column  }
+.info {
+  display: flex;
+  flex-direction: column;
+}
 
 span.email {
-color: #808080;
+  color: #808080;
 
-@media (width <= 540px) {
-  font-size: 8px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
+  @media (width <= 540px) {
+    font-size: 8px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 }
 
-span.name{
-    @media (width <= 540px) {
+span.name {
+  @media (width <= 540px) {
     font-size: var(--font-size-xs);
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -175,8 +183,8 @@ span.name{
 
   @keyframes fade-in {
     0% {
-      transform: scale3d(.3, .3, .3);
-           opacity: 0;
+      transform: scale3d(0.3, 0.3, 0.3);
+      opacity: 0;
     }
 
     50% {
@@ -185,12 +193,11 @@ span.name{
   }
 
   @media (width <= 1006px) {
-    width: 100%
+    width: 100%;
   }
 }
 
 button.buttonHeader {
-
   @media (width <= 540px) {
     padding: 1px 10px;
     font-size: var(--font-size-xs);
@@ -200,7 +207,7 @@ button.buttonHeader {
 a.linkHeader {
   margin: 0;
   padding: 0;
- }
+}
 
 a.buttonNavLinkHeader {
   display: flex;
@@ -221,11 +228,9 @@ a.buttonNavLinkHeader {
 
   &:hover:not(:disabled) {
     color: var(--color-light-100);
-   }
-
+  }
 }
 
-.linkHeaderProfile{
+.linkHeaderProfile {
   font-size: var(--font-size-xs);
 }
-
