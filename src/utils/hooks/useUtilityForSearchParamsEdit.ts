@@ -20,7 +20,6 @@ export const useUtilityForSearchParamsEdit = () => {
       ...restOffSearchObject
     } = Object.fromEntries(searchParams)
 
-    // console.log('restOffSearchObject', restOffSearchObject)
     const urlParams = param2
       ? {
           ...restOffSearchObject,
@@ -31,8 +30,6 @@ export const useUtilityForSearchParamsEdit = () => {
           ...restOffSearchObject,
           [param]: param === 'currentPage' && valueForNewParam === '1' ? [] : valueForNewParam,
         }
-
-    // console.log('urlParams', urlParams)
 
     setSearchParams(urlParams)
   }

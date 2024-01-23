@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
-  padding-top: 84px;
+  padding-top: 24px;
 
   &.containerPackDisabled {
     pointer-events:none;
@@ -65,7 +65,7 @@
 
   @media (width <= 540px) {
     width: 100%;
-    padding: 1px 10px;
+    padding: 3px 10px;
   }
 }
 
@@ -84,7 +84,7 @@ font-weight: 700;
 
     @media (width <= 540px) {
       width:100%;
-      padding: 1px 10px;
+      padding: 3px 10px;
       font-size: var(--font-size-xs);
     }
   }
