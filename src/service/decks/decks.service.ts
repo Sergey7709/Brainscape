@@ -6,7 +6,7 @@ export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       getDecks: builder.query<GetEntitiesResponse<DeckType> & { maxCardsCount: number }, string>({
-        query: arg => `v1/decks?${arg}`,
+        query: arg => `v2/decks?${arg}`, //!!!!!!!
         providesTags: ['Deck'],
       }),
       createDeck: builder.mutation<DeckType, FormData>({
