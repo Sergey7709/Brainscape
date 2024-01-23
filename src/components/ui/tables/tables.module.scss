@@ -1,5 +1,3 @@
-
-
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -26,23 +24,23 @@
     align-items: center;
 
     @media (width <= 360px) {
-      gap:0;
+      gap: 0;
     }
   }
 
   &.sortable > span {
     cursor: pointer;
-   }
+  }
 
   svg {
-      transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
   }
 }
 
 .tableCell {
   overflow: hidden;
 
- padding: 6px 24px;
+  padding: 6px 24px;
 
   font-size: var(--font-size-s);
   line-height: var(--line-height-m);
@@ -63,6 +61,5 @@
   width: 100%;
   height: 100px;
 
-  color: var(--color-danger-300)
+  color: var(--color-danger-300);
 }
-

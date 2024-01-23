@@ -22,7 +22,6 @@
 
   width: 100%;
 
-
   @media (width <= 1040px) {
     flex-direction: column;
     align-items: start;
@@ -46,21 +45,18 @@
   width: 299px;
 
   @media (width <= 1040px) {
-    width: 100%
+    width: 100%;
   }
 
-
   @media (width <= 540px) {
-      height: 30px;
+    height: 30px;
   }
 }
 
-
-.decksPanelButtonWrapper{
+.decksPanelButtonWrapper {
   display: flex;
   justify-content: flex-end;
-  width:100%;
-
+  width: 100%;
 }
 
 .decksPanelButton {
@@ -68,7 +64,7 @@
 
   &:hover {
     scale: 1.01;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
 
   @media (width <= 1040px) {
@@ -88,14 +84,14 @@
   @media (width <= 540px) {
     font-size: small;
   }
-
 }
 
 div.decksPanelTabSwitcherWrapper {
   display: flex;
   gap: 5px;
-  width:229px;
+  width: 229px;
 
   @media (width <= 1040px) {
-    width: 100%;}
+    width: 100%;
+  }
 }

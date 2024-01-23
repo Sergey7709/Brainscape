@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
-import { useSaveUrlDeck } from '@/pages/pack/hooks-and-function'
 import { chartsPath, loginPath, profilePath, rootElementPath } from '@/router'
 
 type User = {
@@ -30,19 +29,12 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
     profile: s.profile,
     name: s.name,
   }
-  const saveUrlDeck = useSaveUrlDeck()
 
   return (
     <div className={s.containerHeader}>
       <Card className={classNames.cardHeader}>
         <div className={s.wrapperHeaderInCard}>
-          <Button
-            as={NavLink}
-            to={rootElementPath}
-            variant={'link'}
-            className={s.linkHeader}
-            onClick={saveUrlDeck}
-          >
+          <Button as={NavLink} to={rootElementPath} variant={'link'} className={s.linkHeader}>
             <span className={s.spanHeaderInLogo}>
               <Logo />
             </span>

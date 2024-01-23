@@ -3,28 +3,27 @@
   flex-direction: column;
   align-items: center;
 
-
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
   padding-top: 24px;
 
   &.containerPackDisabled {
-    pointer-events:none;
+    pointer-events: none;
     opacity: 0.8;
   }
 }
 
-.pack{
+.pack {
   width: 1006px;
 
   @media (width <= 1040px) {
     width: 100%;
-    padding: 10px
+    padding: 10px;
   }
 
   @media (width <= 540px) {
-    padding: 10px
+    padding: 10px;
   }
 }
 
@@ -34,7 +33,6 @@
   align-items: center;
   justify-content: space-between;
 
-
   .containerTitle {
     display: flex;
     flex-shrink: 0;
@@ -43,13 +41,11 @@
   }
 
   @media (width <= 540px) {
-    gap:10px;
+    gap: 10px;
   }
-
 }
 
 .packTitle {
-
   @media (width <= 540px) {
     font-size: var(--font-size-l);
     word-wrap: break-word;
@@ -60,7 +56,7 @@
 .packButtonAddNewCard {
   &:hover {
     scale: 1.01;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
 
   @media (width <= 540px) {
@@ -70,24 +66,24 @@
 }
 
 .packButtonAddNewCardText {
-font-size: var(--font-size-s);
-font-weight: 700;
+  font-size: var(--font-size-s);
+  font-weight: 700;
 
-    @media (width <= 540px) {
-      font-size: var(--font-size-xs);
-    }
+  @media (width <= 540px) {
+    font-size: var(--font-size-xs);
+  }
 }
 
-  .packButton {
-    flex-shrink: 0;
-    font-size: var(--font-size-s);
+.packButton {
+  flex-shrink: 0;
+  font-size: var(--font-size-s);
 
-    @media (width <= 540px) {
-      width:100%;
-      padding: 3px 10px;
-      font-size: var(--font-size-xs);
-    }
+  @media (width <= 540px) {
+    width: 100%;
+    padding: 3px 10px;
+    font-size: var(--font-size-xs);
   }
+}
 
 .packDropDown {
   &:hover {
@@ -97,7 +93,6 @@ font-weight: 700;
     transition: 0.3s;
   }
 }
-
 
 @mixin pack-img {
   flex-shrink: 0;
@@ -123,7 +118,7 @@ font-weight: 700;
   width: 0;
 }
 
-.packHeadCellListStyle{
+.packHeadCellListStyle {
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -166,7 +161,7 @@ font-weight: 700;
   }
 
   @media (width <= 1040px) {
-   padding: 6px 10px;
+    padding: 6px 10px;
   }
 
   @media (width <= 768px) {
@@ -184,10 +179,9 @@ font-weight: 700;
     &:nth-child(1) {
       padding-left: 5px;
     }
-        }
+  }
 
-  @media (width <= 280px)
-  {
+  @media (width <= 280px) {
     padding: 6px 4px;
   }
 
@@ -215,25 +209,26 @@ font-weight: 700;
 }
 
 .packHeaderMeStyle {
-  @include pack-header ;
+  @include pack-header;
 
   display: grid;
   grid-template-columns: 301px 301px 131px 168px 105px;
 
   @media (width <= 540px) {
-    grid-template-columns:  1.4fr 1.4fr 2fr 1.2fr 1fr;
-  }}
+    grid-template-columns: 1.4fr 1.4fr 2fr 1.2fr 1fr;
+  }
+}
 
-.packHeaderStyleFriend{
-  @include pack-header
-;
+.packHeaderStyleFriend {
+  @include pack-header;
 
   display: grid;
   grid-template-columns: 301px 301px 201px 150px 53px;
 
   @media (width <= 540px) {
-    grid-template-columns:  1.4fr 1.4fr 2fr 1fr 1fr;
-  }}
+    grid-template-columns: 1.4fr 1.4fr 2fr 1fr 1fr;
+  }
+}
 
 .packSearch {
   padding: 5px 12px;
@@ -244,8 +239,7 @@ font-weight: 700;
 }
 
 .inputPackRowWrapper {
- margin-bottom: 24px;
-
+  margin-bottom: 24px;
 }
 
 .paginationWrapperPack {
@@ -264,12 +258,12 @@ font-weight: 700;
   }
 
   @media (width <= 540px) {
-    gap:10px
+    gap: 10px;
   }
 }
 
 .textPackNoData {
- width: 100%;
+  width: 100%;
   font-weight: 700;
   color: var(--color-danger-500);
 }
@@ -282,12 +276,11 @@ font-weight: 700;
   width: 100%;
 
   border: 1px solid var(--color-dark-500);
-
 }
 
 .linkPackList {
   margin-bottom: 2rem;
-  padding-left:0;
+  padding-left: 0;
   color: var(--color-light-100);
 
   &:hover {
@@ -297,7 +290,6 @@ font-weight: 700;
   }
 }
 
-
 .divDrop {
   display: flex;
   align-items: center;
@@ -306,7 +298,6 @@ font-weight: 700;
 }
 
 .packModalButtonEditSave {
-
   @media (width <= 540px) {
     padding: 6px 10px;
   }
@@ -316,8 +307,6 @@ font-weight: 700;
   }
 }
 
-
 .packTextModalButtonEditSave {
   font-size: var(--font-size-xs);
 }
-
