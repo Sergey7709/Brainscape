@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textfiled/controlled-textfield.tsx'
 import { Typography } from '@/components/ui/typography'
+import { loginPath } from '@/router'
 
 const ForgotPasswordSchema = z.object({
   email: z
@@ -62,7 +63,7 @@ export const ForgotPassword = (props: Props) => {
         <Typography variant="body2" className={s.caption}>
           Did you remember your password?
         </Typography>
-        <Typography variant="link1" as={NavLink} to={'/login'} className={s.loginLink}>
+        <Typography variant="link1" as={NavLink} to={loginPath} className={s.loginLink}>
           Try logging in
         </Typography>
       </Card>
