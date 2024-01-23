@@ -10,7 +10,12 @@ import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
-import { milliSecondsValue, useAppDispatch, useGetAuthUserMeDataQuery } from '@/service'
+import {
+  clearFilterReducer,
+  milliSecondsValue,
+  useAppDispatch,
+  useGetAuthUserMeDataQuery,
+} from '@/service'
 import { findNameReducer, minMaxCardsCountReducer } from '@/service/store/deckParamsSlice.ts'
 import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
@@ -85,7 +90,8 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
     dispatch(findNameReducer({ findName: value }))
   }
   const handlerClearFilter = () => {
-    dispatch(minMaxCardsCountReducer({ minMaxCardsCount: [minCardsValue, maxCardsCount] })) //!!!
+    dispatch(minMaxCardsCountReducer({ minMaxCardsCount: [minCardsValue, maxCardsCount] }))
+    dispatch(clearFilterReducer())
     setSearchParams('')
   }
   const handlerTabSwitchChangeValue = (value: string | string[]) => {
