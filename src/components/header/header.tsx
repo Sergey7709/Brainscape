@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import s from './header.module.scss'
 
@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
+import { useSaveUrlDeck } from '@/pages/pack/hooks-and-function'
 import { chartsPath, loginPath, profilePath, rootElementPath } from '@/router'
 
 type User = {
@@ -24,6 +25,16 @@ type HeaderProps = {
   onSignOut?: () => void
 }
 export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
+  const location = useLocation()
+
+  const saveUrlDeck = useSaveUrlDeck()
+
+  const handlerSaveUrl = () => {
+    if (location.pathname.includes('deck')) {
+      saveUrlDeck()
+    }
+  }
+
   const classNames = {
     cardHeader: s.cardHeader,
     profile: s.profile,
@@ -34,7 +45,13 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
     <div className={s.containerHeader}>
       <Card className={classNames.cardHeader}>
         <div className={s.wrapperHeaderInCard}>
-          <Button as={NavLink} to={rootElementPath} variant={'link'} className={s.linkHeader}>
+          <Button
+            as={NavLink}
+            to={rootElementPath}
+            variant={'link'}
+            className={s.linkHeader}
+            onClick={handlerSaveUrl}
+          >
             <span className={s.spanHeaderInLogo}>
               <Logo />
             </span>
