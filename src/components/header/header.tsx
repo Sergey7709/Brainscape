@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
 import { useSaveUrlDeck } from '@/pages/pack/hooks-and-function'
-import { loginPath, profilePath } from '@/router'
+import { chartsPath, loginPath, profilePath } from '@/router'
 
 type User = {
   avatar?: string
@@ -99,7 +99,7 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
         </Link>
       </DropDownItem>
       <DropDownItem>
-        <Link to={'/charts'} className={s.buttonNavLinkHeader}>
+        <Link to={chartsPath} className={s.buttonNavLinkHeader}>
           <SlicesOutlined />
           <Typography className={s.linkHeaderProfile}>Analytics</Typography>
         </Link>
