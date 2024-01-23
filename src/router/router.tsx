@@ -20,6 +20,7 @@ import {
   decksPath,
   greetingNonAuthorizedPath,
   loginPath,
+  packPath,
   passwordRecoveryPath,
   profilePath,
   registrationPath,
@@ -77,7 +78,7 @@ const privateRoutes: RouteObject[] = [
   },
 
   {
-    path: '/pack/:id',
+    path: packPath,
     element: <Pack />,
   },
   {
