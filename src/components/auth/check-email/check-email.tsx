@@ -6,6 +6,7 @@ import { Email } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
+import { loginPath } from '@/router'
 
 type Props = {
   email: string
@@ -24,7 +25,7 @@ export const CheckEmail = ({ email }: Props) => {
         <Typography variant="body2" className={s.instructions}>
           We`ve sent an e-mail with instructions to {email}
         </Typography>
-        <Button fullWidth={true} as={NavLink} to={'/login'}>
+        <Button fullWidth={true} as={NavLink} to={loginPath}>
           Back to Sign in
         </Button>
       </Card>

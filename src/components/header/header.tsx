@@ -11,6 +11,7 @@ import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
 import { useSaveUrlDeck } from '@/pages/pack/hooks-and-function'
+import { chartsPath, loginPath, profilePath, rootElementPath } from '@/router'
 
 type User = {
   avatar?: string
@@ -37,7 +38,7 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
         <div className={s.wrapperHeaderInCard}>
           <Button
             as={NavLink}
-            to={'/'}
+            to={rootElementPath}
             variant={'link'}
             className={s.linkHeader}
             onClick={saveUrlDeck}
@@ -60,7 +61,7 @@ export const Header = ({ isAuth, user, onSignOut }: HeaderProps) => {
               />
             </div>
           ) : (
-            <Link to={'/login'}>
+            <Link to={loginPath}>
               <Button className={s.buttonHeader}>Sing in</Button>
             </Link>
           )}
@@ -92,13 +93,13 @@ const UserMenu = ({ avatar, name, email, onSignOut }: User & Pick<HeaderProps, '
         </div>
       </DropDownItem>
       <DropDownItem>
-        <Link to={'/profile'} className={s.buttonNavLinkHeader}>
+        <Link to={profilePath} className={s.buttonNavLinkHeader}>
           <ProfileOutline />
           <Typography className={s.linkHeaderProfile}>My Profile</Typography>
         </Link>
       </DropDownItem>
       <DropDownItem>
-        <Link to={'/charts'} className={s.buttonNavLinkHeader}>
+        <Link to={chartsPath} className={s.buttonNavLinkHeader}>
           <SlicesOutlined />
           <Typography className={s.linkHeaderProfile}>Analytics</Typography>
         </Link>

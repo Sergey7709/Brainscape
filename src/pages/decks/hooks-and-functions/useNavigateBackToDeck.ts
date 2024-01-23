@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { decksPath } from '@/router'
 import { clearFilterReducer, useAppDispatch } from '@/service'
 
 export const useNavigateBackToDeck = () => {
@@ -13,10 +14,10 @@ export const useNavigateBackToDeck = () => {
     if (location.pathname.includes('deck')) {
       return
     } else if (urlDeck) {
-      navigate(`/deck${urlDeck}`)
+      navigate(`${decksPath}${urlDeck}`)
     } else {
-      dispatch(clearFilterReducer()) //!!!!!!!
-      navigate(`/deck`)
+      dispatch(clearFilterReducer())
+      navigate(decksPath)
     }
   }
 

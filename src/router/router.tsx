@@ -14,70 +14,85 @@ import { PasswordRecovery } from '@/pages/password-recovery'
 import { Profile } from '@/pages/profile'
 import { Registration } from '@/pages/registration'
 import { VerifyEmail } from '@/pages/verify-email'
+import {
+  chartsPath,
+  createNewPasswordPath,
+  decksPath,
+  error404Path,
+  greetingNonAuthorizedPath,
+  learnPath,
+  loginPath,
+  packPath,
+  passwordRecoveryPath,
+  profilePath,
+  registrationPath,
+  rootElementPath,
+  verifyEmailPath,
+} from '@/router/constantsRouter.ts'
 import { PrivateRoutes } from '@/router/privateRoutes.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
-    path: '/greeting',
+    path: greetingNonAuthorizedPath,
     element: <GreetingNonAuthorized />,
   },
   {
-    path: '/login',
+    path: loginPath,
     element: <Login />,
   },
   {
-    path: '/sign-up',
+    path: registrationPath,
     element: <Registration />,
   },
   {
-    path: '/check-email',
+    path: verifyEmailPath,
     element: <VerifyEmail />,
   },
   {
-    path: '/confirm-email/:token',
+    path: createNewPasswordPath,
     element: <CreateNewPassword />,
   },
   {
-    path: '/forgot-password',
+    path: passwordRecoveryPath,
     element: <PasswordRecovery />,
   },
   {
-    path: '/*',
+    path: error404Path,
     element: <Error404 />,
   },
 ]
 
 const privateRoutes: RouteObject[] = [
   {
-    path: '/',
+    path: rootElementPath,
     element: <GreetingAuthorized />,
   },
   {
-    path: '/profile',
+    path: profilePath,
     element: <Profile />,
   },
   {
-    path: '/deck',
+    path: decksPath,
     element: <Decks />,
   },
   {
-    path: '/charts',
+    path: chartsPath,
     element: <Charts />,
   },
 
   {
-    path: '/pack/:id',
+    path: packPath,
     element: <Pack />,
   },
   {
-    path: '/learn/:id',
+    path: learnPath,
     element: <Learn />,
   },
 ]
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: rootElementPath,
     element: <Layout />,
     children: [
       {

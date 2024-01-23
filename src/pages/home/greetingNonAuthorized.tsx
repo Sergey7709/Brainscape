@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 import { VideoComponent } from '@/components/ui/VideoPlayer'
 import s from '@/pages/home/greeting.module.scss'
+import { loginPath } from '@/router'
 
 export const GreetingNonAuthorized = () => {
   return (
@@ -25,7 +26,7 @@ Join the "Learning Cards" community and discover the fascinating world of knowle
             variant={'tertiary'}
             className={s.signInButton}
             as={NavLink}
-            to={'/Login'}
+            to={loginPath}
             fullWidth
           >
             <Typography
