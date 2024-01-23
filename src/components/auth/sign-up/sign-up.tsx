@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
+import { loginPath } from '@/router'
 
 const signUpSchema = z
   .object({
@@ -67,7 +68,7 @@ export const SignUp = ({ onSubmitHandler }: Props) => {
       <Typography variant={'body2'} className={classNames.question}>
         Already have an account?
       </Typography>
-      <Typography className={classNames.link} as={NavLink} to={'/login'} variant={'link1'}>
+      <Typography className={classNames.link} as={NavLink} to={loginPath} variant={'link1'}>
         Sign In
       </Typography>
     </Card>
