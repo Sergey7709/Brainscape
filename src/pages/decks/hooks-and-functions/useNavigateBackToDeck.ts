@@ -19,12 +19,6 @@ export const useNavigateBackToDeck = () => {
       dispatch(clearFilterReducer())
       navigate(decksPath)
     }
-    // if (urlDeck) {
-    //   navigate(`${urlDeck}`)
-    // } else {
-    //   dispatch(clearFilterReducer())
-    //   navigate(decksPath)
-    // }
   }
 
   return { navigateBackToDeck }
