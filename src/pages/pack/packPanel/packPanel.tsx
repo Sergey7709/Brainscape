@@ -10,8 +10,8 @@ import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
 import { PackAddNewCard } from '@/pages/pack/pack-addNewCard'
-import s from '@/pages/pack/pack.module.scss'
 import { PackDropDown } from '@/pages/pack/packDropDown'
+import s from '@/pages/pack/packPanel/packPanel.module.scss'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
 type PackPanelProps = {
@@ -44,16 +44,6 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
 
   const title = mePackCards ? `My Pack: "${dataDeck?.name}"` : `Friend’s Pack: "${dataDeck?.name}"`
 
-  const dropdown =
-    mePackCards && dataDeck ? (
-      <PackDropDown
-        id={dataDeck?.id}
-        handlerEditModal={handlerEditModal}
-        handlerOpenModal={handlerOpenModal}
-        cardsCount={dataDeck?.cardsCount}
-      />
-    ) : null
-
   const handlerNavigateLearn = () => {
     navigate(`/learn/${dataDeck.id}`)
   }
@@ -68,7 +58,14 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
               {title}
             </Typography>
           )}
-          {dropdown}
+          {mePackCards && dataDeck ? (
+            <PackDropDown
+              id={dataDeck?.id}
+              handlerEditModal={handlerEditModal}
+              handlerOpenModal={handlerOpenModal}
+              cardsCount={dataDeck?.cardsCount}
+            />
+          ) : null}
         </div>
         {mePackCards ? (
           <PackAddNewCard deckId={dataDeck.id} />
