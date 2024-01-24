@@ -2,6 +2,7 @@ import { clsx } from 'clsx'
 import { useSearchParams } from 'react-router-dom'
 
 import { Loader } from '@/components/ui/loader'
+import { LoaderSquare } from '@/components/ui/loader-square'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort } from '@/components/ui/tables'
 import { Typography } from '@/components/ui/typography'
@@ -51,11 +52,12 @@ export const Decks = () => {
 
   const conditionalRenderLoaderDeck = isFetching || isLoading
 
-  const conditionalRenderDeck = data && sort
+  const conditionalRenderDeck = !!data && !!sort
 
   return (
     <>
-      {conditionalRenderLoaderDeck && <Loader />}
+      {conditionalRenderLoaderDeck && !conditionalRenderDeck && <LoaderSquare />}
+      {conditionalRenderLoaderDeck && conditionalRenderDeck && <Loader />}
       {conditionalRenderDeck && (
         <div className={classNames.container}>
           <div className={classNames.deck}>
