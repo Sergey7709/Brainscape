@@ -5,6 +5,7 @@ import { useGetDataForPack } from './hooks-and-function'
 import s from './pack.module.scss'
 
 import { Loader } from '@/components/ui/loader'
+import { LoaderSquare } from '@/components/ui/loader-square'
 import { Pagination } from '@/components/ui/pagination'
 import { DeckItemsPerPage } from '@/pages/decks/deckItemsPerPage'
 import { PackPanel } from '@/pages/pack/packPanel'
@@ -52,7 +53,8 @@ export const Pack = () => {
 
   return (
     <>
-      {conditionalRenderLoaderPack && <Loader />}
+      {conditionalRenderLoaderPack && !conditionalRenderPack && <LoaderSquare />}
+      {conditionalRenderLoaderPack && conditionalRenderPack && <Loader />}
       {conditionalRenderPack && (
         <div
           className={clsx(s.containerPack, conditionalRenderLoaderPack && s.containerPackDisabled)}
