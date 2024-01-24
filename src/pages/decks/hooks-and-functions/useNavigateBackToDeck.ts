@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { decksPath } from '@/router'
-import { clearFilterReducer, useAppDispatch } from '@/service'
+import { clearFilterReducer, searchParamsDeckUrl, useAppDispatch } from '@/service'
 
 export const useNavigateBackToDeck = () => {
   const navigate = useNavigate()
@@ -9,7 +9,7 @@ export const useNavigateBackToDeck = () => {
   const dispatch = useAppDispatch()
 
   const navigateBackToDeck = () => {
-    const urlDeck = sessionStorage.getItem('previousPath')
+    const urlDeck = sessionStorage.getItem(searchParamsDeckUrl)
 
     if (location.pathname.includes('deck')) {
       return

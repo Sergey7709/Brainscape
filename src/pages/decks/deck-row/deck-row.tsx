@@ -2,8 +2,6 @@ import { useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { useSaveUrlDeck } from '../../pack/hooks-and-function'
-
 import s from './deck-row.module.scss'
 
 import { Delete, Play, Redactor } from '@/assets/icons'
@@ -14,8 +12,10 @@ import { DeckEditPack } from '@/pages/decks/deck-editPack/deckEditPack.tsx'
 import { ModalDeletePack } from '@/pages/decks/deck-modal-delete-pack'
 import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
+import { learnPath, packPath } from '@/router'
 import { useGetAuthUserMeDataQuery } from '@/service'
 import { DeckType } from '@/service/decks/decks.types.ts'
+import { useSaveUrlDeck } from '@/utils'
 
 export const DeckRow = (deck: DeckType) => {
   const { data: dataMeId } = useGetAuthUserMeDataQuery()
@@ -63,7 +63,7 @@ export const DeckRow = (deck: DeckType) => {
             <Button
               as={NavLink}
               variant={'link'}
-              to={`/pack/${deck.id}`}
+              to={`${packPath}${deck.id}`}
               className={s.linkCell}
               onClick={saveUrlDeck}
               fullWidth
@@ -95,7 +95,7 @@ export const DeckRow = (deck: DeckType) => {
                 <Button
                   variant={'link'}
                   as={NavLink}
-                  to={`/learn/${deck.id}`}
+                  to={`${learnPath}${deck.id}`}
                   className={deck.cardsCount > 0 ? s.buttonRow : s.disabledButtonRow}
                   onClick={saveUrlDeck}
                 >

@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import s from '.././pack.module.scss'
+import s from './packAddNewCard.module.scss'
 
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'

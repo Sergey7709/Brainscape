@@ -1,0 +1,72 @@
+.linkPackList {
+  margin-bottom: 2rem;
+  padding-left: 0;
+  color: var(--color-light-100);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-accent-300);
+    transition: 0.5s;
+  }
+}
+
+.containerTitleAndButton {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  .containerTitle {
+    display: flex;
+    flex-shrink: 0;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  @media (width <= 540px) {
+    gap: 10px;
+  }
+}
+
+.packTitle {
+  @media (width <= 540px) {
+    font-size: var(--font-size-l);
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+.packButton {
+  flex-shrink: 0;
+  font-size: var(--font-size-s);
+
+  @media (width <= 540px) {
+    width: 100%;
+    padding: 3px 10px;
+    font-size: var(--font-size-xs);
+  }
+}
+
+@mixin pack-img {
+  flex-shrink: 0;
+
+  width: 170px;
+  height: 107px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+
+  @media (width <= 540px) {
+    width: 100px;
+    height: 54px;
+  }
+}
+
+.packImg {
+  @include pack-img;
+}
+
+.packImgNone {
+  @include pack-img;
+
+  width: 0;
+}

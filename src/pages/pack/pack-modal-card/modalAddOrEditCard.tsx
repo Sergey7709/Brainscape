@@ -2,7 +2,7 @@ import { BaseSyntheticEvent, Dispatch, ReactElement, RefObject, SetStateAction }
 
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form'
 
-import s from '.././pack.module.scss'
+import s from './modalAddOrEditCard.module.scss'
 
 import { Button } from '@/components/ui/button'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textfiled'

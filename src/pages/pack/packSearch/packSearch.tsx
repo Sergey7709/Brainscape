@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { TextField } from '@/components/ui/textField'
-import s from '@/pages/pack/pack.module.scss'
+import s from '@/pages/pack/packSearch/packSearch.module.scss'
 import { milliSecondsValue, packFindNameReducer, useAppDispatch } from '@/service'
 import {
   useCombineAppSelector,
