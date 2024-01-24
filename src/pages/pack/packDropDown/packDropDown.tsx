@@ -4,7 +4,7 @@ import { Delete, Play, Redactor } from '@/assets/icons'
 import { Elipse } from '@/assets/icons/elipse.tsx'
 import { MoreVerticalOutline } from '@/assets/icons/more-vertical-outline.tsx'
 import { DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
-import s from '@/pages/pack/pack.module.scss'
+import s from '@/pages/pack/packDropDown/packDropDown.module.scss'
 
 type PackDropDownMenuProps = {
   id: string
