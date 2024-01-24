@@ -1,7 +1,7 @@
 import { Sort, Table } from '@/components/ui/tables'
 import { columnsPack } from '@/pages/pack/constantsPack.ts'
-import s from '@/pages/pack/pack.module.scss'
 import { SortedPackData } from '@/pages/pack/sortedPackData'
+import s from '@/pages/pack/tablePack/tablePack.module.scss'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { PackCards } from '@/service/decks/decks.types.ts'
 import { useUtilityForSearchParamsEdit } from '@/utils'
