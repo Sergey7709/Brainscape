@@ -12,6 +12,7 @@ import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
 import { PackAddNewCard } from '@/pages/pack/pack-addNewCard'
 import { PackDropDown } from '@/pages/pack/packDropDown'
 import s from '@/pages/pack/packPanel/packPanel.module.scss'
+import { learnPath } from '@/router'
 import { DeckType } from '@/service/decks/decks.types.ts'
 
 type PackPanelProps = {
@@ -45,7 +46,7 @@ export const PackPanel = ({ dataDeck, mePackCards }: PackPanelProps) => {
   const title = mePackCards ? `My Pack: "${dataDeck?.name}"` : `Friend’s Pack: "${dataDeck?.name}"`
 
   const handlerNavigateLearn = () => {
-    navigate(`/learn/${dataDeck.id}`)
+    navigate(`${learnPath}${dataDeck.id}`)
   }
 
   return (
