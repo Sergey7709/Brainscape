@@ -1,0 +1,11 @@
+.inputPackRowWrapper {
+  margin-bottom: 24px;
+}
+
+.packSearch {
+  padding: 5px 12px;
+
+  @media (width <= 540px) {
+    height: 30px;
+  }
+}
