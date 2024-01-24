@@ -51,7 +51,7 @@ export const DeckAddNewPack = () => {
     field: { value: coverFormValue, onChange: coverFormOnChange },
   } = useController({ name: 'imageCover', control })
 
-  const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
+  const buildFormData = (form: NewPackSchema) => {
     const formData = new FormData()
 
     if (form.imageCover?.[0] instanceof File) {
@@ -59,6 +59,20 @@ export const DeckAddNewPack = () => {
     }
     formData.append('name', form.namePack)
     formData.append('isPrivate', JSON.stringify(form.privatePack))
+
+    return formData
+  }
+
+  const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
+    // const formData = new FormData()
+    //
+    // if (form.imageCover?.[0] instanceof File) {
+    //   formData.append('cover', form.imageCover[0])
+    // }
+    // formData.append('name', form.namePack)
+    // formData.append('isPrivate', JSON.stringify(form.privatePack))
+
+    const formData = buildFormData(form)
 
     utilityAddNewPack(formData)
 
