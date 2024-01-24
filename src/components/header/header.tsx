@@ -10,8 +10,8 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
-import { useSaveUrlDeck } from '@/pages/pack/hooks-and-function'
 import { chartsPath, loginPath, profilePath, rootElementPath } from '@/router'
+import { useSaveUrlDeck } from '@/utils'
 
 type User = {
   avatar?: string
