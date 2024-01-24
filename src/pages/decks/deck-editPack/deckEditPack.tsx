@@ -5,9 +5,10 @@ import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
+import { UseEditPackFormModal } from '@/pages/decks/hooks-and-functions/useEditPackFormModal.ts'
 import { utilityZodPackSchema } from '@/pages/decks/hooks-and-functions/utilityZodPackSchema.ts'
 
-type DeckEditPackProps = {
+export type DeckEditPackProps = {
   id: string
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
@@ -26,63 +27,91 @@ export const DeckEditPack = ({
   isPrivate,
   utilityEditPack,
 }: DeckEditPackProps) => {
-  const { initialValues, addNewPackSchema } = utilityZodPackSchema(isPrivate, titlePack)
-
-  type NewPackSchema = z.infer<typeof addNewPackSchema>
-
-  const hiddenInputRefCover = useRef<HTMLInputElement | null>(null)
+  // const { initialValues, addNewPackSchema } = utilityZodPackSchema(isPrivate, titlePack)
+  //
+  // type NewPackSchema = z.infer<typeof addNewPackSchema>
+  //
+  // const hiddenInputRefCover = useRef<HTMLInputElement | null>(null)
+  //
+  // const {
+  //   control,
+  //   handleSubmit,
+  //   register,
+  //   setValue,
+  //   formState: { errors },
+  // } = useForm<NewPackSchema>({
+  //   resolver: zodResolver(addNewPackSchema),
+  //   defaultValues: initialValues,
+  // })
+  //
+  // const {
+  //   field: { value, onChange },
+  // } = useController({
+  //   name: 'privatePack',
+  //   control,
+  //   defaultValue: isPrivate,
+  // })
+  //
+  // const {
+  //   field: { value: nameFormValue, onChange: nameFormOnChange },
+  // } = useController({ name: 'namePack', control })
+  //
+  // const {
+  //   field: { value: coverFormValue, onChange: coverFormOnChange },
+  // } = useController({ name: 'imageCover', control, defaultValue: coverPack })
+  //
+  // const buildFormData = (form: NewPackSchema): FormData => {
+  //   const formData = new FormData()
+  //
+  //   if (form.imageCover?.[0] instanceof File) {
+  //     formData.append('cover', form.imageCover[0])
+  //   } else if (form.imageCover === '') {
+  //     formData.append('cover', '')
+  //   }
+  //
+  //   formData.append('name', form.namePack)
+  //   formData.append('isPrivate', JSON.stringify(form.privatePack))
+  //
+  //   return formData
+  // }
+  //
+  // const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
+  //   const formData = buildFormData(form)
+  //
+  //   utilityEditPack(id, formData)
+  //   setOpen(!open)
+  // })
+  //
+  // const handlerClosedModal = () => {
+  //   setOpen(!open)
+  // }
+  //
+  // const handlerFormCoverOnChange = (event: FileList | undefined | string) => {
+  //   coverFormOnChange(event)
+  // }
 
   const {
-    control,
-    handleSubmit,
     register,
+    errors,
     setValue,
-    formState: { errors },
-  } = useForm<NewPackSchema>({
-    resolver: zodResolver(addNewPackSchema),
-    defaultValues: initialValues,
+    onHandleSubmitForm,
+    hiddenInputRefCover,
+    value,
+    onChange,
+    nameFormValue,
+    nameFormOnChange,
+    coverFormValue,
+    handlerClosedModal,
+    handlerFormCoverOnChange,
+  } = UseEditPackFormModal({
+    id,
+    open,
+    setOpen,
+    titlePack,
+    coverPack,
+    isPrivate,
+    utilityEditPack,
   })
-
-  const {
-    field: { value, onChange },
-  } = useController({
-    name: 'privatePack',
-    control,
-    defaultValue: isPrivate,
-  })
-
-  const {
-    field: { value: nameFormValue, onChange: nameFormOnChange },
-  } = useController({ name: 'namePack', control })
-
-  const {
-    field: { value: coverFormValue, onChange: coverFormOnChange },
-  } = useController({ name: 'imageCover', control, defaultValue: coverPack })
-
-  const onHandleSubmitForm = handleSubmit((form: NewPackSchema) => {
-    const formData = new FormData()
-
-    if (form.imageCover?.[0] instanceof File) {
-      formData.append('cover', form.imageCover[0])
-    } else if (form.imageCover === '') {
-      formData.append('cover', '')
-    }
-
-    formData.append('name', form.namePack)
-    formData.append('isPrivate', JSON.stringify(form.privatePack))
-
-    utilityEditPack(id, formData)
-
-    setOpen(!open)
-  })
-
-  const handlerClosedModal = () => {
-    setOpen(!open)
-  }
-
-  const handlerFormCoverOnChange = (event: FileList | undefined | string) => {
-    coverFormOnChange(event)
-  }
 
   return (
     <ModalAddOrEditPack
