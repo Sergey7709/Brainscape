@@ -4,8 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useAddNewPack } from '@/pages/decks/hooks-and-functions/useAddNewPack.ts'
-import { utilityZodPackSchema } from '@/pages/decks/hooks-and-functions/utilityZodPackSchema.ts'
+import { utilityZodPackSchema, useAddNewPack } from '@/pages/decks/hooks-and-functions'
 
 export const UseAddNewPackFormModal = () => {
   const { initialValues, addNewPackSchema } = utilityZodPackSchema()

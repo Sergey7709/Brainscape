@@ -3,7 +3,7 @@ import s from './deck-addNewPack.module.scss'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
-import { UseAddNewPackFormModal } from '@/pages/decks/hooks-and-functions/useAddNewPackFormModal.ts'
+import { UseAddNewPackFormModal } from '@/pages/decks/hooks-and-functions'
 
 export const DeckAddNewPack = () => {
   const {

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 
 import { ModalAddOrEditPack } from '@/pages/decks/deck-modal-pack'
-import { UseEditPackFormModal } from '@/pages/decks/hooks-and-functions/useEditPackFormModal.ts'
+import { UseEditPackFormModal } from '@/pages/decks/hooks-and-functions'
 
 export type DeckEditPackProps = {
   id: string
