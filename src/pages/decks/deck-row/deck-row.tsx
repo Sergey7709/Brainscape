@@ -2,8 +2,6 @@ import { useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { useSaveUrlDeck } from '../../pack/hooks-and-function'
-
 import s from './deck-row.module.scss'
 
 import { Delete, Play, Redactor } from '@/assets/icons'
@@ -16,6 +14,7 @@ import { useDeletePack } from '@/pages/decks/hooks-and-functions'
 import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { useGetAuthUserMeDataQuery } from '@/service'
 import { DeckType } from '@/service/decks/decks.types.ts'
+import { useSaveUrlDeck } from '@/utils'
 
 export const DeckRow = (deck: DeckType) => {
   const { data: dataMeId } = useGetAuthUserMeDataQuery()
