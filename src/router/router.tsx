@@ -81,11 +81,11 @@ const privateRoutes: RouteObject[] = [
   },
 
   {
-    path: packPath,
+    path: `${packPath}:id`,
     element: <Pack />,
   },
   {
-    path: learnPath,
+    path: `${learnPath}:id`,
     element: <Learn />,
   },
 ]
