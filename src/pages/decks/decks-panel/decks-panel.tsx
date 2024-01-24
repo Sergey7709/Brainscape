@@ -13,6 +13,7 @@ import { Typography } from '@/components/ui/typography'
 import {
   clearFilterReducer,
   milliSecondsValue,
+  searchParamsDeckUrl,
   useAppDispatch,
   useGetAuthUserMeDataQuery,
 } from '@/service'
@@ -93,6 +94,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
     dispatch(minMaxCardsCountReducer({ minMaxCardsCount: [minCardsValue, maxCardsCount] }))
     dispatch(clearFilterReducer())
     setSearchParams('')
+    sessionStorage.setItem(searchParamsDeckUrl, '')
   }
   const handlerTabSwitchChangeValue = (value: string | string[]) => {
     utilityForSearchParamsEdit({

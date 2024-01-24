@@ -37,11 +37,15 @@ div.cardHeader {
 .wrapperHeaderInCard {
   display: flex;
   justify-content: space-between;
-  width: 1006px;
+
+  width: 1016px;
+  height: 100%;
+  padding: 0 5px;
 
   @media (width <= 1040px) {
     width: 100%;
     margin-right: 0;
+    padding: 0
   }
 }
 

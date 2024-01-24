@@ -1,0 +1,20 @@
+.packButtonAddNewCard {
+  &:hover {
+    scale: 1.01;
+    transition: all 0.4s ease-in-out;
+  }
+
+  @media (width <= 540px) {
+    width: 100%;
+    padding: 3px 10px;
+  }
+}
+
+.packButtonAddNewCardText {
+  font-size: var(--font-size-s);
+  font-weight: 700;
+
+  @media (width <= 540px) {
+    font-size: var(--font-size-xs);
+  }
+}

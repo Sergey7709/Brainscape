@@ -1,0 +1,111 @@
+@mixin pack-header {
+  @media (width <= 1040px) {
+    grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 0.8fr;
+  }
+}
+
+.packHeaderMeStyle {
+  @include pack-header;
+
+  display: grid;
+  grid-template-columns: 301px 301px 131px 168px 105px;
+
+  @media (width <= 540px) {
+    grid-template-columns: 1.4fr 1.4fr 2fr 1.2fr 1fr;
+  }
+}
+
+.packHeaderStyleFriend {
+  @include pack-header;
+
+  display: grid;
+  grid-template-columns: 301px 301px 201px 150px 53px;
+
+  @media (width <= 540px) {
+    grid-template-columns: 1.4fr 1.4fr 2fr 1fr 1fr;
+  }
+}
+
+.packHeadCellListStyle {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 7%;
+    left: 0;
+    transform: skewX(-20deg);
+
+    display: block;
+
+    width: 0;
+    height: 86%;
+
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+  }
+
+  &:last-child {
+    pointer-events: none;
+    cursor: none;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-light-100);
+    background: rgb(127 129 133);
+    transition: all 0.2s ease-out;
+
+    &:last-child {
+      pointer-events: none;
+    }
+  }
+
+  &:hover::before {
+    animation: shine 0.5s 0s linear;
+  }
+
+  @media (width <= 1040px) {
+    padding: 6px 10px;
+  }
+
+  @media (width <= 768px) {
+    padding: 6px 10px;
+  }
+
+  @media (width <= 540px) {
+    padding: 6px 10px;
+    font-size: 10px;
+
+    &:nth-last-child(2) {
+      padding-right: 1px;
+    }
+
+    &:nth-child(1) {
+      padding-left: 5px;
+    }
+  }
+
+  @media (width <= 280px) {
+    padding: 6px 4px;
+  }
+
+  @keyframes shine {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+}
