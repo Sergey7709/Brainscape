@@ -5,6 +5,7 @@ import { Elipse } from '@/assets/icons/elipse.tsx'
 import { MoreVerticalOutline } from '@/assets/icons/more-vertical-outline.tsx'
 import { DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import s from '@/pages/pack/packDropDown/packDropDown.module.scss'
+import { learnPath } from '@/router'
 
 type PackDropDownMenuProps = {
   id: string
@@ -33,7 +34,7 @@ export const PackDropDown = ({
       }
     >
       <DropDownItemWithIcon
-        onSelect={() => navigate(`/learn/${id}`)}
+        onSelect={() => navigate(`${learnPath}${id}`)}
         textValue={'Learn'}
         icon={<Play />}
         disabled={!cardsCount}
