@@ -10,6 +10,7 @@ import { Card } from '@/components/ui/card'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { loginPath } from '@/router'
+import { nameParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 const signUpSchema = z
   .object({
@@ -48,7 +49,7 @@ export const SignUp = ({ onSubmitHandler }: Props) => {
       <Typography variant={'large'}>Sign Up</Typography>
       <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
         <TextField errorMessage={errors.email?.message} {...register('email')} label={'Email*'} />
-        <TextField errorMessage={errors.name?.message} {...register('name')} label={'Name'} />
+        <TextField errorMessage={errors.name?.message} {...register(nameParams)} label={'Name'} />
         <TextField
           errorMessage={errors.password?.message}
           {...register('password')}

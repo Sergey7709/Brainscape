@@ -1,5 +1,9 @@
 .packTextModalButtonEditSave {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-s);
+
+  @media (width <= 280px) {
+    font-size: var(--font-size-xs);
+  }
 }
 
 .packModalButtonEditSave {
@@ -9,5 +13,5 @@
 
   @media (width <= 280px) {
     padding: 6px;
-  }
+     }
 }

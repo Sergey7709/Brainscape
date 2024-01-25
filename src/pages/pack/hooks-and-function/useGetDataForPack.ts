@@ -8,6 +8,7 @@ import {
   useGetDeckByIdCardsQuery,
   useGetDeckByIdQuery,
 } from '@/service'
+import { currentPageParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const useGetDataForPack = () => {
   const packId = useParams()
@@ -36,7 +37,7 @@ export const useGetDataForPack = () => {
 
   const [searchParams] = useSearchParams()
 
-  const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
+  const paginationValueInURL = Number(searchParams.get(currentPageParams)) || currentPageValue
 
   const { sort } = useDataSort()
 

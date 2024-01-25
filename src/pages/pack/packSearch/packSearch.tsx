@@ -11,12 +11,13 @@ import {
   useIsFirstRender,
   useUtilityForSearchParamsEdit,
 } from '@/utils'
+import { questionParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const PackSearch = () => {
   const dispatch = useAppDispatch()
   const { packSearchValue } = useCombineAppSelector()
   const [searchParams] = useSearchParams()
-  const findText = searchParams.get('question') || ''
+  const findText = searchParams.get(questionParams) || ''
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
   const debounce = useDebounce({ value: packSearchValue, milliSeconds: milliSecondsValue })
   const isFirstRender = useIsFirstRender()
@@ -24,7 +25,7 @@ export const PackSearch = () => {
   useEffect(() => {
     debounce !== findText &&
       utilityForSearchParamsEdit({
-        param: 'question',
+        param: questionParams,
         valueForNewParam: debounce ? debounce : [],
       })
     isFirstRender && dispatch(packFindNameReducer({ packFindName: findText }))

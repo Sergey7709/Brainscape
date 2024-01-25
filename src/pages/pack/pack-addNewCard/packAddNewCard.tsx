@@ -13,6 +13,12 @@ import { useAddNewCard } from '@/pages/decks/hooks-and-functions/useAddNewCard.t
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
 import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
+import {
+  answerImgParams,
+  answerParams,
+  questionImgParams,
+  questionParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 
 const { initialValues, addNewCardSchema } = utilityZodCardSchema()
 
@@ -42,19 +48,19 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
 
   const {
     field: { value: imageQuestionFormValue, onChange: onChangeImageQuestionForm },
-  } = useController({ name: 'questionImg', control })
+  } = useController({ name: questionImgParams, control })
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
-  } = useController({ name: 'answerImg', control })
+  } = useController({ name: answerImgParams, control })
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
-  } = useController({ name: 'question', control })
+  } = useController({ name: questionParams, control })
 
   const {
     field: { value: answerFormValue, onChange: onChangeAnswerFormValue },
-  } = useController({ name: 'answer', control })
+  } = useController({ name: answerParams, control })
 
   const onHandleSubmitForm = handleSubmit((form: NewCardSchema) => {
     const formData = new FormData()
