@@ -15,7 +15,7 @@ import { useEditPack } from '@/pages/decks/hooks-and-functions/useEditPack.ts'
 import { learnPath, packPath } from '@/router'
 import { useGetAuthUserMeDataQuery } from '@/service'
 import { DeckType } from '@/service/decks/decks.types.ts'
-import { useSaveUrlDeck } from '@/utils'
+import { useSaveUrlDeck } from '@/shared'
 
 export const DeckRow = (deck: DeckType) => {
   const { data: dataMeId } = useGetAuthUserMeDataQuery()

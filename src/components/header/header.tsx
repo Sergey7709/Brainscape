@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/card'
 import { DropDownItem, DropDownItemWithIcon, DropdownMenu } from '@/components/ui/dropdown'
 import { Typography } from '@/components/ui/typography'
 import { chartsPath, loginPath, profilePath, rootElementPath } from '@/router'
-import { useSaveUrlDeck } from '@/utils'
+import { useSaveUrlDeck } from '@/shared'
 
 type User = {
   avatar?: string

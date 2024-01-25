@@ -8,7 +8,7 @@ import {
   useGetDeckByIdCardsQuery,
   useGetDeckByIdQuery,
 } from '@/service'
-import { currentPageParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { currentPageParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 export const useGetDataForPack = () => {
   const packId = useParams()

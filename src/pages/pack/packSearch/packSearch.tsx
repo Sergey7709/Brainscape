@@ -10,8 +10,8 @@ import {
   useDebounce,
   useIsFirstRender,
   useUtilityForSearchParamsEdit,
-} from '@/utils'
-import { questionParams } from '@/utils/constants/constantsForSearchParams.ts'
+} from '@/shared'
+import { questionParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 export const PackSearch = () => {
   const dispatch = useAppDispatch()

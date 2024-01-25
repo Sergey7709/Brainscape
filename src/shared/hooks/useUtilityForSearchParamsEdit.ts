@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 
-import { currentPageParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { currentPageParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 type UseUtilityForSearchParamsEdit = {
   param: string
