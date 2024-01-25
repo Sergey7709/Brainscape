@@ -13,6 +13,7 @@ import { useAddNewCard } from '@/pages/decks/hooks-and-functions/useAddNewCard.t
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZodCardSchema.ts'
 import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
+import { questionParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 const { initialValues, addNewCardSchema } = utilityZodCardSchema()
 
@@ -50,7 +51,7 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
-  } = useController({ name: 'question', control })
+  } = useController({ name: questionParams, control })
 
   const {
     field: { value: answerFormValue, onChange: onChangeAnswerFormValue },
