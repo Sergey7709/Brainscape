@@ -1,5 +1,9 @@
 import { Column } from '@/components/ui/tables'
-import { answerParams, questionParams } from '@/utils/constants/constantsForSearchParams.ts'
+import {
+  answerParams,
+  questionParams,
+  updatedParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 
 export const columnsPack: Column[] = [
   {
@@ -13,7 +17,7 @@ export const columnsPack: Column[] = [
     sortable: true,
   },
   {
-    key: 'updated',
+    key: updatedParams,
     title: 'Last Updated',
     sortable: true,
   },

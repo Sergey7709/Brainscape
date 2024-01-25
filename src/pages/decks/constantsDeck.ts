@@ -1,5 +1,9 @@
 import { Column } from '@/components/ui/tables'
-import { cardsCountParams, nameParams } from '@/utils/constants/constantsForSearchParams.ts'
+import {
+  cardsCountParams,
+  nameParams,
+  updatedParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 
 export const columnsDecks: Column[] = [
   {
@@ -13,7 +17,7 @@ export const columnsDecks: Column[] = [
     sortable: true,
   },
   {
-    key: 'updated',
+    key: updatedParams,
     title: 'Last Updated',
     sortable: true,
   },
