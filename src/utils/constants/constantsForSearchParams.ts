@@ -22,12 +22,12 @@ export const answerParams = 'answer'
 
 export const previousCardIdParams = 'previousCardId'
 
-// export const questionImgParams = 'questionImg'
-//
-// export const answerImgParams = 'answerImg'
+export const questionImgParams = 'questionImg'
 
-// export const cardsCountParams = 'cardsCount'
+export const answerImgParams = 'answerImg'
 
-// export const updatedParams = 'updated'
+export const cardsCountParams = 'cardsCount'
 
-// export const 'authorNameParams = 'author.name'
+export const updatedParams = 'updated'
+
+export const authorNameParams = 'author.name'
