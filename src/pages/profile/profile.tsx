@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { useUtilityFormData } from '@/pages/profile/useUtilityFormData.ts'
 import { useGetAuthUserMeDataQuery, useLogoutUserMutation } from '@/service'
+import { nameParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const Profile = memo(() => {
   const { data } = useGetAuthUserMeDataQuery()
@@ -26,7 +27,7 @@ export const Profile = memo(() => {
   )
   const handlerOnNameChange = useCallback(
     (newName: string) => {
-      utilityFormData('name', newName)
+      utilityFormData(nameParams, newName)
     },
     [data]
   )

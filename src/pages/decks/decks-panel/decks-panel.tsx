@@ -20,6 +20,12 @@ import {
 import { findNameReducer, minMaxCardsCountReducer } from '@/service/store/deckParamsSlice.ts'
 import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
+import {
+  authorIdParams,
+  maxCardsCountParams,
+  minCardsCountParams,
+  nameParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 import { useDebounce } from '@/utils/hooks/useDebounce.ts'
 
 type MaxCardsInDecks = {
@@ -40,13 +46,13 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
 
   const meID = meData?.id ?? ''
 
-  const myOrAllAuthorCards = searchParams.get('authorId') || 'allCards'
+  const myOrAllAuthorCards = searchParams.get(authorIdParams) || 'allCards'
 
-  const findText = searchParams.get('name') || ''
+  const findText = searchParams.get(nameParams) || ''
 
   const minMaxCardsUrlValue = [
-    Number(searchParams.get('minCardsCount') || valueForSlider[0]),
-    Number(searchParams.get('maxCardsCount') || maxCardsCount || valueForSlider[1]),
+    Number(searchParams.get(minCardsCountParams) || valueForSlider[0]),
+    Number(searchParams.get(maxCardsCountParams) || maxCardsCount || valueForSlider[1]),
   ]
 
   useEffect(() => {
@@ -62,7 +68,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
   useEffect(() => {
     debounce !== findText &&
       utilityForSearchParamsEdit({
-        param: 'name',
+        param: nameParams,
         valueForNewParam: debounce ? debounce : [],
       })
     isFirstRender && dispatch(findNameReducer({ findName: findText }))
@@ -77,8 +83,8 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
 
   const handlerSliderCommitValue = (value: number[]) => {
     utilityForSearchParamsEdit({
-      param: 'minCardsCount',
-      param2: 'maxCardsCount',
+      param: minCardsCountParams,
+      param2: maxCardsCountParams,
       valueForNewParam: value[0] === minCardsValue ? [] : value[0].toString(),
       valueForNewParam2: value[1] === (maxCardsCount || maxCardsValue) ? [] : value[1].toString(),
     })
@@ -98,7 +104,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
   }
   const handlerTabSwitchChangeValue = (value: string | string[]) => {
     utilityForSearchParamsEdit({
-      param: 'authorId',
+      param: authorIdParams,
       valueForNewParam: value,
     })
   }

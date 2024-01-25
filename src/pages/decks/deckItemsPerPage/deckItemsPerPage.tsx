@@ -7,17 +7,18 @@ import { Typography } from '@/components/ui/typography'
 import { optionsForDeckItemsPerPage } from '@/pages/decks/constantsDeck.ts'
 import { selectItemsPerPageReducer, useAppDispatch } from '@/service'
 import { useCombineAppSelector, useUtilityForSearchParamsEdit } from '@/utils'
+import { itemsPerPageParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const DeckItemsPerPage = () => {
   const { selectItemsPerPage } = useCombineAppSelector()
   const dispatch = useAppDispatch()
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
   const [searchParams] = useSearchParams()
-  const paginationSelectValueInURL = searchParams.get('itemsPerPage') || selectItemsPerPage
+  const paginationSelectValueInURL = searchParams.get(itemsPerPageParams) || selectItemsPerPage
 
   const handlerSelectPagination = (items: string) => {
     utilityForSearchParamsEdit({
-      param: 'itemsPerPage',
+      param: itemsPerPageParams,
       valueForNewParam: items,
     })
     dispatch(selectItemsPerPageReducer({ selectItemsPerPage: items }))

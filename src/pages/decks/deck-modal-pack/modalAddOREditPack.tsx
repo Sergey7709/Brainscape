@@ -74,18 +74,18 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
               </Typography>
             </ModalConstructor.Head>
             <ModalConstructor.Body>
-              <ImageUploader
-                hiddenInputRef={hiddenInputRefCover}
-                valueForm={coverFormValue}
-                errorMessage={errors.imageCover?.message}
-                onChangeForm={handlerFormCoverOnChange}
-              />
               <TextField
                 value={nameValue}
                 onValueChange={handlerNameChange}
                 label={'Name Pack'}
                 {...register('namePack')}
                 errorMessage={errors.namePack?.message}
+              />
+              <ImageUploader
+                hiddenInputRef={hiddenInputRefCover}
+                valueForm={coverFormValue}
+                errorMessage={errors.imageCover?.message}
+                onChangeForm={handlerFormCoverOnChange}
               />
               <Checkbox label={'Private Pack'} checked={value} onChange={onChange} />
             </ModalConstructor.Body>
