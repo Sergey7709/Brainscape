@@ -21,6 +21,7 @@ import { findNameReducer, minMaxCardsCountReducer } from '@/service/store/deckPa
 import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
 import {
+  authorIdParams,
   maxCardsCountParams,
   minCardsCountParams,
   nameParams,
@@ -45,7 +46,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
 
   const meID = meData?.id ?? ''
 
-  const myOrAllAuthorCards = searchParams.get('authorId') || 'allCards'
+  const myOrAllAuthorCards = searchParams.get(authorIdParams) || 'allCards'
 
   const findText = searchParams.get(nameParams) || ''
 
@@ -103,7 +104,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
   }
   const handlerTabSwitchChangeValue = (value: string | string[]) => {
     utilityForSearchParamsEdit({
-      param: 'authorId',
+      param: authorIdParams,
       valueForNewParam: value,
     })
   }
