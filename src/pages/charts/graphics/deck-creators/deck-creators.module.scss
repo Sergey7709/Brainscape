@@ -14,15 +14,18 @@
 .title {
   display: block;
   margin-bottom: 20px;
+  color: var(--color-accent-500);
   text-align: center;
 }
 
 .table {
   th {
-    padding: 6px 4px;
+    padding: 6px;
+    font-weight: 700;
+    text-align: start;
   }
 
   td {
-    padding: 6px 4px;
+    padding: 6px;
   }
 }

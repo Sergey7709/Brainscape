@@ -108,6 +108,7 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
         handlerClosedModal={handlerClosedModal}
         headerTitle={'Add new card'}
         buttonTitle={'Add new card'}
+        borderBottomHeader
       />
       <Button
         as={'button'}

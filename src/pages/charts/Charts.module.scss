@@ -1,11 +1,11 @@
 .firstSection {
   display: flex;
-  gap: 100px;
+  flex-direction: column;
+  gap: 80px;
   align-items: center;
   justify-content: center;
 
   margin-bottom: 50px;
-  padding: 10px;
 
   @media (width <= 1040px) {
     gap: 10px;
@@ -16,11 +16,27 @@
   }
 }
 
-.wrapper {
+.container {
   width: 100%;
   max-width: 1006px;
   margin: 30px auto;
   padding: 10px;
+}
+
+.wrapper {
+ display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70%;
+  padding: 10px;
+
+  border: 3px solid   #660a1d;
+
+  @media (width <= 540px) {
+    width: 100%;
+  }
+
 }
 
 .buttonWrapper {

@@ -102,6 +102,7 @@ export const PackEditCard = ({
         handlerClosedModal={handlerClosedModal}
         headerTitle={'Edit card'}
         buttonTitle={'Save Changes'}
+        borderBottomHeader
       />
     </div>
   )

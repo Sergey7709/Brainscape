@@ -55,7 +55,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   )
   const overlayStyle = clsx(s.overlay, `${open ? s.visible : s.invisible}`)
   const handlerCloseModal = () => {
-    setIsClosing(!isClosing) //!!!
+    setIsClosing(!isClosing)
     setTimeout(() => setOpen(false), 200)
   }
 
@@ -66,9 +66,8 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
 
       switch (e.key) {
         case 'Escape': {
-          // setOpen(false)
           handlerCloseModal()
-          document.body.removeAttribute('style') ///!!!
+          document.body.removeAttribute('style')
           break
         }
 
@@ -88,7 +87,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   useEffect(() => {
     // Set aria-hidden attribute on the root element
     document.getElementById('root')?.setAttribute('aria-hidden', open.toString())
-    document.body.style.overflow = 'hidden' ///!!!
+    document.body.style.overflow = 'hidden'
     // Set aria-hidden attribute on the portal element
     portal.current?.setAttribute('aria-hidden', (!open).toString())
 

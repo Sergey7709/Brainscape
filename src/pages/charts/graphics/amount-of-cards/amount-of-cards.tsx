@@ -29,7 +29,7 @@ export const AmountOfCards = memo(({ items }: Pick<GetEntitiesResponse<DeckType>
     labels: ['0', '< 10', '< 20', '< 100'],
     datasets: [
       {
-        label: 'Amount of cards in the deck',
+        label: 'Total decks',
         data: [usersData['0'], usersData['<10'], usersData['<20'], usersData['<100']],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',

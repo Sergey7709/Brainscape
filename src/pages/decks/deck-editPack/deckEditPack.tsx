@@ -63,7 +63,7 @@ export const DeckEditPack = ({
       handlerClosedModal={handlerClosedModal}
       headerTitle={'Edit Pack'}
       buttonTitle={'Save Changes'}
-      borderBottomHeader={true}
+      borderBottomHeader
       justifyContentHeader={'left'}
     />
   )
