@@ -5,6 +5,7 @@ import s from '@/pages/pack/tablePack/tablePack.module.scss'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { PackCards } from '@/service/decks/decks.types.ts'
 import { useUtilityForSearchParamsEdit } from '@/utils'
+import { orderBy } from '@/utils/constants/constantsForSearchParams.ts'
 
 type TablePackProps = {
   dataCards: GetEntitiesResponse<PackCards>
@@ -16,7 +17,7 @@ export const TablePack = ({ dataCards, sort, mePackCards }: TablePackProps) => {
 
   const handlerSortValuePack = (sort: Sort) => {
     utilityForSearchParamsEdit({
-      param: 'orderBy',
+      param: orderBy,
       valueForNewParam:
         sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
     })
