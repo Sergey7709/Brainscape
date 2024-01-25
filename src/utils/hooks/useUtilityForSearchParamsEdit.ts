@@ -1,5 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
+import { currentPageParams } from '@/utils/constants/constantsForSearchParams.ts'
+
 type UseUtilityForSearchParamsEdit = {
   param: string
   param2?: string
@@ -28,7 +30,7 @@ export const useUtilityForSearchParamsEdit = () => {
         }
       : {
           ...restOffSearchObject,
-          [param]: param === 'currentPage' && valueForNewParam === '1' ? [] : valueForNewParam,
+          [param]: param === currentPageParams && valueForNewParam === '1' ? [] : valueForNewParam,
         }
 
     setSearchParams(urlParams)
