@@ -20,7 +20,10 @@ import {
 import { findNameReducer, minMaxCardsCountReducer } from '@/service/store/deckParamsSlice.ts'
 import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
 import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
-import { minCardsCountParams } from '@/utils/constants/constantsForSearchParams.ts'
+import {
+  maxCardsCountParams,
+  minCardsCountParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 import { useDebounce } from '@/utils/hooks/useDebounce.ts'
 
 type MaxCardsInDecks = {
@@ -47,7 +50,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
 
   const minMaxCardsUrlValue = [
     Number(searchParams.get(minCardsCountParams) || valueForSlider[0]),
-    Number(searchParams.get('maxCardsCount') || maxCardsCount || valueForSlider[1]),
+    Number(searchParams.get(maxCardsCountParams) || maxCardsCount || valueForSlider[1]),
   ]
 
   useEffect(() => {
@@ -79,7 +82,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
   const handlerSliderCommitValue = (value: number[]) => {
     utilityForSearchParamsEdit({
       param: minCardsCountParams,
-      param2: 'maxCardsCount',
+      param2: maxCardsCountParams,
       valueForNewParam: value[0] === minCardsValue ? [] : value[0].toString(),
       valueForNewParam2: value[1] === (maxCardsCount || maxCardsValue) ? [] : value[1].toString(),
     })
