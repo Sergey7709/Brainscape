@@ -14,7 +14,7 @@ import s from '@/pages/decks/decks.module.scss'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions'
 import { currentPageValue } from '@/service'
 import { useUtilityForSearchParamsEdit } from '@/utils'
-import { orderBy } from '@/utils/constants/constantsForSearchParams.ts'
+import { orderByParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const Decks = () => {
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
@@ -45,7 +45,7 @@ export const Decks = () => {
 
   const handlerSortValue = (sort: Sort) => {
     utilityForSearchParamsEdit({
-      param: orderBy,
+      param: orderByParams,
       valueForNewParam:
         sort?.key && sort?.direction !== null ? `${sort?.key}-${sort?.direction}` : [],
     })
