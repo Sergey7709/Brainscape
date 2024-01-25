@@ -1,5 +1,5 @@
 import { Column } from '@/components/ui/tables'
-import { nameParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { cardsCountParams, nameParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const columnsDecks: Column[] = [
   {
@@ -8,7 +8,7 @@ export const columnsDecks: Column[] = [
     sortable: true,
   },
   {
-    key: 'cardsCount',
+    key: cardsCountParams,
     title: 'Cards',
     sortable: true,
   },
