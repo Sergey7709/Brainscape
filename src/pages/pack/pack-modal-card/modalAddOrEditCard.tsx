@@ -74,14 +74,14 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
               </Typography>
             </ModalConstructor.Head>
             <ModalConstructor.Body>
-              <ControlledTextField control={control} name={questionParams} />
+              <ControlledTextField control={control} name={questionParams} label={'Question'} />
               <ImageUploader
                 hiddenInputRef={hiddenInputRefQuestion}
                 valueForm={imageQuestionFormValue}
                 errorMessage={errors.questionImg?.message}
                 onChangeForm={onChangeImageQuestionForm}
               />
-              <ControlledTextField control={control} name={'answer'} />
+              <ControlledTextField control={control} name={'answer'} label={'Answer'} />
               <ImageUploader
                 hiddenInputRef={hiddenInputRefAnswer}
                 valueForm={imageAnswerFormValue}
