@@ -6,7 +6,11 @@ import { z } from 'zod'
 
 import { DeckEditPackProps } from '@/pages/decks/deck-editPack'
 import { utilityZodPackSchema } from '@/pages/decks/hooks-and-functions/utilityZodPackSchema.ts'
-import { coverParams, nameParams } from '@/utils/constants/constantsForSearchParams.ts'
+import {
+  coverParams,
+  isPrivateParams,
+  nameParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 
 export const UseEditPackFormModal = ({
   id,
@@ -60,7 +64,7 @@ export const UseEditPackFormModal = ({
     }
 
     formData.append(nameParams, form.namePack)
-    formData.append('isPrivate', JSON.stringify(form.privatePack))
+    formData.append(isPrivateParams, JSON.stringify(form.privatePack))
 
     return formData
   }

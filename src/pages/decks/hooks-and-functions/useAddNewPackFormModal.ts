@@ -5,7 +5,11 @@ import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { utilityZodPackSchema, useAddNewPack } from '@/pages/decks/hooks-and-functions'
-import { coverParams, nameParams } from '@/utils/constants/constantsForSearchParams.ts'
+import {
+  coverParams,
+  isPrivateParams,
+  nameParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 
 export const UseAddNewPackFormModal = () => {
   const { initialValues, addNewPackSchema } = utilityZodPackSchema()
@@ -53,7 +57,7 @@ export const UseAddNewPackFormModal = () => {
       formData.append(coverParams, form.imageCover[0])
     }
     formData.append(nameParams, form.namePack)
-    formData.append('isPrivate', JSON.stringify(form.privatePack))
+    formData.append(isPrivateParams, JSON.stringify(form.privatePack))
 
     return formData
   }
