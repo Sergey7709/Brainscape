@@ -1,8 +1,9 @@
 import { Column } from '@/components/ui/tables'
+import { nameParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const columnsDecks: Column[] = [
   {
-    key: 'name',
+    key: nameParams,
     title: 'Name',
     sortable: true,
   },
