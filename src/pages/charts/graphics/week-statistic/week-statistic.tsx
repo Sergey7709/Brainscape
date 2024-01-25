@@ -64,15 +64,12 @@ export const WeekStatistic = memo(({ items }: Pick<GetEntitiesResponse<DeckType>
     ],
   }
 
-  const classNames = {
-    wrapper: s.wrapper,
-    chart: s.chart,
-  }
-
   return (
-    <div className={classNames.wrapper}>
-      <Typography variant={'h2'}>The most productive days of the week</Typography>
-      <Chart className={classNames.chart} data={info} type={'bar'} />
+    <div className={s.wrapper}>
+      <Typography variant={'h2'} className={s.title}>
+        The most productive days of the week
+      </Typography>
+      <Chart className={s.chart} data={info} type={'bar'} />
     </div>
   )
 })
