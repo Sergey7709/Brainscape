@@ -6,7 +6,7 @@ import { z } from 'zod'
 
 import { DeckEditPackProps } from '@/pages/decks/deck-editPack'
 import { utilityZodPackSchema } from '@/pages/decks/hooks-and-functions/utilityZodPackSchema.ts'
-import { nameParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { coverParams, nameParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const UseEditPackFormModal = ({
   id,
@@ -54,9 +54,9 @@ export const UseEditPackFormModal = ({
     const formData = new FormData()
 
     if (form.imageCover?.[0] instanceof File) {
-      formData.append('cover', form.imageCover[0])
+      formData.append(coverParams, form.imageCover[0])
     } else if (form.imageCover === '') {
-      formData.append('cover', '')
+      formData.append(coverParams, '')
     }
 
     formData.append(nameParams, form.namePack)
