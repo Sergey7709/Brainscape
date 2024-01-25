@@ -23,6 +23,7 @@ import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInit
 import {
   maxCardsCountParams,
   minCardsCountParams,
+  nameParams,
 } from '@/utils/constants/constantsForSearchParams.ts'
 import { useDebounce } from '@/utils/hooks/useDebounce.ts'
 
@@ -46,7 +47,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
 
   const myOrAllAuthorCards = searchParams.get('authorId') || 'allCards'
 
-  const findText = searchParams.get('name') || ''
+  const findText = searchParams.get(nameParams) || ''
 
   const minMaxCardsUrlValue = [
     Number(searchParams.get(minCardsCountParams) || valueForSlider[0]),
@@ -66,7 +67,7 @@ export const DecksPanel = memo(({ maxCardsCount }: MaxCardsInDecks) => {
   useEffect(() => {
     debounce !== findText &&
       utilityForSearchParamsEdit({
-        param: 'name',
+        param: nameParams,
         valueForNewParam: debounce ? debounce : [],
       })
     isFirstRender && dispatch(findNameReducer({ findName: findText }))
