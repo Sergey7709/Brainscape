@@ -69,7 +69,7 @@ export const ModalAddOrEditPack = (props: ModalAddOREditPackProps) => {
               borderBottomHeader={borderBottomHeader}
               justifyContentHeader={justifyContentHeader}
             >
-              <Typography as={'span'} variant={'large'}>
+              <Typography as={'span'} variant={'h1'}>
                 {headerTitle}
               </Typography>
             </ModalConstructor.Head>

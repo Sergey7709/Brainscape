@@ -20,15 +20,10 @@ export const Charts = () => {
 
   const navigate = useNavigate()
 
-  const classNames = {
-    wrapper: s.wrapper,
-    firstSection: s.firstSection,
-  }
-
   if (isFetching || isLoading) return <Loader />
 
   return (
-    <div className={classNames.wrapper}>
+    <div className={s.container}>
       <div className={s.buttonWrapper}>
         <Button
           variant={'link'}
@@ -42,11 +37,17 @@ export const Charts = () => {
         </Button>
       </div>
 
-      <div className={classNames.firstSection}>
-        <AmountOfCards items={data!.items} />
-        <DeckCreators items={data!.items} />
+      <div className={s.firstSection}>
+        <div className={s.wrapper}>
+          <AmountOfCards items={data!.items} />
+        </div>
+        <div className={s.wrapper}>
+          <DeckCreators items={data!.items} />
+        </div>
+        <div className={s.wrapper}>
+          <WeekStatistic items={data!.items} />
+        </div>
       </div>
-      <WeekStatistic items={data!.items} />
     </div>
   )
 }
