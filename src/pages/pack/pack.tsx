@@ -13,6 +13,7 @@ import { PackSearch } from '@/pages/pack/packSearch'
 import { TablePack } from '@/pages/pack/tablePack'
 import { decksPath } from '@/router'
 import { useUtilityForSearchParamsEdit } from '@/utils'
+import { currentPageParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const Pack = () => {
   const {
@@ -35,7 +36,7 @@ export const Pack = () => {
 
   const handlerPagination = (page: number) => {
     utilityForSearchParamsEdit({
-      param: 'currentPage',
+      param: currentPageParams,
       valueForNewParam: page.toString() ?? '',
     })
   }
