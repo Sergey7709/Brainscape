@@ -39,6 +39,7 @@ export const DeckAddNewPack = () => {
       value={value}
       onChange={onChange}
       handlerClosedModal={handlerClosedModal}
+      borderBottomHeader
       headerTitle={'Add new pack'}
       buttonTitle={'Add new pack'}
     >
