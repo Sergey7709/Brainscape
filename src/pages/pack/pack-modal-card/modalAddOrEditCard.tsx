@@ -10,7 +10,7 @@ import { ImageUploader } from '@/components/ui/imageUploader'
 import { Modal, ModalConstructor } from '@/components/ui/modal'
 import { JustifyContent } from '@/components/ui/modal/typeForModal.ts'
 import { Typography } from '@/components/ui/typography'
-import { questionParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { answerParams, questionParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 type FormCard = { question: string; answer: string; questionImg?: any; answerImg?: any }
 
@@ -81,7 +81,7 @@ export const ModalAddOrEditCard = (props: ModalAddOrEditCardProps) => {
                 errorMessage={errors.questionImg?.message}
                 onChangeForm={onChangeImageQuestionForm}
               />
-              <ControlledTextField control={control} name={'answer'} label={'Answer'} />
+              <ControlledTextField control={control} name={answerParams} label={'Answer'} />
               <ImageUploader
                 hiddenInputRef={hiddenInputRefAnswer}
                 valueForm={imageAnswerFormValue}
