@@ -10,6 +10,7 @@ import { RadioGroupAnswer } from '@/pages/learn/answer/radioGroupAnswer.tsx'
 import { isGrade } from '@/pages/learn/constants-learn'
 import s from '@/pages/learn/learn.module.scss'
 import { useGradeCardMutation } from '@/service'
+import { previousCardIdParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 type AnswerProps = {
   nameCard: string
@@ -49,7 +50,7 @@ export const Answer = ({
           grade: grade,
         },
       })
-      sessionStorage.setItem('previousCardId', `${cardID}`)
+      sessionStorage.setItem(previousCardIdParams, `${cardID}`)
     }
   }
 
