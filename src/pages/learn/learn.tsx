@@ -10,7 +10,7 @@ import { Question } from '@/pages/learn/question'
 import { BackToDeckLink } from '@/pages/pack/backToDeckLink'
 import { useGetDataForPack } from '@/pages/pack/hooks-and-function/useGetDataForPack.ts'
 import { useGetRandomCardsQuery } from '@/service'
-import { previousCardIdParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { previousCardIdParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 export const Learn = () => {
   const packId = useParams()

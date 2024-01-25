@@ -4,8 +4,8 @@ import { SortedPackData } from '@/pages/pack/sortedPackData'
 import s from '@/pages/pack/tablePack/tablePack.module.scss'
 import { GetEntitiesResponse } from '@/service/common/types.ts'
 import { PackCards } from '@/service/decks/decks.types.ts'
-import { useUtilityForSearchParamsEdit } from '@/utils'
-import { orderByParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { useUtilityForSearchParamsEdit } from '@/shared'
+import { orderByParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 type TablePackProps = {
   dataCards: GetEntitiesResponse<PackCards>

@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/ui/loader'
 import { useUtilityFormData } from '@/pages/profile/useUtilityFormData.ts'
 import { useGetAuthUserMeDataQuery, useLogoutUserMutation } from '@/service'
-import { nameParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { nameParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 export const Profile = memo(() => {
   const { data } = useGetAuthUserMeDataQuery()

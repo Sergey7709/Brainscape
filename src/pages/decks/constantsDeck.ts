@@ -4,7 +4,7 @@ import {
   cardsCountParams,
   nameParams,
   updatedParams,
-} from '@/utils/constants/constantsForSearchParams.ts'
+} from '@/shared/constants/constantsForSearchParams.ts'
 
 export const columnsDecks: Column[] = [
   {

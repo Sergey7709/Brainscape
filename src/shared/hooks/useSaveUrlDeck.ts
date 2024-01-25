@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-import { searchParamsDeckUrl } from '@/utils'
+import { searchParamsDeckUrl } from '@/shared'
 
 export const useSaveUrlDeck = () => {
   const location = useLocation()
