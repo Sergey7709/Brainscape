@@ -12,8 +12,8 @@ import { PackPanel } from '@/pages/pack/packPanel'
 import { PackSearch } from '@/pages/pack/packSearch'
 import { TablePack } from '@/pages/pack/tablePack'
 import { decksPath } from '@/router'
-import { useUtilityForSearchParamsEdit } from '@/utils'
-import { currentPageParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { useUtilityForSearchParamsEdit } from '@/shared'
+import { currentPageParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 export const Pack = () => {
   const {

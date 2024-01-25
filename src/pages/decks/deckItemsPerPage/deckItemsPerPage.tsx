@@ -1,13 +1,14 @@
 import { useSearchParams } from 'react-router-dom'
 
+import { useCombineAppSelector, useUtilityForSearchParamsEdit } from '../../../shared'
+
 import s from './deckItemsPerPage.module.scss'
 
 import { Select } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
 import { optionsForDeckItemsPerPage } from '@/pages/decks/constantsDeck.ts'
 import { selectItemsPerPageReducer, useAppDispatch } from '@/service'
-import { useCombineAppSelector, useUtilityForSearchParamsEdit } from '@/utils'
-import { itemsPerPageParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { itemsPerPageParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 export const DeckItemsPerPage = () => {
   const { selectItemsPerPage } = useCombineAppSelector()

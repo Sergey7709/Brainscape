@@ -3,7 +3,7 @@ import {
   answerParams,
   questionParams,
   updatedParams,
-} from '@/utils/constants/constantsForSearchParams.ts'
+} from '@/shared/constants/constantsForSearchParams.ts'
 
 export const columnsPack: Column[] = [
   {

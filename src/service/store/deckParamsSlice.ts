@@ -8,7 +8,7 @@ import {
   minCardsValue,
   packFindNameValue,
   selectItemsPerPageValue,
-} from '@/utils/constants/constantsForInitialValue.ts'
+} from '@/shared/constants/constantsForInitialValue.ts'
 
 type InitialState = {
   currentPage?: number

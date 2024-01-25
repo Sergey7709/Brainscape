@@ -18,15 +18,15 @@ import {
   useGetAuthUserMeDataQuery,
 } from '@/service'
 import { findNameReducer, minMaxCardsCountReducer } from '@/service/store/deckParamsSlice.ts'
-import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/utils'
-import { maxCardsValue, minCardsValue } from '@/utils/constants/constantsForInitialValue.ts'
+import { useCombineAppSelector, useIsFirstRender, useUtilityForSearchParamsEdit } from '@/shared'
+import { maxCardsValue, minCardsValue } from '@/shared/constants/constantsForInitialValue.ts'
 import {
   authorIdParams,
   maxCardsCountParams,
   minCardsCountParams,
   nameParams,
-} from '@/utils/constants/constantsForSearchParams.ts'
-import { useDebounce } from '@/utils/hooks/useDebounce.ts'
+} from '@/shared/constants/constantsForSearchParams.ts'
+import { useDebounce } from '@/shared/hooks/useDebounce.ts'
 
 type MaxCardsInDecks = {
   maxCardsCount: number

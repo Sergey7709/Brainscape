@@ -10,7 +10,7 @@ import {
   coverParams,
   isPrivateParams,
   nameParams,
-} from '@/utils/constants/constantsForSearchParams.ts'
+} from '@/shared/constants/constantsForSearchParams.ts'
 
 export const UseEditPackFormModal = ({
   id,

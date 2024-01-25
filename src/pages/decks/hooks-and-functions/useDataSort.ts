@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom'
 
 import { Sort } from '@/components/ui/tables'
-import { orderByValue } from '@/utils'
-import { orderByParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { orderByValue } from '@/shared'
+import { orderByParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 export const useDataSort = () => {
   const [searchParams] = useSearchParams()

@@ -10,7 +10,7 @@ import { Card } from '@/components/ui/card'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { loginPath } from '@/router'
-import { nameParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { nameParams } from '@/shared/constants/constantsForSearchParams.ts'
 
 const signUpSchema = z
   .object({

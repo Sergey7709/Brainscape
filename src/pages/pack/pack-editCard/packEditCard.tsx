@@ -12,7 +12,7 @@ import {
   answerParams,
   questionImgParams,
   questionParams,
-} from '@/utils/constants/constantsForSearchParams.ts'
+} from '@/shared/constants/constantsForSearchParams.ts'
 
 const { addNewCardSchema } = utilityZodCardSchema()
 
