@@ -7,7 +7,11 @@ import { z } from 'zod'
 import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions'
 import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
-import { answerParams, questionParams } from '@/utils/constants/constantsForSearchParams.ts'
+import {
+  answerParams,
+  questionImgParams,
+  questionParams,
+} from '@/utils/constants/constantsForSearchParams.ts'
 
 const { addNewCardSchema } = utilityZodCardSchema()
 
@@ -47,7 +51,7 @@ export const PackEditCard = ({
 
   const {
     field: { value: imageQuestionFormValue, onChange: onChangeImageQuestionForm },
-  } = useController({ name: 'questionImg', control, defaultValue: questionImage || '' })
+  } = useController({ name: questionImgParams, control, defaultValue: questionImage || '' })
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
