@@ -14,6 +14,7 @@ import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions/utilityZ
 import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 import {
+  answerImgParams,
   answerParams,
   questionImgParams,
   questionParams,
@@ -51,7 +52,7 @@ export const PackAddNewCard = ({ deckId }: PackAddNewCardProps) => {
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
-  } = useController({ name: 'answerImg', control })
+  } = useController({ name: answerImgParams, control })
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },

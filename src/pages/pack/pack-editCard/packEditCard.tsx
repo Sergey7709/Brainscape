@@ -8,6 +8,7 @@ import { utilityZodCardSchema } from '@/pages/decks/hooks-and-functions'
 import { utilityAddFormDataCard } from '@/pages/pack/hooks-and-function'
 import { ModalAddOrEditCard } from '@/pages/pack/pack-modal-card'
 import {
+  answerImgParams,
   answerParams,
   questionImgParams,
   questionParams,
@@ -55,7 +56,7 @@ export const PackEditCard = ({
 
   const {
     field: { value: imageAnswerFormValue, onChange: onChangeImageAnswerForm },
-  } = useController({ name: 'answerImg', control, defaultValue: answerImage || '' })
+  } = useController({ name: answerImgParams, control, defaultValue: answerImage || '' })
 
   const {
     field: { value: questionFormValue, onChange: onChangeQuestionFormValue },
