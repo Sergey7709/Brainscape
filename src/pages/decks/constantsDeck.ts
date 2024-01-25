@@ -1,5 +1,6 @@
 import { Column } from '@/components/ui/tables'
 import {
+  authorNameParams,
   cardsCountParams,
   nameParams,
   updatedParams,
@@ -22,7 +23,7 @@ export const columnsDecks: Column[] = [
     sortable: true,
   },
   {
-    key: 'author.name',
+    key: authorNameParams,
     title: 'Created by',
     sortable: true,
   },
