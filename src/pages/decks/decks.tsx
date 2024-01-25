@@ -14,14 +14,14 @@ import s from '@/pages/decks/decks.module.scss'
 import { useGetDataSort } from '@/pages/decks/hooks-and-functions'
 import { currentPageValue } from '@/service'
 import { useUtilityForSearchParamsEdit } from '@/utils'
-import { orderByParams } from '@/utils/constants/constantsForSearchParams.ts'
+import { currentPageParams, orderByParams } from '@/utils/constants/constantsForSearchParams.ts'
 
 export const Decks = () => {
   const utilityForSearchParamsEdit = useUtilityForSearchParamsEdit()
 
   const [searchParams] = useSearchParams()
 
-  const paginationValueInURL = Number(searchParams.get('currentPage')) || currentPageValue
+  const paginationValueInURL = Number(searchParams.get(currentPageParams)) || currentPageValue
 
   const { sort, isFetching, isLoading, data } = useGetDataSort()
 
@@ -38,7 +38,7 @@ export const Decks = () => {
 
   const handlerPagination = (page: number) => {
     utilityForSearchParamsEdit({
-      param: 'currentPage',
+      param: currentPageParams,
       valueForNewParam: page.toString() ?? '',
     })
   }
