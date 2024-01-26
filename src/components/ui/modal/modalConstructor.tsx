@@ -43,8 +43,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   const container = useRef<HTMLDivElement>(null)
   const onOverlayClick = (e: SyntheticEvent<Node>) => {
     if (!container.current?.contains(e.target as Node)) {
-      document.body.style.overflow = ''
-      setOpen(false)
+      setIsClosing(true) //!!!
     }
   }
 
@@ -55,9 +54,18 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   )
   const overlayStyle = clsx(s.overlay, `${open ? s.visible : s.invisible}`)
   const handlerCloseModal = () => {
-    setIsClosing(!isClosing)
-    setTimeout(() => setOpen(false), 200)
+    setIsClosing(true)
   }
+
+  useEffect(() => {
+    if (isClosing) {
+      setTimeout(() => {
+        document.body.removeAttribute('style')
+        setOpen(false)
+        setIsClosing(false)
+      }, 200)
+    }
+  }, [isClosing]) //!!!!
 
   // close on esc
   useEffect(() => {
@@ -67,7 +75,6 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
       switch (e.key) {
         case 'Escape': {
           handlerCloseModal()
-          document.body.removeAttribute('style')
           break
         }
 
@@ -87,11 +94,12 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   useEffect(() => {
     // Set aria-hidden attribute on the root element
     document.getElementById('root')?.setAttribute('aria-hidden', open.toString())
-    document.body.style.overflow = 'hidden'
+
     // Set aria-hidden attribute on the portal element
     portal.current?.setAttribute('aria-hidden', (!open).toString())
 
     if (open) {
+      document.body.style.overflow = 'hidden' //!!!
       // Save the current active element as the previous focus
       previousFocus.current = (document.activeElement as HTMLElement) ?? null
       // Focus on the next element within the container
