@@ -2,13 +2,13 @@ import type { Meta, Story } from '@storybook/react'
 
 import { Eye } from '@/assets/icons'
 import test from '@/assets/images/test.png'
+import { Button } from '@/components/ui/button'
 import {
   DropDownItem,
   DropDownItemWithIcon,
   DropdownMenu,
 } from '@/components/ui/dropdown/dropdown-menu.tsx'
 import { Typography } from '@/components/ui/typography'
-import { Button } from '@/stories/Button.tsx'
 
 const meta: Meta<typeof DropdownMenu> = {
   title: 'Components/DropdownMenu',
@@ -59,7 +59,7 @@ export const WithDisabledItems: Story = args => {
       sideOffset={20}
       trigger={
         <span>
-          <Button primary label={'Click me!'} />
+          <Button variant={'primary'}> Click me</Button>
         </span>
       }
     >
