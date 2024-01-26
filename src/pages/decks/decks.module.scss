@@ -10,8 +10,7 @@
 
   &.containerDisabled {
     pointer-events: none;
-    opacity: 0.8;
-  }
+   }
 
   @media (width <= 1040px) {
     padding-right: 15px;
