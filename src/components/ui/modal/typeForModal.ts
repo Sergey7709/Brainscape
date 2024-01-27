@@ -11,13 +11,6 @@ export type SizeModal = {
   size?: SizeForModal
 }
 
-export type ModalContextValue = {
-  open: boolean
-  setOpen: Dispatch<SetStateAction<boolean>>
-} & ShowCloseBtn &
-  SizeModal &
-  ComponentPropsWithRef<'div'>
-
 export type ModalProps = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
