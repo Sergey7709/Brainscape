@@ -97,46 +97,50 @@ export const Modals: Story = {
     }
 
     return (
-      <Modal
-        open={open}
-        setOpen={setOpen}
-        size={args.size}
-        justifyContentHeader={args.justifyContentHeader}
-        showCloseButton={args.showCloseButton}
-      >
-        <ModalConstructor.PortalAndOverlay>
-          <ModalConstructor.Head
-            borderBottomHeader={args.borderBottomHeader}
-            justifyContentHeader={args.justifyContentHeader}
-          >
-            <Typography as={'span'} variant={'large'}>
-              Add New Card
-            </Typography>
-          </ModalConstructor.Head>
-          <ModalConstructor.Body>
-            <TextField label={'Choose a question format'}></TextField>
-            <TextField label={'Question'}></TextField>
-            <TextField label={'Answer'}></TextField>
-          </ModalConstructor.Body>
-          <ModalConstructor.Footer>
-            <Button variant={'secondary'} onClick={handlerClosedModal}>
-              <Typography as={'span'} variant={'body2'}>
-                Cancel
-              </Typography>
+      <>
+        <Modal
+          open={open}
+          setOpen={setOpen}
+          size={args.size}
+          justifyContentHeader={args.justifyContentHeader}
+          showCloseButton={args.showCloseButton}
+        >
+          {open && (
+            <ModalConstructor.PortalAndOverlay>
+              <ModalConstructor.Head
+                borderBottomHeader={args.borderBottomHeader}
+                justifyContentHeader={args.justifyContentHeader}
+              >
+                <Typography as={'span'} variant={'large'}>
+                  Add New Card
+                </Typography>
+              </ModalConstructor.Head>
+              <ModalConstructor.Body>
+                <TextField label={'Choose a question format'}></TextField>
+                <TextField label={'Question'}></TextField>
+                <TextField label={'Answer'}></TextField>
+              </ModalConstructor.Body>
+              <ModalConstructor.Footer>
+                <Button variant={'secondary'} onClick={handlerClosedModal}>
+                  <Typography as={'span'} variant={'body2'}>
+                    Cancel
+                  </Typography>
+                </Button>
+                <Button variant={'primary'} fullWidth>
+                  <Typography as={'span'} variant={'body2'}>
+                    Add New Card
+                  </Typography>
+                </Button>
+              </ModalConstructor.Footer>
+            </ModalConstructor.PortalAndOverlay>
+          )}
+          <ModalConstructor.Trigger>
+            <Button as={'button'} variant={'tertiary'}>
+              Open the modal
             </Button>
-            <Button variant={'primary'} fullWidth>
-              <Typography as={'span'} variant={'body2'}>
-                Add New Card
-              </Typography>
-            </Button>
-          </ModalConstructor.Footer>
-        </ModalConstructor.PortalAndOverlay>
-        <ModalConstructor.Trigger>
-          <Button as={'button'} variant={'tertiary'}>
-            Open the modal
-          </Button>
-        </ModalConstructor.Trigger>
-      </Modal>
+          </ModalConstructor.Trigger>
+        </Modal>
+      </>
     )
   },
 }
