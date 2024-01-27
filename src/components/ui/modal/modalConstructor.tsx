@@ -32,7 +32,8 @@ import {
  * @returns {ReactNode} The rendered modal overlay and container.
  */
 const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): ReactNode => {
-  const { open, setOpen, size, showCloseButton, className, ...restProps } = useContext(ModalContext)
+  const { open, setOpen, size, showCloseButton, className, justifyContentHeader, ...restProps } =
+    useContext(ModalContext)
 
   const [isClosing, setIsClosing] = useState(false)
 
@@ -43,7 +44,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   const container = useRef<HTMLDivElement>(null)
   const onOverlayClick = (e: SyntheticEvent<Node>) => {
     if (!container.current?.contains(e.target as Node)) {
-      setIsClosing(true) //!!!
+      setIsClosing(true)
     }
   }
 
@@ -52,11 +53,13 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
     size && s[size],
     isClosing ? s.fadeOut : s.fadeInDown
   )
+
   const overlayStyle = clsx(s.overlay, `${open ? s.visible : s.invisible}`)
   const handlerCloseModal = () => {
     setIsClosing(true)
   }
 
+  // time for animate and close
   useEffect(() => {
     if (isClosing) {
       setTimeout(() => {
@@ -65,7 +68,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
         setIsClosing(false)
       }, 200)
     }
-  }, [isClosing]) //!!!!
+  }, [isClosing])
 
   // close on esc
   useEffect(() => {
@@ -99,7 +102,7 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
     portal.current?.setAttribute('aria-hidden', (!open).toString())
 
     if (open) {
-      document.body.style.overflow = 'hidden' //!!!
+      document.body.style.overflow = 'hidden'
       // Save the current active element as the previous focus
       previousFocus.current = (document.activeElement as HTMLElement) ?? null
       // Focus on the next element within the container
