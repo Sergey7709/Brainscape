@@ -8,7 +8,7 @@ import { Typography } from '@/components/ui/typography'
 type ModalDeletePackProps = {
   handlerClosedModal: () => void
   handlerDeletePack: () => void
-  name: string
+  name?: string
 } & ModalProps
 export const ModalDeletePack = (props: ModalDeletePackProps) => {
   const { open, setOpen, name, handlerDeletePack, handlerClosedModal } = props
