@@ -54,7 +54,7 @@ export const DeckRow = (deck: DeckType) => {
 
   return (
     <>
-      <tr>
+      <tr id={'Loading'}>
         <td>{(isLoadingDelete || isLoadingEdit) && <Loader />}</td>
       </tr>
       {deck && (
@@ -116,17 +116,21 @@ export const DeckRow = (deck: DeckType) => {
           </Table.Cell>
         </Table.Row>
       )}
-      <tr className={s.modalRow}>
-        <td>
-          {openModalDelete && (
+      {openModalDelete && (
+        <tr className={s.modalRow}>
+          <td>
             <ModalDeletePack
               open={openModalDelete}
               setOpen={setOpenModalDelete}
               handlerClosedModal={handlerOpenModal}
               handlerDeletePack={handlerDeletePack}
             />
-          )}
-          {openEditModal && (
+          </td>
+        </tr>
+      )}
+      {openEditModal && (
+        <tr className={s.modalRow}>
+          <td>
             <DeckEditPack
               id={deck.id}
               coverPack={deck.cover}
@@ -136,9 +140,9 @@ export const DeckRow = (deck: DeckType) => {
               isPrivate={deck.isPrivate}
               utilityEditPack={utilityEditPack}
             />
-          )}
-        </td>
-      </tr>
+          </td>
+        </tr>
+      )}
     </>
   )
 }
