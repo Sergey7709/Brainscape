@@ -50,13 +50,6 @@ export const ImageUploader = ({
   return (
     <>
       <div className={s.modalAddWrapper}>
-        <input
-          ref={hiddenInputRef}
-          type={'file'}
-          accept="image/*"
-          className={s.modalAddInputCover}
-          onChange={handleUploadedFile}
-        />
         <div className={s.coverImageUploader}>
           <Button
             as={'button'}
@@ -66,6 +59,14 @@ export const ImageUploader = ({
             onClick={onUpload}
             fullWidth
           >
+            <input
+              ref={hiddenInputRef}
+              type={'file'}
+              accept="image/*"
+              className={s.modalAddInputCover}
+              onChange={handleUploadedFile}
+              tabIndex={-1}
+            />
             {valueCover ? (
               <>
                 <img className={s.modalAddImageCover} src={valueCover} alt={'Not Found'} />
