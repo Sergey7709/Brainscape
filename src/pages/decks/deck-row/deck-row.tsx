@@ -124,6 +124,7 @@ export const DeckRow = (deck: DeckType) => {
               setOpen={setOpenModalDelete}
               handlerClosedModal={handlerOpenModal}
               handlerDeletePack={handlerDeletePack}
+              name={deck.name}
             />
           </td>
         </tr>
