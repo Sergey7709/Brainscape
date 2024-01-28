@@ -8,9 +8,10 @@ import { Typography } from '@/components/ui/typography'
 type ModalDeletePackProps = {
   handlerClosedModal: () => void
   handlerDeletePack: () => void
+  name: string
 } & ModalProps
 export const ModalDeletePack = (props: ModalDeletePackProps) => {
-  const { open, setOpen, handlerDeletePack, handlerClosedModal } = props
+  const { open, setOpen, name, handlerDeletePack, handlerClosedModal } = props
 
   return (
     <Modal open={open} setOpen={setOpen}>
@@ -22,7 +23,7 @@ export const ModalDeletePack = (props: ModalDeletePackProps) => {
         </ModalConstructor.Head>
         <ModalConstructor.Body>
           <Typography variant={'body1'}>
-            Do you really want to remove Pack Name? All cards will be deleted.
+            {`Do you really want to remove pack '${name}'? All cards will be deleted.`}
           </Typography>
         </ModalConstructor.Body>
         <ModalConstructor.Footer>
