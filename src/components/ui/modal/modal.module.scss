@@ -45,23 +45,6 @@
     }
   }
 
-  &.fadeOut {
-    animation-name: fade-out-up;
-    animation-duration: 0.2s;
-    animation-fill-mode: both;
-
-    @keyframes fade-out-up {
-      0% {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate3d(-50%, -100%, 0);
-        opacity: 0;
-      }
-    }
-  }
 
   &.sm {
     width: 420px;
