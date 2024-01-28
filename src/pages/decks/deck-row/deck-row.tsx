@@ -128,7 +128,7 @@ export const DeckRow = (deck: DeckType) => {
           </td>
         </tr>
       )}
-      {
+      {openEditModal && (
         <tr className={s.modalRow}>
           <td>
             <DeckEditPack
@@ -142,30 +142,7 @@ export const DeckRow = (deck: DeckType) => {
             />
           </td>
         </tr>
-      }
-      {/*<tr className={s.modalRow}>*/}
-      {/*  <td>*/}
-      {/*    {openModalDelete && (*/}
-      {/*      <ModalDeletePack*/}
-      {/*        open={openModalDelete}*/}
-      {/*        setOpen={setOpenModalDelete}*/}
-      {/*        handlerClosedModal={handlerOpenModal}*/}
-      {/*        handlerDeletePack={handlerDeletePack}*/}
-      {/*      />*/}
-      {/*    )}*/}
-      {/*    {openEditModal && (*/}
-      {/*      <DeckEditPack*/}
-      {/*        id={deck.id}*/}
-      {/*        coverPack={deck.cover}*/}
-      {/*        titlePack={deck.name}*/}
-      {/*        open={openEditModal}*/}
-      {/*        setOpen={setOpenEditModal}*/}
-      {/*        isPrivate={deck.isPrivate}*/}
-      {/*        utilityEditPack={utilityEditPack}*/}
-      {/*      />*/}
-      {/*    )}*/}
-      {/*  </td>*/}
-      {/*</tr>*/}
+      )}
     </>
   )
 }
