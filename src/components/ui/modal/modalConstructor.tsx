@@ -7,7 +7,6 @@ import {
   useRef,
   useContext,
   ReactNode,
-  useState,
 } from 'react'
 
 import { clsx } from 'clsx'
@@ -35,8 +34,6 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   const { open, setOpen, size, showCloseButton, className, justifyContentHeader, ...restProps } =
     useContext(ModalContext)
 
-  const [isClosing, setIsClosing] = useState(false)
-
   const portal = useCreatePortal()
   const previousFocus = useRef<HTMLElement | null>(null)
 
@@ -44,31 +41,16 @@ const PortalAndOverlay: FC<PortalOverlay> = ({ children }: PortalOverlay): React
   const container = useRef<HTMLDivElement>(null)
   const onOverlayClick = (e: SyntheticEvent<Node>) => {
     if (!container.current?.contains(e.target as Node)) {
-      setIsClosing(true)
+      setOpen(false)
     }
   }
 
-  const containerStyle = clsx(
-    s.childrenContainer,
-    size && s[size],
-    isClosing ? s.fadeOut : s.fadeInDown
-  )
+  const containerStyle = clsx(s.childrenContainer, size && s[size], open && s.fadeInDown)
 
   const overlayStyle = clsx(s.overlay, `${open ? s.visible : s.invisible}`)
   const handlerCloseModal = () => {
-    setIsClosing(true)
+    setOpen(false)
   }
-
-  // time for animate and close
-  useEffect(() => {
-    if (isClosing) {
-      setTimeout(() => {
-        document.body.removeAttribute('style')
-        setOpen(false)
-        setIsClosing(false)
-      }, 200)
-    }
-  }, [isClosing])
 
   // close on esc
   useEffect(() => {
