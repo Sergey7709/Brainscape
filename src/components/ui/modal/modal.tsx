@@ -1,6 +1,6 @@
 import { FC, createContext } from 'react'
 
-import { ModalContextValue, ModalProps } from '@/components/ui/modal/typeForModal.ts'
+import { ModalProps } from '@/components/ui/modal/typeForModal.ts'
 
 /**
  * Modal component that provides a modal context for managing the state of the modal.
@@ -12,7 +12,7 @@ import { ModalContextValue, ModalProps } from '@/components/ui/modal/typeForModa
  * @param restProps - Any other props that can be passed to the modal container div.
  */
 
-export const ModalContext = createContext<ModalContextValue>({
+export const ModalContext = createContext<ModalProps>({
   open: false,
   setOpen: () => {},
 })
@@ -25,13 +25,22 @@ export const Modal: FC<ModalProps> = props => {
     setOpen,
     size = 'md',
     showCloseButton = true,
+    justifyContentHeader = 'left',
     ...restProps
   } = props
 
   return (
     <>
       <ModalContext.Provider
-        value={{ open, setOpen, size, showCloseButton, className, ...restProps }}
+        value={{
+          open,
+          setOpen,
+          size,
+          showCloseButton,
+          className,
+          justifyContentHeader,
+          ...restProps,
+        }}
       >
         <div {...restProps}>{children}</div>
       </ModalContext.Provider>
