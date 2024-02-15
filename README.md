@@ -1,4 +1,4 @@
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&pause=1000&color=8C61FF&random=false&width=435&lines=%D0%9E+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B5+Learning-Cards" alt="Typing SVG" /></a>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=9167F7&random=false&width=650&lines=%D0%9E+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B5+Brainscape+Learning+Cards)](https://git.io/typing-svg)
 
 <a href="https://js-cards.vercel.app/"><img src="https://embed-ssl.wistia.com/deliveries/5fca3601c611297e41292db68d5e594f.jpg?image_crop_resized=900x506&image_play_button=false&image_play_button_size=2x&image_play_button_color=174bd2e0" alt="LearnCards" width="225" height="127" /></a>
 
